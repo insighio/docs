@@ -9,9 +9,9 @@ metaDataFormat = "yaml"
 defaultContentLanguageInSubdir= true
 
 [params]
-  editURL = "https://gitlab.com/insighiot/insighio-documentation/content/"
+  editURL = "https://github.com/insighio/docs/edit/master/content/"
   description = "insigh.io documentation"
-  author = "Nikos Ftylitakis"
+  author = "insigh.io robot"
   disableBreadcrumb = false
   disableLanguageSwitchingButton = true
   disableNextPrev = false
