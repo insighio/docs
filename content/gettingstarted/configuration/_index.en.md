@@ -14,6 +14,7 @@ The key configurations that will be edited are:
 - Communication protocol
 - Measurement period duration
 - Security Keys
+- Enabled measurements
 
 #### How to enable WiFi Access Point mode
 
@@ -23,21 +24,22 @@ Each board broadcasts a WiFi **SSID** with format _insigh-<last 4 digits of mac 
 
 #### WiFi Access Point mode indicator
 
-The WiFi Access Point is ready for connection around 5-10 seconds after power on. Its ready state is identified by the LED that turns **purple**.
+The WiFi Access Point is ready for connection around 5-10 seconds after power on. Its ready state is identified by the LED that blinks **purple**. As soon as a client is successfully connected to the Access Point, the LED will remain **purple** without blinking.
 
 #### WiFi Access Point mode timeouts
 
 The WiFi Access Point will remain active for:
 
-- **25 seconds**, if no WiFi client gets connected
+- **20 seconds**, if no WiFi client gets connected
 - **5 minutes**, if any WiFi client gets connected
 
 ## How To
 
 1. Power on board with Pycom device.
-1. When the LED on the Pycom board turns to purple, the WiFi Access Point is ready to accept connections
+1. When the LED on the Pycom board starts blinking purple, the WiFi Access Point is ready to accept connections
 1. Connect via WiFi to the broadcasted **SSID** (ex. _insigh-5fa1_) with **password**: _insighiodev_
-1. Open the Web UI URL: [http://192.168.4.1](http://192.168.4.1) or [device.local](http://device.local)
+1. Wait for the LED remain **purple** without blinking. Now the Web UI is ready to be accessed.
+1. Open the Web UI URL: [http://192.168.4.1](http://192.168.4.1)
 1. login with **username:** _admin_ and **password:** _insighiodev_
 1. Select Network type for data exchange:
    - [WiFi]({{< relref "wifi/_index.en.md" >}})

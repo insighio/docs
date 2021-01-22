@@ -17,6 +17,7 @@ defaultContentLanguageInSubdir= true
   disableNextPrev = false
   showVisitedLinks = false
   themeVariant = "mine"
+  disableLandingPageButton = true
 
 [outputs]
 home = [ "HTML", "RSS", "JSON"]
