@@ -3,7 +3,7 @@ languageCode = "en-US"
 defaultContentLanguage = "en"
 
 title = "insigh.io documentation"
-theme = "hugo-theme-learn"
+theme = ["hugo-video", "hugo-theme-learn"]
 themesdir = "themes"
 metaDataFormat = "yaml"
 defaultContentLanguageInSubdir= true

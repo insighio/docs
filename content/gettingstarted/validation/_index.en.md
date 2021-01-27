@@ -16,10 +16,22 @@ Our source code contains a demo scenario that can be used as a reference for usi
 
 |                                        LED color                                         |                     Scenario Step                     |
 | :--------------------------------------------------------------------------------------: | :---------------------------------------------------: |
-|  blinking **{{< raw-html >}}<span style="color: #3D2AD3">blue</span>{{< /raw-html >}}**  |                  Initializing device                  |
-| blinking **{{< raw-html >}}<span style="color: #B200FF">purple</span>{{< /raw-html >}}** |  Web UI waiting for client (only after hard reboot)   |
-|  solid **{{< raw-html >}}<span style="color: #B200FF">purple</span>{{< /raw-html >}}**   | Web UI with connected client (only after hard reboot) |
-|   solid **{{< raw-html >}}<span style="color: #3D2AD3">blue</span>{{< /raw-html >}}**    |            Executing enabled measurements             |
-|    solid **{{< raw-html >}}<span style="color: #C53247">red</span>{{< /raw-html >}}**    |                 Connecting to network                 |
-|   solid **{{< raw-html >}}<span style="color: #13A42A">green</span>{{< /raw-html >}}**   |           Network connected, uploading data           |
+|  blinking **{{< raw-html >}}<span style="color: #0000FF">blue</span>{{< /raw-html >}}**  |                  Initializing device                  |
+| blinking **{{< raw-html >}}<span style="color: #800080">purple</span>{{< /raw-html >}}** |  Web UI waiting for client (only after hard reboot)   |
+|  solid **{{< raw-html >}}<span style="color: #800080">purple</span>{{< /raw-html >}}**   | Web UI with connected client (only after hard reboot) |
+|   solid **{{< raw-html >}}<span style="color: #0000FF">blue</span>{{< /raw-html >}}**    |            Executing enabled measurements             |
+|    solid **{{< raw-html >}}<span style="color: #FF0000">red</span>{{< /raw-html >}}**    |                 Connecting to network                 |
+|   solid **{{< raw-html >}}<span style="color: #008000">green</span>{{< /raw-html >}}**   |           Network connected, uploading data           |
 |                                           off                                            |                     in deep sleep                     |
+
+Follows an example video shows how the LED colouring is affected based on the scenario progress. Key points of the video are:
+
+- In step 6 of Web UI, **Finish** button is pressed
+- Device will reboot to start running the scenario
+- Connect to the network through the typical SSID to regain network connectivity
+- Device gets initialized, reads sensors and uploads data
+- Switch the view to console.insigh.io tab where the **Device Info** view is still open
+- In the **Live View** section of the page, the uploaded data will be displayed as soon as they are processed
+- **Device Info** view will be updated automatically with each incoming message.
+
+{{< video src="demo-scenario" >}}
