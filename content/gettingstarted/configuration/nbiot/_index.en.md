@@ -1,6 +1,6 @@
 ---
 title: NBIoT
-weight: 22
+weight: 23
 ---
 
 insigh.io board Web UI configuration scenario for setting up NBioT connection.
@@ -19,7 +19,7 @@ insigh.io board Web UI configuration scenario for setting up NBioT connection.
    - Tip Autofill: After completing step "Create Device" keep the tab open in the "Device Info view". Thus, during this step you can go back to the **Device Info View** and:
      - either manually copy/paste the corresponding keys to the fields
      - or press the **Quick device data commands** button and then copy **JSON** data button. Upon pasting these data to any of the fields, the data will be auto-imported to the appropriate fields.
-1. The configurations are ready. Upon confirmation, they will be applied and the device will reboot to the new settings.
-1. The device is up and running
+
+Next step will be to [Enable / disable measurements]({{< relref "../measurements/_index.en.md" >}}) that will be run during the demo scenario.
 
 ![nbiot setup](/images/webui-nbiot.gif?width=50pc)
