@@ -1,10 +1,7 @@
 ---
 title: WiFi
 weight: 164
-chapter: true
 ---
-
-### Chapter 3
 
 ```py
 """ System configuration options """

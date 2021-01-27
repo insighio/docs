@@ -2,12 +2,7 @@
 title: Encoding Protocol
 weight: 162
 #pre: "<b>2. </b>"
-chapter: true
 ---
-
-### Chapter 1
-
-# Getting Started
 
 ```js
 /*

@@ -5,8 +5,6 @@ pre: "<b>3. </b>"
 chapter: true
 ---
 
-### Chapter 3
+# Firmware APIs
 
-# Getting Started
-
-Setup your account, provision your first device and experience the simplicity of exchanging sensor data end-to-end.
+Follows a thorough description of all insigh.io libraries included in the Pycom firmware.

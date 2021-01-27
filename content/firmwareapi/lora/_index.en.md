@@ -5,8 +5,6 @@ weight: 160
 chapter: true
 ---
 
-### Chapter 1
+# LoRA
 
-# Getting Started
-
-Setup your account, provision your first device and experience the simplicity of exchanging sensor data end-to-end.
+Information specific on LoRA operation on insigh.io board firmware.

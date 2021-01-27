@@ -5,8 +5,8 @@ pre: "<b>2. </b>"
 chapter: true
 ---
 
-### Chapter 2
+# Hardware
 
-# Getting Started
+This section will hold information of the insigh.io board versions and specifications.
 
-Setup your account, provision your first device and experience the simplicity of exchanging sensor data end-to-end.
+**under construction**

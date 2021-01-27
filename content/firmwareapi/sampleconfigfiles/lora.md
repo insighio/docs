@@ -1,10 +1,7 @@
 ---
 title: LoRA
 weight: 166
-chapter: true
 ---
-
-### Chapter 3
 
 ```py
 """ System configuration options """

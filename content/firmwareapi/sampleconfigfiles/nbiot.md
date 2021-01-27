@@ -1,10 +1,7 @@
 ---
 title: NBIoT
 weight: 165
-chapter: true
 ---
-
-### Chapter 3
 
 ```py
 """ System configuration options """
