@@ -14,10 +14,12 @@ By completing the [Configure Device]({{< relref "../configuration/_index.en.md" 
 
 Our source code contains a demo scenario that can be used as a reference for using the insigh.io board and our libraries. That scenario is coded in the file **/flash/apps/demo-console/demo_scenario.py**. Each of the main steps included in the scenario can be monitored visually as they are identified by a different color lighting of Pycom's LED.
 
-|                                       LED color                                        |           Scenario Step           |
-| :------------------------------------------------------------------------------------: | :-------------------------------: |
-| blinking **{{< raw-html >}}<span style="color: #61A8DD">blue</span>{{< /raw-html >}}** |        Initializing device        |
-|  solid **{{< raw-html >}}<span style="color: #61A8DD">blue</span>{{< /raw-html >}}**   |  Executing enabled measurements   |
-|   solid **{{< raw-html >}}<span style="color: #C53247">red</span>{{< /raw-html >}}**   |       Connecting to network       |
-|  solid **{{< raw-html >}}<span style="color: #13A42A">green</span>{{< /raw-html >}}**  | Network connected, uploading data |
-|                                          off                                           |           in deep sleep           |
+|                                        LED color                                         |                     Scenario Step                     |
+| :--------------------------------------------------------------------------------------: | :---------------------------------------------------: |
+|  blinking **{{< raw-html >}}<span style="color: #3D2AD3">blue</span>{{< /raw-html >}}**  |                  Initializing device                  |
+| blinking **{{< raw-html >}}<span style="color: #B200FF">purple</span>{{< /raw-html >}}** |  Web UI waiting for client (only after hard reboot)   |
+|  solid **{{< raw-html >}}<span style="color: #B200FF">purple</span>{{< /raw-html >}}**   | Web UI with connected client (only after hard reboot) |
+|   solid **{{< raw-html >}}<span style="color: #3D2AD3">blue</span>{{< /raw-html >}}**    |            Executing enabled measurements             |
+|    solid **{{< raw-html >}}<span style="color: #C53247">red</span>{{< /raw-html >}}**    |                 Connecting to network                 |
+|   solid **{{< raw-html >}}<span style="color: #13A42A">green</span>{{< /raw-html >}}**   |           Network connected, uploading data           |
+|                                           off                                            |                     in deep sleep                     |
