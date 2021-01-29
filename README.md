@@ -1,7 +1,9 @@
 # insigh.io docs
 
 This repo is dedicated on being the single source of knowledge around insigh.io products and services.
-Hosted URL: `http://docs.insigh.io`
+
+Hosted URL: [docs.insigh.io](http://docs.insigh.io)
+
 Documentation is auto-generated from Markdown files in this repo using [Hugo](https://gohugo.io) tool.
 
 ## Prerequisites
@@ -27,4 +29,4 @@ cd docs
 hugo serve
 ```
 
-By default Hugo server binds a localhost port 1313: `http://localhost:1313/`
+By default Hugo server binds a localhost port 1313: [localhost:1313](http://localhost:1313/)
