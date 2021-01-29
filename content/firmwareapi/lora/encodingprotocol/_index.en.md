@@ -1,249 +1,106 @@
 ---
 title: Encoding Protocol
-weight: 162
+weight: 161
 #pre: "<b>2. </b>"
 ---
 
-```js
-/*
+insigh.io Firmware comes with a data encoding protocol that packs all information ready to be transmitted into a concise byte array. Currently it is used specifically to create the payload in case of LoRA transmission.
 
-/$$                     /$$           /$$           /$$          
-|__/                    |__/          | $$          |__/          
-/$$ /$$$$$$$   /$$$$$$$ /$$  /$$$$$$ | $$$$$$$      /$$  /$$$$$$ 
-| $$| $$__  $$ /$$_____/| $$ /$$__  $$| $$__  $$    | $$ /$$__  $$
-| $$| $$  \ $$|  $$$$$$ | $$| $$  \ $$| $$  \ $$    | $$| $$  \ $$
-| $$| $$  | $$ \____  $$| $$| $$  | $$| $$  | $$    | $$| $$  | $$
-| $$| $$  | $$ /$$$$$$$/| $$|  $$$$$$$| $$  | $$ /$$| $$|  $$$$$$/
-|__/|__/  |__/|_______/ |__/ \____  $$|__/  |__/|__/|__/ \______/ 
-                            /$$  \ $$                            
-                            |  $$$$$$/                            
-                            \______/                             
+### packet composition
 
-LoRA payload decoder for insigh.io firmware
-*/
+The payload always starts with the device_id which is the first 6 bytes, and follows a composition of sensor data fields.
 
-const LOCATION_DEFAULT = 0x00;
-const LOCATION_INTERNAL_BOARD = 0x10;
-const LOCATION_INTERNAL_CPU = 0x11;
-const LOCATION_I2C = 0x20;
-const LOCATION_A_P1 = 0x30;
-const LOCATION_A_P2 = 0x31;
-const LOCATION_AD_P1 = 0x40;
-const LOCATION_AD_P2 = 0x41;
-const LOCATION_SDI12 = 0x50;
-const LOCATION_MODEM = 0x70;
+| sensor data |               |               |     |               |
+| :---------: | :-----------: | :-----------: | :-: | :-----------: |
+|  device_id  | sensor_data_1 | sensor_data_2 | ... | sensor_data_n |
 
-const TYPE_DEVICE_ID = 0x01;
-const TYPE_RESET_CAUSE = 0x02;
-const TYPE_UPTIME = 0x03;
-const TYPE_MEM_ALLOC = 0x04;
-const TYPE_MEM_FREE = 0x05;
-const TYPE_CURRENT = 0x07;
-const TYPE_VBAT = 0x08;
-const TYPE_LIGHT_LUX = 0x10;
-const TYPE_TEMPERATURE = 0x11;
-const TYPE_HUMIDITY = 0x12;
-const TYPE_CO2 = 0x13;
-const TYPE_PRESSURE = 0x14;
-const TYPE_GAS = 0x15;
-const TYPE_VOLTAGE = 0x16;
-const TYPE_VWC = 0x17;
-const TYPE_REL_PERM = 0x18;
-const TYPE_SOIL_EC = 0x19;
-const TYPE_PORE_WATER_CONDUCT = 0x20;
-const TYPE_LORA_JOIN_DUR = 0xc1;
+### sensor_data format
 
-let typeMap = {};
+Each sensor data field is composed of one byte for **sensor type**, one byte for **sensor location** on the insigh.io board followed by the **sensor value** with 1-6 bytes of data. The number of sensor value bytes is in direct correspondence with the sensor type and can be retrieved in the table of the next paragraph.
 
-function init() {
-  typeMap[TYPE_CO2] = { name: "co2", unit: "ppm" };
-  typeMap[TYPE_CURRENT] = { name: "current", unit: "mA" };
-  typeMap[TYPE_DEVICE_ID] = { name: "device_id", unit: "" };
-  typeMap[TYPE_GAS] = { name: "gas", unit: "Ohm" };
-  typeMap[TYPE_HUMIDITY] = { name: "humidity", unit: "%RH" };
-  typeMap[TYPE_LIGHT_LUX] = { name: "light_lux", unit: "lx" };
-  typeMap[TYPE_LORA_JOIN_DUR] = { name: "lora_join_dur", unit: "ms" };
-  typeMap[TYPE_MEM_ALLOC] = { name: "mem_alloc", unit: "B" };
-  typeMap[TYPE_MEM_FREE] = { name: "mem_free", unit: "B" };
-  typeMap[TYPE_PORE_WATER_CONDUCT] = {
-    name: "pore_water_conduct",
-    unit: "uS/cm",
-  };
-  typeMap[TYPE_PRESSURE] = { name: "pressure", unit: "hPa" };
-  typeMap[TYPE_REL_PERM] = { name: "rel_perm", unit: "" };
-  typeMap[TYPE_RESET_CAUSE] = { name: "reset_cause", unit: "" };
-  typeMap[TYPE_SOIL_EC] = { name: "soil_ec", unit: "uS/cm" };
-  typeMap[TYPE_TEMPERATURE] = { name: "temperature", unit: "Cel" };
-  typeMap[TYPE_UPTIME] = { name: "uptime", unit: "ms" };
-  typeMap[TYPE_VBAT] = { name: "vbat", unit: "mV" };
-  typeMap[TYPE_VOLTAGE] = { name: "voltage", unit: "mV" };
-  typeMap[TYPE_VWC] = { name: "vwc", unit: "" };
-}
+|  byte [0]   |    byte [1]     |  byte [2-n]  |
+| :---------: | :-------------: | :----------: |
+| sensor type | sensor location | sensor value |
 
-function bin32dec(bin) {
-  var num = bin & 0xffffffff;
-  if (0x100000000 & num) num = -(0x0100000000 - num);
-  return num;
-}
+### sensor type values
 
-function bin16dec(bin) {
-  var num = bin & 0xffff;
-  if (0x8000 & num) num = -(0x010000 - num);
-  return num;
-}
+| sensor type |              name              |   value range    |  unit   | sensor value number of bytes |
+| :---------: | :----------------------------: | :--------------: | :-----: | :--------------------------: |
+|    0x01     |           device id            |    hex string    |  text   |           6 bytes            |
+|    0x02     |          reset cause           |       0-4        | integer |            1 byte            |
+|    0x03     |             uptime             |     0-65535      |   ms    |           2 bytes            |
+|    0x04     |           mem_alloc            |  0 – 4294967295  |    B    |           4 btyes            |
+|    0x05     |            mem_free            |  0 – 4294967295  |    B    |           4 btyes            |
+|    0x07     |            current             |     0-65535      |   mA    |           2 bytes            |
+|    0x08     |             vbatt              |     0-65535      |   mv    |           2 bytes            |
+|    0x10     |             light              |     0-65535      |   lux   |           2 bytes            |
+|    0x11     |          temperature           | -32767 -> +32767 |   Cel   |           2 bytes            |
+|    0x12     |            humidity            |     0-10000      | % / 100 |           2 bytes            |
+|    0x13     |              co2               |   0 – 1100 ppm   |   ppm   |           2 btyes            |
+|    0x14     |            pressure            |        -         |   hPa   |           4 bytes            |
+|    0x15     |              gas               |        -         |   ohm   |           2 bytes            |
+|    0x16     |            voltage             |     0-65535      |    V    |           2 bytes            |
+|    0x17     | Volumetric Water Content (vwc) |     0-10000      | % / 100 |           2 bytes            |
+|    0x18     |     Relative Permittivity      |     0-10000      | % / 100 |           2 bytes            |
+|    0x19     |     Electric Conductivity      |     0-65535      |  uS/cm  |           2 bytes            |
+|    0x20     |       Soil Pore Water EC       |     0-65535      |  uS/cm  |           2 bytes            |
+|    0xC1     |       lora_join_duration       |     0-65535      |   ms    |           2 bytes            |
 
-function bytesToHex(byteArray) {
-  return Array.from(byteArray, function (byte) {
-    return ("0" + (byte & 0xff).toString(16)).slice(-2);
-  }).join("");
-}
+### sensor location values
 
-function getTypeName(typeId) {
-  var typeInfo = typeMap[typeId];
-  if (typeInfo === undefined) return "";
-  return typeInfo.name;
-}
+| byte value |        location description        |
+| :--------: | :--------------------------------: |
+|    0x00    |              unknown               |
+|    0x10    |               board                |
+|    0x11    |                cpu                 |
+|    0x20    |                i2c                 |
+|    0x30    |      ap1 (Analog Position 1)       |
+|    0x31    |      ap2 (Analog Position 2)       |
+|    0x40    | adp1 (Analog / Digital Position 1) |
+|    0x41    | adp2 (Analog / Digital Position 2) |
+|    0x50    |               sdi12                |
+|    0x70    |               modem                |
 
-function getTypeUnit(typeId) {
-  var typeInfo = typeMap[typeId];
-  if (typeInfo === undefined) return "";
-  return typeInfo.unit;
-}
+## Example
 
-function getLocationName(locationId) {
-  mainLocation = locationId & 0xf0;
-  subLocation = locationId & 0x0f;
-  switch (mainLocation) {
-    case LOCATION_INTERNAL_BOARD:
-      switch (subLocation) {
-        case 0x00:
-          return "board";
-        case 0x01:
-          return "cpu";
-        default:
-          return "internal";
-      }
-    case LOCATION_I2C:
-      switch (subLocation) {
-        case 0x00:
-          return "tsl2561";
-        case 0x01:
-          return "si7021";
-        case 0x02:
-          return "scd30";
-        case 0x03:
-          return "bme680";
-        default:
-          return "i2c";
-      }
-    case LOCATION_A_P1:
-      switch (subLocation) {
-        case 0x00:
-          return "ap1";
-        case 0x01:
-          return "ap2";
-        default:
-          return "ap";
-      }
-    case LOCATION_AD_P1:
-      switch (subLocation) {
-        case 0x00:
-          return "adp1";
-        case 0x01:
-          return "adp2";
-        default:
-          return "adp";
-      }
-    case LOCATION_SDI12:
-      return "sdi12_" + subLocation;
-    case LOCATION_MODEM:
-      return "modem";
-    default:
-      console.log(
-        "location not decoded: ",
-        locationId,
-        ", ",
-        mainLocation,
-        ", ",
-        subLocation
-      );
-      return "undefined";
-  }
-}
+For example, lets incrementally build the required payload based on the following values:
 
-function DecodeInsighioPackage(bytes) {
-  init();
+1. device_id: 30aea47861b8
 
-  var senml = [];
-  for (i = 6; i < bytes.length; i++) {
-    var name = getLocationName(bytes[i + 1]) + "_" + getTypeName(bytes[i]);
-    var obj = { n: name, u: getTypeUnit(bytes[i]) };
-    switch (bytes[i]) {
-      case TYPE_RESET_CAUSE: // 1 byte (unsigned char)
-        obj["v"] = bytes[i + 2];
-        i += 2;
-        break;
-      case TYPE_TEMPERATURE: // 2 bytes (signed short)
-        var temp = (bytes[i + 2] << 8) | bytes[i + 3];
-        obj["v"] = bin16dec(temp) / 100;
-        i += 3;
-        break;
-      case TYPE_VBAT: // 2 bytes (unsigned short)
-      case TYPE_CURRENT:
-      case TYPE_LIGHT_LUX:
-      case TYPE_LORA_JOIN_DUR:
-        obj["v"] = (bytes[i + 2] << 8) | bytes[i + 3];
-        i += 3;
-        break;
-      case TYPE_HUMIDITY: // 2 bytes (unsigned short)
-      case TYPE_CO2:
-      case TYPE_GAS:
-      case TYPE_VOLTAGE:
-      case TYPE_VWC:
-      case TYPE_REL_PERM:
-      case TYPE_SOIL_EC:
-      case TYPE_PORE_WATER_CONDUCT:
-        obj["v"] = ((bytes[i + 2] << 8) | bytes[i + 3]) / 100;
-        i += 3;
-        break;
-      case TYPE_UPTIME: // 4 bytes (unsigned integer)
-      case TYPE_MEM_ALLOC:
-      case TYPE_MEM_FREE:
-        obj["v"] =
-          (bytes[i + 2] << 24) |
-          (bytes[i + 3] << 16) |
-          (bytes[i + 4] << 8) |
-          bytes[i + 5];
-        i += 5;
-        break;
-      case TYPE_PRESSURE: // 4 bytes (signed integer)
-        var temp =
-          (bytes[i + 2] << 24) |
-          (bytes[i + 3] << 16) |
-          (bytes[i + 4] << 8) |
-          bytes[i + 5];
-        obj["v"] = bin32dec(temp);
-        i += 5;
-        break;
-      default:
-        console.log("unidentified: ", bytes[i]);
-    }
-    senml.push(obj);
-  }
-  if (senml.length > 0) {
-    senml[0]["bn"] = bytesToHex(bytes.splice(0, 6)) + "-";
-  }
+   - **payload**: 30aea47861b8
 
-  return senml;
-}
+1. cpu_temperature: 44.44
 
-// Called from ChirpStack
-function Decode(fPort, bytes) {
-  return DecodeInsighioPackage(bytes);
-}
+   - type: temperature
+   - type id: 0x11
+   - location: cpu
+   - location id: 0x11
+   - value: 44.44
+   - value encoded: 44.44 \* 100 => dec: 4444 => hex: 0x115c
+   - **payload:** 0x1111115c
 
-// Called from TheThingsNetwork
-function Decoder(bytes, port) {
-  return DecodeInsighioPackage(bytes);
-}
+1. board_humidity: 55.95
+
+   - type: humidity
+   - type id: 0x12
+   - location: board
+   - location id: 0x10
+   - value: 55.95
+   - value encoded: 55.95 \* 100 => dec: 5595 => hex: 0x15DB
+   - **payload:** 0x121015db
+
+1. ap1_voltage: 144
+
+   - type: voltage
+   - type id: 0x16
+   - location: ap1
+   - location id: 0x30
+   - value: 144
+   - value encoded: dec: 144 => hex: 0x0090
+   - **payload:** 0x16300090
+
+Aggregated payload:
+
+```
+30aea47861b81111115c121015db16300090
 ```

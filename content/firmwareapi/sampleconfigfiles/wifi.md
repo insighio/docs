@@ -3,7 +3,7 @@ title: WiFi
 weight: 164
 ---
 
-```py
+```py {linenos=true}
 """ System configuration options """
 _WD_PERIOD = 120 # watchdog time for rebooting in seconds
 _BOARD_TYPE = "default"
