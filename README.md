@@ -29,4 +29,4 @@ cd docs
 hugo serve
 ```
 
-By default Hugo server binds a localhost port 1313: [localhost:1313](http://localhost:1313/)
+By default Hugo server binds at localhost port 1313: [localhost:1313](http://localhost:1313/)
