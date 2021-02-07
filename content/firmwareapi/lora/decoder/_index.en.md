@@ -8,17 +8,17 @@ Follows the LoRA payload decoder that transforms received bytes into SenML-forma
 ```js {linenos=true}
 /*
 
-/$$                     /$$           /$$           /$$          
-|__/                    |__/          | $$          |__/          
-/$$ /$$$$$$$   /$$$$$$$ /$$  /$$$$$$ | $$$$$$$      /$$  /$$$$$$ 
+/$$                     /$$           /$$           /$$
+|__/                    |__/          | $$          |__/
+/$$ /$$$$$$$   /$$$$$$$ /$$  /$$$$$$ | $$$$$$$      /$$  /$$$$$$
 | $$| $$__  $$ /$$_____/| $$ /$$__  $$| $$__  $$    | $$ /$$__  $$
 | $$| $$  \ $$|  $$$$$$ | $$| $$  \ $$| $$  \ $$    | $$| $$  \ $$
 | $$| $$  | $$ \____  $$| $$| $$  | $$| $$  | $$    | $$| $$  | $$
 | $$| $$  | $$ /$$$$$$$/| $$|  $$$$$$$| $$  | $$ /$$| $$|  $$$$$$/
-|__/|__/  |__/|_______/ |__/ \____  $$|__/  |__/|__/|__/ \______/ 
-                            /$$  \ $$                            
-                            |  $$$$$$/                            
-                            \______/                             
+|__/|__/  |__/|_______/ |__/ \____  $$|__/  |__/|__/|__/ \______/
+                            /$$  \ $$
+                            |  $$$$$$/
+                            \______/
 
 LoRA payload decoder for insigh.io firmware
 */
@@ -53,6 +53,7 @@ const TYPE_REL_PERM = 0x18;
 const TYPE_SOIL_EC = 0x19;
 const TYPE_PORE_WATER_CONDUCT = 0x20;
 const TYPE_LORA_JOIN_DUR = 0xc1;
+const TYPE_GENERIC = 0xe0;
 
 let typeMap = {};
 
@@ -79,6 +80,7 @@ function init() {
   typeMap[TYPE_VBAT] = { name: "vbat", unit: "mV" };
   typeMap[TYPE_VOLTAGE] = { name: "voltage", unit: "mV" };
   typeMap[TYPE_VWC] = { name: "vwc", unit: "" };
+  typeMap[TYPE_GENERIC] = { name: "gen", unit: "" };
 }
 
 function bin32dec(bin) {
@@ -100,7 +102,11 @@ function bytesToHex(byteArray) {
 }
 
 function getTypeName(typeId) {
-  var typeInfo = typeMap[typeId];
+  var typeInfo = undefined;
+  if (typeId & TYPE_GENERIC) {
+    typeInfo = typeMap[TYPE_GENERIC];
+    typeInfo.name = typeInfo.name + "_" + (typeId & 0x0f);
+  } else typeInfo = typeMap[typeId];
   if (typeInfo === undefined) return "";
   return typeInfo.name;
 }
@@ -179,6 +185,7 @@ function DecodeInsighioPackage(bytes) {
   for (i = 6; i < bytes.length; i++) {
     var name = getLocationName(bytes[i + 1]) + "_" + getTypeName(bytes[i]);
     var obj = { n: name, u: getTypeUnit(bytes[i]) };
+    var processed = true;
     switch (bytes[i]) {
       case TYPE_RESET_CAUSE: // 1 byte (unsigned char)
         obj["v"] = bytes[i + 2];
@@ -227,8 +234,18 @@ function DecodeInsighioPackage(bytes) {
         i += 5;
         break;
       default:
-        console.log("unidentified: ", bytes[i]);
+        processed = false;
     }
+    if (!processed && bytes[i] & TYPE_GENERIC) {
+      var temp =
+        (bytes[i + 2] << 24) |
+        (bytes[i + 3] << 16) |
+        (bytes[i + 4] << 8) |
+        bytes[i + 5];
+      obj["v"] = bin32dec(temp) / 100;
+      i += 5;
+    }
+
     senml.push(obj);
   }
   if (senml.length > 0) {
