@@ -24,30 +24,33 @@ Each sensor data field is composed of one byte for **sensor type**, one byte for
 
 ### sensor type values
 
-| sensor type |              name              |        value range        |  unit   | sensor value number of bytes |
-| :---------: | :----------------------------: | :-----------------------: | :-----: | :--------------------------: |
-|    0x01     |           device id            |        hex string         |  text   |           6 bytes            |
-|    0x02     |          reset cause           |            0-4            | integer |            1 byte            |
-|    0x03     |             uptime             |          0-65535          |   ms    |           2 bytes            |
-|    0x04     |           mem_alloc            |      0 – 4294967295       |    B    |           4 btyes            |
-|    0x05     |            mem_free            |      0 – 4294967295       |    B    |           4 btyes            |
-|    0x07     |            current             |          0-65535          |   mA    |           2 bytes            |
-|    0x08     |             vbatt              |          0-65535          |   mv    |           2 bytes            |
-|    0x10     |             light              |          0-65535          |   lux   |           2 bytes            |
-|    0x11     |          temperature           |     -32767 -> +32767      |   Cel   |           2 bytes            |
-|    0x12     |            humidity            |          0-10000          | % / 100 |           2 bytes            |
-|    0x13     |              co2               |       0 – 1100 ppm        |   ppm   |           2 btyes            |
-|    0x14     |            pressure            |             -             |   hPa   |           4 bytes            |
-|    0x15     |              gas               |             -             |   ohm   |           2 bytes            |
-|    0x16     |            voltage             |          0-65535          |    V    |           2 bytes            |
-|    0x17     | Volumetric Water Content (vwc) |          0-10000          | % / 100 |           2 bytes            |
-|    0x18     |     Relative Permittivity      |          0-10000          | % / 100 |           2 bytes            |
-|    0x19     |     Electric Conductivity      |          0-65535          |  uS/cm  |           2 bytes            |
-|    0x20     |       Soil Pore Water EC       |          0-65535          |  uS/cm  |           2 bytes            |
-|    0xC1     |       lora_join_duration       |          0-65535          |   ms    |           2 bytes            |
-|    0xE0     |            generic             | -2147483648 to 2147483647 | - / 100 |           4 bytes            |
-|     ...     |              ...               |            ...            | - / 100 |           4 bytes            |
-|    0xE9     |            generic             | -2147483648 to 2147483647 | - / 100 |           4 bytes            |
+| sensor type |               name               |        value range        |       unit        | sensor value number of bytes |
+| :---------: | :------------------------------: | :-----------------------: | :---------------: | :--------------------------: |
+|    0x01     |            device id             |        hex string         |       text        |           6 bytes            |
+|    0x02     |           reset cause            |            0-4            |      integer      |            1 byte            |
+|    0x03     |              uptime              |          0-65535          |        ms         |           2 bytes            |
+|    0x04     |            mem_alloc             |      0 – 4294967295       |         B         |           4 btyes            |
+|    0x05     |             mem_free             |      0 – 4294967295       |         B         |           4 btyes            |
+|    0x07     |             current              |          0-65535          |        mA         |           2 bytes            |
+|    0x08     |              vbatt               |          0-65535          |        mv         |           2 bytes            |
+|    0x10     |              light               |          0-65535          |        lux        |           2 bytes            |
+|    0x11     |           temperature            |     -32767 -> +32767      |        Cel        |           2 bytes            |
+|    0x12     |             humidity             |          0-10000          |      % / 100      |           2 bytes            |
+|    0x13     |               co2                |       0 – 1100 ppm        |        ppm        |           2 btyes            |
+|    0x14     |             pressure             |             -             |        hPa        |           4 bytes            |
+|    0x15     |               gas                |             -             |        ohm        |           2 bytes            |
+|    0x16     |             voltage              |          0-65535          |         V         |           2 bytes            |
+|    0x17     |  Volumetric Water Content (vwc)  |          0-10000          |      % / 100      |           2 bytes            |
+|    0x18     | Relative Permittivity (rel_perm) |          0-10000          |      % / 100      |           2 bytes            |
+|    0x19     |    Electric Conductivity (ec)    |          0-65535          |       uS/cm       |           2 bytes            |
+|    0x20     |     Soil Pore Water EC (ec)      |          0-65535          |       uS/cm       |           2 bytes            |
+|    0x21     |       Sap Flow (sap_flow)        |          0-65535          | litres/hour / 100 |           2 bytes            |
+|    0x22     |        Heat Velocity (vh)        |          0-65535          |   cm/hour / 100   |           2 bytes            |
+|    0x23     |        Log Ratio (log_rt)        | -2147483648 to 2147483647 |    - / 100000     |           4 bytes            |
+|    0xC1     |        lora_join_duration        |          0-65535          |        ms         |           2 bytes            |
+|    0xE0     |             generic              | -2147483648 to 2147483647 |      - / 100      |           4 bytes            |
+|     ...     |               ...                |            ...            |      - / 100      |           4 bytes            |
+|    0xE9     |             generic              | -2147483648 to 2147483647 |      - / 100      |           4 bytes            |
 
 ### sensor location values
 

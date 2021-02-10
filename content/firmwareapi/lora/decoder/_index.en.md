@@ -52,6 +52,9 @@ var TYPE_VWC = 0x17;
 var TYPE_REL_PERM = 0x18;
 var TYPE_SOIL_EC = 0x19;
 var TYPE_PORE_WATER_CONDUCT = 0x20;
+var TYPE_SAP_FLOW = 0x21;
+var TYPE_HEAT_VELOCITY = 0x22;
+var TYPE_LOG_RATIO = 0x23;
 var TYPE_LORA_JOIN_DUR = 0xc1;
 var TYPE_GENERIC = 0xe0;
 var TYPE_GENERIC_MAX = 0xef;
@@ -63,7 +66,10 @@ function init() {
   typeMap[TYPE_CURRENT] = { name: "current", unit: "mA" };
   typeMap[TYPE_DEVICE_ID] = { name: "device_id", unit: "" };
   typeMap[TYPE_GAS] = { name: "gas", unit: "Ohm" };
+  typeMap[TYPE_GENERIC] = { name: "gen", unit: "" };
+  typeMap[TYPE_HEAT_VELOCITY] = { name: "hv", unit: "cm/h" };
   typeMap[TYPE_HUMIDITY] = { name: "humidity", unit: "%RH" };
+  typeMap[TYPE_LOG_RATIO] = { name: "log_rt", unit: "" };
   typeMap[TYPE_LIGHT_LUX] = { name: "light_lux", unit: "lx" };
   typeMap[TYPE_LORA_JOIN_DUR] = { name: "lora_join_dur", unit: "ms" };
   typeMap[TYPE_MEM_ALLOC] = { name: "mem_alloc", unit: "B" };
@@ -75,13 +81,13 @@ function init() {
   typeMap[TYPE_PRESSURE] = { name: "pressure", unit: "hPa" };
   typeMap[TYPE_REL_PERM] = { name: "rel_perm", unit: "" };
   typeMap[TYPE_RESET_CAUSE] = { name: "reset_cause", unit: "" };
+  typeMap[TYPE_SAP_FLOW] = { name: "sap_flow", unit: "l/h" };
   typeMap[TYPE_SOIL_EC] = { name: "soil_ec", unit: "uS/cm" };
   typeMap[TYPE_TEMPERATURE] = { name: "temperature", unit: "Cel" };
   typeMap[TYPE_UPTIME] = { name: "uptime", unit: "ms" };
   typeMap[TYPE_VBAT] = { name: "vbat", unit: "mV" };
   typeMap[TYPE_VOLTAGE] = { name: "voltage", unit: "mV" };
   typeMap[TYPE_VWC] = { name: "vwc", unit: "" };
-  typeMap[TYPE_GENERIC] = { name: "gen", unit: "" };
 }
 
 function bin32dec(bin) {
@@ -118,6 +124,15 @@ function getTypeUnit(typeId) {
   var typeInfo = typeMap[typeId];
   if (typeInfo === undefined) return "";
   return typeInfo.unit;
+}
+
+function extract32bitInteger(bytes, startIndex) {
+  return (
+    (bytes[startIndex] << 24) |
+    (bytes[startIndex + 1] << 16) |
+    (bytes[startIndex + 2] << 8) |
+    bytes[startIndex + 3]
+  );
 }
 
 function getLocationName(locationId) {
@@ -216,25 +231,23 @@ function DecodeInsighioPackage(bytes) {
         case TYPE_REL_PERM:
         case TYPE_SOIL_EC:
         case TYPE_PORE_WATER_CONDUCT:
+        case TYPE_SAP_FLOW:
+        case TYPE_HEAT_VELOCITY:
           obj.v = ((bytes[i + 2] << 8) | bytes[i + 3]) / 100;
           i += 3;
           break;
         case TYPE_UPTIME: // 4 bytes (unsigned integer)
         case TYPE_MEM_ALLOC:
         case TYPE_MEM_FREE:
-          obj.v =
-            (bytes[i + 2] << 24) |
-            (bytes[i + 3] << 16) |
-            (bytes[i + 4] << 8) |
-            bytes[i + 5];
+          obj.v = extract32bitInteger(bytes, i + 2);
+          i += 5;
+          break;
+        case TYPE_LOG_RATIO:
+          obj.v = extract32bitInteger(bytes, i + 2) / 100000;
           i += 5;
           break;
         case TYPE_PRESSURE: // 4 bytes (signed integer)
-          var temp =
-            (bytes[i + 2] << 24) |
-            (bytes[i + 3] << 16) |
-            (bytes[i + 4] << 8) |
-            bytes[i + 5];
+          var temp = extract32bitInteger(bytes, i + 2);
           obj.v = bin32dec(temp);
           i += 5;
           break;
@@ -242,11 +255,7 @@ function DecodeInsighioPackage(bytes) {
           processed = false;
       }
       if (!processed && bytes[i] & TYPE_GENERIC) {
-        var temp =
-          (bytes[i + 2] << 24) |
-          (bytes[i + 3] << 16) |
-          (bytes[i + 4] << 8) |
-          bytes[i + 5];
+        var temp = extract32bitInteger(bytes, i + 2);
         obj.v = bin32dec(temp) / 100;
         i += 5;
       }
