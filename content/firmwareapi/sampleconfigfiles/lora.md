@@ -69,11 +69,12 @@ _DEEP_SLEEP_PERIOD_SEC = 60  # tx period in secs
 _MAX_CONNECTION_ATTEMPT_TIME_SEC = 60
 
 """ LoRa-related configuration options """
-_DEV_EUIs = ['1111111111111111']
-_APP_EUIs = ['2222222222222222']
-_APP_KEYs = ['10101010101010101010101010101010']
+_DEV_EUIs = '1111111111111111'
+_APP_EUIs = ''
+_APP_KEYs = '10101010101010101010101010101010'
 
-_LORA_FREQUENCY = 868100000 # for join only
+from network import LoRa
+_LORA_REGION = LoRa.EU868
 _LORA_ADR = True
 _LORA_DR = 5 # data rate in case ADR is false
 _LORA_CONFIRMED = False # confirmed transmission or not
