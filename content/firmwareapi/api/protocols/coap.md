@@ -1,6 +1,5 @@
 ---
-title: protocols.coap module
-weight: 1150
+title: coap
 #pre: "<b>2. </b>"
 ---
 

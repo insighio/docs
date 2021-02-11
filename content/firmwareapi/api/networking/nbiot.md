@@ -1,6 +1,5 @@
 ---
-title: networking.nbiot module
-weight: 1110
+title: nbiot
 #pre: "<b>2. </b>"
 ---
 

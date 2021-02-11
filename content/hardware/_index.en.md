@@ -1,6 +1,5 @@
 ---
 title: Hardware
-weight: 100
 pre: "<b>2. </b>"
 chapter: true
 ---

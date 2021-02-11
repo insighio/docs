@@ -1,6 +1,5 @@
 ---
 title: Encoding Protocol
-weight: 4801
 #pre: "<b>2. </b>"
 ---
 

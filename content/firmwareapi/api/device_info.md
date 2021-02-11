@@ -1,6 +1,5 @@
 ---
-title: device_info module
-weight: 1050
+title: device_info
 #pre: "<b>2. </b>"
 ---
 

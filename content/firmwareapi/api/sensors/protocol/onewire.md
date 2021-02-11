@@ -1,6 +1,5 @@
 ---
-title: sensors.protocol.onewire module
-weight: 1200
+title: onewire
 #pre: "<b>2. </b>"
 ---
 

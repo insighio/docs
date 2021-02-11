@@ -1,6 +1,5 @@
 ---
-title: protocols.mqtt module
-weight: 1160
+title: mqtt
 #pre: "<b>2. </b>"
 ---
 

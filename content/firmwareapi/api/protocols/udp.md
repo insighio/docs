@@ -1,6 +1,5 @@
 ---
-title: protocols.udp module
-weight: 1170
+title: udp
 #pre: "<b>2. </b>"
 ---
 

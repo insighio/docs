@@ -1,6 +1,5 @@
 ---
-title: sensors.scd30 module
-weight: 1300
+title: scd30
 #pre: "<b>2. </b>"
 ---
 

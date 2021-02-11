@@ -1,6 +1,5 @@
 ---
-title: sensors.dht module
-weight: 1270
+title: dht
 #pre: "<b>2. </b>"
 ---
 

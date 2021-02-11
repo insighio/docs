@@ -1,6 +1,5 @@
 ---
 title: Measurements
-weight: 25
 ---
 
 Step 5 of the Web UI is the selection of the enabled measurements during the demo scenario.

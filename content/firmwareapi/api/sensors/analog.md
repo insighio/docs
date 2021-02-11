@@ -1,6 +1,5 @@
 ---
-title: sensors.analog module
-weight: 1250
+title: analog
 #pre: "<b>2. </b>"
 ---
 

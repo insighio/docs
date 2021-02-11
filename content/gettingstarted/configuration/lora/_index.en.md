@@ -1,6 +1,5 @@
 ---
 title: LoRa
-weight: 24
 ---
 
 insigh.io board Web UI configuration scenario for setting up NBioT connection.

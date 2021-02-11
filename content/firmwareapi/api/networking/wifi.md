@@ -1,6 +1,5 @@
 ---
-title: networking.wifi module
-weight: 1120
+title: wifi
 #pre: "<b>2. </b>"
 ---
 

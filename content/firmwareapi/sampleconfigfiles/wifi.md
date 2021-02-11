@@ -1,6 +1,5 @@
 ---
 title: WiFi
-weight: 4901
 ---
 
 ```py {linenos=true}

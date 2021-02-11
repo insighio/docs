@@ -1,6 +1,5 @@
 ---
 title: Console
-weight: 5000
 pre: "<b>4. </b>"
 chapter: true
 ---

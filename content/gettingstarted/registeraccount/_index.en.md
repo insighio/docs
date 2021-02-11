@@ -1,6 +1,5 @@
 ---
 title: Create Account
-weight: 10
 disableToc: true
 ---
 
