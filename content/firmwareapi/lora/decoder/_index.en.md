@@ -1,6 +1,6 @@
 ---
 title: Decoder
-weight: 162
+weight: 4802
 ---
 
 Follows the LoRA payload decoder that transforms received bytes into SenML-formatted message ready to be processed by insigh.io backend.

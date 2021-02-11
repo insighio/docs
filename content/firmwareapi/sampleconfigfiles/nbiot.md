@@ -1,6 +1,6 @@
 ---
 title: NBIoT
-weight: 165
+weight: 4902
 ---
 
 ```py {linenos=true}

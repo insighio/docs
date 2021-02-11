@@ -1,6 +1,6 @@
 ---
-title: API
-weight: 1000
+title: protocols.coap module
+weight: 1150
 #pre: "<b>2. </b>"
 ---
 

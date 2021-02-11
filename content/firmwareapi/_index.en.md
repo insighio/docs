@@ -1,6 +1,6 @@
 ---
 title: Firmware APIs
-weight: 150
+weight: 500
 pre: "<b>3. </b>"
 chapter: true
 ---

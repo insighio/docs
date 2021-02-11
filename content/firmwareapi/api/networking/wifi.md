@@ -1,6 +1,6 @@
 ---
-title: API
-weight: 1000
+title: networking.wifi module
+weight: 1120
 #pre: "<b>2. </b>"
 ---
 

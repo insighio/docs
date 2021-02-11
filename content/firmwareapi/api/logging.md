@@ -1,6 +1,6 @@
 ---
-title: API
-weight: 1000
+title: logging module
+weight: 1080
 #pre: "<b>2. </b>"
 ---
 
