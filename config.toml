@@ -22,92 +22,37 @@ defaultContentLanguageInSubdir= true
 [outputs]
 home = [ "HTML", "RSS", "JSON"]
 
-[Languages]
-[Languages.en]
-title = "insigh.io documentation"
-weight = 1
-languageName = "English"
+[[menu.shortcuts]]
+  title = "insigh.io documentation"
+  weight = 1
+  languageName = "English"
 
-[[Languages.en.menu.shortcuts]]
-name = "<i class='fab fa-fw fa-github'></i> GitHub repo"
-identifier = "ds"
-url = "https://github.com/insighio"
-weight = 10
+[[menu.shortcuts]]
+  name = "<i class='fab fa-fw fa-github'></i> GitHub repo"
+  identifier = "ds"
+  url = "https://github.com/insighio"
+  weight = 10
 
-[[Languages.en.menu.shortcuts]]
-name = "<i class='fas fa-fw fa-microchip'></i> Hardware info"
-url = "https://insigh.io/iot-nodes/"
-weight = 11
+[[menu.shortcuts]]
+  name = "<i class='fas fa-fw fa-microchip'></i> Hardware info"
+  url = "https://insigh.io/iot-nodes/"
+  weight = 11
 
-[[Languages.en.menu.shortcuts]]
-name = "<i class='fas fa-fw fa-chart-line'></i> Platform info"
-url = "https://insigh.io/iot-platform/"
-weight = 11
+[[menu.shortcuts]]
+  name = "<i class='fas fa-fw fa-chart-line'></i> Platform info"
+  url = "https://insigh.io/iot-platform/"
+  weight = 11
 
-[[Languages.en.menu.shortcuts]]
-name = "<i class='fas fa-fw fa-blog'></i> insigh.io blog"
-identifier = "insighio-blog"
-url = "https://insigh.io/blog/"
-weight = 20
+[[menu.shortcuts]]
+  name = "<i class='fas fa-fw fa-blog'></i> insigh.io blog"
+  identifier = "insighio-blog"
+  url = "https://insigh.io/blog/"
+  weight = 20
 
-[[Languages.en.menu.shortcuts]]
-name = "<i class='fas fa-fw fa-users'></i> About us"
-url = "https://insigh.io/about-us/"
-weight = 30
-
-# [Languages.fr]
-# title = "Documentation du thème Hugo Learn"
-# weight = 2
-# languageName = "Français"
-
-# [[Languages.fr.menu.shortcuts]]
-# name = "<i class='fab fa-fw fa-github'></i> Repo GitHub"
-# identifier = "ds"
-# url = "https://github.com/matcornic/hugo-theme-learn"
-# weight = 10
-
-# [[Languages.fr.menu.shortcuts]]
-# name = "<i class='fas fa-fw fa-camera'></i> Vitrine"
-# url = "/showcase"
-# weight = 11
-
-# [[Languages.fr.menu.shortcuts]]
-# name = "<i class='fas fa-fw fa-bookmark'></i> Documentation Hugo"
-# identifier = "hugodoc"
-# url = "https://gohugo.io/"
-# weight = 20
-
-# [[Languages.fr.menu.shortcuts]]
-# name = "<i class='fas fa-fw fa-bullhorn'></i> Crédits"
-# url = "/credits"
-# weight = 30
-
-# [Languages.zh]
-# title = "Hugo 主题的 Learn 文档"
-# weight = 3
-# languageName = "简体中文"
-
-# [[Languages.zh.menu.shortcuts]]
-# name = "<i class='fab fa-fw fa-github'></i> GitHub 仓库"
-# identifier = "ds"
-# url = "https://github.com/matcornic/hugo-theme-learn"
-# weight = 10
-
-# [[Languages.zh.menu.shortcuts]]
-# name = "<i class='fas fa-fw fa-camera'></i> 展示区"
-# url = "/showcase"
-# weight = 11
-
-# [[Languages.zh.menu.shortcuts]]
-# name = "<i class='fas fa-fw fa-bookmark'></i> Hugo 文档"
-# identifier = "hugodoc"
-# url = "https://gohugo.io/"
-# weight = 20
-
-# [[Languages.zh.menu.shortcuts]]
-# name = "<i class='fas fa-fw fa-bullhorn'></i> 鸣谢"
-# url = "/credits"
-# weight = 30
+[[menu.shortcuts]]
+  name = "<i class='fas fa-fw fa-users'></i> About us"
+  url = "https://insigh.io/about-us/"
+  weight = 30
 
 [menu]
 
@@ -195,6 +140,20 @@ weight = 30
   weight = 10
 
 [[menu.main]]
+  name = "LoRa"
+  url = "/firmwareapi/lora/"
+  identifier = "firmwareapi@lora"
+  parent="firmwareapi"
+  weight = 20
+
+[[menu.main]]
+  name = "Sample Config Files"
+  url = "/firmwareapi/sampleconfigfiles/"
+  identifier = "firmwareapi@sampleconfigfiles"
+  parent="firmwareapi"
+  weight = 30
+
+[[menu.main]]
   name = "device_info"
   url = "/firmwareapi/api/device_info/"
   identifier = "firmwareapi@api@device_info"
@@ -237,6 +196,20 @@ weight = 30
   weight = 60
 
 [[menu.main]]
+  name = "protocols"
+  url = "/firmwareapi/api/protocols/"
+  identifier = "firmwareapi@api@protocols"
+  parent="firmwareapi@api"
+  weight = 70
+
+[[menu.main]]
+  name = "sensors"
+  url = "/firmwareapi/api/sensors/"
+  identifier = "firmwareapi@api@sensors"
+  parent="firmwareapi@api"
+  weight = 80
+
+[[menu.main]]
   name = "wifi"
   url = "/firmwareapi/api/networking/wifi/"
   identifier = "firmwareapi@api@networking@wifi"
@@ -258,13 +231,6 @@ weight = 30
   weight = 30
 
 [[menu.main]]
-  name = "protocols"
-  url = "/firmwareapi/api/protocols/"
-  identifier = "firmwareapi@api@protocols"
-  parent="firmwareapi@api"
-  weight = 70
-
-[[menu.main]]
   name = "coap"
   url = "/firmwareapi/api/protocols/coap/"
   identifier = "firmwareapi@api@protocols@coap"
@@ -284,13 +250,6 @@ weight = 30
   identifier = "firmwareapi@api@protocols@udp"
   parent="firmwareapi@api@protocols"
   weight = 30
-
-[[menu.main]]
-  name = "sensors"
-  url = "/firmwareapi/api/sensors/"
-  identifier = "firmwareapi@api@sensors"
-  parent="firmwareapi@api"
-  weight = 80
 
 [[menu.main]]
   name = "analog"
@@ -356,13 +315,6 @@ weight = 30
   weight = 10
 
 [[menu.main]]
-  name = "LoRa"
-  url = "/firmwareapi/lora/"
-  identifier = "firmwareapi@lora"
-  parent="firmwareapi"
-  weight = 20
-
-[[menu.main]]
   name = "Encoding Protocol"
   url = "/firmwareapi/lora/encodingprotocol/"
   identifier = "firmwareapi@lora@encodingprotocol"
@@ -375,13 +327,6 @@ weight = 30
   identifier = "firmwareapi@lora@decoder"
   parent="firmwareapi@lora"
   weight = 20
-
-[[menu.main]]
-  name = "Sample Config Files"
-  url = "/firmwareapi/sampleconfigfiles/"
-  identifier = "firmwareapi@sampleconfigfiles"
-  parent="firmwareapi"
-  weight = 30
 
 [[menu.main]]
   name = "WiFi Config Files"

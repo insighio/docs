@@ -1,5 +1,5 @@
 ---
-title: External modules
+title: External
 #pre: "<b>2. </b>"
 ---
 
