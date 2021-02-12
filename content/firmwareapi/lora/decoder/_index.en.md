@@ -1,5 +1,8 @@
 ---
 title: Decoder
+identifier: "firmwareapi@lora@decoder"
+parent: "firmwareapi@lora"
+weight: 4520
 ---
 
 Follows the LoRA payload decoder that transforms received bytes into SenML-formatted message ready to be processed by insigh.io backend.

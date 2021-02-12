@@ -1,5 +1,8 @@
 ---
 title: NBIoT
+identifier: "gettingstarted@configuration@nbiot"
+parent: "gettingstarted@configuration"
+weight: 60
 ---
 
 insigh.io board Web UI configuration scenario for setting up NBioT connection.

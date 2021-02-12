@@ -1,6 +1,8 @@
 ---
 title: udp
-#pre: "<b>2. </b>"
+identifier: "firmwareapi@api@protocols@udp"
+parent: "firmwareapi@api@protocols"
+weight: 1330
 ---
 
 **under construction**

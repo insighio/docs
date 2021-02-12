@@ -1,5 +1,8 @@
 ---
 title: Configure Device
+identifier: "gettingstarted@configuration"
+parent: "gettingstarted"
+weight: 40
 ---
 
 By completing the previous step, a device has been created and provisioned in the platform. In this step, using the generated security keys, the physical device will be configured to start running the demo code and periodically upload measurements. To do so, we will connect to the device via WiFi, open then guided Web UI and apply our configuration.

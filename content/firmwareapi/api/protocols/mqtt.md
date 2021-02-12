@@ -1,6 +1,8 @@
 ---
 title: mqtt
-#pre: "<b>2. </b>"
+identifier: "firmwareapi@api@protocols@mqtt"
+parent: "firmwareapi@api@protocols"
+weight: 1320
 ---
 
 **under construction**

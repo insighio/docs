@@ -1,5 +1,8 @@
 ---
 title: NBIoT
+identifier: "firmwareapi@sampleconfigfiles@nbiot"
+parent: "firmwareapi@sampleconfigfiles"
+weight: 4620
 ---
 
 ```py {linenos=true}

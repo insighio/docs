@@ -1,7 +1,9 @@
 ---
 title: LoRA
-#pre: "<b>2. </b>"
 chapter: true
+identifier: "firmwareapi@lora"
+parent: "firmwareapi"
+weight: 4500
 ---
 
 # LoRA

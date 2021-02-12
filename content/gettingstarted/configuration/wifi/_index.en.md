@@ -1,5 +1,9 @@
 ---
 title: WiFi
+identifier: "gettingstarted@configuration@wifi"
+parent: "gettingstarted@configuration"
+weight: 50
+next: "/gettingstarted/configuration/measurements"
 ---
 
 insigh.io board Web UI configuration scenario for setting up WiFi connection.

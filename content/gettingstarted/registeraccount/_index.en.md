@@ -1,6 +1,9 @@
 ---
 title: Create Account
 disableToc: true
+identifier: "gettingstarted@registeraccount"
+parent: "gettingstarted"
+weight: 20
 ---
 
 1. Go to [insigh.io console registration page](https://console.insigh.io/register)

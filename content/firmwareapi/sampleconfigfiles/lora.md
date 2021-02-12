@@ -1,5 +1,8 @@
 ---
 title: LoRA
+identifier: "firmwareapi@sampleconfigfiles@lora"
+parent: "firmwareapi@sampleconfigfiles"
+weight: 4630
 ---
 
 ```py {linenos=true}

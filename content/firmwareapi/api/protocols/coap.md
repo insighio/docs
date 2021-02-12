@@ -1,6 +1,8 @@
 ---
 title: coap
-#pre: "<b>2. </b>"
+identifier: "firmwareapi@api@protocols@coap"
+parent: "firmwareapi@api@protocols"
+weight: 1310
 ---
 
 **under construction**

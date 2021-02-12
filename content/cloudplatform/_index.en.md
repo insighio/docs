@@ -2,6 +2,8 @@
 title: Console
 pre: "<b>4. </b>"
 chapter: true
+identifier: "cloudplatform"
+weight: 5000
 ---
 
 # console.insigh.io tutorials

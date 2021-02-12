@@ -1,5 +1,8 @@
 ---
 title: Create Device
+identifier: "gettingstarted@provisiondevice"
+parent: "gettingstarted"
+weight: 30
 ---
 
 These steps will create a device assigned to your account and it will be ready to receive data.

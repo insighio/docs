@@ -1,6 +1,8 @@
 ---
 title: dht
-#pre: "<b>2. </b>"
+identifier: "firmwareapi@api@sensors@dht"
+parent: "firmwareapi@api@sensors"
+weight: 1430
 ---
 
 **under construction**

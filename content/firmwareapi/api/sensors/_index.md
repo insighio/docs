@@ -1,6 +1,8 @@
 ---
 title: sensors
-#pre: "<b>2. </b>"
+identifier: "firmwareapi@api@sensors"
+parent: "firmwareapi@api"
+weight: 1400
 ---
 
 **under construction**

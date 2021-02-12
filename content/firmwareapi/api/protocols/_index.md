@@ -1,6 +1,8 @@
 ---
 title: protocols
-#pre: "<b>2. </b>"
+identifier: "firmwareapi@api@protocols"
+parent: "firmwareapi@api"
+weight: 1300
 ---
 
 **under construction**
