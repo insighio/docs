@@ -6,4 +6,4 @@ parent: "firmwareapi"
 weight: 1010
 ---
 
-**under construction**
+The pages in this section provide a thorough description of all insigh.io libraries included in the Pycom firmware as frozen modules.
