@@ -198,14 +198,29 @@ function getLocationName(locationId) {
   }
 }
 
+function getValidName(nameDict, original_name) {
+  var j = undefined;
+  var name = undefined;
+  do {
+    name = original_name;
+    if (j !== undefined) {
+      name += "_" + j;
+      j++;
+    } else j = 1;
+  } while (nameDict[name]); //if key is used, consider it is sensor with multiple measurements
+  return name;
+}
+
 function DecodeInsighioPackage(bytes) {
   try {
     init();
 
     var senml = [];
-    var i;
+    var nameDict = {};
     for (var i = 6; i < bytes.length; i++) {
-      var name = getLocationName(bytes[i + 1]) + "_" + getTypeName(bytes[i]);
+      var original_name =
+        getLocationName(bytes[i + 1]) + "_" + getTypeName(bytes[i]);
+      var name = getValidName(nameDict, original_name);
       var obj = { n: name, u: getTypeUnit(bytes[i]) };
       var processed = true;
       switch (bytes[i]) {
@@ -262,6 +277,7 @@ function DecodeInsighioPackage(bytes) {
         i += 5;
       }
 
+      nameDict[obj.n] = true;
       senml.push(obj);
     }
     if (senml.length > 0) {
