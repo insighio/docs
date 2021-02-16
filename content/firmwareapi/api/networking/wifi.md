@@ -36,4 +36,4 @@ Actions implemented when turning off wifi. This includes WiFi disconnection (if 
 
 - returns:
   - `deactivation_status`: Boolean, whether disconnection was successful
-  - `deactivation_duration`: the duration in (ms) to complete WiFi deactivation
+  - `deactivation_duration`: the duration in (ms) to complete procedure
