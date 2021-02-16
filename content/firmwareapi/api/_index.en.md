@@ -1,6 +1,6 @@
 ---
 title: API
-#pre: "<b>2. </b>"
+chapter: true
 identifier: "firmwareapi@api"
 parent: "firmwareapi"
 weight: 1010

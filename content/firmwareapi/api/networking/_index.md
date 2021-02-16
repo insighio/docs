@@ -6,4 +6,8 @@ parent: "firmwareapi@api"
 weight: 1200
 ---
 
-**under construction**
+This module provides a set of per-network technology functions to simplify operations like connection, transmit, disconnect for:
+
+- [WiFi]({{< relref "./wifi.md" >}})
+- [NBIoT]({{< relref "./nbiot.md" >}})
+- [LoRA]({{< relref "./lora.md" >}})
