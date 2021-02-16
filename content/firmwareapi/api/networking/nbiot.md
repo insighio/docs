@@ -26,7 +26,7 @@ Connect to an NBIoT network based on provided configuration object.
       - `IPV4V6`
     - `cfg._APN`: The APN to be used for the connection
     - `cfg._MAX_ATTACHMENT_ATTEMPT_TIME_SEC`: Integer, the timeout in seconds for the data attachment
-    - `cfg._MAX_CONNECTION_ATTEMPT_TIME_SEC`: Integer, the timeout in seconds fro the data connection. Applicable only if `dataStateOn` is True.
+    - `cfg._MAX_CONNECTION_ATTEMPT_TIME_SEC`: Integer, the timeout in seconds for the data connection. Applicable only if `dataStateOn` is True.
   - `dataStateOn`: Enable/Disable whether to execute data connection after a successful data attachment. If dataStateOn is True, no AT commands can be sent.
 - returns:
   - `status`: Integer, the data status of the NBIoT modem. The integer values can be translated into macros:
