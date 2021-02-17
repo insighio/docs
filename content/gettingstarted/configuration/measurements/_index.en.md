@@ -1,6 +1,8 @@
 ---
 title: Measurements
-weight: 25
+identifier: "gettingstarted@configuration@measurements"
+parent: "gettingstarted@configuration"
+weight: 80
 ---
 
 Step 5 of the Web UI is the selection of the enabled measurements during the demo scenario.

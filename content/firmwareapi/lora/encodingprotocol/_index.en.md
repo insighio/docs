@@ -1,7 +1,8 @@
 ---
 title: Encoding Protocol
-weight: 161
-#pre: "<b>2. </b>"
+identifier: "firmwareapi@lora@encodingprotocol"
+parent: "firmwareapi@lora"
+weight: 4510
 ---
 
 insigh.io Firmware comes with a data encoding protocol that packs all information ready to be transmitted into a concise byte array. Currently it is used specifically to create the payload in case of LoRA transmission.

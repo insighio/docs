@@ -1,6 +1,8 @@
 ---
 title: Validate
-weight: 30
+identifier: "gettingstarted@validation"
+parent: "gettingstarted"
+weight: 90
 ---
 
 By completing the [Configure Device]({{< relref "../configuration/_index.en.md" >}}) procedure, the device is ready to run the selected scenario and upload the data from the selected measurements.

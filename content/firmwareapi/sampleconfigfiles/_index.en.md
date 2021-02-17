@@ -1,6 +1,8 @@
 ---
 title: Sample config files
-weight: 163
+identifier: "firmwareapi@sampleconfigfiles"
+parent: "firmwareapi"
+weight: 4600
 ---
 
 The [Configure Device]({{< relref "../../gettingstarted/configuration/_index.en.md" >}}) procedure is responsible of generating a configuration file that describes the selected board setup, the network configuration and the enabled measurements.

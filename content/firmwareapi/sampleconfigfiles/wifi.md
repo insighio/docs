@@ -1,6 +1,8 @@
 ---
 title: WiFi
-weight: 164
+identifier: "firmwareapi@sampleconfigfiles@wifi"
+parent: "firmwareapi@sampleconfigfiles"
+weight: 4610
 ---
 
 ```py {linenos=true}

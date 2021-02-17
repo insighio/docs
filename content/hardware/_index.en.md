@@ -1,8 +1,9 @@
 ---
 title: Hardware
-weight: 100
 pre: "<b>2. </b>"
 chapter: true
+identifier: "hardware"
+weight: 200
 ---
 
 # Hardware

@@ -1,8 +1,10 @@
 ---
 title: Getting Started
-weight: 5
 pre: "<b>1. </b>"
 chapter: true
+url: "/gettingstarted/"
+identifier: "gettingstarted"
+weight: 10
 ---
 
 ### Chapter 1

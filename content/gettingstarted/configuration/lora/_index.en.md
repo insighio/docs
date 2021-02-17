@@ -1,6 +1,8 @@
 ---
 title: LoRa
-weight: 24
+identifier: "gettingstarted@configuration@lora"
+parent: "gettingstarted@configuration"
+weight: 70
 ---
 
 insigh.io board Web UI configuration scenario for setting up NBioT connection.
