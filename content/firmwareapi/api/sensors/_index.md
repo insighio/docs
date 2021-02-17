@@ -33,7 +33,7 @@ sensors.set_sensor_power_off("P11")
 
 The following functions are utilities that are used by all the supported sensors.
 
-**Functions**
+### Functions
 
 **sensors.set_sensor_power_on(vcc_pin)**
 
