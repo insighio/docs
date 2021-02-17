@@ -1,7 +1,7 @@
 ---
 title: logging
 #pre: "<b>2. </b>"
-identifier: "firmwareapi@api@utils"
+identifier: "firmwareapi@api@logging"
 parent: "firmwareapi@api"
 weight: 1150
 ---
