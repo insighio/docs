@@ -10,6 +10,21 @@ The main infrastructure for having consistent format logging with various levels
 
 ```
 import logging
+
+logging.setLevel(logging.INFO)
+logging.debug("Test debug message 1")
+logging.info("Test info message 1")
+
+# will print
+# Test info message 1
+
+logging.setLevel(logging.DEBUG)
+logging.debug("Test debug message 2")
+logging.info("Test info message 2")
+
+# will print
+# Test debug message 2
+# Test info message 2
 ```
 
 ### Functions
