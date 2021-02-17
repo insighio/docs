@@ -18,6 +18,21 @@ from networking import nbiot
 
 Connect to an NBIoT network based on provided configuration object.
 
+```python
+cfg = {}
+cfg._APN = "iot"
+cfg._MAX_ATTACHMENT_ATTEMPT_TIME_SEC = 120
+cfg._MAX_CONNECTION_ATTEMPT_TIME_SEC = 60
+
+# For IPv4
+cfg._IP_VERSION = "IP"
+(status, activation_duration, attachment_duration, connection_duration, rssi, rsrp, rsrq) = nbiot.connect(cfg, True)
+
+# For IPv6
+cfg._IP_VERSION = "IPV6"
+(status, activation_duration, attachment_duration, connection_duration, rssi, rsrp, rsrq) = nbiot.connect(cfg, False)
+```
+
 - params
   - `cfg`: an object containing the following configuration options:
     - `cfg._IP_VERSION`: String value that defines the IP version of the connection.

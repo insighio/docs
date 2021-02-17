@@ -18,6 +18,15 @@ from networking import wifi
 
 Connect to WiFi network based on a predefined list of candidates.
 
+```python
+known_nets = {
+  'TEST_SSID': {'pwd': 'TEST_PASS_123'},
+  'TEST_SSID2': {'pwd': 'TEST_PASS_456'}
+}
+max_connection_attempt_time_sec = 120
+(connection_status, conn_attempt_duration, scan_attempt_duration, channel, rssi) = wifi.connect(known_nets, max_connection_attempt_time_sec, False)
+```
+
 - params
   - `known_nets`: a dictionary with the 'known' networks. The dictionary keys are the SSIDs and the objects contain the password for each SSID. Sample:
     - {'WIFI_SSID': {'pwd': 'WIFI_PASS_123'}}

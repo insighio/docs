@@ -19,6 +19,7 @@ from networking import lora
 Utility function to convert hex UID strings to byte arrays to be used in the LoRa operations.
 
 ```python
+cfg = {}
 cfg._DEV_EUI = "a0b1c3d4e5f60011"
 cfg._APP_EUI = ""
 cfg._APP_KEY = "a0b1c3d4e5f60011a0b1c3d4e5f60011"
@@ -42,6 +43,20 @@ cfg._APP_KEY = "a0b1c3d4e5f60011a0b1c3d4e5f60011"
 **lora.join(cfg, lora_keys)**
 
 Join to a LoRa network using a tuple of (dev_eui,app_eui,app_key). After each hard reset, the LoRa NVRAM will be erased to initiate a fresh Join. If the function is called after a soft reboot, it will try to restore the LoRa NVRAM to speed the join duration.
+
+```python
+cfg = {}
+cfg._DEV_EUI = "a0b1c3d4e5f60011"
+cfg._APP_EUI = ""
+cfg._APP_KEY = "a0b1c3d4e5f60011a0b1c3d4e5f60011"
+cfg._LORA_REGION = LoRa.EU868
+cfg._LORA_ADR = True
+cfg._LORA_TX_RETRIES = 1
+cfg._LORA_DR = 5
+cfg._MAX_CONNECTION_ATTEMPT_TIME_SEC = 120
+
+(status, conn_attempt_duration) = lora.join(cfg, lora.set_keys(cfg))
+```
 
 - params
   - `cfg`: an object containing the following configuration options:
