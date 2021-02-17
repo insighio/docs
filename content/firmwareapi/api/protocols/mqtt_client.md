@@ -5,7 +5,7 @@ parent: "firmwareapi@api@protocols"
 weight: 1330
 ---
 
-An MQTT wrapper for console.insigh.io operations with device authentication and proper topic adjustment to communicate with console.insigh.io
+An MQTT wrapper for console.insigh.io operations with device authentication and proper topic adjustment to communicate with [console.insigh.io](https://console.insigh.io)
 
 ```python
 from protocols import mqtt_config
@@ -26,7 +26,7 @@ mqtt_cli.disconnect()
 
 **Class MQTTClientCustom constructor**
 
-Create a new instance of the MQTTClientCustom. Requires an [MQTTConfig]({{< relref "./mqtt_config.md" >}}) instance with all the information filled as the configuration will be kept for future calls. Will prepare all the authentication and exchange topics required to properly communicate with console.insigh.io backend.
+Create a new instance of the MQTTClientCustom. Requires an [MQTTConfig]({{< relref "./mqtt_config.md" >}}) instance with all the information filled as the configuration will be kept for future calls. Will prepare all the authentication and exchange topics required to properly communicate with [console.insigh.io](<(https://console.insigh.io)>) backend.
 
 - params:
   - `MQTTConfig instance`. For data fields details please advice [MQTTConfig]({{< relref "./mqtt_config.md" >}}) page

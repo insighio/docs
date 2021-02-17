@@ -34,14 +34,14 @@ home = [ "HTML", "RSS", "JSON"]
   weight = 10
 
 [[menu.shortcuts]]
-  name = "<i class='fas fa-fw fa-microchip'></i> Hardware info"
-  url = "https://insigh.io/iot-nodes/"
+  name = "<i class='fas fa-fw fa-chart-line'></i> Platform"
+  url = "https://console.insigh.io"
   weight = 11
 
 [[menu.shortcuts]]
-  name = "<i class='fas fa-fw fa-chart-line'></i> Platform info"
-  url = "https://insigh.io/iot-platform/"
-  weight = 11
+  name = "<i class='fas fa-fw fa-microchip'></i> Hardware info"
+  url = "https://insigh.io/iot-nodes/"
+  weight = 12
 
 [[menu.shortcuts]]
   name = "<i class='fas fa-fw fa-blog'></i> insigh.io blog"

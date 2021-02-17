@@ -5,7 +5,7 @@ parent: "firmwareapi@api@protocols"
 weight: 1310
 ---
 
-A module that utilizes [MicroCoAPy]({{< relref "../external.md" >}}) library to communicate through CoAP with console.insigh.io
+A module that utilizes [MicroCoAPy]({{< relref "../external.md" >}}) library to communicate through CoAP with [console.insigh.io](https://console.insigh.io)
 
 ```python
 from protocols import coap_config
@@ -28,7 +28,7 @@ coap_cli.stop()
 
 **Class CoAPClient constructor**
 
-Create a new instance of the CoAPClient. Requires a [CoAPConfig]({{< relref "./coap_config.md" >}}) instance with all the information filled as the configuration will be kept for future calls. Will prepare all the authentication and exchange URLs required to properly communicate with console.insigh.io backend.
+Create a new instance of the CoAPClient. Requires a [CoAPConfig]({{< relref "./coap_config.md" >}}) instance with all the information filled as the configuration will be kept for future calls. Will prepare all the authentication and exchange URLs required to properly communicate with [console.insigh.io](https://console.insigh.io) backend.
 
 - params:
   - `CoAPConfig instance`. For data fields details please advice [CoAPConfig]({{< relref "./coap_config.md" >}}) page
