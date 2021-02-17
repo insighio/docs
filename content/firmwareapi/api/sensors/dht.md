@@ -35,4 +35,3 @@ from sensors import dht
 
     Based on [https://github.com/JurassicPork/DHT_PyCom/tree/pulses_get]
     Extensions: Renamed module filename to dht (from dth.py) and added wrapper function
-    For hardware connection: YELLOW/WHITE: PIN1 VCC through GPIO, PIN2: DATA through GPIO, PIN3: NC, PIN4: GDN. Use also a 4.7k PULL-UP for DATA

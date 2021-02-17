@@ -37,7 +37,7 @@ sensors.set_sensor_power_on("P11")
 
 # read analog sensor
 from sensors import analog_generic
-volt_analog = analog_generic.get_reading(data_pin)
+volt_analog = analog_generic.get_reading('P18')
 
 # power off sensors
 sensors.set_sensor_power_off("P11")
