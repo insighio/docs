@@ -117,3 +117,19 @@ a:hover {
 #sidebar hr {
   border-color: var(--MENU-SECTION-HR-color);
 }
+
+ table {
+  table-layout: auto;
+// width: 80%;
+ //white-space: nowrap
+} 
+/* 
+td {
+  border: 1px solid #000;
+} */
+
+
+tr td:first-child {
+  width: 15%;
+  white-space: nowrap;
+} 
