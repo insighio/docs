@@ -25,14 +25,14 @@ Out of the box features include:
 
 ## Specifications
 
-insigh.io offers variants of the board to to perfectly fit your case. For more details of each variant, advice one of the following pages:
+insigh.io offers variants of the board to to perfectly fit your case. Follows a list of specifications that are common across our boards. For more details of each variant, advice one of the following pages:
 
-* Generic Board with support to I²C, Analog and Digital sensors
+* [Generic Board with support to I²C, Analog and Digital sensors]({{< relref "./insighio-board-generic.md" >}})
 
-* SDI-12 compatible board with RS-485
+* [SDI-12 compatible board with RS-485]({{< relref "./insighio-board-sdi12.md" >}})
 
 ## Custom designs
 
-The existing boards are highly configurable and expandable so if the existing boards do not fit your need, get in contact with us (mailto:info@insigh.io) and we will tailor a solution for you with your customizations. 
+The existing boards are highly configurable and expandable so if the existing boards do not fit your need, **[get in contact with us](mailto:info@insigh.io)** and we will tailor a solution for you with your customizations. 
 
 
