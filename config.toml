@@ -1,4 +1,4 @@
-baseURL = "http://docs.insigh.io"
+baseURL = "https://docs.insigh.io"
 languageCode = "en-US"
 defaultContentLanguage = "en"
 
