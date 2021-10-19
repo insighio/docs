@@ -233,7 +233,7 @@ function DecodeInsighioPackage(bytes) {
           obj.v = bin16dec(temp) / 100;
           i += 3;
           break;
-        case TYPE_VBAT: // 2 bytes (unsigned short)
+        case TYPE_VBATT: // 2 bytes (unsigned short)
         case TYPE_CURRENT:
         case TYPE_LIGHT_LUX:
         case TYPE_LORA_JOIN_DUR:
