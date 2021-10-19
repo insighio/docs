@@ -42,7 +42,7 @@ var TYPE_UPTIME = 0x03;
 var TYPE_MEM_ALLOC = 0x04;
 var TYPE_MEM_FREE = 0x05;
 var TYPE_CURRENT = 0x07;
-var TYPE_VBAT = 0x08;
+var TYPE_VBATT = 0x08;
 var TYPE_LIGHT_LUX = 0x10;
 var TYPE_TEMPERATURE = 0x11;
 var TYPE_HUMIDITY = 0x12;
@@ -87,7 +87,7 @@ function init() {
   typeMap[TYPE_SOIL_EC] = { name: "soil_ec", unit: "uS/cm" };
   typeMap[TYPE_TEMPERATURE] = { name: "temperature", unit: "Cel" };
   typeMap[TYPE_UPTIME] = { name: "uptime", unit: "ms" };
-  typeMap[TYPE_VBAT] = { name: "vbat", unit: "mV" };
+  typeMap[TYPE_VBATT] = { name: "vbatt", unit: "mV" };
   typeMap[TYPE_VOLTAGE] = { name: "voltage", unit: "mV" };
   typeMap[TYPE_VWC] = { name: "vwc", unit: "" };
 }
