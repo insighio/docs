@@ -1,5 +1,5 @@
 ---
-title: insigh.io integraded cellular board
+title: insigh.io integrated cellular board
 identifier: "hardware@insighio-cellular"
 parent: "hardware"
 weight: 210
