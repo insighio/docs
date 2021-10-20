@@ -12,6 +12,7 @@ Current support:
 
 -   Quectel MC60
 -   Quectel BG600
+-   Pycom modem (work in progress)
 
 ```
 from networking import cellular
