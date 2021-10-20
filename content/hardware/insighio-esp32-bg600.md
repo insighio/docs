@@ -42,15 +42,11 @@ weight: 230
 
 | Charge cycle state          | LCR |
 | :-------------------------- | :-- |
-| **Shutdown state 1**        | OFF |
-| **Shutdown state 2**        | ON  |
 | **Preconditioning**         | ON  |
 | **Constant current**        | ON  |
 | **Constant voltage**        | ON  |
-| **Charge complete-standby** | ON  |
+| **Charge complete-standby** | OFF  |
 | **Temperature fault**       | BLINKING  |
-| **Timer fault**             | ON  |
-| **Low battery**             | OFF |
 | **No battery**              | BLINKING |
 | **No input**                | OFF |
 
@@ -63,6 +59,15 @@ weight: 230
 | **S3**      | Tactile switch for activating the micro-controller’s bootloader (needed only for fw upgrade) |
 | **EXT SW**  | Physical latching button connector to control micro-controller's power (the battery charging process is not affected) |
 | **SNSR**    | Software-controlled switch for enabling/disabling power supply to sensors on-demand          |
+
+### Switch combinations & power supply
+
+| External switch (EXT SW) | On-board switch (S1) | Circuit |
+| :---------- | :--------------- | :--------------- |
+| Open | ON | ON |
+| Open | OFF | OFF |
+| Closed | ON | ON |
+| Closed | OFF | ON |
 
 ### Communication
 
