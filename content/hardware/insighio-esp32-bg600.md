@@ -1,8 +1,8 @@
 ---
-title: insigh.io generic board
-identifier: "hardware@insighio-board-generic"
+title: insigh.io ESP32 & Quectel BG600 board
+identifier: "hardware@insighio-esp32-bg600"
 parent: "hardware"
-weight: 210
+weight: 230
 ---
 
 ![TAT image](/images/deviceimages/esp32-bg600_v1.png?width=50pc)
