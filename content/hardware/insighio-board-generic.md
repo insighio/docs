@@ -1,8 +1,8 @@
 ---
-title: insigh.io generic board
+title: insigh.io generic host board
 identifier: "hardware@insighio-board-generic"
 parent: "hardware"
-weight: 210
+weight: 220
 ---
 
 ![TAT image](/images/deviceimages/generic-board.PNG?width=50pc)
@@ -11,9 +11,48 @@ weight: 210
 
 |                            |
 | :------------------------- | :---------------- |
+| **Host board** | Pycom development board ([link](https://pycom.io/shop/#dev)) |
+| **Supported Sensors** | Analog, I2C, Digital, Temperature, Humidity |
+| **Power Supply** | USB, Battery, Solar Panel |
+| **Misc** | USB for firmware flashing and debugging |
+|  | Power switch |
+| **Software** | micropython | 
+| | Open-source libraries & demo scenarios @ [Github](https://github.com/insighio/insighioNode) |
 | **Dimensions (L x W x H)** | 78 x 57.2 x 13 mm |
 | **Weight**                 | 25 g              |
 | **Enclosure**              | IP65/IP67         |
+
+
+### Example Applications
+
+- **Precision Agriculture**
+- **Environmental monitoring**
+- **Asset tracking**
+
+### Sensors Support (Hardware & Software)
+
+|                                |                                                                                    |
+| :----------------------------- | :--------------------------------------------------------------------------------- |
+| **On-board Sensors**           | 1 x Temperature/Humidity Sensor (based on the SI7021 chip)                         |
+| **Number of External Sensors** | Up to 4 (simultaneously)                                                           |
+| **External Sensor Interfaces** | Analogue @ 3.3V                                                                    |
+|                                | Digital: 1-wire @ 3.3V, I2C @ 3.3V                                                 |
+| **Low energy operation**       | Software-controlled                                                                |
+| **Sensor models sw support**   | Analogue: Meter’s EC5 (Soil), Pino-Tech’s Soil Watch 10 (Soil)                     |
+|                                | 1-wire: DS18B20 (Outdoor Temperature)                                              |
+|                                | I2C: SI7021 (Temperature / Humidity), BME680 (Environmental), TSL2561 (Luminosity) |
+
+### Communication
+
+- **Wireless technologies**
+  - WiFi
+  - Bluetooth
+  - LoRaWAN
+  - NB-IoT/LTE-M
+- **IP-based protocols**
+  - TCP/UDP over IPv4/IPv6
+  - MQTT
+  - CoAP
 
 ### Power Supply
 
@@ -61,31 +100,6 @@ weight: 210
 | **S2**      | Tactile switch for activating the micro-controller’s bootloader (needed only for fw upgrade) |
 | **SNSR**    | Software-controlled switch for enabling/disabling power supply to sensors on-demand          |
 
-### Communication
-
-- **Wireless technologies**
-  - WiFi
-  - Bluetooth
-  - LoRaWAN
-  - NB-IoT/LTE-M
-- **IP-based protocols**
-  - TCP/UDP over IPv4/IPv6
-  - MQTT
-  - CoAP
-
-### Sensors Support (Hardware & Software)
-
-|                                |                                                                                    |
-| :----------------------------- | :--------------------------------------------------------------------------------- |
-| **On-board Sensors**           | 1 x Temperature/Humidity Sensor (based on the SI7021 chip)                         |
-| **Number of External Sensors** | Up to 4 (simultaneously)                                                           |
-| **External Sensor Interfaces** | Analogue @ 3.3V                                                                    |
-|                                | Digital: 1-wire @ 3.3V, I2C @ 3.3V                                                 |
-| **Low energy operation**       | Software-controlled                                                                |
-| **Sensor models sw support**   | Analogue: Meter’s EC5 (Soil), Pino-Tech’s Soil Watch 10 (Soil)                     |
-|                                | 1-wire: DS18B20 (Outdoor Temperature)                                              |
-|                                | I2C: SI7021 (Temperature / Humidity), BME680 (Environmental), TSL2561 (Luminosity) |
-
 ### Hardware Watchdog
 
 |                       |                                                                              |
@@ -117,3 +131,7 @@ weight: 210
 | **CE**   | _planned_ |
 | **FCC**  | _planned_ |
 | **RoHS** | _planned_ |
+
+## Custom designs
+
+The existing boards are highly configurable and expandable so if the existing boards do not fit your need, **[get in contact with us](mailto:info@insigh.io)** and we will tailor a solution for you with your customizations.

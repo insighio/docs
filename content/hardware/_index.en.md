@@ -27,6 +27,8 @@ Out of the box features include:
 
 insigh.io offers variants of the board to to perfectly fit your case. Follows a list of specifications that are common across our boards. For more details of each variant, advice one of the following pages:
 
+- [Generic Cellular Board with support to Load Cell and Analog/Digital sensors]({{< relref "./insighio-cellular.md" >}})
+
 - [Generic Board with support to I²C, Analog and Digital sensors]({{< relref "./insighio-board-generic.md" >}})
 
 - [SDI-12 compatible board with RS-485]({{< relref "./insighio-board-sdi12.md" >}})

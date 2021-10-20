@@ -1,8 +1,8 @@
 ---
-title: insigh.io SDI-12 board
+title: insigh.io SDI-12 host board
 identifier: "hardware@insighio-board-sdi12"
 parent: "hardware"
-weight: 220
+weight: 230
 ---
 
 ![TAT image](/images/deviceimages/board-sdi12.PNG?width=50pc)
@@ -11,9 +11,46 @@ weight: 220
 
 |                            |
 | :------------------------- | :---------------- |
-| **Dimensions (L x W x H)** | 78 x 57.2 x 13 mm |
+| **Host board** | Pycom development board ([link](https://pycom.io/shop/#dev)) |
+| **Supported Sensors** | SDI-12 sensors, Temperature, Humidity |
+| **Power Supply** | USB, Battery, Solar Panel |
+| **Misc** | USB for firmware flashing and debugging |
+|  | Power switch |
+| **Software** | micropython | 
+| | Open-source libraries & demo scenarios @ [Github](https://github.com/insighio/insighioNode) |
+| **Dimensions (L x W x H)** | 78 x 57.2 x 16.7 mm |
 | **Weight**                 | 25 g              |
 | **Enclosure**              | IP65/IP67         |
+
+### Example Applications
+
+- **Precision Agriculture**
+  - Soil moisture, Electrical Conductivity, Volumetric Water Content, Temperature
+- **Environmental monitoring**
+  - Water flow, water quality, Temperature, humidity
+
+### Sensors Support (Hardware & Software)
+
+|                                |                                                            |
+| :----------------------------- | :--------------------------------------------------------- |
+| **On-board Sensors**           | 1 x Temperature/Humidity Sensor (based on the SI7021 chip) |
+| **Number of External Sensors** | Up to 2 (simultaneously)                                   |
+| **External Sensor Interfaces** | Digital: SDI-12 @ 12V                                      |
+| **Low energy operation**       | Software-controlled                                        |
+| **Sensor models sw support**   | I2C: SI7021 (Board Temperature / Humidity )                |
+|                                | SDI-12: Meter’s Teros-12 (Soil), Acclima’s TDR-315H (Soil) |
+
+### Communication
+
+- **Wireless technologies**
+  - WiFi
+  - Bluetooth
+  - LoRaWAN
+  - NB-IoT/LTE-M
+- **IP-based protocols**
+  - TCP/UDP over IPv4/IPv6
+  - MQTT
+  - CoAP
 
 ### Power Supply
 
@@ -61,29 +98,6 @@ weight: 220
 | **S2**      | Tactile switch for activating the micro-controller’s bootloader (needed only for fw upgrade) |
 | **SNSR**    | Software-controlled switch for enabling/disabling power supply to sensors on-demand          |
 
-### Communication
-
-- **Wireless technologies**
-  - WiFi
-  - Bluetooth
-  - LoRaWAN
-  - NB-IoT/LTE-M
-- **IP-based protocols**
-  - TCP/UDP over IPv4/IPv6
-  - MQTT
-  - CoAP
-
-### Sensors Support (Hardware & Software)
-
-|                                |                                                            |
-| :----------------------------- | :--------------------------------------------------------- |
-| **On-board Sensors**           | 1 x Temperature/Humidity Sensor (based on the SI7021 chip) |
-| **Number of External Sensors** | Up to 2 (simultaneously)                                   |
-| **External Sensor Interfaces** | Digital: SDI-12 @ 12V                                      |
-| **Low energy operation**       | Software-controlled                                        |
-| **Sensor models sw support**   | I2C: SI7021 (Board Temperature / Humidity )                |
-|                                | SDI-12: Meter’s Teros-12 (Soil), Acclima’s TDR-315H (Soil) |
-
 ### Hardware Watchdog
 
 |                       |                                                                              |
@@ -115,3 +129,7 @@ weight: 220
 | **CE**   | _planned_ |
 | **FCC**  | _planned_ |
 | **RoHS** | _planned_ |
+
+## Custom designs
+
+The existing boards are highly configurable and expandable so if the existing boards do not fit your need, **[get in contact with us](mailto:info@insigh.io)** and we will tailor a solution for you with your customizations.

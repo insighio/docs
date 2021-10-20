@@ -1,8 +1,8 @@
 ---
-title: insigh.io ESP32 & Quectel BG600 board
-identifier: "hardware@insighio-esp32-bg600"
+title: insigh.io integraded cellular board
+identifier: "hardware@insighio-cellular"
 parent: "hardware"
-weight: 230
+weight: 210
 ---
 
 ![TAT image](/images/deviceimages/esp32-bg600_v1.png?width=50pc)
@@ -11,10 +11,49 @@ weight: 230
 
 |                            |
 | :------------------------- | :---------------- |
-| **Dimensions (L x W x H)** (including ESP32 WiFi antenna) | 83.5 x 57.2 x 13 mm |
-| **Dimensions (L x W x H)** | 78 x 57.2 x 13 mm |
+| **Microcontroller** | ESP32 |
+| **Modem** | GSM / NB-IoT / LTE-M (Nano-SIM)|
+| **GNSS**  | GPS, BeiDou, Galileo, GLONASS and QZSS |
+| **Supported Sensors** | Load Cell, Temperature, Humidity |
+| **Power Supply** | USB, Battery, Solar Panel |
+| **Misc** | Switches / Headers for firmware flashing and debugging |
+|  | Support for external switch |
+| **Software** | micropython | 
+| | Open-source libraries & demo scenarios @ [Github](https://github.com/insighio/insighioNode) |
+| | Weigh Scale calibration web-based wizard |
+| **Dimensions (L x W x H)** (including ESP32 WiFi antenna) | 78 (83.5) x 57.2 x 16.7 mm |
 | **Weight**                 | 25 g              |
 | **Enclosure**              | IP65/IP67         |
+
+### Example Applications
+
+- **Beehive monitoring**
+  - Weight, Temperature, humidity
+- **Environmental monitoring**
+  - Air quality, Temperature, humidity
+- **Asset tracking**
+  - Location, Speed, Temperature, humidity
+
+### Sensors Support
+
+|                                |                                                                                    |
+| :----------------------------- | :--------------------------------------------------------------------------------- |
+| **On-board Sensors**           | Temperature/Humidity Sensor (based on the SHT40 chip)                         |
+| **On-board Sensor Circuit**    | ADC and amplifier for load cell sensors                         |
+| **External Sensor Interfaces** | Analogue / Digital: 1-wire @ 3.3V (3-Pin)                                                      |
+|                                | Load Cell (5-Pin)                                              |
+| | Fixed Terminal Block with push-in connection (no tools required) |
+
+### Communication
+
+- **Wireless technologies**
+  - WiFi
+  - Bluetooth
+  - GSM / NB-IoT / LTE-M
+- **Transport protocols**
+  - TCP/UDP over IPv4/IPv6
+  - MQTT
+  - CoAP
 
 ### Power Supply
 
@@ -33,22 +72,21 @@ weight: 230
 
 |                             |          |
 | :-------------------------- | :------- |
+| **Microcontroller Operating Voltage** | 3.3 V    |
+| **Charging Current Limit**  | 440 mA   |
+| **Maximum Drawn Current**   | 3 A |
 | **Operational Temperature** | 0 – 60 C |
-| **Charging Current Limit**  | 400 mA   |
-| **Maximum Drawn Current**   | 3 A   |
 | **Charging Temperature**    | 0 – 60 C |
 
 ### Charging State Indication (LEDs)
 
-| Charge cycle state          | LCR |
+| Charge cycle state          | LCR LED |
 | :-------------------------- | :-- |
-| **Preconditioning**         | ON  |
-| **Constant current**        | ON  |
-| **Constant voltage**        | ON  |
-| **Charge complete-standby** | OFF  |
+| **No input**                | OFF |
 | **Temperature fault**       | BLINKING  |
 | **No battery**              | BLINKING |
-| **No input**                | OFF |
+| **Charging**        | ON  |
+| **Charge complete** | OFF  |
 
 ### Switches
 
@@ -57,8 +95,8 @@ weight: 230
 | **S1**      | Controls power supply to the micro-controller (the battery charging process is not affected) |
 | **S2**      | Tactile switch for resetting the micro-controller |
 | **S3**      | Tactile switch for activating the micro-controller’s bootloader (needed only for fw upgrade) |
-| **EXT SW**  | Physical latching button connector to control micro-controller's power (the battery charging process is not affected) |
-| **SNSR**    | Software-controlled switch for enabling/disabling power supply to sensors on-demand          |
+| **EXT SW**  | External latching switch to control micro-controller's power (the battery charging process is not affected) |
+| **SNSR**    | Electronic software-controlled switch for enabling/disabling power supply to sensors on-demand          |
 
 ### Switch combinations & power supply
 
@@ -69,30 +107,6 @@ weight: 230
 | Closed | ON | ON |
 | Closed | OFF | ON |
 
-### Communication
-
-- **Wireless technologies**
-  - WiFi
-  - Bluetooth
-  - GSM / NB-IoT/LTE-M
-- **IP-based protocols**
-  - TCP/UDP over IPv4/IPv6
-  - MQTT
-  - CoAP
-
-### Sensors Support (Hardware & Software)
-
-|                                |                                                                                    |
-| :----------------------------- | :--------------------------------------------------------------------------------- |
-| **On-board Sensors**           | 1 x Temperature/Humidity Sensor (based on the SI7021 chip)                         |
-| **Number of External Sensors** | Up to 2 (simultaneously)                                                           |
-| **External Sensor Interfaces** | Analogue @ 3.3V                                                                    |
-|                                | Digital: 1-wire @ 3.3V                                                             |
-|                                | ===load cell interface (find name)===                                              |
-| **Low energy operation**       | Software-controlled                                                                |
-| **Sensor models sw support**   | 1-wire: DS18B20 (Outdoor Temperature)                                              |
-|                                | Weight Scale - Load Cell |
-
 ### Energy Consumption Profiling
 
 |                     |                                                                                 |
@@ -101,14 +115,13 @@ weight: 230
 
 ### External components required/recommended
 
-- **Microcontroller**
-  - ESP32
-- **Modem Connectivity**
-  - Quectel BG600-M3 (GSM / NB-IoT / LTE-M)
 - **Battery**
   - 2200-4000 mAh
 - **Solar Panel**
-  - 6V/1W
+  - 6V/1-2W
+- **Flexible Cellular Antenna**
+- **Flexible GPS Antenna**
+- **SIM card**
 
 ### Marking
 
@@ -117,3 +130,7 @@ weight: 230
 | **CE**   | _planned_ |
 | **FCC**  | _planned_ |
 | **RoHS** | _planned_ |
+
+## Custom designs
+
+The existing boards are highly configurable and expandable so if the existing boards do not fit your need, **[get in contact with us](mailto:info@insigh.io)** and we will tailor a solution for you with your customizations.
