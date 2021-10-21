@@ -10,24 +10,24 @@ weight: 230
 ### General Information
 
 |                            |
-| :------------------------- | :---------------- |
-| **Host board** | Pycom development board ([link](https://pycom.io/shop/#dev)) |
-| **Supported Sensors** | SDI-12 sensors, Temperature, Humidity |
-| **Power Supply** | USB, Battery, Solar Panel |
-| **Misc** | USB for firmware flashing and debugging |
-|  | Power switch |
-| **Software** | micropython | 
-| | Open-source libraries & demo scenarios @ [Github](https://github.com/insighio/insighioNode) |
-| **Dimensions (L x W x H)** | 78 x 57.2 x 16.7 mm |
-| **Weight**                 | 25 g              |
-| **Enclosure**              | IP65/IP67         |
+| :------------------------- | :------------------------------------------------------------------------------------------ |
+| **Host board**             | Pycom development board ([link](https://pycom.io/shop/#dev))                                |
+| **Supported Sensors**      | SDI-12 sensors, Temperature, Humidity                                                       |
+| **Power Supply**           | USB, Battery, Solar Panel                                                                   |
+| **Misc**                   | USB for firmware flashing and debugging                                                     |
+|                            | Power switch                                                                                |
+| **Software**               | micropython                                                                                 |
+|                            | Open-source libraries & demo scenarios @ [Github](https://github.com/insighio/insighioNode) |
+| **Dimensions (L x W x H)** | 78 x 57.2 x 16.7 mm                                                                         |
+| **Weight**                 | 25 g                                                                                        |
+| **Enclosure**              | IP65/IP67                                                                                   |
 
 ### Example Applications
 
-- **Precision Agriculture**
-  - Soil moisture, Electrical Conductivity, Volumetric Water Content, Temperature
-- **Environmental monitoring**
-  - Water flow, water quality, Temperature, humidity
+-   **Precision Agriculture**
+    -   Soil moisture, Electrical Conductivity, Volumetric Water Content, Temperature
+-   **Environmental monitoring**
+    -   Water flow, water quality, Temperature, humidity
 
 ### Sensors Support (Hardware & Software)
 
@@ -42,15 +42,15 @@ weight: 230
 
 ### Communication
 
-- **Wireless technologies**
-  - WiFi
-  - Bluetooth
-  - LoRaWAN
-  - NB-IoT/LTE-M
-- **IP-based protocols**
-  - TCP/UDP over IPv4/IPv6
-  - MQTT
-  - CoAP
+-   **Wireless technologies**
+    -   WiFi
+    -   Bluetooth
+    -   LoRaWAN
+    -   NB-IoT/LTE-M
+-   **IP-based protocols**
+    -   TCP/UDP over IPv4/IPv6
+    -   MQTT
+    -   CoAP
 
 ### Power Supply
 
@@ -115,12 +115,12 @@ weight: 230
 
 ### External components required/recommended
 
-- **Microcontroller**
-  - Pycom WiPy 3.0 or LoPy4 or GPy or FiPy (depending on communication needs)
-- **Battery**
-  - 1200 mAh
-- **Solar Panel**
-  - 6V/1W
+-   **Microcontroller**
+    -   Pycom WiPy 3.0 or LoPy4 or GPy or FiPy (depending on communication needs)
+-   **Battery**
+    -   1200 mAh
+-   **Solar Panel**
+    -   6V/1W
 
 ### Marking
 

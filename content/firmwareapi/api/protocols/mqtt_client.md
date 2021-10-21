@@ -24,28 +24,30 @@ mqtt_cli.sendMessage("{test: 1}")
 mqtt_cli.disconnect()
 ```
 
-**Class MQTTClientCustom constructor**
+### class constructor
+
+**mqtt_client.MQTTClientCustom(mqtt_config)**
 
 Create a new instance of the MQTTClientCustom. Requires an [MQTTConfig]({{< relref "./mqtt_config.md" >}}) instance with all the information filled as the configuration will be kept for future calls. Will prepare all the authentication and exchange topics required to properly communicate with [console.insigh.io](<(https://console.insigh.io)>) backend.
 
-- params:
-  - `MQTTConfig instance`. For data fields details please advice [MQTTConfig]({{< relref "./mqtt_config.md" >}}) page
+-   params:
+    -   `mqtt_config`: `MQTTConfig instance`, for data fields details please advice [MQTTConfig]({{< relref "./mqtt_config.md" >}}) page
 
-**Methods**
+### class methods
 
 **MQTTClientCustom.connect()**
 
 Initiates the connection to the MQTT broker.
 
-- returns
-  - Boolean: connection status
+-   returns
+    -   Boolean: connection status
 
 **CoAPClient.sendMessage(message)**
 
 Publish a non-retained MQTT message on topic based on message_channel_id with QoS 1.
 
-- params:
-  - `message`: A string message to be transmitted.
+-   params:
+    -   `message`: A string message to be transmitted.
 
 **CoAPClient.disconnect()**
 

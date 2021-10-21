@@ -33,54 +33,54 @@ logging.info("Test info message 2")
 
 Sets the logging level which filters the type of messages that will be printed.
 
-- params:
-  - _level_: The level macro:
-    - CRITICAL
-    - ERROR
-    - WARNING
-    - INFO
-    - DEBUG
+-   params:
+    -   _level_: The level macro:
+        -   CRITICAL
+        -   ERROR
+        -   WARNING
+        -   INFO
+        -   DEBUG
 
 **logging.debug(msg, \*args)**
 
 Print DEBUG message
 
-- params:
-  - _msg_: The string message to be printed
-  - _args_: The variant list of items that will be printed by implicitly calling str() for each (??)
+-   params:
+    -   _msg_: The string message to be printed
+    -   _args_: The variant list of items that will be printed by implicitly calling str() for each (??)
 
 **logging.info(msg, \*args)**
 
 Print INFO message
 
-- params:
-  - _msg_: The string message to be printed
-  - _args_: The variant list of items that will be printed by implicitly calling str() for each (??)
+-   params:
+    -   _msg_: The string message to be printed
+    -   _args_: The variant list of items that will be printed by implicitly calling str() for each (??)
 
 **logging.error(msg, \*args)**
 
 Print ERROR message
 
-- params:
-  - _msg_: The string message to be printed
-  - _args_: The variant list of items that will be printed by implicitly calling str() for each (??)
+-   params:
+    -   _msg_: The string message to be printed
+    -   _args_: The variant list of items that will be printed by implicitly calling str() for each (??)
 
 **logging.exception(e, msg, \*args)**
 
 Print EXCEPTION message along with the stack trace provided by `e` instance.
 
-- params:
-  - _e_: exception instance caught by `except` statement
-  - _msg_: The string message to be printed
-  - _args_: The variant list of items that will be printed by implicitly calling str() for each (??)
+-   params:
+    -   _e_: exception instance caught by `except` statement
+    -   _msg_: The string message to be printed
+    -   _args_: The variant list of items that will be printed by implicitly calling str() for each (??)
 
-### Class constructor
+### class constructor
 
-**class logging.Logger(name)**
+**logging.Logger(name)**
 
 Create an instance of a Logger with _name_.
 
-### Class methods
+### class methods
 
 **Logger.log(level, msg, \*args, \*\*kwargs)**
 

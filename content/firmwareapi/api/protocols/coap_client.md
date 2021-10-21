@@ -26,28 +26,30 @@ coap_cli.poll(2000)
 coap_cli.stop()
 ```
 
-**Class CoAPClient constructor**
+### class constructor
+
+**coap_client.CoAPClient(coap_config)**
 
 Create a new instance of the CoAPClient. Requires a [CoAPConfig]({{< relref "./coap_config.md" >}}) instance with all the information filled as the configuration will be kept for future calls. Will prepare all the authentication and exchange URLs required to properly communicate with [console.insigh.io](https://console.insigh.io) backend.
 
-- params:
-  - `CoAPConfig instance`. For data fields details please advice [CoAPConfig]({{< relref "./coap_config.md" >}}) page
+-   params:
+    -   `coap_config`: `CoAPConfig instance`, for data fields details please advice [CoAPConfig]({{< relref "./coap_config.md" >}}) page
 
-**Methods**
+### class methods
 
 **CoAPClient.start()**
 
 Initializes socket and callbacks to be ready for data transmission.
 
-- returns
-  - Boolean: connection status
+-   returns
+    -   Boolean: connection status
 
 **CoAPClient.postMessage(message)**
 
 Publish an Non-Confirmable CoAP message on topic based on message_channel_id as JSON.
 
-- params:
-  - `message`: A string message to be transmitted.
+-   params:
+    -   `message`: A string message to be transmitted.
 
 **CoAPClient.loop()**
 
@@ -57,8 +59,8 @@ A request to process messages that have already been received as Publish respons
 
 Wait for incoming message for specific period of time.
 
-- params:
-  - `timeoutMs`: the timeout in (ms). If timeout is set to -1, it will wait indefinitely till a message is received.
+-   params:
+    -   `timeoutMs`: the timeout in (ms). If timeout is set to -1, it will wait indefinitely till a message is received.
 
 **CoAPClient.stop()**
 
