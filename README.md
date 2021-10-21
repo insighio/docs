@@ -26,6 +26,7 @@ and start Hugo server
 
 ```bash
 cd docs
+git submodule update --init --recursive
 hugo serve
 ```
 
