@@ -8,6 +8,15 @@ weight: 1000
 
 # Firmware APIs
 
-This chapter is focused on documenting all resuable software functionalities that come together with insigh.io firmware.
+This chapter is focused on documenting all reusable software functionalities that can be found in insigh.io Node software available in Github: https://github.com/insighio/insighioNode.
 
-insigh.io firmware is based on [Pycom's latest firmware release](https://github.com/pycom/pycom-micropython-sigfox/releases/tag/v1.20.2.r4), extending its functionalities with extra libraries as "frozen" modules and demo code.
+insigh.io libraries have been tested on stock ESP32 firmware and [Pycom's latest firmware release](https://github.com/pycom/pycom-micropython-sigfox/releases/tag/v1.20.2.r4)
+
+This chapter is divided into 3 sections:
+
+1. [API]({{< relref "./api/_index.en.md" >}})
+    - the documentation of the libraries included in the [lib folder](https://github.com/insighio/insighioNode/tree/main/insighioNode/lib) of the `insighioNode`
+1. [LoRA]({{< relref "./lora/_index.en.md" >}})
+    - a thorough description of the custom LoRA Encoding Protocol accompanied by the corresponding Decoder code sample in Javascript which can be used in any LoRA server / application.
+1. [Sample config files]({{< relref "./sampleconfigfiles/_index.en.md" >}}):
+    - Sample configuration files for all variants of device configurations that be produced by Web UI configurator as provided by the web_server.py in `insighioNode` code.
