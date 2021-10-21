@@ -6,11 +6,18 @@ weight: 4610
 ---
 
 ```py {linenos=true}
-""" System configuration options """
-_WD_PERIOD = 120 # watchdog time for rebooting in seconds
-_BOARD_TYPE = "default"
 _CONST_BOARD_TYPE_DEFAULT = "default"
 _CONST_BOARD_TYPE_SDI_12 = "sdi12"
+_CONST_BOARD_TYPE_ESP_GEN_1 = "ins_esp_gen_1"
+
+_CONST_SENSOR_SI7021 = 'si7021'
+_CONST_SENSOR_SHT40 = 'SHT40'
+
+_CONST_MEAS_DISABLED = "disabled"
+
+_BOARD_TYPE = "default"
+""" System configuration options """
+_WD_PERIOD = 120 # watchdog time for rebooting in seconds
 
 """ Measurement configuration options """
 _UC_IO_BAT_MEAS_ON = 'P23'
@@ -36,13 +43,7 @@ _UC_IO_SENSOR_SWITCH_ON = 'P11'
 _UC_IO_I2C_SDA = 'P9'
 _UC_IO_I2C_SCL = 'P10'
 
-''' measurements that are controlled by boolean values '''
-_MEAS_BATTERY_STAT_ENABLE = True
-_MEAS_BOARD_SENSE_ENABLE = True
-_MEAS_BOARD_STAT_ENABLE = False
-_MEAS_NETWORK_STAT_ENABLE = False
-
-_CONST_MEAS_DISABLED = "disabled"
+_UC_INTERNAL_TEMP_HUM_SENSOR = _CONST_SENSOR_SI7021
 
 """ Load Regulator configuration """
 _UC_IO_LOAD_PWR_SAVE_OFF = 'P4'
@@ -52,6 +53,17 @@ _UC_IO_ANALOG_DIGITAL_P1 = 'P20'
 _UC_IO_ANALOG_DIGITAL_P2 = 'P19'
 _UC_IO_ANALOG_P1 = 'P18'
 _UC_IO_ANALOG_P2 = 'P17'
+
+''' measurements that are controlled by boolean values '''
+_MEAS_BATTERY_STAT_ENABLE = True
+_MEAS_BOARD_SENSE_ENABLE = True
+_MEAS_BOARD_STAT_ENABLE = False
+_MEAS_NETWORK_STAT_ENABLE = True
+_MEAS_TEMP_UNIT_IS_CELSIUS = True
+
+_CHECK_FOR_OTA = True
+
+
 
 ''' measurements that are controlled by string selection. Deactivated if string is equal to "disabled" '''
 _MEAS_I2C_1 = "scd30 - C02 / temperature / humidity"
@@ -65,39 +77,56 @@ _MEAS_ANALOG_DIGITAL_P2 = "disabled"
 network="wifi"
 
 """ System-related configuration options """
-_DEEP_SLEEP_PERIOD_SEC = 60  # tx period in secs
+_DEEP_SLEEP_PERIOD_SEC = 300  # tx period in secs
+_BATCH_UPLOAD_MESSAGE_BUFFER = None
 
 """ WiFi connection configuration options """
 _MAX_CONNECTION_ATTEMPT_TIME_SEC = 20
-_CONF_NETS = {'mobile01': {'pwd': 'movement'}}
+_CONF_NETS = {'esmera2G': {'pwd': 'movement'}}
 
 _IP_VERSION = "IP"
 
 """Transport-related configuration options """
 protocol = 'mqtt'
-if protocol == 'coap':
-    from protocols import coap_client
-    protocol_config = coap_client.CoAPConfig()
-    protocol_config.server_port = 5683
-    protocol_config.use_custom_socket = (_IP_VERSION == "IPV6")
-elif protocol == 'mqtt':
-    from protocols import mqtt_client
-    protocol_config = mqtt_client.MQTTConfig()
-    protocol_config.server_port = 1884 # only for mqtt
-    protocol_config.use_custom_socket = False
-else:
-    print('Not supported transport protocol. Choose between CoAP and MQTT')
-    import sys
-    sys.exit()
 
-if _IP_VERSION == "IPV6":
-    protocol_config.server_ip = "2001:41d0:701:1100:0:0:0:2060"
-else:
-    protocol_config.server_ip = "51.75.72.81"
+protocol_config_instance = None
 
-""" console.insigh.io security keys """
-protocol_config.message_channel_id = "e59ebf54-9aa5-4daa-8dd0-31e05d463977"
-protocol_config.thing_id = "71e7f125-4902-44be-b6b9-c880a9fa764d"
-protocol_config.thing_token = "b86c51d4-4919-4fde-94a7-b98a72ef10b0"
+
+def get_protocol_config():
+    global protocol_config_instance
+    if protocol_config_instance is not None:
+        return protocol_config_instance
+
+    if protocol == 'coap':
+        from protocols import coap_client
+        from protocols import coap_config
+        protocol_config = coap_config.CoAPConfig()
+        protocol_config.server_port = 5683
+        protocol_config.use_custom_socket = (_IP_VERSION == "IPV6")
+    elif protocol == 'mqtt':
+        from protocols import mqtt_client
+        from protocols import mqtt_config
+        protocol_config = mqtt_config.MQTTConfig()
+        protocol_config.server_port = 1884 # only for mqtt
+        protocol_config.use_custom_socket = False
+        protocol_config.override_measurement_topic = False  #<protocol_override_measurement_topic>
+        protocol_config.explicit_message_topic = "<protocol_explicit_message_topic>"
+    else:
+        print('Not supported transport protocol. Choose between CoAP and MQTT')
+        return None
+
+    if _IP_VERSION == "IPV6":
+        protocol_config.server_ip = "2001:41d0:701:1100:0:0:0:2060"
+    else:
+        protocol_config.server_ip = "51.75.72.81"
+
+    """ console.insigh.io security keys """
+    protocol_config.message_channel_id = "11111111-2222-3333-4444-555555555555"
+    protocol_config.control_channel_id = "22222222-3333-4444-5555-666666666666"
+    protocol_config.thing_id = "33333333-4444-5555-6666-777777777777"
+    protocol_config.thing_token = "44444444-5555-6666-7777-888888888888"
+    protocol_config_instance = protocol_config
+    return protocol_config
+
 
 ```
