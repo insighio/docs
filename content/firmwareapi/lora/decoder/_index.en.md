@@ -300,4 +300,12 @@ function Decode(fPort, bytes, variables) {
 function Decoder(bytes, port) {
   return DecodeInsighioPackage(bytes);
 }
+
+function decodeUplink(input) {
+   return {
+    data: {
+      bytes: DecodeInsighioPackage(input.bytes)
+    }
+  }
+}
 ```
