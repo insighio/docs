@@ -26,7 +26,7 @@ Our source code contains a demo scenario that can be used as a reference for usi
 |   solid **{{< raw-html >}}<span style="color: #008000">green</span>{{< /raw-html >}}**   |           Network connected, uploading data           |
 |                                           off                                            |                     in deep sleep                     |
 
-Follows an example video shows how the LED colouring is affected based on the scenario progress. Key points of the video are:
+<!-- Follows an example video shows how the LED colouring is affected based on the scenario progress. Key points of the video are:
 
 - In step 6 of Web UI, **Finish** button is pressed
 - Device will reboot to start running the scenario
@@ -36,4 +36,4 @@ Follows an example video shows how the LED colouring is affected based on the sc
 - In the **Live View** section of the page, the uploaded data will be displayed as soon as they are processed
 - **Device Info** view will be updated automatically with each incoming message.
 
-{{< video src="demo-scenario" >}}
+{{< video src="demo-scenario" >}} -->
