@@ -1,11 +1,11 @@
 ---
-title: NBIoT
-identifier: "firmwareapi@sampleconfigfiles@nbiot"
+title: Cellular
+identifier: "firmwareapi@sampleconfigfiles@cellular"
 parent: "firmwareapi@sampleconfigfiles"
 weight: 4620
 ---
 
-Example configuration file for ESP32 board with NBIoT connectivity, CoAP, IPv6, GPS, Scale Weigh, OTA.
+Example configuration file for ESP32 board with Cellular connectivity (NBIoT), CoAP, IPv6, GPS, Scale Weigh, OTA.
 
 ```py {linenos=true}
 _CONST_BOARD_TYPE_DEFAULT = "default"

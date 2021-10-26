@@ -9,12 +9,12 @@ By completing the previous step, a device has been created and provisioned in th
 
 The key configurations that will be edited are:
 
-- Network type selection (WiFi, NBIoT, LoRa)
-- Selected network parameters
-- Communication protocol
-- Measurement period duration
-- Security Keys
-- Enabled measurements
+-   Network type selection (WiFi, Cellular, LoRa)
+-   Selected network parameters
+-   Communication protocol
+-   Measurement period duration
+-   Security Keys
+-   Enabled measurements
 
 ### Web UI
 
@@ -34,23 +34,24 @@ The WiFi Access Point is ready for connection around 5-10 seconds after power on
 
 The WiFi Access Point will remain active for:
 
-- **50 seconds**, if no WiFi client gets connected
-- **5 minutes**, if any WiFi client gets connected
+-   **50 seconds**, if no WiFi client gets connected
+-   **5 minutes**, if any WiFi client gets connected
 
 ## How To
 
-1. power on board with Pycom device.
-   - Make sure the _power switch_ is at the **on** position
-1. when the LED on the Pycom board starts blinking purple, the WiFi Access Point is ready to accept connections
+1. power on board or hard-reset through the corresponding switch on the board.
+    - Make sure the _power switch_ is at the **on** position
+1. the WiFi Access Point is ready to accept connections when the SSID gets listed on the WiFi discovery on the host machine
+    - Pycom: the LED on the Pycom board starts blinking purple
 1. connect via WiFi to the broadcasted **SSID** (ex. _insigh-5fa1_) with **password**: _insighiodev_
-1. wait for the LED to become **purple** without blinking. Now the Web UI is ready to be accessed.
+1. (Pycom) wait for the LED to become **purple** without blinking. Now the Web UI is ready to be accessed.
 1. open the Web UI URL: [http://192.168.4.1](http://192.168.4.1)
 1. login with
-   - **username:** _admin_
-   - **password:** _insighiodev_
+    - **username:** _admin_
+    - **password:** _insighiodev_
 1. Select Network type for data exchange:
-   - [WiFi]({{< relref "wifi/_index.en.md" >}})
-   - [NBioT]({{< relref "nbiot/_index.en.md" >}})
-   - [LoRA]({{< relref "lora/_index.en.md" >}})
+    - [WiFi]({{< relref "wifi/_index.en.md" >}})
+    - [Cellular]({{< relref "cellular/_index.en.md" >}})
+    - [LoRA]({{< relref "lora/_index.en.md" >}})
 
 ![login page](/images/webui-login.gif?width=50pc)

@@ -16,5 +16,5 @@ ampy -v -p /dev/ttyUSB0 -b 115200 get /apps/demo-console/demo_config.py demo_wif
 Examples of the generated configuration files per network technology can be found in the next pages:
 
 -   [WiFi]({{< relref "./wifi.md" >}})
--   [NBIoT]({{< relref "./nbiot.md" >}})
+-   [Cellular]({{< relref "./cellular.md" >}})
 -   [LoRA]({{< relref "./lora.md" >}})

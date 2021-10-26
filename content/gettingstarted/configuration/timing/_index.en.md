@@ -1,15 +1,15 @@
 ---
-title: Measurements
-identifier: "gettingstarted@configuration@measurements"
+title: Timing
+identifier: "gettingstarted@configuration@timing"
 parent: "gettingstarted@configuration"
-weight: 80
+weight: 85
 ---
 
 Step 5 of the Web UI is the selection of the enabled measurements during the demo scenario.
 
 insigh.io boards come in 3 versions based on the sensor connectors that it support and the microcontroller they are based on (refer to [Hardware page]({{< relref "../../../hardware/_index.en.md" >}}) for more information).
 
-The first 6 switches control generic features of the board / firmware:
+The first 5 switches control generic features of the board / firmware:
 
 -   **Battery statistics**: Reports battery voltage and Current consumption
 -   **Board humidity/temperature**: All insigh.io boards are equipped with an [**si7021**](https://www.silabs.com/documents/public/data-sheets/Si7021-A20.pdf) or an [**SHT40 IC**](https://cdn.sos.sk/productdata/79/7c/0364ef45/sht40-ad1b-r2.pdf) to be able to provide the humidity and temperature of the board.
@@ -20,7 +20,6 @@ The first 6 switches control generic features of the board / firmware:
     -   reset cause code
 -   **Network statistics**: Based one the selected network type (WiFi, Cellular, LoRA), this option provides KPIs of the network connection
 -   **Over the Air Updates**: Whether to enable looking for incoming update/reconfiguration events.
--   **Temperature Unit**: select between Celsius and Fahrenheit for the reported temperature values
 
 Each of the following tabs represent a configuration pack for the selected variant of the insigh.io board.
 

@@ -13,7 +13,7 @@ These steps will create a device assigned to your account and it will be ready t
 1. The device is now created and provisioned. By clicking on the device, **Device Info** view opens with further details on the security keys and the device active measurements.
 1. **Keep this tab open as it will be used in the next step**
 
-# WiFi & NBIoT devices
+# WiFi & Cellular devices
 
 ![simple device creation](/images/provisiondevice/provisiondevice.gif?width=50pc)
 

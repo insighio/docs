@@ -5,7 +5,7 @@ parent: "gettingstarted@configuration"
 weight: 70
 ---
 
-insigh.io board Web UI configuration scenario for setting up NBioT connection.
+insigh.io board Web UI configuration scenario for setting up LoRA connection.
 
 1. Open the Web UI URL: [http://192.168.4.1](http://192.168.4.1)
 1. login with **username:** _admin_ and **password:** _insighiodev_
