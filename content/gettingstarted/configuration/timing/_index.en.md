@@ -5,58 +5,18 @@ parent: "gettingstarted@configuration"
 weight: 85
 ---
 
-Step 5 of the Web UI is the selection of the enabled measurements during the demo scenario.
+Final step, before applying the configuration, is to set up the measurement/upload period.
 
-insigh.io boards come in 3 versions based on the sensor connectors that it support and the microcontroller they are based on (refer to [Hardware page]({{< relref "../../../hardware/_index.en.md" >}}) for more information).
+## Measurement Period
 
-The first 5 switches control generic features of the board / firmware:
+-   `Periodic`: Execute measurements every specified period of time in seconds
+-   `Time scheduled`: _Not available yet_ Execute measurements at specific time(s) during the day
 
--   **Battery statistics**: Reports battery voltage and Current consumption
--   **Board humidity/temperature**: All insigh.io boards are equipped with an [**si7021**](https://www.silabs.com/documents/public/data-sheets/Si7021-A20.pdf) or an [**SHT40 IC**](https://cdn.sos.sk/productdata/79/7c/0364ef45/sht40-ad1b-r2.pdf) to be able to provide the humidity and temperature of the board.
--   **Board health statistics**: Reports extended stability info like:
-    -   size of allocated memory
-    -   remaining free memory
-    -   CPU temperature
-    -   reset cause code
--   **Network statistics**: Based one the selected network type (WiFi, Cellular, LoRA), this option provides KPIs of the network connection
--   **Over the Air Updates**: Whether to enable looking for incoming update/reconfiguration events.
+## Upload Period
 
-Each of the following tabs represent a configuration pack for the selected variant of the insigh.io board.
+-   `Batch Upload disabled`: The device will connect to the network and upload the measurements every time it wakes up to execute a measurement cycle. This option provides live data in the expense of increased battery consumption.
+-   `Batch Upload enabled` : The device will store a specific number of measurements before it will connect to the network and upload them. The number of stored measurements can be defined by `Message Buffer Size` field. Thus, in case the measurements are executed Periodically every 300 seconds and Message Buffer Size have value 50, the device is expected to upload data every: 300 seconds \* 50 = 4 hours and 10 minutes approximately.
 
-After setting up board-specific options, press **Save**.
+![measurement timing](/images/webui-timing.png?width=50pc)
 
-### 16 pin with 2xI²C, 2xDigital/Analog, 2xAnalog
-
-Supports:
-
--   2 x I²C selectors with the supported sensors. _This option assumes that all these connected sensors operate at their default I²C ID_
--   2 x Generic Analog measurements
--   2 x Digital Analog measurements. This includes the following options:
-    -   Generic Analog measurement
-    -   Digital sensor (ex. DHT11 / DHT 22)
-    -   OneWire Sensor (ex. ds18x20)
-
-![default insigh.io board measurements](/images/webui-measurements-default.gif?width=50pc)
-
-### 6 pin with SDI-12 support.
-
-Supports:
-
--   2 x SDI-12 sensor reading. If enabled, select the SDI-12 address that the device is operating on.
-    -   **Important**: addresses must be preconfigured to not collide
-
-![SDI-12 insigh.io board measurements](/images/webui-measurements-sdi12.gif?width=50pc)
-
-### Cellular board with 2xI²C, Digital (OneWire), Load Cell, GPS
-
-Supports:
-
--   2 x I²C selectors with the supported sensors. _This option assumes that all these connected sensors operate at their default I²C ID_
--   1 x Analog Digital measurements. This includes the following options:
-    -   Generic Analog measurement
-    -   Digital sensor (ex. DHT11 / DHT 22)
-    -   OneWire Sensor (ex. ds18x20)
--   Weight Scale: enable measuring values of the load cell. An accurate calibration needs to take places for this feature is to happen, though the Web UI will guide the user through the calibration steps.
--   GPS: get the precise location of the device using embedded GPS in the cellular modem.
-
-![insigh.io cellular board measurements (scale, GPS)](/images/webui-measurements-scale-gps.gif?width=50pc)
+Hit **Save** button to proceed to the final screen and the configuration is ready!

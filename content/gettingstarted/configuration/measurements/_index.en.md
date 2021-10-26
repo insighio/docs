@@ -57,7 +57,7 @@ Supports:
     -   Generic Analog measurement
     -   Digital sensor (ex. DHT11 / DHT 22)
     -   OneWire Sensor (ex. ds18x20)
--   Weight Scale: enable measuring values of the load cell. An accurate calibration needs to take places for this feature is to happen, though the Web UI will guide the user through the calibration steps.
+-   Weight Scale: enable measuring values of the load cell and converting it into grams (g). If selected, the Web UI configurator will guide you through the calibration steps through its next pages.
 -   GPS: get the precise location of the device using embedded GPS in the cellular modem.
 
 ![insigh.io cellular board measurements (scale, GPS)](/images/webui-measurements-scale-gps.gif?width=50pc)
