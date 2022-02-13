@@ -7,7 +7,7 @@ weight: 4620
 
 Example configuration file for ESP32 board with Cellular connectivity (NBIoT), CoAP, IPv6, GPS, Scale Weigh, OTA.
 
-```py {linenos=true}
+```py
 _CONST_BOARD_TYPE_DEFAULT = "default"
 _CONST_BOARD_TYPE_SDI_12 = "sdi12"
 _CONST_BOARD_TYPE_ESP_GEN_1 = "ins_esp_gen_1"

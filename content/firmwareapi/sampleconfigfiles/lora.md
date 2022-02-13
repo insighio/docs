@@ -7,7 +7,7 @@ weight: 4630
 
 Example configuration file for Pycom board with LoRA connectivity and SDI-12 enabled sensor.
 
-```py {linenos=true}
+```py
 _CONST_BOARD_TYPE_DEFAULT = "default"
 _CONST_BOARD_TYPE_SDI_12 = "sdi12"
 _CONST_BOARD_TYPE_ESP_GEN_1 = "ins_esp_gen_1"

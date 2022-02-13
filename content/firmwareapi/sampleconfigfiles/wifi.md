@@ -5,7 +5,7 @@ parent: "firmwareapi@sampleconfigfiles"
 weight: 4610
 ---
 
-```py {linenos=true}
+```py
 _CONST_BOARD_TYPE_DEFAULT = "default"
 _CONST_BOARD_TYPE_SDI_12 = "sdi12"
 _CONST_BOARD_TYPE_ESP_GEN_1 = "ins_esp_gen_1"
