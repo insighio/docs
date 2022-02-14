@@ -202,7 +202,7 @@ Query all device measurements uploaded during the defined period of time.
 > -   **valueTransformation**: apply calculation on each returned value (ex. `value * 5`)
 
 ```bash
-curl -s -S -i --cacert ~/Desktop/console-insighio.crt -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/measurement/queryPack?publisher=<device-id>&channel=<data-channel-id>&duration=24h"
+curl -s -S -i --cacert ~/console-insighio.crt -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/measurement/queryPack?publisher=<device-id>&channel=<data-channel-id>&duration=24h"
 ```
 
 #### output
