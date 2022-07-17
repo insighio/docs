@@ -81,7 +81,159 @@ access-control-allow-headers: *
 {"total":2,"offset":0,"limit":10,"things":[{"id":"03196209-4ab9-4114-f121-1e1f4bcc698d","name":"device1","key":"e712225c-696d-5925-b227-1222f67708a","metadata":{"dataChannel":"ea9ebfc4-9da5-4eaa-8fd0-31e0ad4b3c77","controlChannel":"11927d38-6445-5b66-78c3-92e2001123ab"}},{"id":"17637322-4415-44d0-6e7e-6292b32ba4b5","name":"deviceLora","key":"5b01513a-4a0c-4b8d-ab63-0c424d7fecef","metadata":{"lora":{"appID":"3","devEUI":"a0b3c54d9edbfc55"},"dataChannel":"ea9ebfc4-9da5-4eaa-8fd0-31e0ad4b3c77","controlChannel":"11927d38-6445-5b66-78c3-92e2001123ab"}}]}
 ```
 
-## Get Device Last Measurement
+## Device API
+
+### Create Device
+
+Create a new device, optionally passing device parameters/tags, and get back the full details of the created device. 
+
+> URL [POST]
+>
+> https://console.insigh.io/mf-rproxy/device/create
+>
+> POST data:
+>
+> -   **name**: The name of the new device
+> -   **metadata**: a JSON object with device data, settings, tags, etc.
+
+```bash
+curl -s -S -i --cacert ./console-insighio.crt -X POST -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/device/create -d '{"name":"<device name>", "metadata": {<JSON object>}}'
+```
+
+#### input example
+
+```bash
+curl -s -S -i --cacert ./console-insighio.crt -X POST -H "Content-Type: application/json" -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTgxMTIxNDQsImlhdCI6MTY1ODA3NjE0NCwiaXNzIjoibWFpbmZsdXguYXV0aG4iLCJzdWIiOiJkZW1vQGluc2lnaC5pbyIsInR5cGUiOjB9.auXohlIbMHi8mRA_995kjSB-PABPBtH-btIEwUNyVrw" https://console.insigh.io/mf-rproxy/device/create -d '{"name":"apitest", "metadata": {"deviceId": "100.123.123.312", "status":"disabled", "tags": {"company": "northen lights", "hw_version": "4.0", "facility_id": 929}}}'
+
+```
+
+#### output
+
+```bash
+HTTP/1.1 200 OK
+Content-Type: application/json
+Access-Control-Allow-Origin: *
+Date: Sun, 17 Jul 2022 17:04:22 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+Content-Length: 379
+
+{"id":"e27bc4f5-3278-400a-86af-5045b04efa0c","name":"apitest","key":"a0f8ccb5-934b-4a73-99fa-9e1d95c8b197","metadata":{"name":"apitest", "metadata": {"deviceId": "100.123.123.312", "status":"disabled", "tags": {"company": "northen lights", "hw_version": "4.0", "facility_id": 929}}},"status":"Inactive"}
+```
+
+### Get Device
+
+Get the device details of a device that has already been created. The "id" returned by device creation of the device list retrieval is required to execute this call.
+
+> URL [GET]
+>
+> https://console.insigh.io/mf-rproxy/device/\<device-id\>
+>
+> -   **device-id**: The device ID in the for of: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+
+```bash
+curl -s -S -i --cacert ./console-insighio.crt -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/device/<device-id>"
+```
+
+#### input example
+
+```bash
+curl -s -S -i --cacert ./console-insighio.crt -H "Content-Type: application/json" -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTgxMTIxNDQsImlhdCI6MTY1ODA3NjE0NCwiaXNzIjoibWFpbmZsdXguYXV0aG4iLCJzdWIiOiJkZW1vQGluc2lnaC5pbyIsInR5cGUiOjB9.auXohlIbMHi8mRA_995kjSB-PABPBtH-btIEwUNyVrw" https://console.insigh.io/mf-rproxy/device/e27bc4f5-3278-400a-86af-5045b04efa0c
+
+```
+
+#### output
+
+```bash
+HTTP/1.1 200 OK
+Content-Type: application/json
+Access-Control-Allow-Origin: *
+Date: Sun, 17 Jul 2022 17:05:22 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+Content-Length: 381
+
+{"id":"e27bc4f5-3278-400a-86af-5045b04efa0c","name":"apitest","key":"a0f8ccb5-934b-4a73-99fa-9e1d95c8b197","metadata":{"name":"apitest", "metadata": {"deviceId": "100.123.123.312", "status":"disabled", "tags": {"company": "northen lights", "hw_version": "4.0", "facility_id": 929}}},"status":"Inactive"}
+```
+
+### Update Device
+
+Update the device details of a device that has already been created. The "id" returned by device creation of the device list retrieval is required to execute this call.
+
+In case of success, 200 OK is returned with an empty JSON object.
+
+> URL [PUT]
+>
+> https://console.insigh.io/mf-rproxy/device/\<device-id\>
+>
+> -   **device-id**: The device ID in the for of: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+
+```bash
+curl -s -S -i -X PUT --cacert ./console-insighio.crt -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/device/<device-id>" -d '{"name":"<device name>", "metadata": {<JSON object>}}'
+```
+
+#### input example
+
+```bash
+curl -s -S -i -X PUT --cacert ./console-insighio.crt -H "Content-Type: application/json" -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTgxMTIxNDQsImlhdCI6MTY1ODA3NjE0NCwiaXNzIjoibWFpbmZsdXguYXV0aG4iLCJzdWIiOiJkZW1vQGluc2lnaC5pbyIsInR5cGUiOjB9.auXohlIbMHi8mRA_995kjSB-PABPBtH-btIEwUNyVrw" https://console.insigh.io/mf-rproxy/device/e27bc4f5-3278-400a-86af-5045b04efa0c -d '{"name":"apitest-updated", "metadata": {"deviceId": "1234.1234.1234.1234", "status":"active", "tags": {"company": "northen lights", "hw_version": "4.1", "facility_id": 929}}}'
+
+```
+
+#### output
+
+```bash
+HTTP/1.1 200 OK
+Content-Type: application/json
+Access-Control-Allow-Origin: *
+Date: Sun, 17 Jul 2022 17:05:03 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+Content-Length: 2
+
+{}
+```
+
+### Delete Device
+
+Delete the device. __This operation can not be undone__.
+
+In case of success, 200 OK is returned with an empty JSON object.
+
+> URL [DELETE]
+>
+> https://console.insigh.io/mf-rproxy/device/\<device-id\>
+>
+> -   **device-id**: The device ID in the for of: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+
+```bash
+curl -s -S -i -X DELETE --cacert ./console-insighio.crt -H  "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/device/<device-id>"
+```
+
+#### input example
+
+```bash
+curl -s -S -i -X DELETE --cacert ./console-insighio.crt -H "Content-Type: application/json" -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTgxMTIxNDQsImlhdCI6MTY1ODA3NjE0NCwiaXNzIjoibWFpbmZsdXguYXV0aG4iLCJzdWIiOiJkZW1vQGluc2lnaC5pbyIsInR5cGUiOjB9.auXohlIbMHi8mRA_995kjSB-PABPBtH-btIEwUNyVrw" https://console.insigh.io/mf-rproxy/device/9f82e9d9-6070-47fb-8ce2-10d86cfab514
+
+
+```
+
+#### output
+
+```bash
+HTTP/1.1 200 OK
+Content-Type: application/json
+Access-Control-Allow-Origin: *
+Date: Sun, 17 Jul 2022 17:05:43 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+Content-Length: 2
+
+{}
+```
+
+## Measurement API
+
+### Get Device Last Measurement
 
 Get device last measurement. Each value holds extra meta info such as time, protocol, unit, etc.
 
@@ -117,7 +269,7 @@ access-control-allow-headers: *
 [{"time":"2021-06-01T10:06:02.533Z","name":"10be24cc37fc-adc_ap1_volt","protocol":"coap","publisher":"03196209-4ab9-4114-f121-1e1f4bcc698d","stringValue":null,"subtopic":"03196209-4ab9-4114-f121-1e1f4bcc698d","unit":"mV","updateTime":"0","value":143},{"time":"2021-06-01T10:06:02.533Z","name":"10be24cc37fc-board_humidity","protocol":"coap","publisher":"03196209-4ab9-4114-f121-1e1f4bcc698d","stringValue":null,"subtopic":"03196209-4ab9-4114-f121-1e1f4bcc698d","unit":"%RH","updateTime":"0","value":24.04},{"time":"2021-06-01T10:06:02.533Z","name":"10be24cc37fc-board_status","protocol":"coap","publisher":"03196209-4ab9-4114-f121-1e1f4bcc698d","stringValue":"running","subtopic":"03196209-4ab9-4114-f121-1e1f4bcc698d","unit":null,"updateTime":"0"}]
 ```
 
-## Query single Device measurement
+### Query single Device measurement
 
 Each measurement pack uploaded by a device contains multiple individual measurements (ex. vbatt, uptime). Through this call, it is able to retrieve historic data regarding an individual measurement.
 
@@ -178,7 +330,7 @@ access-control-allow-headers: *
 {"name":"vbatt","values":[{"time":"2022-02-13T05:19:46.000Z","value":3532},{"time":"2022-02-13T05:29:43.000Z","value":3532},{"time":"2022-02-13T08:08:46.000Z","value":3502},{"time":"2022-02-13T08:18:45.000Z","value":3500},{"time":"2022-02-13T08:28:38.000Z","value":3498},{"time":"2022-02-13T08:38:35.000Z","value":3496},{"time":"2022-02-13T08:48:34.000Z","value":3494},{"time":"2022-02-13T08:58:28.000Z","value":3494},{"time":"2022-02-13T09:08:24.000Z","value":3490}]}
 ```
 
-## Query all Device measurements
+### Query all Device measurements
 
 Query all device measurements uploaded during the defined period of time.
 
