@@ -11,6 +11,20 @@ Follows a description of supported API calls for 3rd party integrations. All API
 
 All calls to device data, require the Device ID and Data Channel ID. They can be retrieved through the Device Info view in console.insigh.io or by calling **Get Device List** command described bellow.
 
+API list:
+* [Get Access Token](http://localhost:36333/cloudplatform/api/#get-access-token)
+* [Get Device List](http://localhost:36333/cloudplatform/api/#get-device-list)
+* [Device API](http://localhost:36333/cloudplatform/api/#device-api)
+    * [Create Device](http://localhost:36333/cloudplatform/api/#create-device)
+    * [Get Device](http://localhost:36333/cloudplatform/api/#get-device)
+    * [Update Device](http://localhost:36333/cloudplatform/api/#update-device)
+    * [Delete Device](http://localhost:36333/cloudplatform/api/#delete-device)
+* [Measurement API](http://localhost:36333/cloudplatform/api/#measurement-api)
+    * [Get Device Last Measurement](http://localhost:36333/cloudplatform/api/#get-device-last-measurement)
+    * [Query single Device measurement](http://localhost:36333/cloudplatform/api/#query-single-device-measurement)
+    * [Query all Device measurements](http://localhost:36333/cloudplatform/api/#query-all-device-measurements)
+
+
 ## Get Access Token
 
 First of, it is necessary to get an Access Token that will be used in each API call. Using the email/password of the use account of console.insigh.io. Each token is valid for 24 hours!
