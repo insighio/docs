@@ -8,6 +8,5 @@ weight: 5000
 
 # console.insigh.io tutorials
 
-This section will hold tutorials, walk-throughs and tips on using [console.insigh.io](https://console.insigh.io) platform.
+This section contains tutorials, walk-throughs and tips on using [console.insigh.io](https://console.insigh.io) platform.
 
-**under construction**
