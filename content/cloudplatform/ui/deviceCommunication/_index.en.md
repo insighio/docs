@@ -21,9 +21,9 @@ In the [Device Info]({{< relref "../deviceInfo/_index.en.md" >}}) view, there ar
 
 For the authentication, the ID/Key is combined with the channel id to specifically check device access to the specific data stream.
 
-Regarding the message format, even though any message format can be passed to the platform, only if it is formatted as [SenML message](https://datatracker.ietf.org/doc/html/draft-ietf-core-senml-08) will it be processed by the various tools of the platform.
+Regarding the message format, even though any message format can be passed to the platform, only if it is formatted as __[SenML message](https://datatracker.ietf.org/doc/html/draft-ietf-core-senml-08)__ will it be processed by the various tools of the platform.
 
-The advantages of SenML message format it that it formalizes how to provide device ID, multiple measurements with values and message timestamps.
+The advantages of __SenML message format__ it that it formalizes how to provide device ID, multiple measurements with values and message timestamps.
 
 Example message: 
 `[{"n":"board_humidity","u":"%RH","bn":"aa00bb11ccdd-","v":27.96, "dt":1659612813},{"n":"board_temp","u":"Cel","v":33.74}]`
