@@ -18,7 +18,7 @@ The key configurations that will be edited are:
 
 ### Web UI
 
-The configuration will be done through Web UI. Web UI is a web-based step-by-step wizard that runs on the microcontroller providing all the necessary configuration options. By completing the wizard, a configuration file will be created in the path: /flash/apps/demo-console/demo_config.py. It will be automatically used by the microcontroller to run the desired scenario.
+The configuration will be done through Web UI. Web UI is a web-based step-by-step wizard that runs on the microcontroller providing all the necessary configuration options. By completing the wizard, a configuration file will be created in the path: /apps/demo_console/demo_config.py. It will be automatically used by the microcontroller to run the desired scenario.
 
 #### How to enable WiFi Access Point mode
 
