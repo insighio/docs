@@ -50,11 +50,11 @@ On each incoming message event (or page refresh), happens the following procedur
 * Updates the __Active Measurements__
 * Updates the device details like _Last Seen_ field
 
-#### Act on device
+### Act on device
 
 Apart from displaying the device status and some basic controls such as Device Edit/Delete, more advanced tools are provided such as __Remote Configuration__ and __Over-the-Air Updates__. 
 
-##### OTA Update
+#### OTA Update
 
 Previously registered OTA packages through the [Packages page]({{< relref "../packages/_index.en.md" >}}), can be assigned to the device.
 Use the __edit__ button to enable the dropdown list, select the desired and press __Apply__. After applying each package, the status report of the OTA is expressed by the notification icon placed next to the __OTA package__ label. 
@@ -63,7 +63,11 @@ Use the __edit__ button to enable the dropdown list, select the desired and pres
 
 ![Device Info OTA](/images/console_tutorial/device_info_ota_applied.png)
 
-##### Remote Configuration
+To cancel a pending OTA request, select from the dropdown menu the "No Package" option and click "Cancel" button.
+
+![Device Info OTA Cancel](/images/console_tutorial/device_info_ota_cancel.png)
+
+#### Remote Configuration
 
 One the one hand, there is the possibility to use the OTA described in the previous paragraph to change the firmware files. On the other hand, there are case where it is needed to simply change the device configuration to adapt to the needs of the user scenario. 
 
