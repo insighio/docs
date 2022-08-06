@@ -47,3 +47,47 @@ By requesting an OTA for one or more devices through the [OTA widget]({{< relref
             * successful: `[{"n":"e","v":1},{"n":"i","vs":"7985d8c2"}]`
             * failed: `[{"n":"e","v":2},{"n":"i","vs":"7985d8c2"},{"m":"i","vs":"not enough space"}]`
 
+### How to create OTA package for devices running insigh.io firmware
+
+[insigh.io firmware](https://github.com/insighio/insighioNode) is based on micropython. So, the firmware is composed with the micropython subsystem combined with the .py files of each project that are uploaded in the device's flash (path: "/"). 
+
+In 99% of the cases, the micropython subsystem remains the same and the only fixes/ upgrades that take place relate with the .py project files. For this reason, the OTA packages that are currently in use are .tar files that pack the files to be transferred into one file. The firmware is able to handle the .tar files by extracting the files in the corresponding folders, reporting the OTA status back to the console.insigh.io and resets to start running with the updated changes. 
+
+To automate the OTA package creation, insigh.io provides a tool that handles the TAR file creation, file filtering and Python file minification. The tool is __[microfreezer](https://github.com/insighio/microfreezer)__ and it is used internally by insigh.io to both generate OTA packages and to prepare the firmware binaries provided in the releases of [insighioNode project](https://github.com/insighio/insighioNode).
+
+As an example, consider having checked out the insighioNode firmware in folder "_~/projects/insighioNode_". All files/folders from path _~/projects/insighioNode/insighioNode/_ are copied as is in the device root flash folder "/". From this project 2 files have changed with the desired fixes:
+ *  _~/projects/insighioNode/insighioNode/apps/demo_console/demo_scenario.py_
+ *  _~/projects/insighioNode/insighioNode/apps/demo_console/demo_utils.py_
+
+So, it is required to send the above 2 files to the device. The important part here is to keep the folder structure. Follows the commands on how to copy files and generate the OTA package:
+
+```bash
+mkdir -p /tmp/otaPackage/src/apps/demo_console
+mkdir -p /tmp/otaPackage/firmware
+
+cp ~/projects/insighioNode/insighioNode/apps/demo_console/demo_scenario.py /tmp/otaPackage/src/apps/demo_console/demo_scenario.py
+cp ~/projects/insighioNode/insighioNode/apps/demo_console/demo_utils.py /tmp/otaPackage/src/apps/demo_console/demo_utils.py
+
+# assuming microfreezer is checked out in the following path
+cd ~/projects/microfreezer
+# check config.json for desired config. recommended:
+# {
+#   "excludeList": [
+#              "README",
+#              "README.md",
+#              "LICENSE",
+#              ".git",
+#              ".gitmodules",
+#              "examples",
+#              "local_demos"],
+#   "directoriesKeptInFrozen": [""],
+#   "enableZlibCompression": false,
+#   "targetESP32": true,
+#   "targetPycom": false,
+#   "minify": true
+# }
+
+python3 microfreezer.py --ota-package /tmp/otaPackage/src/apps/demo_console /tmp/otaPackage/firmware
+```
+
+Upon successful completion, the OTA package has been generated in path __/tmp/otaPackage/firmware__ and is ready to be updated and registered to the __Packages__ page of console.insigh.io.
