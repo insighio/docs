@@ -46,7 +46,7 @@ Requires: `device_id`, `device_key`, `data_channel_id`
 curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <device_key>" http://console.insigh.io/http/channels/<data_channel_id>/messages/<device_id> -d '[{"n":"board_humidity","u":"%RH","bn":"aa00bb11ccdd-","v":27.96, "dt":1659612813},{"n":"board_temp","u":"Cel","v":33.74}]'
 ```
 
-For HTTPS, devices can use it directly, though curl requires the public certificate to be explicitly defined. Download it from [here](/files/console-insighio.crt) and run the following command:
+For __HTTPS__, devices can use it directly, though curl requires the public certificate to be explicitly defined. Download it from [here](/files/console-insighio.crt) and run the following command:
 
 ```bash
 curl -s -S -i --cacert ./console-insighio.crt -X POST -H "Content-Type: application/json" -H "Authorization: <device_key>" https://console.insigh.io/http/channels/<data_channel_id>/messages/<device_id> -d '[{"n":"board_humidity","u":"%RH","bn":"aa00bb11ccdd-","v":27.96, "dt":1659612813},{"n":"board_temp","u":"Cel","v":33.74}]'
