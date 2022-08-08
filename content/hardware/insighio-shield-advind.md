@@ -2,7 +2,7 @@
 title: insigh.io Advanced Industrial Sensor Board
 identifier: "hardware@insighio-shield-advind"
 parent: "hardware"
-weight: 211
+weight: 212
 ---
 
 ![TAT image](/images/deviceimages/insighio-shield-advind?width=50pc)

@@ -2,7 +2,7 @@
 title: insigh.io LoRab/GPS Expansion Board
 identifier: "hardware@insighio-shield-lora"
 parent: "hardware"
-weight: 212
+weight: 213
 ---
 
 ![TAT image](/images/deviceimages/insighio-shield-lora?width=50pc)
