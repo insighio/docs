@@ -2,7 +2,7 @@
 title: insigh.io SDI-12 host board
 identifier: "hardware@insighio-board-sdi12"
 parent: "hardware"
-weight: 230
+weight: 240
 ---
 
 ![TAT image](/images/deviceimages/board-sdi12.PNG?width=50pc)

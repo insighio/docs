@@ -6,33 +6,51 @@ weight: 200
 ---
 
 ## Description
+insigh.io board is a generic and affordable hardware device, designed for accelerating IoT adoption:
+  - Its integrated functionality allows for rapid deployment, enhanced telemetry and cost-effective maintenance.
+  - It is equally capable of being used as a development board or for implementing small PoCs and then scale to deployments counting hundreds of nodes.
+  - It is super flexible as it can be used both by experts and the general public:
+    - When used as a development board by experts, an extendable open-source Micropython firmware is available for quick prototyping.
+    - When used as an end board by non-experts, it can be deployed with minimum prior know-how and configured with the help of an intuitive application.
+  - It is perfectly suited for outdoor or indoor operation, as it can be easily enclosed to an IP-rated box and supplied by various energy sources.
 
-insigh.io board is a generic and affordable board for accelerating IoT adoption. Its integrated functionality allows for rapid deployment, enhanced telemetry and cost-effective maintenance. It's a fully-customizable device, which can be deployed with minimum prior know-how from the end-user, operate unattended in the field, and comes with an easy-to-use management tool. It is perfectly suited for outdoor or indoor operation, as it is enclosed in an IP-rated box and can be supplied by various energy sources.
+It follows a modular architecture:
+- A main board embedding the core functionalities out of the box:
+  - Low-power processing
+  - Power supply with automatic management
+  - WiFi & Cellular connectivity with data provisioning
+  - GPS support for outdoor localization
+  - On-board diagnostic sensors and functionalities
+  - Ports for connecting LiPo batteries, solar panels, and USB power/data cables.
+  - Debugging port through standard Serial or USB cable
+- A set of "add-on" boards attached to the main board for:
+  - Supporting multiple popular analogue and digital sensor interfaces: analogue voltage/current readings, digital (e.g. pulse) readings, I²C, SDI-12, 4-20mA
+  - Hosting various sensors with built-in firmware support: soil moisture sensors, temperature/humidity probes, load cells, CO2 sensors, accelerometers/magnetometers.
+  - Implementing different IoT applications: smart agriculture, environmental monitoring, precision apiculture, rewarding recycling, air-quality inspection, road hazard detection
+  - Expanding connectivity options: LoRaWAN (fully supported in Q3-22) and Satellite IoT (first edition available in Q3/Q4-22)
+  - Adding specialized features: hardware watchdog, hardware security, energy consumption profiling
+  - Adding your own functionalities and applications: everything
 
-Out of the box features include:
-
-- a programmable microprocessor
-- ultra-low power design
-- flexible connectivity (Wi-Fi, LoRaWAN, NB-IoT)
-- solar energy harvesting
-- energy consumption profiling
-- hardware watchdog
-- various power supply options with automatic power management
-- device management via USB port
-- embedded security
-- on-board temperature/humidity sensor for environmental monitoring
-- ports for end-user to add sensors for functionality expansion.
 
 ## Specifications
 
-insigh.io offers variants of the board to to perfectly fit your case. Follows a list of specifications that are common across our boards. For more details of each variant, advice one of the following pages:
+### Main Board
+This is the "heart" of the hardware offering. Based on the main board, we or you can build a complete hardware solution that perfectly fits any case.
+It exposes 30 input/output pins -power/analogue/digital for supplying and controlling external devices- allowing for implementing different breadboard configurations or attaching our ready-made add-on boards.
+For more details about the technical specifications of the main board refer to the following page:
+- [Main Board with exposed pins]({{< relref "./insighio-main.md" >}})
 
-- [Generic Cellular Board with support to Load Cell and Analog/Digital sensors]({{< relref "./insighio-cellular.md" >}})
+### Add-on Boards
+This is a collection of standard "ready-made" IoT application boards which may be used out-of-the-box and communicate with popular sensors and widely applicable interfaces. Sensors can be connected using push-in headers (no tools required). The current list includes the following boards:
+- [Generic Analogue & Digital Sensor Board with support for up to 3 x 3-pin (power,data,ground) analogue sensors & 1 x I²C sensor]({{< relref "./insighio-shield-basead.md" >}})
+- [Advanced Industrial Sensor Board with support for up to 2 x SDI-12, 2 x 4-20mA & 1 generic 2-pin pulse counter]({{< relref "./insighio-shield-advind.md" >}})
+- [Communications Expansion Board for enabling LoRa connectivity and GPS tracking]({{< relref "./insighio-shield-lora.md" >}})
 
-- [Generic Board with support to I²C, Analog and Digital sensors]({{< relref "./insighio-board-generic.md" >}})
+### Obsolete Designs
+There is a series of older hardware designs used by our Clients that may worth check as well (not recommended for new users):
+- [Integrated Cellular Board with support to Load Cell and Analog/Digital sensors]({{< relref "./insighio-cellular.md" >}})
+- [Generic host board with support to I²C, Analog and Digital sensors (requires a Pycom module)]({{< relref "./insighio-board-generic.md" >}})
+- [SDI-12 compatible host board with RS-485 (requires a Pycom module)]({{< relref "./insighio-board-sdi12.md" >}})
 
-- [SDI-12 compatible board with RS-485]({{< relref "./insighio-board-sdi12.md" >}})
-
-## Custom designs
-
+### Custom designs
 The existing boards are highly configurable and expandable so if the existing boards do not fit your need, **[get in contact with us](mailto:info@insigh.io)** and we will tailor a solution for you with your customizations.

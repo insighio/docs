@@ -2,7 +2,7 @@
 title: insigh.io generic host board
 identifier: "hardware@insighio-board-generic"
 parent: "hardware"
-weight: 220
+weight: 230
 ---
 
 ![TAT image](/images/deviceimages/generic-board.PNG?width=50pc)

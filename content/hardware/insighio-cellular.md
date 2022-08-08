@@ -2,7 +2,7 @@
 title: insigh.io integrated cellular board
 identifier: "hardware@insighio-cellular"
 parent: "hardware"
-weight: 210
+weight: 220
 ---
 
 ![TAT image](/images/deviceimages/esp32-bg600_v1.png?width=50pc)
