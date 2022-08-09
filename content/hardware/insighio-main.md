@@ -1,11 +1,11 @@
 ---
-title: insigh.io main board
+title: insigh.io IoT Board
 identifier: "hardware@insighio-main"
 parent: "hardware"
 weight: 210
 ---
 
-![TAT image](/images/deviceimages/insighio-main-v1?width=50pc)
+![TAT image](/images/deviceimages/insighio-main-v1.png?width=70pc)
 
 ### General Information
 
@@ -100,7 +100,7 @@ weight: 210
 | **Web UI Loaded (waiting for connection)**    | MAGENTA (BLINKING)|
 | **Booting/Sensors reading**                   | BLUE              |
 | **Trying to attach to Network**               | RED               |
-| **Connected to Network, ready to send data ** | GREEN             |
+| **Connected to Network, ready to send data** | GREEN             |
 
 
 ### Switches
@@ -200,7 +200,7 @@ weight: 210
 - Number of exposed pins: 10 x power/analogue/digital pins (IOs)
 - Usage
   - attaching insigh.io special radio (LoRa/GPS) add-on board
-**Comment:** Information about pins and mapping are provided in the [LoRa radio expansion board]({{< relref "./insighio-shield-lora.md" >}})
+**Comment:** Information about pins and mapping are provided in the [LoRa radio expansion board]({{< relref "./shields/insighio-shield-lora.md" >}})
 
 #### Special configurations
 

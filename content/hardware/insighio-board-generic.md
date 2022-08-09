@@ -1,8 +1,8 @@
 ---
-title: insigh.io generic host board
+title: "Pycom Generic Host Board"
 identifier: "hardware@insighio-board-generic"
 parent: "hardware"
-weight: 230
+weight: 260
 ---
 
 ![TAT image](/images/deviceimages/generic-board.PNG?width=50pc)

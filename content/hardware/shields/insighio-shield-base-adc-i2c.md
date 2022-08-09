@@ -1,11 +1,11 @@
 ---
-title: insigh.io Basic Sensor Expansion Board
-identifier: "hardware@insighio-shield-lora"
-parent: "hardware"
-weight: 211
+title: Basic Sensor Shield
+identifier: "hardware@shields@insighio-shield-lora"
+parent: "hardware@shields"
+weight: 225
 ---
 
-![TAT image](/images/deviceimages/insighio-shield-basead?width=50pc)
+![shield adc i2c](/images/deviceimages/insighio-shield-base-adc-i2c.png?width=30pc)
 
 
 ### Scope
@@ -15,11 +15,11 @@ Provide support to multiple analogue & a single digital (I²C) sensors. It is ap
 
 |                                  |
 | :------------------------------- | :--------------------------------------------------------------- |
-| **Host board**                   | [insigh.io main board]({{< relref "./insighio-main.md" >}})      |
+| **Host board**                   | [insigh.io main board]({{< relref "../insighio-main.md" >}})      |
 | **Supported Sensor Interfaces**  | 3 x Analogue (3-pin: VIN, DATA, GND)                             |
 |                                  | 1 x I²C (PWR, GND, SCL, SDA)                                     |
 | **Supply Voltage**               | 3.3V DC                                                          |
-| **Maximum Drawn Current**        | 1A (???)                                                         |
+| **Maximum Drawn Current**        | 1A                                                               |
 | **Sensor Headers**               | Fixed Terminal Block with push-in connection (no tools required) |
 |                                  | 1x13-pin                                                         |
 | **Sensor models sw support**     | Any 3.3V supplied analogues/I²C sensor                           |

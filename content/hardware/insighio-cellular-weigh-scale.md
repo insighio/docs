@@ -1,8 +1,8 @@
 ---
-title: insigh.io integrated cellular board
+title: Custom Cellular Weigh Scale Board
 identifier: "hardware@insighio-cellular"
 parent: "hardware"
-weight: 220
+weight: 250
 ---
 
 ![TAT image](/images/deviceimages/esp32-bg600_v1.png?width=50pc)

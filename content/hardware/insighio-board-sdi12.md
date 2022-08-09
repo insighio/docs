@@ -1,8 +1,8 @@
 ---
-title: insigh.io SDI-12 host board
+title: Pycom SDI-12 Host Board
 identifier: "hardware@insighio-board-sdi12"
 parent: "hardware"
-weight: 240
+weight: 270
 ---
 
 ![TAT image](/images/deviceimages/board-sdi12.PNG?width=50pc)
