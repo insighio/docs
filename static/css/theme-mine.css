@@ -120,8 +120,6 @@ a:hover {
 
  table {
   table-layout: auto;
-// width: 80%;
- //white-space: nowrap
 } 
 /* 
 td {
@@ -131,5 +129,12 @@ td {
 
 tr td:first-child {
   width: 15%;
-  white-space: nowrap;
 } 
+
+tr td {
+  width: auto;
+} 
+
+.column-same-width:first-child{
+  width: auto;
+}

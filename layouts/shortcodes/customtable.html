@@ -1,0 +1,10 @@
+{{ $htmlTable := .Inner | markdownify }}
+{{ $class := .Get 0 }}
+{{ $old := "<table>" }}
+    {{ $new := "<table>" }}
+        {{ $htmlTable := replace $htmlTable $old $new }}
+        {{ $htmlTable := replaceRE "td" "td class=\"column-same-width\"" $htmlTable}}
+
+        <div class="even-data-table">
+            {{ $htmlTable | safeHTML }}
+        </div>
