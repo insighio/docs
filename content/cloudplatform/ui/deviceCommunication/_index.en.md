@@ -63,7 +63,7 @@ Send message over MQTT protocol (Publish):
 Requires: `device_id`, `device_key`, `data_channel_id`
 
 ```bash
-mosquitto_pub -u <thing_id> -P <thing_key> -t channels/<data_channel_id>/messages/<device_id> -h console.insigh.io -m '[{"n":"board_humidity","u":"%RH","bn":"aa00bb11ccdd-","v":27.96, "dt":1659612813},{"n":"board_temp","u":"Cel","v":33.74}]'
+mosquitto_pub -u <device_id> -P <device_key> -t channels/<data_channel_id>/messages/<device_id> -h console.insigh.io -m '[{"n":"board_humidity","u":"%RH","bn":"aa00bb11ccdd-","v":27.96, "dt":1659612813},{"n":"board_temp","u":"Cel","v":33.74}]'
 ```
 
 ##### Listen
@@ -73,7 +73,7 @@ Listen for messages over MQTT protocol (Subscribe):
 Requires: `device_id`, `device_key`, `data_channel_id`
 
 ```bash
-mosquitto_sub -u <thing_id> -P <thing_key> -t channels/<data_channel_id>/messages/<device_id> -h console.insigh.io -v
+mosquitto_sub -u <device_id> -P <device_key> -t channels/<data_channel_id>/messages/<device_id> -h console.insigh.io -v
 ```
 
 #### CoAP
