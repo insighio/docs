@@ -5,7 +5,7 @@ parent: "hardware"
 weight: 250
 ---
 
-![TAT image](/images/deviceimages/esp32-bg600_v1.png?width=50pc)
+![TAT image](/images/deviceimages/esp32-bg600_v1.png?width=40pc)
 
 ### General Information
 

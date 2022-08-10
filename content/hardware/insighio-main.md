@@ -5,7 +5,7 @@ parent: "hardware"
 weight: 210
 ---
 
-![TAT image](/images/deviceimages/insighio-main-v1.png?width=70pc)
+![TAT image](/images/deviceimages/insighio-main-v1.png?width=40pc)
 
 ### General Information
 

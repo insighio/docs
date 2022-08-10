@@ -5,7 +5,7 @@ parent: "hardware"
 weight: 260
 ---
 
-![TAT image](/images/deviceimages/generic-board.PNG?width=50pc)
+![TAT image](/images/deviceimages/generic-board.PNG?width=40pc)
 
 ### General Information
 
