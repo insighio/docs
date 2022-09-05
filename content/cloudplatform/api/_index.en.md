@@ -19,6 +19,7 @@ API list:
     * [Get Device]({{< relref "#get-device" >}})
     * [Update Device]({{< relref "#update-device" >}})
     * [Delete Device]({{< relref "#delete-device" >}})
+    * [Send command to device]({{< relref "#send-command-to-device" >}})
 * [Measurement API]({{< relref "#measurement-api" >}})
     * [Get Device Last Measurement]({{< relref "#get-device-last-measurement" >}})
     * [Query single Device measurement]({{< relref "#query-single-device-measurement" >}})
@@ -227,6 +228,32 @@ curl -s -S -i -X DELETE --cacert ./console-insighio.crt -H  "Content-Type: appli
 
 ```bash
 curl -s -S -i -X DELETE --cacert ./console-insighio.crt -H "Content-Type: application/json" -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTgxMTIxNDQsImlhdCI6MTY1ODA3NjE0NCwiaXNzIjoibWFpbmZsdXguYXV0aG4iLCJzdWIiOiJkZW1vQGluc2lnaC5pbyIsInR5cGUiOjB9.auXohlIbMHi8mRA_995kjSB-PABPBtH-btIEwUNyVrw" https://console.insigh.io/mf-rproxy/device/9f82e9d9-6070-47fb-8ce2-10d86cfab514
+
+### Send command to device
+
+Send a command to the device. The command will be received by the device the next time it will be online.
+
+The supported commands by the device is a matter of firmware implementation.
+
+> URL [POST]
+>
+> https://console.insigh.io/mf-rproxy/device/request/cmd
+>
+> POST data:
+>
+> -   **id**: the device ID
+> -   **key**: the device Key
+> -   **control_channel**: the control channel ID assigned to the device
+> -   **data**: the payload to be sent to the device
+
+```bash
+curl -s -S -i -X POST --cacert ./console-insighio.crt -H  "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/device/request/cmd" -d '{"id":"<device-id>","key":"<device-key>","control_channel":"<control-channel-id>","data":"<command>"}'
+```
+
+#### input example
+
+```bash
+curl -s -S -i -X POST --cacert ./console-insighio.crt -H "Content-Type: application/json" -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTgxMTIxNDQsImlhdCI6MTY1ODA3NjE0NCwiaXNzIjoibWFpbmZsdXguYXV0aG4iLCJzdWIiOiJkZW1vQGluc2lnaC5pbyIsInR5cGUiOjB9.auXohlIbMHi8mRA_995kjSB-PABPBtH-btIEwUNyVrw" "https://console.insigh.io/mf-rproxy/device/request/cmd" -d '{"id":"e27bc4f5-3278-400a-86af-5045b04efa0c","key":"a0f8ccb5-934b-4a73-99fa-9e1d95c8b197","control_channel":"e0c8cbb0-1234-dae3-f9a1-91ad4538bc9c","data":"reboot"}'
 
 
 ```
