@@ -229,6 +229,8 @@ curl -s -S -i -X DELETE --cacert ./console-insighio.crt -H  "Content-Type: appli
 ```bash
 curl -s -S -i -X DELETE --cacert ./console-insighio.crt -H "Content-Type: application/json" -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTgxMTIxNDQsImlhdCI6MTY1ODA3NjE0NCwiaXNzIjoibWFpbmZsdXguYXV0aG4iLCJzdWIiOiJkZW1vQGluc2lnaC5pbyIsInR5cGUiOjB9.auXohlIbMHi8mRA_995kjSB-PABPBtH-btIEwUNyVrw" https://console.insigh.io/mf-rproxy/device/9f82e9d9-6070-47fb-8ce2-10d86cfab514
 
+```
+
 ### Send command to device
 
 Send a command to the device. The command will be received by the device the next time it will be online.
