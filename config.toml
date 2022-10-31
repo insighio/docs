@@ -6,6 +6,8 @@ title = "insigh.io documentation"
 theme = ["hugo-video", "hugo-theme-learn"]
 themesdir = "themes"
 metaDataFormat = "yaml"
+
+googleAnalytics = "G-6C5XMEGR8C"
 # defaultContentLanguageInSubdir= true
 
 [params]
