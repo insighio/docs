@@ -39,7 +39,7 @@ This is the "heart" of the hardware offering. Based on the main board, we or you
 It exposes 30 input/output pins -power/analogue/digital for supplying and controlling external devices- allowing for implementing different breadboard configurations or attaching our ready-made add-on boards.
 For more details about the technical specifications of the main board refer to page [Main Board with exposed pins]({{< relref "./insighio-main.md" >}}).
 
-na mpoyn eikones
+[comment]: # (TODO: Add images)
 
 
 ### Add-on Boards

@@ -11,7 +11,7 @@ Final step, before applying the configuration, is to set up the measurement/uplo
 
 -   `Periodic`: Execute measurements every specified period of time in seconds
     ![measurement timing](/images/webui-timing.png?width=50pc)
--   `Time scheduled`: Execute measurements at 2 specific time during the day
+-   `Time scheduled`: Execute measurements at 2 specific times during the day
     ![measurement timing](/images/webui-timing-scheduled.png?width=50pc)
 
 ## Upload Period
