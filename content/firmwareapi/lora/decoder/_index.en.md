@@ -160,6 +160,12 @@ function getLocationName(locationId) {
           return "scd30";
         case 0x03:
           return "bme680";
+        case 0x04:
+          return "sht20";
+        case 0x05: 
+          return "sht40";
+        case 0x06:
+          return "sunrise";
         default:
           return "i2c";
       }
