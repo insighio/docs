@@ -37,22 +37,27 @@ It follows a modular architecture:
 ### Main Board
 This is the "heart" of the hardware offering. Based on the main board, we or you can build a complete hardware solution that perfectly fits any case.
 It exposes 30 input/output pins -power/analogue/digital for supplying and controlling external devices- allowing for implementing different breadboard configurations or attaching our ready-made add-on boards.
-For more details about the technical specifications of the main board refer to page [Main Board with exposed pins]({{< relref "./insighio-main.md" >}}).
+For more details about the technical specifications of the main board refer to page [Main Board with exposed pins](./board/latest).
 
 [comment]: # (TODO: Add images)
 
 
 ### Add-on Boards
-This is a collection of standard "ready-made" IoT application boards which may be used out-of-the-box and communicate with popular sensors and widely applicable interfaces. Sensors can be connected using push-in headers (no tools required). The current list includes the following boards:
-- [Generic Analogue & Digital Sensor Board with support for up to 3 x 3-pin (power,data,ground) analogue sensors & 1 x I²C sensor]({{< relref "./shields/insighio-shield-base-adc-i2c.md" >}})
-- [Advanced Industrial Sensor Board with support for up to 2 x SDI-12, 2 x 4-20mA & 1 generic 2-pin pulse counter]({{< relref "./shields/insighio-shield-advind.md" >}})
-- [Communications Expansion Board for enabling LoRa connectivity and GPS tracking]({{< relref "./shields/insighio-shield-lora.md" >}})
+This is a collection of standard "ready-made" IoT application boards which may be used out-of-the-box and communicate with popular sensors and widely applicable interfaces. Sensors can be connected using push-in headers (no tools required). The current list includes sensor and radio boards:
 
-### Obsolete Designs
+#### Sensor Boards
+- [Generic Analogue & Digital Sensor Board with support for up to 3 x 3-pin (power,data,ground) analogue sensors & 1 x I²C sensor]({{< relref "./shields/sensor-board/insighio-shield-base-adc-i2c.md" >}})
+- [Advanced Industrial Sensor Board with support for up to 2 x SDI-12, 2 x 4-20mA & 1 generic 2-pin pulse counter]({{< relref "./shields/sensor-board/insighio-shield-advind.md" >}})
+- [Air Quality and Vibrations Sensor Board]({{< relref "./shields/sensor-board/insighio-air-quality-and-vibrations.md" >}})
+
+#### Radio Boards
+- [Communications Expansion Board for enabling LoRa connectivity and GPS tracking]({{< relref "./shields/radio/insighio-shield-lora.md" >}})
+- [Communications Expansion Board for enabling Satellite connectivity and GPS tracking (Astrocast)]({{< relref "./shields/radio/insighio-shield-astrocast.md" >}})
+
+### Custom Designs
 There is a series of older hardware designs used by our Clients that may worth check as well (not recommended for new users):
-- [Integrated Cellular Board with support to Load Cell and Analog/Digital sensors]({{< relref "./insighio-cellular-weigh-scale.md" >}})
-- [Generic host board with support to I²C, Analog and Digital sensors (requires a Pycom module)]({{< relref "./insighio-board-generic.md" >}})
-- [SDI-12 compatible host board with RS-485 (requires a Pycom module)]({{< relref "./insighio-board-sdi12.md" >}})
+- [Integrated Cellular Board with support to Load Cell and Analog/Digital sensors]({{< relref "./custom/insighio-cellular-weigh-scale.md" >}})
+- [Generic host board with support to I²C, Analog and Digital sensors (requires a Pycom module)]({{< relref "./custom/insighio-board-generic.md" >}})
+- [SDI-12 compatible host board with RS-485 (requires a Pycom module)]({{< relref "./custom/insighio-board-sdi12.md" >}})
 
-### Custom designs
 The existing boards are highly configurable and expandable so if the existing boards do not fit your need, **[get in contact with us](mailto:info@insigh.io)** and we will tailor a solution for you with your customizations.

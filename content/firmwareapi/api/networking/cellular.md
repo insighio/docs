@@ -6,7 +6,7 @@ parent: "firmwareapi@api@networking"
 weight: 1230
 ---
 
-`cellular` module handles modem operations for UART-controlled modems (ex. modems used in [insigh.io cellular board]({{< relref "../../../hardware/insighio-cellular-weigh-scale.md" >}}))
+`cellular` module handles modem operations for UART-controlled modems (ex. modems used in [insigh.io cellular board]({{< relref "../../../hardware/custom/insighio-cellular-weigh-scale.md" >}}))
 
 Current support:
 

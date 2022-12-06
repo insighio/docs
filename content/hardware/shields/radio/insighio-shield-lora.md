@@ -1,8 +1,8 @@
 ---
-title: LoRa/GPS Shield
-identifier: "hardware@shields@insighio-shield-lora"
-parent: "hardware@shields"
-weight: 240
+title: LoRa/GPS
+identifier: "hardware@shields@radio@insighio-shield-lora"
+parent: "hardware@shields@radio"
+weight: 230
 ---
 
 ![shield lora gps](/images/deviceimages/insighio-shield-lora.png?width=30pc)
@@ -15,7 +15,7 @@ Enrich radio connectivity capabilities with __LoRaWAN__ technology support and e
 
 |                                  |
 | :------------------------------- | :---------------------------------------------------------------- |
-| **Host board**                   | [insigh.io main board]({{< relref "../insighio-main.md" >}})       |
+| **Host board**                   | [insigh.io main board](../../../board/latest)                     |
 | **Add-on Capabilities**          | LoRa Radio Modem based on RAK4270 (RAK WIRELESS) Module           |
 |                                  | GNSS based on L76L-M33 (QUECTEL) Module flashed with I²C firmware |
 | **Dimensions (L x W x H)**       | 30.5 x 49 x 16.7 mm                                               |

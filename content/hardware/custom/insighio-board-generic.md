@@ -1,44 +1,45 @@
 ---
-title: Pycom SDI-12 Host Board
-identifier: "hardware@insighio-board-sdi12"
-parent: "hardware"
-weight: 270
+title: "Pycom Generic Host Board"
+identifier: "hardware@custom@insighio-board-generic"
+parent: "hardware@custom"
+weight: 260
 ---
 
-![TAT image](/images/deviceimages/board-sdi12.PNG?width=40pc)
+![TAT image](/images/deviceimages/generic-board.PNG?width=40pc)
 
 ### General Information
 
 |                            |
 | :------------------------- | :------------------------------------------------------------------------------------------ |
 | **Host board**             | Pycom development board ([link](https://pycom.io/shop/#dev))                                |
-| **Supported Sensors**      | SDI-12 sensors, Temperature, Humidity                                                       |
+| **Supported Sensors**      | Analog, I2C, Digital, Temperature, Humidity                                                 |
 | **Power Supply**           | USB, Battery, Solar Panel                                                                   |
 | **Misc**                   | USB for firmware flashing and debugging                                                     |
 |                            | Power switch                                                                                |
 | **Software**               | micropython                                                                                 |
 |                            | Open-source libraries & demo scenarios @ [Github](https://github.com/insighio/insighioNode) |
-| **Dimensions (L x W x H)** | 78 x 57.2 x 16.7 mm                                                                         |
+| **Dimensions (L x W x H)** | 78 x 57.2 x 13 mm                                                                           |
 | **Weight**                 | 25 g                                                                                        |
 | **Enclosure**              | IP65/IP67                                                                                   |
 
 ### Example Applications
 
 -   **Precision Agriculture**
-    -   Soil moisture, Electrical Conductivity, Volumetric Water Content, Temperature
 -   **Environmental monitoring**
-    -   Water flow, water quality, Temperature, humidity
+-   **Asset tracking**
 
 ### Sensors Support (Hardware & Software)
 
-|                                |                                                            |
-| :----------------------------- | :--------------------------------------------------------- |
-| **On-board Sensors**           | 1 x Temperature/Humidity Sensor (based on the SI7021 chip) |
-| **Number of External Sensors** | Up to 2 (simultaneously)                                   |
-| **External Sensor Interfaces** | Digital: SDI-12 @ 12V                                      |
-| **Low energy operation**       | Software-controlled                                        |
-| **Sensor models sw support**   | I2C: SI7021 (Board Temperature / Humidity )                |
-|                                | SDI-12: Meter’s Teros-12 (Soil), Acclima’s TDR-315H (Soil) |
+|                                |                                                                                    |
+| :----------------------------- | :--------------------------------------------------------------------------------- |
+| **On-board Sensors**           | 1 x Temperature/Humidity Sensor (based on the SI7021 chip)                         |
+| **Number of External Sensors** | Up to 4 (simultaneously)                                                           |
+| **External Sensor Interfaces** | Analogue @ 3.3V                                                                    |
+|                                | Digital: 1-wire @ 3.3V, I2C @ 3.3V                                                 |
+| **Low energy operation**       | Software-controlled                                                                |
+| **Sensor models sw support**   | Analogue: Meter’s EC5 (Soil), Pino-Tech’s Soil Watch 10 (Soil)                     |
+|                                | 1-wire: DS18B20 (Outdoor Temperature)                                              |
+|                                | I2C: SI7021 (Temperature / Humidity), BME680 (Environmental), TSL2561 (Luminosity) |
 
 ### Communication
 

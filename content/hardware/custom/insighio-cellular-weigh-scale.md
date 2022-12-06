@@ -1,7 +1,7 @@
 ---
 title: Custom Cellular Weigh Scale Board
-identifier: "hardware@insighio-cellular"
-parent: "hardware"
+identifier: "hardware@custom@insighio-cellular"
+parent: "hardware@custom"
 weight: 250
 ---
 

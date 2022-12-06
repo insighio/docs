@@ -1,7 +1,7 @@
 ---
-title: Basic Sensor Shield
-identifier: "hardware@shields@insighio-shield-lora"
-parent: "hardware@shields"
+title: Basic
+identifier: "hardware@shields@sensor-board@insighio-shield-basic"
+parent: "hardware@shields@sensor-board"
 weight: 225
 ---
 
@@ -15,7 +15,7 @@ Provide support to multiple analogue & a single digital (I²C) sensors. It is ap
 
 |                                  |
 | :------------------------------- | :--------------------------------------------------------------- |
-| **Host board**                   | [insigh.io main board]({{< relref "../insighio-main.md" >}})      |
+| **Host board**                   | [insigh.io main board](../../../board/latest)      |
 | **Supported Sensor Interfaces**  | 3 x Analogue (3-pin: VIN, DATA, GND)                             |
 |                                  | 1 x I²C (PWR, GND, SCL, SDA)                                     |
 | **Supply Voltage**               | 3.3V DC                                                          |

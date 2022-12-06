@@ -1,13 +1,13 @@
 ---
-title: insigh.io IoT Shields
+title: Shields
 identifier: "hardware@shields"
 parent: "hardware"
-weight: 220
+weight: 2
 ---
 
 {{< customtable "table autowidth" >}}
 | | | |
 | :-: | :-: | :-: |
-| [![shield adc i2c](/images/deviceimages/insighio-shield-base-adc-i2c.png)]({{< relref "./insighio-shield-base-adc-i2c.md" >}}) | [![shield sdi12 4-20mA pulse counter](/images/deviceimages/insighio-shield-advind.png)]({{< relref "./insighio-shield-advind.md" >}}) | [![shield lora gps](/images/deviceimages/insighio-shield-lora.png)]({{< relref "./insighio-shield-lora.md" >}}) |
+| [![shield adc i2c](/images/deviceimages/insighio-shield-base-adc-i2c.png)]({{< relref "./sensor-board/insighio-shield-base-adc-i2c.md" >}}) | [![shield sdi12 4-20mA pulse counter](/images/deviceimages/insighio-shield-advind.png)]({{< relref "./sensor-board/insighio-shield-advind.md" >}}) | [![shield lora gps](/images/deviceimages/insighio-shield-lora.png)]({{< relref "./radio/insighio-shield-lora.md" >}}) |
 | Basic Sensor Shield | Advanced Industrial Sensor Shield | LoRa/GPS shield |
 {{< /customtable >}}

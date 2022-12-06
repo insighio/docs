@@ -1,7 +1,7 @@
 ---
-title: Advanced Industrial Sensor Shield
-identifier: "hardware@shields@insighio-shield-advind"
-parent: "hardware@shields"
+title: Advanced Industrial
+identifier: "hardware@shields@sensor-board@insighio-shield-advind"
+parent: "hardware@shields@sensor-board"
 weight: 230
 ---
 
@@ -14,7 +14,7 @@ Provide support for SDI-12, 4-20mA and pulse counter sensors with flexible confi
 
 |                                  |
 | :------------------------------- | :---------------------------------------------------------------- |
-| **Host board**                   | [insigh.io main board]({{< relref "../insighio-main.md" >}})       |
+| **Host board**                   | [insigh.io main board](../../../board/latest)       |
 | **Supported Digital Interfaces** | 2 x SDI-12 & 2 x 4-20mA & 1 x Pulse Counter                       |
 | **Sensor Headers**               | Fixed Terminal Block with push-in connection (no tools required)  |
 |                                  | 1x8-pin (SDI-12 & Pulse Counter) & 1x6-pin (4-20mA)               |

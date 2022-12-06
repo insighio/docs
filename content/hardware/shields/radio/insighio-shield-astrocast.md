@@ -1,7 +1,7 @@
 ---
-title: Satellite Radio Shield (Astrocast)
-identifier: "hardware@shields@insighio-shield-astrocast"
-parent: "hardware@shields"
+title: Satellite (Astrocast)
+identifier: "hardware@shields@radio@insighio-shield-astrocast"
+parent: "hardware@shields@radio"
 weight: 240
 ---
 
@@ -15,10 +15,10 @@ Enrich radio connectivity capabilities with __Astrocast's Satellite__ technology
 
 |                                  |
 | :------------------------------- | :---------------------------------------------------------------- |
-| **Host board**                   | [insigh.io main board]({{< relref "../insighio-main.md" >}})       |
+| **Host board**                   | [insigh.io main board](../../../board/latest)                     |
 | **Add-on Capabilities**          | [Astronode S Module for Satellite IoT Connectiviy through Astrocast's Network](https://www.astrocast.com/products/astronode-s/)|
 |                                  | GNSS based on L76L-M33 (QUECTEL) Module flashed with I²C firmware |
-| **Dimensions (L x W x H)**       | 78.31 x 63.15 x 7 mm                                                 |
+| **Dimensions (L x W x H)**       | 78.31 x 63.15 x 7 mm                                              |
 | **Weight**                       | 7 g                                                               |
 
 ### External components required/recommended
