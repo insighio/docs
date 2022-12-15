@@ -3,6 +3,7 @@ title: Satellite (Astrocast)
 identifier: "hardware@shields@radio@insighio-shield-astrocast"
 parent: "hardware@shields@radio"
 weight: 240
+draft: true
 ---
 
 ![shield satellite astrocast gps](/images/deviceimages/insighio-shield-astrocast.png?width=30pc)
