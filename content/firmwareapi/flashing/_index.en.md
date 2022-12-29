@@ -37,7 +37,7 @@ Instructions on how to install **esptool** in all supported platforms can be fou
     ```
     ![TAT image](/images/device-firmware-flash.png?width=30pc)
 
-1. _Click_ "__reset__" button once and wait till the initialization finishes. When ready the device will light up the RGB led. (advise last step of [Getting Started guide]({{< relref "../../gettingstarted/validation/_index.en.md" >}}) than includes RGB coloring guide) 
+1. _Click_ "__reset__" button once and wait till the initialization finishes. When ready the device will light up the RGB led. (see last step of [Getting Started guide]({{< relref "../../gettingstarted/validation/_index.en.md" >}}) for RGB coloring guide) 
     * On first boot, it will directly enter [configuration mode]({{< relref "../../gettingstarted/configuration/_index.en.md" >}}). 
     * If the device is already configured, it will continue the normal execution circle.
 
