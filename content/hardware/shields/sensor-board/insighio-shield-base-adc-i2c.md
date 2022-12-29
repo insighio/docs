@@ -7,7 +7,6 @@ weight: 225
 
 ![shield adc i2c](/images/deviceimages/insighio-shield-base-adc-i2c.png?width=30pc)
 
-
 ### Scope
 Provide support to multiple analogue & a single digital (I²C) sensors. It is applicable to various applications like smart agriculture and outdoor temperature/humidity monitoring
 
