@@ -39,11 +39,11 @@ This is the "heart" of the hardware offering. Based on the main board, we or you
 It exposes 30 input/output pins -power/analogue/digital for supplying and controlling external devices- allowing for implementing different breadboard configurations or attaching our ready-made add-on boards.
 For more details about the technical specifications of the main board refer to page [Main Board with exposed pins](./board/latest).
 
-[comment]: # (TODO: Add images)
+![TAT image](/images/deviceimages/insighio-main-latest.png?width=40pc)
 
 
-### Add-on Boards
-This is a collection of standard "ready-made" IoT application boards which may be used out-of-the-box and communicate with popular sensors and widely applicable interfaces. Sensors can be connected using push-in headers (no tools required). The current list includes sensor and radio boards:
+### Shield Boards
+This is a collection of standard "ready-made" IoT application boards which can be used out-of-the-box and communicate with popular sensors and widely applicable interfaces. Sensors can be connected using push-in headers (no tools required). The current list includes sensor and radio boards:
 
 #### Sensor Boards
 - [Generic Analogue & Digital Sensor Board with support for up to 3 x 3-pin (power,data,ground) analogue sensors & 1 x I²C sensor]({{< relref "./shields/sensor-board/insighio-shield-base-adc-i2c.md" >}})

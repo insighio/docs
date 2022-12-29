@@ -18,7 +18,7 @@ Our source code contains a demo scenario that can be used as a reference for usi
 
 |                                        LED color                                         |                     Scenario Step                     |
 | :--------------------------------------------------------------------------------------: | :---------------------------------------------------: |
-|  blinking **{{< raw-html >}}<span style="color: #0000FF">blue</span>{{< /raw-html >}}**  |                  Initializing device                  |
+|  blink **{{< raw-html >}}<span style="color: #FFFFFF; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">white</span>{{< /raw-html >}}**  |                  Initializing device                  |
 | blinking **{{< raw-html >}}<span style="color: #800080">purple</span>{{< /raw-html >}}** |  Web UI waiting for client (only after hard reboot)   |
 |  solid **{{< raw-html >}}<span style="color: #800080">purple</span>{{< /raw-html >}}**   | Web UI with connected client (only after hard reboot) |
 |   solid **{{< raw-html >}}<span style="color: #0000FF">blue</span>{{< /raw-html >}}**    |            Executing enabled measurements             |
@@ -26,14 +26,3 @@ Our source code contains a demo scenario that can be used as a reference for usi
 |   solid **{{< raw-html >}}<span style="color: #008000">green</span>{{< /raw-html >}}**   |           Network connected, uploading data           |
 |                                           off                                            |                     in deep sleep                     |
 
-<!-- Follows an example video shows how the LED colouring is affected based on the scenario progress. Key points of the video are:
-
-- In step 6 of Web UI, **Finish** button is pressed
-- Device will reboot to start running the scenario
-- Connect to the network through the typical SSID to regain network connectivity
-- Device gets initialized, reads sensors and uploads data
-- Switch the view to console.insigh.io tab where the **Device Info** view is still open
-- In the **Live View** section of the page, the uploaded data will be displayed as soon as they are processed
-- **Device Info** view will be updated automatically with each incoming message.
-
-{{< video src="demo-scenario" >}} -->
