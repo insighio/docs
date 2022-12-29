@@ -12,8 +12,10 @@ This chapter is focused on documenting all reusable software functionalities tha
 
 insigh.io libraries have been tested on stock ESP32 firmware and [Pycom's latest firmware release](https://github.com/pycom/pycom-micropython-sigfox/releases/tag/v1.20.2.r4)
 
-This chapter is divided into 3 sections:
+This chapter is divided into 4 sections:
 
+1. [Firmware Flashing Guide]({{< relref "./flashing/_index.en.md" >}})
+    - Description on how to flash [insigh.io's node firmware](https://github.com/insighio/insighioNode) to device.
 1. [API]({{< relref "./api/_index.en.md" >}})
     - the documentation of the libraries included in the [lib folder](https://github.com/insighio/insighioNode/tree/main/insighioNode/lib) of the `insighioNode`
 1. [LoRA]({{< relref "./lora/_index.en.md" >}})
