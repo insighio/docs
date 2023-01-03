@@ -9,6 +9,10 @@ aliases:
 
 ![TAT image](/images/deviceimages/board-sdi12.PNG?width=40pc)
 
+{{% notice warning %}}
+This board is deprecated. For replacement please refer to [Advanced Industrial Shield]({{< relref "../shields/sensor-board/insighio-shield-advind.md" >}}) used by [insigh.io generic board]({{< relref "/hardware/board/v1.1.0.md" >}}).
+{{% /notice %}}
+
 ### General Information
 
 |                            |
