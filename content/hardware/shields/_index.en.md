@@ -17,6 +17,6 @@ weight: 2
 
 | Radio Shields  |
 | :-: | :-: |
-| [![shield lora gps](/images/deviceimages/insighio-shield-lora.png)]({{< relref "./radio/insighio-shield-lora.md" >}}) |  [![shield lora gps](/images/deviceimages/insighio-shield-astrocast.png)]({{< relref "./radio/insighio-shield-lora.md" >}}) |
+| [![shield lora gps](/images/deviceimages/insighio-shield-lora.png)]({{< relref "./radio/insighio-shield-lora.md" >}}) |  [![shield astrocast](/images/deviceimages/insighio-shield-astrocast.png)]({{< relref "./radio/insighio-shield-astrocast.md" >}}) |
 | LoRa shield | Satellite shield (ASTROCAST) |
 {{< /customtable >}}

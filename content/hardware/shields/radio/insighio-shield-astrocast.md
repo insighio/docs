@@ -5,7 +5,11 @@ parent: "hardware@shields@radio"
 weight: 240
 ---
 
-![shield satellite astrocast gps](/images/deviceimages/insighio-shield-astrocast.png?width=30pc)
+{{< customtable "table autowidth" >}}
+| |
+| :-: | :-: |
+| ![shield satellite astrocast gps](/images/deviceimages/insighio-shield-astrocast.png?width=30pc) | ![shield satellite astrocast gps flipped](/images/deviceimages/insighio-shield-astrocast-flipped.png?width=30pc) |
+{{< /customtable >}}
 
 ### Scope
 
