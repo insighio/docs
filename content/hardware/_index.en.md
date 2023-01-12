@@ -30,7 +30,7 @@ It follows a modular architecture:
   - Supporting multiple popular analogue and digital sensor interfaces: **analogue voltage/current readings, digital (e.g. pulse) readings, I²C, SDI-12, 4-20mA**
   - Hosting various sensors with built-in firmware support: _soil moisture sensors, temperature/humidity probes, load cells, CO2 sensors, accelerometers/magnetometers_.
   - Implementing different IoT applications: _smart agriculture, environmental monitoring, precision apiculture, rewarding recycling, air-quality inspection, road hazard detection_
-  - Expanding connectivity options: **LoRaWAN** (fully supported in Q3-22) and **Satellite IoT** (first edition available in Q3/Q4-22)
+  - Expanding connectivity options: **LoRaWAN** and **Satellite IoT**
   - Adding specialized features: hardware watchdog, hardware security, energy consumption profiling
   - Adding your own functionalities and applications: everything
 
@@ -56,8 +56,8 @@ This is a collection of standard "ready-made" IoT application boards which can b
 
 #### Radio Boards
 
-- [Communications Expansion Board for enabling LoRa connectivity and GPS tracking]({{< relref "./shields/radio/insighio-shield-lora.md" >}})
-- [Communications Expansion Board for enabling Satellite connectivity and GPS tracking (Astrocast)]({{< relref "./shields/radio/insighio-shield-astrocast.md" >}})
+- [Communications Expansion Board for enabling **LoRa** connectivity and **GPS** tracking]({{< relref "./shields/radio/insighio-shield-lora.md" >}})
+- [Communications Expansion Board for enabling **Satellite** connectivity using **ASTROCAST's** network and **GPS** tracking]({{< relref "./shields/radio/insighio-shield-astrocast.md" >}})
 
 ### Custom Designs
 
