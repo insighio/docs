@@ -8,21 +8,19 @@ weight: 230
 ![shield air quality vibrations](/images/deviceimages/insighio-shield-air-quality-vibration.png?width=30pc)
 
 ### Scope
-Provide support for Air Quality measurement and movement tracking. It is applicable in Mines and/or special cases where Air Quality is monitored via autonomous vehicles, while recording accelerometer, gyroscope and compass readings for environment recording.
+Provide support for **gas monitoring** and **movement tracking**. It is applicable in various use-cases and environments, such as for automated **road hazard detection** when installed in **vehicles** or **indoor air quality monitoring**,when installed in **confined spaces**.
 
 ### General Information
 
 |                                  |
 | :------------------------------- | :---------------------------------------------------------------- |
 | **Host board**                   | [insigh.io main board](../../../board/latest)       |
-| **Sensor Headers**               | Fixed Terminal Block with push-in connection (no tools required)  |
-|                                  | 1x8-pin (SDI-12 & Pulse Counter) & 1x6-pin (4-20mA)               |
-| **Dimensions (L x W x H)**       | 41.3 x 47 x 16.7 mm                                               |
-| **Weight**                       | 16 g                                                              |
+| **Dimensions (L x W x H)**       | 37.7 x 36.47 x 16.7 mm                                               |
+| **Weight**                       | 8 g                                                              |
 
 ### Example Applications
 
--   **Special environment Air Quality monitoring (mines, caves, underground tunnels)**
+-   **Special environment Air Quality monitoring (in-cabin, workspace, mine, underground tunnel)**
     -   CO2 level monitoring
 -   **Vehicle monitoring / environment recording**
     -   Accelerometer, Gyroscope, Compass -> bump detection, slope recording, force metering
@@ -35,6 +33,10 @@ Provide support for Air Quality measurement and movement tracking. It is applica
 | :-----------------------------  | :--------------------------------------------------------------------------------|
 | **asm330**                      | Automotive 6-axis inertial module: 3D accelerometer and 3D gyroscope             |
 | **scd40**                       | CO2 sensor                                                                       |
+
+
+## Acknowledgment
+Part of this development has been performed in the context of and supported by **[ASSIST-IoT](https://assist-iot.eu/)** Project.
 
 
 ## Custom designs
