@@ -3,6 +3,7 @@ title: Satellite (Astrocast)
 identifier: "hardware@shields@radio@insighio-shield-astrocast"
 parent: "hardware@shields@radio"
 weight: 240
+description: insigh.io/ESP32-based satellite IoT board with Micropython firmware
 ---
 
 {{< customtable "table autowidth" >}}
@@ -63,9 +64,12 @@ Enrich radio connectivity capabilities with **Astrocast's Satellite** technology
 | **FCC**  | _planned_ |
 | **RoHS** | _planned_ |
 
-### Notes
+### Firmware Support (Micropython)
+* Use the **[insighioNode](https://github.com/insighio/insighioNode)** repository for a plug-and-play solution.
+* Use the **[astronode-micropython](https://github.com/insighio/astronode-micropython)** library for custom scenarios.
 
-Use **[insighioNode](https://github.com/insighio/insighioNode)** repository or **[astronode-micropython](https://github.com/insighio/astronode-micropython)** independent library
+### Notes
+The **ASTROCAST Satellite IoT** shield can be directly used with any other **ESP32** module or dev board and our **Micropython** firmware.
 
 ## Custom designs
 
