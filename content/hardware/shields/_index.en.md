@@ -16,7 +16,7 @@ weight: 2
 {{< customtable "table autowidth" >}}
 
 | Radio Shields  |
-| :-: | :-: |
-| [![shield lora gps](/images/deviceimages/insighio-shield-lora.png)]({{< relref "./radio/insighio-shield-lora.md" >}}) |  [![shield astrocast](/images/deviceimages/insighio-shield-astrocast.png)]({{< relref "./radio/insighio-shield-astrocast.md" >}}) |
-| LoRa Shield | Satellite Shield (ASTROCAST) |
+| :-: | :-: | :-: |
+| [![shield lora gps](/images/deviceimages/insighio-shield-lora.png)]({{< relref "./radio/insighio-shield-lora.md" >}}) |  [![shield astrocast](/images/deviceimages/insighio-shield-astrocast.png)]({{< relref "./radio/insighio-shield-astrocast.md" >}}) | [![shield lora gps](/images/deviceimages/insighio-shield-lora-lf.png)]({{< relref "./radio/insighio-shield-lora-lf.md" >}}) |
+| LoRaWAN Shield | Satellite Shield (ASTROCAST) | LoRa Low-Frequency (169 MHz) |
 {{< /customtable >}}

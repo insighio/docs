@@ -1,5 +1,5 @@
 ---
-title: LoRa
+title: LoRaWAN
 identifier: "hardware@shields@radio@insighio-shield-lora"
 parent: "hardware@shields@radio"
 weight: 230

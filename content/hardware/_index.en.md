@@ -56,8 +56,9 @@ This is a collection of standard "ready-made" IoT application boards which can b
 
 #### Radio Boards
 
-- [Communications Expansion Board for enabling **LoRa** connectivity and **GPS** tracking]({{< relref "./shields/radio/insighio-shield-lora.md" >}})
+- [Communications Expansion Board for enabling **LoRaWAN** connectivity and **GPS** tracking]({{< relref "./shields/radio/insighio-shield-lora.md" >}})
 - [Communications Expansion Board for enabling **Satellite** connectivity using **ASTROCAST's** network and **GPS** tracking]({{< relref "./shields/radio/insighio-shield-astrocast.md" >}})
+- [Communications Expansion Board for enabling **LoRa** connectivity at low VHF frequencies (**169 MHz**)]({{< relref "./shields/radio/insighio-shield-lora-lf.md" >}})
 
 ### Custom Designs
 
