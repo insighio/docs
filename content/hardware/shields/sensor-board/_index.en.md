@@ -8,7 +8,7 @@ weight: 210
 {{< customtable "table autowidth" >}}
 
 | Sensor Shields  |
-| :-: | :-: | :-: |
-| [![shield adc i2c](/images/deviceimages/insighio-shield-base-adc-i2c.png)]({{< relref "../sensor-board/insighio-shield-base-adc-i2c.md" >}}) | [![shield sdi12 4-20mA pulse counter](/images/deviceimages/insighio-shield-advind.png)]({{< relref "../sensor-board/insighio-shield-advind.md" >}}) | [![shield air quality vibrations](/images/deviceimages/insighio-shield-air-quality-vibration.png)]({{< relref "../radio/insighio-shield-lora.md" >}}) |
-| Basic Sensor Shield | Advanced Industrial Sensor Shield | Advanced Industrial Sensor Shield |
+| :-: | :-: | :-: | :-: | :-: |
+| [![shield adc i2c](/images/deviceimages/insighio-shield-base-adc-i2c.png)]({{< relref "../sensor-board/insighio-shield-base-adc-i2c.md" >}}) | [![shield sdi12 4-20mA pulse counter](/images/deviceimages/insighio-shield-advind.png)]({{< relref "../sensor-board/insighio-shield-advind.md" >}}) | [![shield air quality vibrations](/images/deviceimages/insighio-shield-air-quality-vibration.png)]({{< relref "../radio/insighio-shield-lora.md" >}}) | [![shield enhanced air qual](/images/deviceimages/insighio-shield-enhanced-air-qual.png)]({{< relref "../sensor-board/insighio-shield-enhanced-air-qual.md" >}}) | [![shield smart scale](/images/deviceimages/insighio-shield-smart-scale.png)]({{< relref "../sensor-board/insighio-shield-smart-scale.md" >}}) | 
+| Basic Sensor Shield | Advanced Industrial Sensor Shield | Advanced Industrial Sensor Shield | Enhanced Air Quality  | Smart Scale |
 {{< /customtable >}}
