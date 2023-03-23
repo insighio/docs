@@ -5,7 +5,7 @@ parent: "hardware@shields@sensor-board"
 weight: 225
 ---
 
-![shield air quality vibrations](/images/deviceimages/insighio-shield-air-quality-vibration.png?width=30pc)
+![shield air quality vibrations](/images/deviceimages/insighio-shield-air-quality-vibration.png?width=20pc)
 
 ### Scope
 Provide support for **gas monitoring** and **movement tracking**. It is applicable in various use-cases and environments, such as for automated **road hazard detection** when installed in **vehicles** or **indoor air quality monitoring**,when installed in **confined spaces**.

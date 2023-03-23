@@ -5,7 +5,7 @@ parent: "hardware@shields@sensor-board"
 weight: 230
 ---
 
-![shield enhanced air quality](/images/deviceimages/insighio-shield-enhanced-air-qual.png?width=30pc)
+![shield enhanced air quality](/images/deviceimages/insighio-shield-enhanced-air-qual.png?width=20pc)
 
 ### Scope
 Provide support for **gas and oxygen monitoring** . It is applicable in various use-cases and environments varying from industrial locations suchs as mines and construction sites for safety monitoring to indoor usage for office environment evaluation.

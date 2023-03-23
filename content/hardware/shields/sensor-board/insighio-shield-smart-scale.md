@@ -5,7 +5,7 @@ parent: "hardware@shields@sensor-board"
 weight: 235
 ---
 
-![shield smart scale](/images/deviceimages/insighio-shield-smart-scale.png?width=30pc)
+![shield smart scale](/images/deviceimages/insighio-shield-smart-scale.png?width=20pc)
 
 ### Scope
 Provide all the required functionality for developing smart scale products that also support user interaction and feedback. The starting point is the weigh scale sensor connection with 5 Pin connector. This sensor, combined with our [Firmware](https://github.com/insighio/insighioNode) offers accurate weight measurement through time, accompanied by our in-house developed configuration and calibration wizard. 

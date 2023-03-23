@@ -9,7 +9,7 @@ description: insigh.io/ESP32-based satellite IoT board with Micropython firmware
 {{< customtable "table autowidth" >}}
 | |
 | :-: | :-: |
-| ![shield satellite astrocast gps](/images/deviceimages/insighio-shield-astrocast.png?width=30pc) | ![shield satellite astrocast gps flipped](/images/deviceimages/insighio-shield-astrocast-flipped.png?width=30pc) |
+| ![shield satellite astrocast gps](/images/deviceimages/insighio-shield-astrocast.png?width=20pc) | ![shield satellite astrocast gps flipped](/images/deviceimages/insighio-shield-astrocast-flipped.png?width=20pc) |
 {{< /customtable >}}
 
 ### Scope

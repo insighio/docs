@@ -9,7 +9,7 @@ weight: 2
 
 | Sensor Shields  |
 | :-: | :-: | :-: | :-: | :-: |
-| [![shield adc i2c](/images/deviceimages/insighio-shield-base-adc-i2c.png)]({{< relref "./sensor-board/insighio-shield-base-adc-i2c.md" >}}) | [![shield sdi12 4-20mA pulse counter](/images/deviceimages/insighio-shield-advind.png)]({{< relref "./sensor-board/insighio-shield-advind.md" >}}) | [![shield air quality vibrations](/images/deviceimages/insighio-shield-air-quality-vibration.png)]({{< relref "./sensor-board/insighio-air-quality-and-vibrations.md" >}}) | [![shield enhanced air qual](/images/deviceimages/insighio-shield-enhanced-air-qual.png)]({{< relref "./sensor-board/insighio-shield-enhanced-air-qual.md" >}}) | [![shield smart scale](/images/deviceimages/insighio-shield-smart-scale.png)]({{< relref "./sensor-board/insighio-shield-smart-scale.md" >}}) | 
+| [![shield adc i2c](/images/deviceimages/insighio-shield-base-adc-i2c.png?width=20pc)]({{< relref "./sensor-board/insighio-shield-base-adc-i2c.md" >}}) | [![shield sdi12 4-20mA pulse counter](/images/deviceimages/insighio-shield-advind.png?width=20pc)]({{< relref "./sensor-board/insighio-shield-advind.md" >}}) | [![shield air quality vibrations](/images/deviceimages/insighio-shield-air-quality-vibration.png?width=20pc)]({{< relref "./sensor-board/insighio-air-quality-and-vibrations.md" >}}) | [![shield enhanced air qual](/images/deviceimages/insighio-shield-enhanced-air-qual.png?width=20pc)]({{< relref "./sensor-board/insighio-shield-enhanced-air-qual.md" >}}) | [![shield smart scale](/images/deviceimages/insighio-shield-smart-scale.png?width=20pc)]({{< relref "./sensor-board/insighio-shield-smart-scale.md" >}}) | 
 | Basic Sensor Shield | Advanced Industrial Sensor Shield | Air Quality & Vibrations Shield | Enhanced Air Quality  | Smart Scale |
 {{< /customtable >}}
 
@@ -17,6 +17,6 @@ weight: 2
 
 | Radio Shields  |
 | :-: | :-: | :-: |
-| [![shield lora gps](/images/deviceimages/insighio-shield-lora.png)]({{< relref "./radio/insighio-shield-lora.md" >}}) |  [![shield astrocast](/images/deviceimages/insighio-shield-astrocast.png)]({{< relref "./radio/insighio-shield-astrocast.md" >}}) | [![shield lora gps](/images/deviceimages/insighio-shield-lora-lf.png)]({{< relref "./radio/insighio-shield-lora-lf.md" >}}) |
+| [![shield lora gps](/images/deviceimages/insighio-shield-lora.png?width=20pc)]({{< relref "./radio/insighio-shield-lora.md" >}}) |  [![shield astrocast](/images/deviceimages/insighio-shield-astrocast.png?width=20pc)]({{< relref "./radio/insighio-shield-astrocast.md" >}}) | [![shield lora gps](/images/deviceimages/insighio-shield-lora-lf.png?width=20pc)]({{< relref "./radio/insighio-shield-lora-lf.md" >}}) |
 | LoRaWAN Shield | Satellite Shield (ASTROCAST) | LoRa Low-Frequency (169 MHz) |
 {{< /customtable >}}

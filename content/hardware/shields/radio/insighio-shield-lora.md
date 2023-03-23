@@ -5,7 +5,7 @@ parent: "hardware@shields@radio"
 weight: 235
 ---
 
-![shield lora gps](/images/deviceimages/insighio-shield-lora.png?width=30pc)
+![shield lora gps](/images/deviceimages/insighio-shield-lora.png?width=20pc)
 
 
 ### Scope
