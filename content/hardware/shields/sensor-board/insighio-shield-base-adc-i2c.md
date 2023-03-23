@@ -2,7 +2,7 @@
 title: Basic
 identifier: "hardware@shields@sensor-board@insighio-shield-basic"
 parent: "hardware@shields@sensor-board"
-weight: 225
+weight: 215
 ---
 
 ![shield adc i2c](/images/deviceimages/insighio-shield-base-adc-i2c.png?width=30pc)

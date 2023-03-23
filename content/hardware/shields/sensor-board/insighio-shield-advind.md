@@ -2,7 +2,7 @@
 title: Advanced Industrial
 identifier: "hardware@shields@sensor-board@insighio-shield-advind"
 parent: "hardware@shields@sensor-board"
-weight: 230
+weight: 220
 ---
 
 ![shield sdi12 4-20mA pulse counter](/images/deviceimages/insighio-shield-advind.png?width=30pc)

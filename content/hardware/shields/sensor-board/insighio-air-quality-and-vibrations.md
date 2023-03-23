@@ -2,7 +2,7 @@
 title: Air Quality & Vibrations
 identifier: "hardware@shields@sensor-board@insighio-shield-air-qual-vibr"
 parent: "hardware@shields@sensor-board"
-weight: 230
+weight: 225
 ---
 
 ![shield air quality vibrations](/images/deviceimages/insighio-shield-air-quality-vibration.png?width=30pc)
