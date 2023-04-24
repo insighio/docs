@@ -5,7 +5,7 @@ parent: "hardware@shields@sensor-board"
 weight: 220
 ---
 
-![shield sdi12 4-20mA pulse counter](/images/deviceimages/insighio-shield-advind.png?width=20pc)
+![shield sdi12 4-20mA pulse counter](/images/deviceimages/insigh.io-shield-sdi12.png?width=20pc)
 
 ### Scope
 Provide support for SDI-12, 4-20mA and pulse counter sensors with flexible configurations. It is applicable to Agriculture & Environmental Monitoring applications.
