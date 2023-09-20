@@ -82,3 +82,15 @@ For the POST request, the user needs to specify:
 - Custom body options required by the third party API
 
 ![Plugins HTTP Poll](/images/console_tutorial/plugins_http_poll.png?width=60pc)
+
+#### Device Configuration
+
+When a plugin is created, it can be used by a device so that incoming data is mapped on a particular device on the insigh.io platform. To configure a device to use a plugin, select "Alternative Data Source" and then select the appropriate plugin.
+
+![Plugins Device Configuration](/images/console_tutorial/device_plugin.png?width=30pc)
+
+Then, the "External Device ID" needs to be provided. As described earlier, this is the ID of the device on the third party platform and is called differently depending on the platform. For example, it is the Device GUID in Astrocast, the DevEUI on LoRaWAN, etc.
+
+![Plugins Device Configuration](/images/console_tutorial/plugins_external_device_id.png?width=30pc)
+
+Once the device is created, insigh.io will start getting the data for this device using the configured plugin.
