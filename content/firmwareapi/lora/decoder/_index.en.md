@@ -34,7 +34,9 @@ var LOCATION_A_P2 = 0x31;
 var LOCATION_AD_P1 = 0x40;
 var LOCATION_AD_P2 = 0x41;
 var LOCATION_SDI12 = 0x50;
+var LOCATION_4_20 = 0x60;
 var LOCATION_MODEM = 0x70;
+var LOCATION_GPS = 0x71;
 
 var TYPE_DEVICE_ID = 0x01;
 var TYPE_RESET_CAUSE = 0x02;
@@ -58,6 +60,9 @@ var TYPE_SAP_FLOW = 0x21;
 var TYPE_HEAT_VELOCITY = 0x22;
 var TYPE_LOG_RATIO = 0x23;
 var TYPE_LORA_JOIN_DUR = 0xc1;
+var TYPE_GPS_HDOP = 0xd0;
+var TYPE_GPS_LAT = 0xd1;
+var TYPE_GPS_LON = 0xd2;
 var TYPE_GENERIC = 0xe0;
 var TYPE_GENERIC_MAX = 0xef;
 
@@ -90,6 +95,9 @@ function init() {
   typeMap[TYPE_VBATT] = { name: "vbatt", unit: "mV" };
   typeMap[TYPE_VOLTAGE] = { name: "voltage", unit: "mV" };
   typeMap[TYPE_VWC] = { name: "vwc", unit: "" };
+  typeMap[TYPE_GPS_HDOP] = { name: "hdop", unit: "" };
+  typeMap[TYPE_GPS_LAT] = { name: "lat", unit: "" };
+  typeMap[TYPE_GPS_LON] = { name: "lon", unit: "" };
 }
 
 function bin32dec(bin) {
@@ -130,10 +138,7 @@ function getTypeUnit(typeId) {
 
 function extract32bitInteger(bytes, startIndex) {
   return (
-    (bytes[startIndex] << 24) |
-    (bytes[startIndex + 1] << 16) |
-    (bytes[startIndex + 2] << 8) |
-    bytes[startIndex + 3]
+    (bytes[startIndex] << 24) | (bytes[startIndex + 1] << 16) | (bytes[startIndex + 2] << 8) | bytes[startIndex + 3]
   );
 }
 
@@ -162,7 +167,7 @@ function getLocationName(locationId) {
           return "bme680";
         case 0x04:
           return "sht20";
-        case 0x05: 
+        case 0x05:
           return "sht40";
         case 0x06:
           return "sunrise";
@@ -187,19 +192,19 @@ function getLocationName(locationId) {
         default:
           return "adp";
       }
+    case LOCATION_4_20:
+      return "4-20_" + subLocation;
     case LOCATION_SDI12:
       return "sdi12_" + subLocation;
     case LOCATION_MODEM:
-      return "modem";
+      switch (subLocation) {
+        case 0x01:
+          return "gps";
+        default:
+          return "modem";
+      }
     default:
-      console.log(
-        "location not decoded: ",
-        locationId,
-        ", ",
-        mainLocation,
-        ", ",
-        subLocation
-      );
+      //console.log("location not decoded: ", locationId, ", ", mainLocation, ", ", subLocation)
       return "undefined";
   }
 }
@@ -217,21 +222,40 @@ function getValidName(nameDict, original_name) {
   return name;
 }
 
-function DecodeInsighioPackage(bytes) {
+function base64ToArrayBuffer(base64) {
+  //console.log("Decoding ", base64)
+  var binary_string = atob(base64);
+  var len = binary_string.length;
+  var bytes = new Uint8Array(len);
+  for (var i = 0; i < len; i++) {
+    bytes[i] = binary_string.charCodeAt(i);
+  }
+  return new Uint8Array(bytes.buffer);
+}
+
+function DecodeInsighioPackage(bytes, convertBytesFromBase64 = false) {
   try {
     init();
 
     var senml = [];
     var nameDict = {};
+
+    if (convertBytesFromBase64) bytes = base64ToArrayBuffer(bytes);
+
     for (var i = 6; i < bytes.length; i++) {
-      var original_name =
-        getLocationName(bytes[i + 1]) + "_" + getTypeName(bytes[i]);
+      var original_name = getLocationName(bytes[i + 1]) + "_" + getTypeName(bytes[i]);
       var name = getValidName(nameDict, original_name);
       var obj = { n: name, u: getTypeUnit(bytes[i]) };
+
+      //console.log("original_name: ", original_name, ", name:", name, ", obj:", obj)
       var processed = true;
       switch (bytes[i]) {
         case TYPE_RESET_CAUSE: // 1 byte (unsigned char)
           obj.v = bytes[i + 2];
+          i += 2;
+          break;
+        case TYPE_GPS_HDOP: // 1 byte (unsigned char)
+          obj.v = bytes[i + 2] / 10;
           i += 2;
           break;
         case TYPE_TEMPERATURE: // 2 bytes (signed short)
@@ -274,6 +298,12 @@ function DecodeInsighioPackage(bytes) {
           obj.v = bin32dec(temp);
           i += 5;
           break;
+        case TYPE_GPS_LAT: // 4 bytes (signed integer)
+        case TYPE_GPS_LON:
+          var temp = extract32bitInteger(bytes, i + 2);
+          obj.v = bin32dec(temp) / 100000;
+          i += 5;
+          break;
         default:
           processed = false;
       }
@@ -290,6 +320,7 @@ function DecodeInsighioPackage(bytes) {
       senml[0].bn = bytesToHex(bytes, 0, 6) + "-";
     }
   } catch (err) {
+    //console.log("something went wrong", err)
     return { e: err.stack };
   }
 
@@ -299,19 +330,15 @@ function DecodeInsighioPackage(bytes) {
 // Called from ChirpStack / LoRaServer
 //https://www.chirpstack.io/application-server/use/device-profiles/
 function Decode(fPort, bytes, variables) {
-  return DecodeInsighioPackage(bytes);
+  return DecodeInsighioPackage(bytes, true);
 }
 
 // Called from TheThingsNetwork
-function Decoder(bytes, port) {
-  return DecodeInsighioPackage(bytes);
-}
-
 function decodeUplink(input) {
-   return {
+  return {
     data: {
-      bytes: DecodeInsighioPackage(input.bytes)
-    }
-  }
+      bytes: DecodeInsighioPackage(input.bytes, false),
+    },
+  };
 }
 ```
