@@ -52,3 +52,33 @@ When defining an MQTT plugin, the service creates a MQTT client that subscribes 
 Then, the MQTT Rule can be created. The rule needs to have a name, a MQTT broker, a decoder and a topic to which the client will be subscribed:
 
 ![Plugins MQTT](/images/console_tutorial/plugins_mqtt_rule.png?width=60pc)
+
+#### HTTP
+
+HTTP plugins support two collect the data, **Receive** and **Poll**.
+
+##### HTTP Receive
+
+This method is used when the third party platforms support webhooks and can be configured to forward the data for a device to another platform via HTTP POST requests. An example of this scenario is Astrocast, where you can configure callbacks for a particular device. In this scenario, the plugins service listens to incoming HTTP POST requests at the predefined /api/v1/plugins endpoint. The only configuration required for a user is the message decoder. When the plugin is created, an Authentication Token is automatically created. This token must be provided in the HTTP POST message headers as "Authorization: < token >". This needs to be configured on the third party platform of course.
+
+![Plugins HTTP Receive](/images/console_tutorial/plugins_http_receive.png?width=60pc)
+
+##### HTTP Poll
+
+This method is used when third party platforms do not support webhooks, but offer a REST API to poll the data via HTTP POST requests. Currently, only POST requests are supported, but GET requests will soon be supported too.
+
+The basic principle is that we request data from an API every n hours (configurable) using a range field to filter the data. An important configuration for the polling method is that there needs to be a field that we can use so that we can filter the data that we request every time. In the current implementation, only date fields are allowed to filter data. In the future, this could be enhanced so that other types are also supported (e.g., IDs).
+
+For the POST request, the user needs to specify:
+
+- The host name
+- The endpoint
+- The port
+- The "range field from" field name
+- The "range filter to" field name
+- The polling frequency. Currently supported values of n hours (1, 4, 12, 24 hours)
+- The message decoder
+- Custom HTTP headers required by the third party API (e.g., authorization)
+- Custom body options required by the third party API
+
+![Plugins HTTP Poll](/images/console_tutorial/plugins_http_poll.png?width=60pc)
