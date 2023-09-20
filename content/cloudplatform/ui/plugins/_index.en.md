@@ -36,7 +36,7 @@ Regardless the selected communication protocol, each plugin needs to use a prede
 
 For other scenarios, users can define a custom decoder:
 
-![Plugins Decoders](/images/console_tutorial/plugins_decoder.png?width=60pc)
+![Plugins Decoders](/images/console_tutorial/plugins_custom_decoder.png?width=60pc)
 
 #### MQTT
 
