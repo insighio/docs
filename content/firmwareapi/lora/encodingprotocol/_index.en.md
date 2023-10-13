@@ -28,7 +28,7 @@ Each sensor data field is composed of one byte for **sensor type**, one byte for
 | sensor type |               name               |        value range        |    unit     | divider | sensor value number of bytes |
 | :---------: | :------------------------------: | :-----------------------: | :---------: | :-----: | :--------------------------: |
 |    0x01     |            device id             |        hex string         |    text     |    -    |           6 bytes            |
-|    0x02     |           reset cause            |            0-4            |   integer   |    -    |           1 byte             |
+|    0x02     |           reset cause            |            0-4            |   integer   |    -    |            1 byte            |
 |    0x03     |              uptime              |          0-65535          |     ms      |    -    |           2 bytes            |
 |    0x04     |            mem_alloc             |      0 – 4294967295       |      B      |    -    |           4 btyes            |
 |    0x05     |             mem_free             |      0 – 4294967295       |      B      |    -    |           4 btyes            |
@@ -48,8 +48,9 @@ Each sensor data field is composed of one byte for **sensor type**, one byte for
 |    0x21     |       Sap Flow (sap_flow)        |          0-65535          | litres/hour |   100   |           2 bytes            |
 |    0x22     |        Heat Velocity (vh)        |          0-65535          |   cm/hour   |   100   |           2 bytes            |
 |    0x23     |        Log Ratio (log_rt)        | -2147483648 to 2147483647 |      -      | 100000  |           4 bytes            |
+|    0x30     |     formula / transformation     | -2147483648 to 2147483647 |      -      | 100000  |           4 bytes            |
 |    0xC1     |        lora_join_duration        |          0-65535          |     ms      |    -    |           2 bytes            |
-|    0xD0     |             gps_hdop             |           0-256           |      -      |   10    |           1 byte             |
+|    0xD0     |             gps_hdop             |           0-256           |      -      |   10    |            1 byte            |
 |    0xD1     |             gps_lat              |    -9000000 to 9000000    |     lat     | 100000  |           4 bytes            |
 |    0xD2     |             gps_lon              |   -18000000 to 18000000   |     lon     | 100000  |           4 bytes            |
 |    0xE0     |             generic              | -2147483648 to 2147483647 |      -      |   100   |           4 bytes            |

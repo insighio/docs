@@ -22,7 +22,7 @@ Follows the LoRA payload decoder that transforms received bytes into SenML-forma
                             |  $$$$$$/
                             \______/
 
-LoRA payload decoder for insigh.io firmware
+LoRA/Satellite payload decoder for insigh.io firmware
 */
 
 var LOCATION_DEFAULT = 0x00;
@@ -59,6 +59,7 @@ var TYPE_PORE_WATER_CONDUCT = 0x20;
 var TYPE_SAP_FLOW = 0x21;
 var TYPE_HEAT_VELOCITY = 0x22;
 var TYPE_LOG_RATIO = 0x23;
+var TYPE_FORMULA = 0x30;
 var TYPE_LORA_JOIN_DUR = 0xc1;
 var TYPE_GPS_HDOP = 0xd0;
 var TYPE_GPS_LAT = 0xd1;
@@ -77,6 +78,7 @@ function init() {
   typeMap[TYPE_HEAT_VELOCITY] = { name: "hv", unit: "cm/h" };
   typeMap[TYPE_HUMIDITY] = { name: "humidity", unit: "%RH" };
   typeMap[TYPE_LOG_RATIO] = { name: "log_rt", unit: "" };
+  typeMap[TYPE_FORMULA] = { name: "formula", unit: "" };
   typeMap[TYPE_LIGHT_LUX] = { name: "light_lux", unit: "lx" };
   typeMap[TYPE_LORA_JOIN_DUR] = { name: "lora_join_dur", unit: "ms" };
   typeMap[TYPE_MEM_ALLOC] = { name: "mem_alloc", unit: "B" };
@@ -233,7 +235,7 @@ function base64ToArrayBuffer(base64) {
   return new Uint8Array(bytes.buffer);
 }
 
-function DecodeInsighioPackage(bytes, convertBytesFromBase64 = false) {
+function DecodeInsighioPackage(bytes, convertBytesFromBase64 = true) {
   try {
     init();
 
@@ -298,6 +300,7 @@ function DecodeInsighioPackage(bytes, convertBytesFromBase64 = false) {
           obj.v = bin32dec(temp);
           i += 5;
           break;
+        case TYPE_FORMULA:
         case TYPE_GPS_LAT: // 4 bytes (signed integer)
         case TYPE_GPS_LON:
           var temp = extract32bitInteger(bytes, i + 2);
