@@ -35,7 +35,7 @@ Each sensor data field is composed of one byte for **sensor type**, one byte for
 |    0x07     |                  current                   |          0-65535          |     mA      |    -    |           2 bytes            |
 |    0x08     |                   vbatt                    |          0-65535          |     mv      |    -    |           2 bytes            |
 |    0x10     |                   light                    |          0-65535          |     lux     |    -    |           2 bytes            |
-|    0x11     |                temperature                 |     -32767 -> +32767      |     Cel     |    -    |           2 bytes            |
+|    0x11     |             temperature (Cel)              |     -32767 -> +32767      |     Cel     |   100   |           2 bytes            |
 |    0x12     |                  humidity                  |          0-10000          |      %      |   100   |           2 bytes            |
 |    0x13     |                    co2                     |       0 – 1100 ppm        |     ppm     |    -    |           2 btyes            |
 |    0x14     |                  pressure                  |             -             |     hPa     |    -    |           4 bytes            |
@@ -56,6 +56,7 @@ Each sensor data field is composed of one byte for **sensor type**, one byte for
 |    0x23     |             Log Ratio (log_rt)             | -2147483648 to 2147483647 |      -      | 100000  |           4 bytes            |
 |    0x24     |        Vapor Pressure Deficit (vpd)        |          0-65535          |     hPa     |   10    |           2 bytes            |
 |    0x25     |         Atmospheric Pressure (pa)          |          0-65535          |     hPa     |   10    |           2 bytes            |
+|    0x26     |              temperature (F)               |     -32767 -> +32767      |      F      |    -    |           2 bytes            |
 |    0x30     |          formula / transformation          | -2147483648 to 2147483647 |      -      | 100000  |           4 bytes            |
 |    0xC1     |             lora_join_duration             |          0-65535          |     ms      |    -    |           2 bytes            |
 |    0xD0     |                  gps_hdop                  |           0-256           |      -      |   10    |            1 byte            |

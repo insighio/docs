@@ -46,7 +46,7 @@ var TYPE_MEM_FREE = 0x05;
 var TYPE_CURRENT = 0x07;
 var TYPE_VBATT = 0x08;
 var TYPE_LIGHT_LUX = 0x10;
-var TYPE_TEMPERATURE = 0x11;
+var TYPE_TEMPERATURE_CEL = 0x11;
 var TYPE_HUMIDITY = 0x12;
 var TYPE_CO2 = 0x13;
 var TYPE_PRESSURE = 0x14;
@@ -67,6 +67,7 @@ var TYPE_HEAT_VELOCITY = 0x22;
 var TYPE_LOG_RATIO = 0x23;
 var TYPE_VAPOR_PRESSURE_DEFICIT = 0x24;
 var TYPE_ATMOSPHERIC_PRESSURE = 0x25;
+var TYPE_TEMPERATURE_FAH = 0x26;
 var TYPE_FORMULA = 0x30;
 var TYPE_LORA_JOIN_DUR = 0xc1;
 var TYPE_GPS_HDOP = 0xd0;
@@ -108,7 +109,8 @@ function init() {
   typeMap[TYPE_RESET_CAUSE] = { name: "reset_cause", unit: "" };
   typeMap[TYPE_SAP_FLOW] = { name: "sap_flow", unit: "l/h" };
   typeMap[TYPE_SOIL_EC] = { name: "soil_ec", unit: "uS/cm" };
-  typeMap[TYPE_TEMPERATURE] = { name: "temperature", unit: "Cel" };
+  typeMap[TYPE_TEMPERATURE_CEL] = { name: "temperature", unit: "Cel" };
+  typeMap[TYPE_TEMPERATURE_FAH] = { name: "temperature", unit: "f" };
   typeMap[TYPE_UPTIME] = { name: "uptime", unit: "ms" };
   typeMap[TYPE_VBATT] = { name: "vbatt", unit: "mV" };
   typeMap[TYPE_VOLTAGE] = { name: "voltage", unit: "mV" };
@@ -141,7 +143,7 @@ function bytesToHex(byteArray, from, to) {
 function getTypeName(typeId) {
   var typeInfo = undefined;
   if (typeId >= TYPE_GENERIC && typeId <= TYPE_GENERIC_MAX) {
-    typeInfo = typeMap[TYPE_GENERIC];
+    typeInfo = { ...typeMap[TYPE_GENERIC] };
     typeInfo.name = typeInfo.name + "_" + (typeId & 0x0f);
   } else typeInfo = typeMap[typeId];
   if (typeInfo === undefined) return "";
@@ -276,7 +278,8 @@ function DecodeInsighioPackage(bytes, convertBytesFromBase64 = true) {
           obj.v = bytes[i + 2] / 10;
           i += 2;
           break;
-        case TYPE_TEMPERATURE: // 2 bytes (signed short)
+        case TYPE_TEMPERATURE_FAH:
+        case TYPE_TEMPERATURE_CEL: // 2 bytes (signed short)
           var temp = (bytes[i + 2] << 8) | bytes[i + 3];
           obj.v = bin16dec(temp) / 100;
           i += 3;
@@ -341,9 +344,17 @@ function DecodeInsighioPackage(bytes, convertBytesFromBase64 = true) {
           processed = false;
       }
       if (!processed && bytes[i] & TYPE_GENERIC) {
-        var temp = extract32bitInteger(bytes, i + 2);
-        obj.v = bin32dec(temp) / 100;
-        i += 5;
+        //2 bytes
+        if (name.startsWith("sdi12")) {
+          obj.v = (bytes[i + 2] << 8) | bytes[i + 3];
+          i += 3;
+        }
+        //4 bytes
+        else {
+          var temp = extract32bitInteger(bytes, i + 2);
+          obj.v = bin32dec(temp) / 100;
+          i += 5;
+        }
       }
 
       nameDict[obj.n] = true;
