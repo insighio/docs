@@ -55,10 +55,18 @@ var TYPE_VOLTAGE = 0x16;
 var TYPE_VWC = 0x17;
 var TYPE_REL_PERM = 0x18;
 var TYPE_SOIL_EC = 0x19;
+var TYPE_MILLIMETER = 0x1a;
+var TYPE_WATTS_PER_SQUARE_METER = 0x1b;
+var TYPE_GRAMS_OF_WATER_VAPOUR_PER_CUBIC_METRE_OF_AIR = 0x1c;
+var TYPE_ACTUAL_EVAPOTRANSPIRATION_MM = 0x1d;
+var TYPE_LATENT_ENERGY_FLUX = 0x1e;
+var TYPE_HEAT_FLUX = 0x1f;
 var TYPE_PORE_WATER_CONDUCT = 0x20;
 var TYPE_SAP_FLOW = 0x21;
 var TYPE_HEAT_VELOCITY = 0x22;
 var TYPE_LOG_RATIO = 0x23;
+var TYPE_VAPOR_PRESSURE_DEFICIT = 0x24;
+var TYPE_ATMOSPHERIC_PRESSURE = 0x25;
 var TYPE_FORMULA = 0x30;
 var TYPE_LORA_JOIN_DUR = 0xc1;
 var TYPE_GPS_HDOP = 0xd0;
@@ -87,6 +95,14 @@ function init() {
     name: "pore_water_conduct",
     unit: "uS/cm",
   };
+  typeMap[TYPE_MILLIMETER] = { name: "millimeter", unit: "mm" };
+  typeMap[TYPE_WATTS_PER_SQUARE_METER] = { name: "wpsqm", unit: "W/m2" };
+  typeMap[TYPE_GRAMS_OF_WATER_VAPOUR_PER_CUBIC_METRE_OF_AIR] = { name: "water_vapour_sq_air", unit: "g.m3" };
+  typeMap[TYPE_ACTUAL_EVAPOTRANSPIRATION_MM] = { name: "et", unit: "mm" };
+  typeMap[TYPE_LATENT_ENERGY_FLUX] = { name: "le", unit: "W/m2" };
+  typeMap[TYPE_HEAT_FLUX] = { name: "h", unit: "W/m2" };
+  typeMap[TYPE_VAPOR_PRESSURE_DEFICIT] = { name: "vpd", unit: "hPa" };
+  typeMap[TYPE_ATMOSPHERIC_PRESSURE] = { name: "pa", unit: "hPa" };
   typeMap[TYPE_PRESSURE] = { name: "pressure", unit: "hPa" };
   typeMap[TYPE_REL_PERM] = { name: "rel_perm", unit: "" };
   typeMap[TYPE_RESET_CAUSE] = { name: "reset_cause", unit: "" };
@@ -270,6 +286,9 @@ function DecodeInsighioPackage(bytes, convertBytesFromBase64 = true) {
         case TYPE_LIGHT_LUX:
         case TYPE_LORA_JOIN_DUR:
         case TYPE_VOLTAGE:
+        case TYPE_MILLIMETER:
+        case TYPE_WATTS_PER_SQUARE_METER:
+        case TYPE_GRAMS_OF_WATER_VAPOUR_PER_CUBIC_METRE_OF_AIR:
           obj.v = (bytes[i + 2] << 8) | bytes[i + 3];
           i += 3;
           break;
@@ -283,6 +302,17 @@ function DecodeInsighioPackage(bytes, convertBytesFromBase64 = true) {
         case TYPE_SAP_FLOW:
         case TYPE_HEAT_VELOCITY:
           obj.v = ((bytes[i + 2] << 8) | bytes[i + 3]) / 100;
+          i += 3;
+          break;
+        case TYPE_ACTUAL_EVAPOTRANSPIRATION_MM:
+          obj.v = ((bytes[i + 2] << 8) | bytes[i + 3]) / 1000;
+          i += 3;
+          break;
+        case TYPE_LATENT_ENERGY_FLUX:
+        case TYPE_HEAT_FLUX:
+        case TYPE_VAPOR_PRESSURE_DEFICIT:
+        case TYPE_ATMOSPHERIC_PRESSURE:
+          obj.v = ((bytes[i + 2] << 8) | bytes[i + 3]) / 10;
           i += 3;
           break;
         case TYPE_UPTIME: // 4 bytes (unsigned integer)
