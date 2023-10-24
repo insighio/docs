@@ -4,3 +4,6 @@
 [submodule "themes/hugo-theme-learn"]
 	path = themes/hugo-theme-learn
 	url = https://github.com/insighio/hugo-theme-learn
+[submodule "externalcontent"]
+	path = externalcontent
+	url = https://gitlab.com/insighiot/insighio-documentation.git
