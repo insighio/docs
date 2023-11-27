@@ -32,7 +32,7 @@ Each sensor data field is composed of one byte for **sensor type**, one byte for
 |    0x03     |                   uptime                   |          0-65535          |     ms      |    -    |           2 bytes            |
 |    0x04     |                 mem_alloc                  |      0 – 4294967295       |      B      |    -    |           4 btyes            |
 |    0x05     |                  mem_free                  |      0 – 4294967295       |      B      |    -    |           4 btyes            |
-|    0x07     |                  current                   |          0-65535          |     mA      |    -    |           2 bytes            |
+|    0x07     |                  current                   |          0-65535          |     mA      |   100   |           2 bytes            |
 |    0x08     |                   vbatt                    |          0-65535          |     mv      |    -    |           2 bytes            |
 |    0x10     |                   light                    |          0-65535          |     lux     |    -    |           2 bytes            |
 |    0x11     |             temperature (Cel)              |     -32767 -> +32767      |     Cel     |   100   |           2 bytes            |
