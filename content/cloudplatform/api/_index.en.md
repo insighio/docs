@@ -10,23 +10,32 @@ Follows a description of supported API calls for 3rd party integrations. All the
 All calls to device data, require the Device ID and Data Channel ID. They can be retrieved through the Device Info view in console.insigh.io or by calling **Get Device List** command described bellow.
 
 API list:
-* [Get Access Token]({{< relref "#get-access-token" >}})
-* [Get Device List]({{< relref "#get-device-list" >}})
-* [Device API]({{< relref "#device-api" >}})
-    * [Create Device]({{< relref "#create-device" >}})
-    * [Get Device]({{< relref "#get-device" >}})
-    * [Update Device]({{< relref "#update-device" >}})
-    * [Delete Device]({{< relref "#delete-device" >}})
-    * [Send command to device]({{< relref "#send-command-to-device" >}})
-* [Measurement API]({{< relref "#measurement-api" >}})
-    * [Get Device Last Measurement]({{< relref "#get-device-last-measurement" >}})
-    * [Query single Device measurement]({{< relref "#query-single-device-measurement" >}})
-    * [Query all Device measurements]({{< relref "#query-all-device-measurements" >}})
 
+- [Access Tokens]({{< relref "#access-tokens" >}})
+  - [Login Access Token]({{< relref "#login-access-token" >}})
+  - [API Access Token]({{< relref "#api-access-token" >}})
+- [Get Device List]({{< relref "#get-device-list" >}})
+- [Device API]({{< relref "#device-api" >}})
+  - [Create Device]({{< relref "#create-device" >}})
+  - [Get Device]({{< relref "#get-device" >}})
+  - [Update Device]({{< relref "#update-device" >}})
+  - [Delete Device]({{< relref "#delete-device" >}})
+  - [Send command to device]({{< relref "#send-command-to-device" >}})
+- [Measurement API]({{< relref "#measurement-api" >}})
+  - [Get Device Last Measurement]({{< relref "#get-device-last-measurement" >}})
+  - [Query single Device measurement]({{< relref "#query-single-device-measurement" >}})
+  - [Query all Device measurements]({{< relref "#query-all-device-measurements" >}})
 
-## Get Access Token
+## Access Tokens
 
-First of, it is necessary to get an Access Token that will be used in each API call. Using the email/password of the use account of console.insigh.io. Each token is valid for 24 hours!
+Access tokens are required in HTTP API calls for authentication. The two most common access tokens types are:
+
+- the login access token, which is issued upon a successful login request and is valid for 24 hours
+- the API access token, which is created upon user request with a configurable expiration date
+
+### Login Access Token
+
+The Login Access Token is issued upon a successful login request using the user email/password on console.insigh.io. Each token is valid for 24 hours!
 
 > URL
 >
@@ -55,17 +64,35 @@ access-control-allow-headers: *
 {"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDQ3Mjg5OTUsImlhdCI6MTY0NDY5Mjk5NSwiaXNzIjoibWFpbmZsdXguYXV0aG4iLCJzdWIiOiJkZW1vQGluc2lnaC5pbyIsInR5cGUiOjB9.iGDX_Z9sL_K5e16-AI_rnVQaZFed4JTTja56SS9o3NU"}
 ```
 
+### API Access Token
+
+The API Access Token is similar to the Login Access token, but it has a configurable expiration date. It can also be set to never expire if the key duration is omitted in the key creation request. The API Access Token can also be revoked. A Login Access Token is required in the request to create a new API access token. Note that the type value in the request should be 3.
+
+> URL
+>
+> https://console.insigh.io/keys
+
+```bash
+curl -s -S -i -X POST -H 'accept: */*' -H "Content-Type: application/json" https://console.insigh.io/keys -d '{"type":3, "token":"<login-access-token>","duration":3600}'
+```
+
+#### output
+
+```bash
+{"id":"6752b6d1-d50d-4b8e-8ca1-b48210be9142","value":"<token>","issued_at":"2023-12-12T08:38:57.320343023Z","expires_at":"2023-12-12T09:38:57.320343023Z"}
+```
+
 ## Get Device List
 
 Get the Device List containing all required IDs for device operation. Each device contains:
 
--   ID (_id_)
--   Key (_key_)
--   Name (_name_)
--   Data Channel (_metadata.dataChannel_)
--   Control Channel (_metadata.controlChannel_)
--   LoRA APP ID (_metadata.lora.appID_) **when applicable**
--   LoRA devEUI (_metadata.lora.devEUI_) **when applicable**
+- ID (_id_)
+- Key (_key_)
+- Name (_name_)
+- Data Channel (_metadata.dataChannel_)
+- Control Channel (_metadata.controlChannel_)
+- LoRA APP ID (_metadata.lora.appID_) **when applicable**
+- LoRA devEUI (_metadata.lora.devEUI_) **when applicable**
 
 > URL
 >
@@ -98,7 +125,7 @@ access-control-allow-headers: *
 
 ### Create Device
 
-Create a new device, optionally passing device parameters/tags, and get back the full details of the created device. 
+Create a new device, optionally passing device parameters/tags, and get back the full details of the created device.
 
 > URL [POST]
 >
@@ -106,8 +133,8 @@ Create a new device, optionally passing device parameters/tags, and get back the
 >
 > POST data:
 >
-> -   **name**: The name of the new device
-> -   **metadata**: a JSON object with device data, settings, tags, etc.
+> - **name**: The name of the new device
+> - **metadata**: a JSON object with device data, settings, tags, etc.
 
 ```bash
 curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/device/create -d '{"name":"<device name>", "metadata": {<JSON object>}}'
@@ -142,7 +169,7 @@ Get the device details of a device that has already been created. The "id" retur
 >
 > https://console.insigh.io/mf-rproxy/device/\<device-id\>
 >
-> -   **device-id**: The device ID in the for of: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+> - **device-id**: The device ID in the for of: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
 ```bash
 curl -s -S -i -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/device/<device-id>"
@@ -179,7 +206,7 @@ In case of success, 200 OK is returned with an empty JSON object.
 >
 > https://console.insigh.io/mf-rproxy/device/\<device-id\>
 >
-> -   **device-id**: The device ID in the for of: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+> - **device-id**: The device ID in the for of: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
 ```bash
 curl -s -S -i -X PUT -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/device/<device-id>" -d '{"name":"<device name>", "metadata": {<JSON object>}}'
@@ -208,7 +235,7 @@ Content-Length: 2
 
 ### Delete Device
 
-Delete the device. __This operation can not be undone__.
+Delete the device. **This operation can not be undone**.
 
 In case of success, 200 OK is returned with an empty JSON object.
 
@@ -216,7 +243,7 @@ In case of success, 200 OK is returned with an empty JSON object.
 >
 > https://console.insigh.io/mf-rproxy/device/\<device-id\>
 >
-> -   **device-id**: The device ID in the for of: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+> - **device-id**: The device ID in the for of: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
 ```bash
 curl -s -S -i -X DELETE -H  "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/device/<device-id>"
@@ -241,10 +268,10 @@ The supported commands by the device is a matter of firmware implementation.
 >
 > POST data:
 >
-> -   **id**: the device ID
-> -   **key**: the device Key
-> -   **control_channel**: the control channel ID assigned to the device
-> -   **data**: the payload to be sent to the device
+> - **id**: the device ID
+> - **key**: the device Key
+> - **control_channel**: the control channel ID assigned to the device
+> - **data**: the payload to be sent to the device
 
 ```bash
 curl -s -S -i -X POST -H  "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/device/request/cmd" -d '{"id":"<device-id>","key":"<device-key>","control_channel":"<control-channel-id>","data":"<command>"}'
@@ -284,8 +311,8 @@ Get device last measurement. Each value holds extra meta info such as time, prot
 >
 > Query Arguments:
 >
-> -   **channel**: Data Channel ID
-> -   **id**: Device ID
+> - **channel**: Data Channel ID
+> - **id**: Device ID
 
 ```bash
 curl -s -S -i -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/device/lastMeasurement?channel=<data-channel-id>&id=<device-id>"
@@ -320,19 +347,19 @@ Each measurement pack uploaded by a device contains multiple individual measurem
 >
 > Query Arguments:
 >
-> -   **name**: (_Required_) the name of the individual measurement (ex. batt)
-> -   **channel**: (_Required_) the data channel ID of the device
-> -   **publisher**: (_Required_) the device ID
-> -   **duration**: query for data produced relative to now timestamp. The data of last hour ("1h"), of last day("1d"), of last 5 minutes (5m) etc. Numeric values express nanoseconds, string values follow the [Influx duration literals](https://docs.influxdata.com/flux/v0.x/spec/lexical-elements/#duration-literals) format
-> -   **startRange**: query values starting from specific timestamp. Numeric values express epoch timestamp in nanoseconds. String values express timestamp in GMT format `1970-01-01T00:00:00Z`
-> -   **endRange**: query values till a specific timestamp. Numeric values express epoch timestamp in nanoseconds. String values express timestamp in GMT format `1970-01-01T00:00:00Z`
-> -   **elapsed**: boolean value to request elapsed time between measurements instead of the measurement values
-> -   **func**: Function to apply to values (accepted values: `mean`, `median`, `count`, `min`, `max`)
-> -   **period**: define the group period expressed in [Influx duration literals](https://docs.influxdata.com/flux/v0.x/spec/lexical-elements/#duration-literals) format
-> -   **limit**: limit the number of the returned values
-> -   **fill**: when group **period** is defined, select how to fill data in case of missing data (accepted values: `null`, `none`, `linear`, `previous`)
-> -   **valueFilter**: apply value filter to accept specific data values (ex. `"value" < 3.6`)
-> -   **valueTransformation**: apply calculation on each returned value (ex. `value * 5`)
+> - **name**: (_Required_) the name of the individual measurement (ex. batt)
+> - **channel**: (_Required_) the data channel ID of the device
+> - **publisher**: (_Required_) the device ID
+> - **duration**: query for data produced relative to now timestamp. The data of last hour ("1h"), of last day("1d"), of last 5 minutes (5m) etc. Numeric values express nanoseconds, string values follow the [Influx duration literals](https://docs.influxdata.com/flux/v0.x/spec/lexical-elements/#duration-literals) format
+> - **startRange**: query values starting from specific timestamp. Numeric values express epoch timestamp in nanoseconds. String values express timestamp in GMT format `1970-01-01T00:00:00Z`
+> - **endRange**: query values till a specific timestamp. Numeric values express epoch timestamp in nanoseconds. String values express timestamp in GMT format `1970-01-01T00:00:00Z`
+> - **elapsed**: boolean value to request elapsed time between measurements instead of the measurement values
+> - **func**: Function to apply to values (accepted values: `mean`, `median`, `count`, `min`, `max`)
+> - **period**: define the group period expressed in [Influx duration literals](https://docs.influxdata.com/flux/v0.x/spec/lexical-elements/#duration-literals) format
+> - **limit**: limit the number of the returned values
+> - **fill**: when group **period** is defined, select how to fill data in case of missing data (accepted values: `null`, `none`, `linear`, `previous`)
+> - **valueFilter**: apply value filter to accept specific data values (ex. `"value" < 3.6`)
+> - **valueTransformation**: apply calculation on each returned value (ex. `value * 5`)
 
 ```bash
 curl -s -S -i -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/measurement/query?publisher=<device-id>&name=<measurement-name>&channel=<device-data-channel>&startRange=<epoc timestamp in nanoseconds>&endRange=<epoc timestamp in nanoseconds>"
@@ -340,13 +367,13 @@ curl -s -S -i -H "Content-Type: application/json" -H "Authorization: <access-tok
 
 #### example
 
--   get vbatt measurements of last 24h
+- get vbatt measurements of last 24h
 
 ```bash
 curl -s -S -i -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/measurement/query?publisher=<device id>&name=vbatt&channel=<device data channel>&duration=24h"
 ```
 
--   get vbatt measurements between 2022-02-01 @ 00:30 and 2022-02-3 @ 23:50
+- get vbatt measurements between 2022-02-01 @ 00:30 and 2022-02-3 @ 23:50
 
 ```bash
 curl -s -S -i -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/measurement/query?publisher=<device id>&name=vbatt&channel=<device data channel>&startRange=2022-02-01T00:30:00Z&endRange=2022-02-03T23:50:00Z"
@@ -381,18 +408,18 @@ Query all device measurements uploaded during the defined period of time.
 >
 > Query Arguments:
 >
-> -   **channel**: (_Required_) the data channel ID of the device
-> -   **publisher**: (_Required_) the device ID
-> -   **duration**: query for data produced relative to now timestamp. The data of last hour ("1h"), of last day("1d"), of last 5 minutes (5m) etc. Numeric values express nanoseconds, string values follow the [Influx duration literals](https://docs.influxdata.com/flux/v0.x/spec/lexical-elements/#duration-literals) format
-> -   **startRange**: query values starting from specific timestamp. Numeric values express epoch timestamp in nanoseconds. String values express timestamp in GMT format `1970-01-01T00:00:00Z`
-> -   **endRange**: query values till a specific timestamp. Numeric values express epoch timestamp in nanoseconds. String values express timestamp in GMT format `1970-01-01T00:00:00Z`
-> -   **elapsed**: boolean value to request elapsed time between measurements instead of the measurement values
-> -   **func**: Function to apply to values (accepted values: `mean`, `median`, `count`, `min`, `max`)
-> -   **period**: define the group period expressed in [Influx duration literals](https://docs.influxdata.com/flux/v0.x/spec/lexical-elements/#duration-literals) format
-> -   **limit**: limit the number of the returned values
-> -   **fill**: when group **period** is defined, select how to fill data in case of missing data (accepted values: `null`, `none`, `linear`, `previous`)
-> -   **valueFilter**: apply value filter to accept specific data values (ex. `"value" < 3.6`)
-> -   **valueTransformation**: apply calculation on each returned value (ex. `value * 5`)
+> - **channel**: (_Required_) the data channel ID of the device
+> - **publisher**: (_Required_) the device ID
+> - **duration**: query for data produced relative to now timestamp. The data of last hour ("1h"), of last day("1d"), of last 5 minutes (5m) etc. Numeric values express nanoseconds, string values follow the [Influx duration literals](https://docs.influxdata.com/flux/v0.x/spec/lexical-elements/#duration-literals) format
+> - **startRange**: query values starting from specific timestamp. Numeric values express epoch timestamp in nanoseconds. String values express timestamp in GMT format `1970-01-01T00:00:00Z`
+> - **endRange**: query values till a specific timestamp. Numeric values express epoch timestamp in nanoseconds. String values express timestamp in GMT format `1970-01-01T00:00:00Z`
+> - **elapsed**: boolean value to request elapsed time between measurements instead of the measurement values
+> - **func**: Function to apply to values (accepted values: `mean`, `median`, `count`, `min`, `max`)
+> - **period**: define the group period expressed in [Influx duration literals](https://docs.influxdata.com/flux/v0.x/spec/lexical-elements/#duration-literals) format
+> - **limit**: limit the number of the returned values
+> - **fill**: when group **period** is defined, select how to fill data in case of missing data (accepted values: `null`, `none`, `linear`, `previous`)
+> - **valueFilter**: apply value filter to accept specific data values (ex. `"value" < 3.6`)
+> - **valueTransformation**: apply calculation on each returned value (ex. `value * 5`)
 
 ```bash
 curl -s -S -i --cacert ~/console-insighio.crt -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/measurement/queryPack?publisher=<device-id>&channel=<data-channel-id>&duration=24h"
