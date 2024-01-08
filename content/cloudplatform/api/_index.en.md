@@ -84,7 +84,7 @@ curl -s -S -i -X POST -H 'accept: */*' -H "Content-Type: application/json" https
 #### output
 
 ```bash
-{"id":"6752b6d1-d50d-4b8e-8ca1-b48210be9142","value":"<token>","issued_at":"2023-12-12T08:38:57.320343023Z","expires_at":"2023-12-12T09:38:57.320343023Z"}
+{"id":"6752b6d1-d50d-4b8e-8ca1-b48210be9142","name":"api token name","value":"<token>","issued_at":"2023-12-12T08:38:57.320343023Z","expires_at":"2023-12-12T09:38:57.320343023Z"}
 ```
 
 ## Get Device List
