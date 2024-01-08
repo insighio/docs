@@ -66,14 +66,19 @@ access-control-allow-headers: *
 
 ### API Access Token
 
-The API Access Token is similar to the Login Access token, but it has a configurable expiration date. It can also be set to never expire if the key duration is omitted in the key creation request. The API Access Token can also be revoked. A Login Access Token is required in the request to create a new API access token. Note that the type value in the request should be 3.
+The API Access Token is similar to the Login Access token, but it has a configurable expiration date. The API Access Token can also be revoked. To create an API Access Token, the following information is required:
+
+- A token name
+- A token type (always equal to 3)
+- A login access token
+- The token's duration in seconds (omit if it should never expire)
 
 > URL
 >
 > https://console.insigh.io/keys
 
 ```bash
-curl -s -S -i -X POST -H 'accept: */*' -H "Content-Type: application/json" https://console.insigh.io/keys -d '{"type":3, "token":"<login-access-token>","duration":3600}'
+curl -s -S -i -X POST -H 'accept: */*' -H "Content-Type: application/json" https://console.insigh.io/keys -d '{"name":"<api-access-token-name>", "type":3, "token":"<login-access-token>","duration":3600}'
 ```
 
 #### output
