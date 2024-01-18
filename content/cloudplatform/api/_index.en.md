@@ -41,11 +41,13 @@ The Login Access Token is issued upon a successful login request using the user 
 >
 > https://console.insigh.io/mf-rproxy/tokens
 
+#### Example
+
 ```bash
 curl -s -S -i -X POST -H "Content-Type: application/json" https://console.insigh.io/mf-rproxy/tokens -d '{"email":"<user-email>", "password":"<user-password>"}'
 ```
 
-#### output
+#### Output
 
 ```bash
 HTTP/2 201
@@ -77,11 +79,13 @@ The API Access Token is similar to the Login Access token, but it has a configur
 >
 > https://console.insigh.io/keys
 
+#### Example
+
 ```bash
 curl -s -S -i -X POST -H 'accept: */*' -H "Content-Type: application/json" https://console.insigh.io/keys -d '{"name":"<api-access-token-name>", "type":3, "token":"<login-access-token>","duration":3600}'
 ```
 
-#### output
+#### Output
 
 ```bash
 {"id":"6752b6d1-d50d-4b8e-8ca1-b48210be9142","name":"api token name","value":"<token>","issued_at":"2023-12-12T08:38:57.320343023Z","expires_at":"2023-12-12T09:38:57.320343023Z"}
@@ -103,11 +107,13 @@ Get the Device List containing all required IDs for device operation. Each devic
 >
 > https://console.insigh.io/mf-rproxy/device/list
 
+#### Example
+
 ```bash
 curl -s -S -i -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/device/list
 ```
 
-#### output
+#### Output
 
 ```bash
 HTTP/2 200
@@ -141,18 +147,20 @@ Create a new device, optionally passing device parameters/tags, and get back the
 > - **name**: The name of the new device
 > - **metadata**: a JSON object with device data, settings, tags, etc.
 
+#### Example
+
 ```bash
 curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/device/create -d '{"name":"<device name>", "metadata": {<JSON object>}}'
 ```
 
-#### input example
+#### Input Example
 
 ```bash
 curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTgxMTIxNDQsImlhdCI6MTY1ODA3NjE0NCwiaXNzIjoibWFpbmZsdXguYXV0aG4iLCJzdWIiOiJkZW1vQGluc2lnaC5pbyIsInR5cGUiOjB9.auXohlIbMHi8mRA_995kjSB-PABPBtH-btIEwUNyVrw" https://console.insigh.io/mf-rproxy/device/create -d '{"name":"apitest", "metadata": {"deviceId": "100.123.123.312", "status":"disabled", "tags": {"company": "northen lights", "hw_version": "4.0", "facility_id": 929}}}'
 
 ```
 
-#### output
+#### Output
 
 ```bash
 HTTP/1.1 200 OK
@@ -176,18 +184,20 @@ Get the device details of a device that has already been created. The "id" retur
 >
 > - **device-id**: The device ID in the for of: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
+#### Example
+
 ```bash
 curl -s -S -i -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/device/<device-id>"
 ```
 
-#### input example
+#### Input Example
 
 ```bash
 curl -s -S -i -H "Content-Type: application/json" -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTgxMTIxNDQsImlhdCI6MTY1ODA3NjE0NCwiaXNzIjoibWFpbmZsdXguYXV0aG4iLCJzdWIiOiJkZW1vQGluc2lnaC5pbyIsInR5cGUiOjB9.auXohlIbMHi8mRA_995kjSB-PABPBtH-btIEwUNyVrw" https://console.insigh.io/mf-rproxy/device/e27bc4f5-3278-400a-86af-5045b04efa0c
 
 ```
 
-#### output
+#### Output
 
 ```bash
 HTTP/1.1 200 OK
@@ -213,18 +223,20 @@ In case of success, 200 OK is returned with an empty JSON object.
 >
 > - **device-id**: The device ID in the for of: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
+#### Example
+
 ```bash
 curl -s -S -i -X PUT -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/device/<device-id>" -d '{"name":"<device name>", "metadata": {<JSON object>}}'
 ```
 
-#### input example
+#### Input Example
 
 ```bash
 curl -s -S -i -X PUT -H "Content-Type: application/json" -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTgxMTIxNDQsImlhdCI6MTY1ODA3NjE0NCwiaXNzIjoibWFpbmZsdXguYXV0aG4iLCJzdWIiOiJkZW1vQGluc2lnaC5pbyIsInR5cGUiOjB9.auXohlIbMHi8mRA_995kjSB-PABPBtH-btIEwUNyVrw" https://console.insigh.io/mf-rproxy/device/e27bc4f5-3278-400a-86af-5045b04efa0c -d '{"name":"apitest-updated", "metadata": {"deviceId": "1234.1234.1234.1234", "status":"active", "tags": {"company": "northen lights", "hw_version": "4.1", "facility_id": 929}}}'
 
 ```
 
-#### output
+#### Output
 
 ```bash
 HTTP/1.1 200 OK
@@ -250,11 +262,13 @@ In case of success, 200 OK is returned with an empty JSON object.
 >
 > - **device-id**: The device ID in the for of: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
+#### Example
+
 ```bash
 curl -s -S -i -X DELETE -H  "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/device/<device-id>"
 ```
 
-#### input example
+#### Input Example
 
 ```bash
 curl -s -S -i -X DELETE -H "Content-Type: application/json" -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTgxMTIxNDQsImlhdCI6MTY1ODA3NjE0NCwiaXNzIjoibWFpbmZsdXguYXV0aG4iLCJzdWIiOiJkZW1vQGluc2lnaC5pbyIsInR5cGUiOjB9.auXohlIbMHi8mRA_995kjSB-PABPBtH-btIEwUNyVrw" https://console.insigh.io/mf-rproxy/device/9f82e9d9-6070-47fb-8ce2-10d86cfab514
@@ -278,11 +292,13 @@ The supported commands by the device is a matter of firmware implementation.
 > - **control_channel**: the control channel ID assigned to the device
 > - **data**: the payload to be sent to the device
 
+#### Example
+
 ```bash
 curl -s -S -i -X POST -H  "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/device/request/cmd" -d '{"id":"<device-id>","key":"<device-key>","control_channel":"<control-channel-id>","data":"<command>"}'
 ```
 
-#### input example
+#### Input Example
 
 ```bash
 curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTgxMTIxNDQsImlhdCI6MTY1ODA3NjE0NCwiaXNzIjoibWFpbmZsdXguYXV0aG4iLCJzdWIiOiJkZW1vQGluc2lnaC5pbyIsInR5cGUiOjB9.auXohlIbMHi8mRA_995kjSB-PABPBtH-btIEwUNyVrw" "https://console.insigh.io/mf-rproxy/device/request/cmd" -d '{"id":"e27bc4f5-3278-400a-86af-5045b04efa0c","key":"a0f8ccb5-934b-4a73-99fa-9e1d95c8b197","control_channel":"e0c8cbb0-1234-dae3-f9a1-91ad4538bc9c","data":"reboot"}'
@@ -290,7 +306,7 @@ curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: eyJ
 
 ```
 
-#### output
+#### Output
 
 ```bash
 HTTP/1.1 200 OK
@@ -323,7 +339,7 @@ Get device last measurement. Each value holds extra meta info such as time, prot
 curl -s -S -i -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/device/lastMeasurement?channel=<data-channel-id>&id=<device-id>"
 ```
 
-#### output
+#### Output
 
 ```bash
 HTTP/2 200
@@ -342,7 +358,7 @@ access-control-allow-headers: *
 [{"time":"2021-06-01T10:06:02.533Z","name":"10be24cc37fc-adc_ap1_volt","protocol":"coap","publisher":"03196209-4ab9-4114-f121-1e1f4bcc698d","stringValue":null,"subtopic":"03196209-4ab9-4114-f121-1e1f4bcc698d","unit":"mV","updateTime":"0","value":143},{"time":"2021-06-01T10:06:02.533Z","name":"10be24cc37fc-board_humidity","protocol":"coap","publisher":"03196209-4ab9-4114-f121-1e1f4bcc698d","stringValue":null,"subtopic":"03196209-4ab9-4114-f121-1e1f4bcc698d","unit":"%RH","updateTime":"0","value":24.04},{"time":"2021-06-01T10:06:02.533Z","name":"10be24cc37fc-board_status","protocol":"coap","publisher":"03196209-4ab9-4114-f121-1e1f4bcc698d","stringValue":"running","subtopic":"03196209-4ab9-4114-f121-1e1f4bcc698d","unit":null,"updateTime":"0"}]
 ```
 
-### Query single Device measurement
+### Query Single Device Measurement
 
 Each measurement pack uploaded by a device contains multiple individual measurements (ex. vbatt, uptime). Through this call, it is able to retrieve historic data regarding an individual measurement.
 
@@ -366,11 +382,11 @@ Each measurement pack uploaded by a device contains multiple individual measurem
 > - **valueFilter**: apply value filter to accept specific data values (ex. `"value" < 3.6`)
 > - **valueTransformation**: apply calculation on each returned value (ex. `value * 5`)
 
+#### Examples
+
 ```bash
 curl -s -S -i -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/measurement/query?publisher=<device-id>&name=<measurement-name>&channel=<device-data-channel>&startRange=<epoc timestamp in nanoseconds>&endRange=<epoc timestamp in nanoseconds>"
 ```
-
-#### example
 
 - get vbatt measurements of last 24h
 
@@ -384,7 +400,7 @@ curl -s -S -i -H "Content-Type: application/json" -H "Authorization: <access-tok
 curl -s -S -i -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/measurement/query?publisher=<device id>&name=vbatt&channel=<device data channel>&startRange=2022-02-01T00:30:00Z&endRange=2022-02-03T23:50:00Z"
 ```
 
-#### output
+#### Output
 
 ```bash
 HTTP/2 200
@@ -403,7 +419,7 @@ access-control-allow-headers: *
 {"name":"vbatt","values":[{"time":"2022-02-13T05:19:46.000Z","value":3532},{"time":"2022-02-13T05:29:43.000Z","value":3532},{"time":"2022-02-13T08:08:46.000Z","value":3502},{"time":"2022-02-13T08:18:45.000Z","value":3500},{"time":"2022-02-13T08:28:38.000Z","value":3498},{"time":"2022-02-13T08:38:35.000Z","value":3496},{"time":"2022-02-13T08:48:34.000Z","value":3494},{"time":"2022-02-13T08:58:28.000Z","value":3494},{"time":"2022-02-13T09:08:24.000Z","value":3490}]}
 ```
 
-### Query all Device measurements
+### Query All Device Measurements
 
 Query all device measurements uploaded during the defined period of time.
 
@@ -427,13 +443,13 @@ Query all device measurements uploaded during the defined period of time.
 > - **valueTransformation**: apply calculation on each returned value (ex. `value * 5`)
 > - **format**: the response format. Supported values: `json` and `csv`. Default is `json`. If `csv` is used, the data is returned as an attached CSV file in the response.
 
-#### JSON request example
+#### Example (JSON format)
 
 ```bash
 curl -s -S -i -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/measurement/queryPack?publisher=<device-id>&channel=<data-channel-id>&duration=24h"
 ```
 
-#### JSON response output
+#### Output
 
 ```bash
 HTTP/1.1 200 OK
@@ -447,7 +463,7 @@ Content-Length: 13450
 [{"time":"1643676909624","batt":3.439,"dr":0,"freq":868500000,"indoor_rh":108.11,"indoor_temp":8.82,"reset_cause":3,"rssi":-99,"snr":-2.5,"temp":8.620000000000001,"vec5_01":633,"vec5_02":619,"vec5_03":586},{"time":"1643680502817","batt":3.44,"dr":0,"freq":868100000,"indoor_rh":108.56,"indoor_temp":9.39,"reset_cause":3,"rssi":-101,"snr":-11,"temp":8.68,"vec5_01":634,"vec5_02":620,"vec5_03":588}]
 ```
 
-#### CSV request example
+#### Example (CSV format)
 
 Use the -o option to save the CSV data in a file.
 
