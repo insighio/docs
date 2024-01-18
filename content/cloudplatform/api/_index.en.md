@@ -414,7 +414,7 @@ Query all device measurements uploaded during the defined period of time.
 > Query Arguments:
 >
 > - **channel**: (_Required_) the data channel ID of the device
-> - **publisher**: (_Required_) the device ID
+> - **publisher**: the device ID. If omitted, the endpoint returns data for all the channel's devices.
 > - **duration**: query for data produced relative to now timestamp. The data of last hour ("1h"), of last day("1d"), of last 5 minutes (5m) etc. Numeric values express nanoseconds, string values follow the [Influx duration literals](https://docs.influxdata.com/flux/v0.x/spec/lexical-elements/#duration-literals) format
 > - **startRange**: query values starting from specific timestamp. Numeric values express epoch timestamp in nanoseconds. String values express timestamp in GMT format `1970-01-01T00:00:00Z`
 > - **endRange**: query values till a specific timestamp. Numeric values express epoch timestamp in nanoseconds. String values express timestamp in GMT format `1970-01-01T00:00:00Z`
@@ -425,12 +425,15 @@ Query all device measurements uploaded during the defined period of time.
 > - **fill**: when group **period** is defined, select how to fill data in case of missing data (accepted values: `null`, `none`, `linear`, `previous`)
 > - **valueFilter**: apply value filter to accept specific data values (ex. `"value" < 3.6`)
 > - **valueTransformation**: apply calculation on each returned value (ex. `value * 5`)
+> - **format**: the response format. Supported values: `json` and `csv`. Default is `json`. If `csv` is used, the data is returned as an attached CSV file in the response.
+
+#### JSON request example
 
 ```bash
-curl -s -S -i --cacert ~/console-insighio.crt -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/measurement/queryPack?publisher=<device-id>&channel=<data-channel-id>&duration=24h"
+curl -s -S -i -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/measurement/queryPack?publisher=<device-id>&channel=<data-channel-id>&duration=24h"
 ```
 
-#### output
+#### JSON response output
 
 ```bash
 HTTP/1.1 200 OK
@@ -442,4 +445,12 @@ Keep-Alive: timeout=5
 Content-Length: 13450
 
 [{"time":"1643676909624","batt":3.439,"dr":0,"freq":868500000,"indoor_rh":108.11,"indoor_temp":8.82,"reset_cause":3,"rssi":-99,"snr":-2.5,"temp":8.620000000000001,"vec5_01":633,"vec5_02":619,"vec5_03":586},{"time":"1643680502817","batt":3.44,"dr":0,"freq":868100000,"indoor_rh":108.56,"indoor_temp":9.39,"reset_cause":3,"rssi":-101,"snr":-11,"temp":8.68,"vec5_01":634,"vec5_02":620,"vec5_03":588}]
+```
+
+#### CSV request example
+
+Use the -o option to save the CSV data in a file.
+
+```bash
+curl -o export.csv -S -H "Authorization: <access-token>" 'https://console.insigh.io/mf-rproxy/measurement/queryPack?channel=<data-channel-id>&duration=24h&format=csv'
 ```
