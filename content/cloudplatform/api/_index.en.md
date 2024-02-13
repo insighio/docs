@@ -21,6 +21,7 @@ API list:
   - [Update Device]({{< relref "#update-device" >}})
   - [Delete Device]({{< relref "#delete-device" >}})
   - [Send command to device]({{< relref "#send-command-to-device" >}})
+- [Get Location List]({{< relref "#get-location-list" >}})
 - [Measurement API]({{< relref "#measurement-api" >}})
   - [Get Device Last Measurement]({{< relref "#get-device-last-measurement" >}})
   - [Query single Device measurement]({{< relref "#query-single-device-measurement" >}})
@@ -110,7 +111,7 @@ Get the Device List containing all required IDs for device operation. Each devic
 #### Example
 
 ```bash
-curl -s -S -i -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/device/list
+curl -s -S -i -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/device/list"
 ```
 
 #### Output
@@ -318,6 +319,38 @@ Keep-Alive: timeout=5
 Content-Length: 2
 
 {}
+```
+
+## Get Location List
+
+Get the Location List containing all required info per location. Each location contains:
+
+- ID (_id_)
+- Name (_name_)
+- Address (_address_)
+- Comments (_comments_)
+- Coordinates (_coordinates_)
+
+> URL
+>
+> https://console.insigh.io/mf-rproxy//locations/list
+
+```bash
+curl -s -S -i -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/locations/list"
+```
+
+#### output
+
+```bash
+HTTP/1.1 200 OK
+Content-Type: application/json
+Access-Control-Allow-Origin: *
+Date: Tue, 13 Feb 2024 11:53:32 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+Content-Length: 298
+
+[{"address":"30 Arachovis Street\n10681, Athens\nGreece","comments":"","gps_coord":{"lat":37.9851746,"lng":23.7343275},"id":"549ee266632","name":"Main Office"},{"address":"Acropolis, Athens 105 58","comments":"","gps_coord":{"lat":37.971627,"lng":23.7253098},"id":"49ee2666328","name":"Acropolis"}]
 ```
 
 ## Measurement API
