@@ -333,7 +333,7 @@ Get the Location List containing all required info per location. Each location c
 
 > URL
 >
-> https://console.insigh.io/mf-rproxy//locations/list
+> https://console.insigh.io/mf-rproxy/locations/list
 
 ```bash
 curl -s -S -i -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/locations/list"
