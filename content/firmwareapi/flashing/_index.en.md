@@ -24,9 +24,11 @@ Instructions on how to install **esptool** in all supported platforms can be fou
 
 ## Installation
 
-1. Power on device and boot into download mode
+1. If powered on, power it off for ~10 seconds.
 
-   - _hold_ "**boot**" button and _click_ "**reset**" button. Ready to download the binary.
+1. Power on device and boot into download mode
+   - turn switch to "**on**", _hold_ "**boot**" button and _click_ "**reset**" button. Ready to download the binary.
+   - **alternative method:** _hold_ "**boot**" button and then turn switch to "**on**" (or press external power button)
      ![TAT image](/images/device-download-mode.png?width=30pc)
 
 1. Connect insigh.io board to PC
