@@ -130,7 +130,7 @@ access-control-allow-origin: *
 access-control-allow-methods: *
 access-control-allow-headers: *
 
-{"total":2,"offset":0,"limit":10,"things":[{"id":"03196209-4ab9-4114-f121-1e1f4bcc698d","name":"device1","key":"e712225c-696d-5925-b227-1222f67708a","metadata":{"dataChannel":"ea9ebfc4-9da5-4eaa-8fd0-31e0ad4b3c77","controlChannel":"11927d38-6445-5b66-78c3-92e2001123ab"}},{"id":"17637322-4415-44d0-6e7e-6292b32ba4b5","name":"deviceLora","key":"5b01513a-4a0c-4b8d-ab63-0c424d7fecef","metadata":{"lora":{"appID":"3","devEUI":"a0b3c54d9edbfc55"},"dataChannel":"ea9ebfc4-9da5-4eaa-8fd0-31e0ad4b3c77","controlChannel":"11927d38-6445-5b66-78c3-92e2001123ab"}}]}
+[{"id":"03196209-4ab9-4114-f121-1e1f4bcc698d","name":"device1","key":"e712225c-696d-5925-b227-1222f67708a","metadata":{"dataChannel":"ea9ebfc4-9da5-4eaa-8fd0-31e0ad4b3c77","controlChannel":"11927d38-6445-5b66-78c3-92e2001123ab"}},{"id":"17637322-4415-44d0-6e7e-6292b32ba4b5","name":"deviceLora","key":"5b01513a-4a0c-4b8d-ab63-0c424d7fecef","metadata":{"lora":{"appID":"3","devEUI":"a0b3c54d9edbfc55"},"dataChannel":"ea9ebfc4-9da5-4eaa-8fd0-31e0ad4b3c77","controlChannel":"11927d38-6445-5b66-78c3-92e2001123ab"}}]
 ```
 
 ## Device API
