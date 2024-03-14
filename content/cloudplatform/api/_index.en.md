@@ -151,7 +151,7 @@ Create a new device, optionally passing device parameters/tags, and get back the
 #### Example
 
 ```bash
-curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/device/create -d '{"name":"<device name>", "metadata": {<JSON object>}}'
+curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/device/create" -d '{"name":"<device name>", "metadata": {<JSON object>}}'
 ```
 
 #### Input Example
