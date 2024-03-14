@@ -172,7 +172,7 @@ Connection: keep-alive
 Keep-Alive: timeout=5
 Content-Length: 379
 
-{"id":"e27bc4f5-3278-400a-86af-5045b04efa0c","name":"apitest","key":"a0f8ccb5-934b-4a73-99fa-9e1d95c8b197","metadata":{"name":"apitest", "metadata": {"deviceId": "100.123.123.312", "status":"disabled", "tags": {"company": "northen lights", "hw_version": "4.0", "facility_id": 929}}},"status":"Inactive"}
+{"id":"e27bc4f5-3278-400a-86af-5045b04efa0c","name":"apitest","key":"a0f8ccb5-934b-4a73-99fa-9e1d95c8b197","metadata": {"deviceId": "100.123.123.312", "status":"disabled", "tags": {"company": "northen lights", "hw_version": "4.0", "facility_id": 929}},"status":"Inactive"}
 ```
 
 ### Get Device
