@@ -24,7 +24,6 @@ Follows the LoRA payload decoder that transforms received bytes into SenML-forma
 
 LoRA/Satellite payload decoder for insigh.io firmware
 */
-
 var LOCATION_DEFAULT = 0x00
 var LOCATION_INTERNAL_BOARD = 0x10
 var LOCATION_INTERNAL_CPU = 0x11
@@ -37,6 +36,11 @@ var LOCATION_SDI12 = 0x50
 var LOCATION_4_20 = 0x60
 var LOCATION_MODEM = 0x70
 var LOCATION_GPS = 0x71
+var LOCATION_WEATHER_STATION = 0x80
+var LOCATION_RAIN_GAUGE = 0x81
+var LOCATION_SOLAR_SENSOR = 0x82
+var LOCATION_PULSE_COUNTER = 0x83
+var LOCATION_WEATHER_STATION_WIND = 0x84
 
 var TYPE_DEVICE_ID = 0x01
 var TYPE_RESET_CAUSE = 0x02
@@ -68,6 +72,15 @@ var TYPE_LOG_RATIO = 0x23
 var TYPE_VAPOR_PRESSURE_DEFICIT = 0x24
 var TYPE_ATMOSPHERIC_PRESSURE = 0x25
 var TYPE_TEMPERATURE_FAH = 0x26
+var TYPE_DEVIATION = 0x27
+var TYPE_RADIATION = 0x28
+var TYPE_COUNT = 0x29
+var TYPE_HEIGHT = 0x2a
+var TYPE_PERIOD = 0x2b
+var TYPE_NOISE = 0x2c
+var TYPE_DIRECTION_DEG = 0x2d
+var TYPE_DIRECTION_ID = 0x2e
+var TYPE_SPEED = 0x2f
 var TYPE_FORMULA = 0x30
 var TYPE_LORA_JOIN_DUR = 0xc1
 var TYPE_GPS_HDOP = 0xd0
@@ -118,6 +131,15 @@ function init() {
   typeMap[TYPE_GPS_HDOP] = { name: "hdop", unit: "" }
   typeMap[TYPE_GPS_LAT] = { name: "lat", unit: "" }
   typeMap[TYPE_GPS_LON] = { name: "lon", unit: "" }
+  typeMap[TYPE_DEVIATION] = { name: "deviation", unit: "" }
+  typeMap[TYPE_RADIATION] = { name: "radiation", unit: "" }
+  typeMap[TYPE_COUNT] = { name: "count", unit: "count" }
+  typeMap[TYPE_HEIGHT] = { name: "height", unit: "mm" }
+  typeMap[TYPE_PERIOD] = { name: "period", unit: "s" }
+  typeMap[TYPE_NOISE] = { name: "noise", unit: "db" }
+  typeMap[TYPE_DIRECTION_DEG] = { name: "direction_d", unit: "deg" }
+  typeMap[TYPE_DIRECTION_ID] = { name: "direction", unit: "" }
+  typeMap[TYPE_SPEED] = { name: "speed", unit: "m/s" }
 }
 
 function bin32dec(bin) {
@@ -223,6 +245,19 @@ function getLocationName(locationId) {
         default:
           return "modem"
       }
+    case LOCATION_WEATHER_STATION:
+      switch (subLocation) {
+        case LOCATION_PULSE_COUNTER & 0x0f:
+          return "pcnt"
+        case LOCATION_RAIN_GAUGE & 0x0f:
+          return "rain_gauge"
+        case LOCATION_SOLAR_SENSOR & 0x0f:
+          return "solar"
+        case LOCATION_WEATHER_STATION_WIND & 0x0f:
+          return "wth_wind"
+        default:
+          return "wth"
+      }
     default:
       //console.log("location not decoded: ", locationId, ", ", mainLocation, ", ", subLocation)
       return "undefined"
@@ -271,20 +306,24 @@ function DecodeInsighioPackage(bytes, convertBytesFromBase64 = true) {
       var processed = true
       switch (bytes[i]) {
         case TYPE_RESET_CAUSE: // 1 byte (unsigned char)
+        case TYPE_DIRECTION_ID:
           obj.v = bytes[i + 2]
           i += 2
           break
-        case TYPE_GPS_HDOP: // 1 byte (unsigned char)
+        case TYPE_GPS_HDOP: // 1 byte (unsigned char) / 10
           obj.v = bytes[i + 2] / 10
           i += 2
           break
         case TYPE_TEMPERATURE_FAH:
-        case TYPE_TEMPERATURE_CEL: // 2 bytes (signed short)
+        case TYPE_TEMPERATURE_CEL:
+        case TYPE_DEVIATION:
+        case TYPE_SPEED: // 2 bytes (signed short) / 100
           var temp = (bytes[i + 2] << 8) | bytes[i + 3]
           obj.v = bin16dec(temp) / 100
           i += 3
           break
         case TYPE_VBATT: // 2 bytes (unsigned short)
+        case TYPE_CURRENT:
         case TYPE_LIGHT_LUX:
         case TYPE_LORA_JOIN_DUR:
         case TYPE_VOLTAGE:
@@ -294,8 +333,19 @@ function DecodeInsighioPackage(bytes, convertBytesFromBase64 = true) {
           obj.v = (bytes[i + 2] << 8) | bytes[i + 3]
           i += 3
           break
+        case TYPE_LATENT_ENERGY_FLUX:
+        case TYPE_HEAT_FLUX:
+        case TYPE_VAPOR_PRESSURE_DEFICIT:
+        case TYPE_ATMOSPHERIC_PRESSURE:
+        case TYPE_COUNT:
+        case TYPE_HEIGHT:
+        case TYPE_PERIOD:
+        case TYPE_NOISE:
+        case TYPE_DIRECTION_DEG:
+          obj.v = ((bytes[i + 2] << 8) | bytes[i + 3]) / 10
+          i += 3
+          break
         case TYPE_HUMIDITY: // 2 bytes (unsigned short)
-        case TYPE_CURRENT:
         case TYPE_CO2:
         case TYPE_GAS:
         case TYPE_VWC:
@@ -309,13 +359,6 @@ function DecodeInsighioPackage(bytes, convertBytesFromBase64 = true) {
           break
         case TYPE_ACTUAL_EVAPOTRANSPIRATION_MM:
           obj.v = ((bytes[i + 2] << 8) | bytes[i + 3]) / 1000
-          i += 3
-          break
-        case TYPE_LATENT_ENERGY_FLUX:
-        case TYPE_HEAT_FLUX:
-        case TYPE_VAPOR_PRESSURE_DEFICIT:
-        case TYPE_ATMOSPHERIC_PRESSURE:
-          obj.v = ((bytes[i + 2] << 8) | bytes[i + 3]) / 10
           i += 3
           break
         case TYPE_UPTIME: // 4 bytes (unsigned integer)
