@@ -98,7 +98,7 @@ function init() {
   typeMap[TYPE_GAS] = { name: "gas", unit: "Ohm" }
   typeMap[TYPE_GENERIC] = { name: "gen", unit: "" }
   typeMap[TYPE_HEAT_VELOCITY] = { name: "hv", unit: "cm/h" }
-  typeMap[TYPE_HUMIDITY] = { name: "humidity", unit: "%RH" }
+  typeMap[TYPE_HUMIDITY] = { name: "hum", unit: "%RH" }
   typeMap[TYPE_LOG_RATIO] = { name: "log_rt", unit: "" }
   typeMap[TYPE_FORMULA] = { name: "formula", unit: "" }
   typeMap[TYPE_LIGHT_LUX] = { name: "light_lux", unit: "lx" }
@@ -122,8 +122,8 @@ function init() {
   typeMap[TYPE_RESET_CAUSE] = { name: "reset_cause", unit: "" }
   typeMap[TYPE_SAP_FLOW] = { name: "sap_flow", unit: "l/h" }
   typeMap[TYPE_SOIL_EC] = { name: "soil_ec", unit: "uS/cm" }
-  typeMap[TYPE_TEMPERATURE_CEL] = { name: "temperature", unit: "Cel" }
-  typeMap[TYPE_TEMPERATURE_FAH] = { name: "temperature", unit: "f" }
+  typeMap[TYPE_TEMPERATURE_CEL] = { name: "temp", unit: "Cel" }
+  typeMap[TYPE_TEMPERATURE_FAH] = { name: "temp", unit: "f" }
   typeMap[TYPE_UPTIME] = { name: "uptime", unit: "ms" }
   typeMap[TYPE_VBATT] = { name: "vbatt", unit: "mV" }
   typeMap[TYPE_VOLTAGE] = { name: "voltage", unit: "mV" }
@@ -329,6 +329,7 @@ function DecodeInsighioPackage(bytes, convertBytesFromBase64 = true) {
         case TYPE_VOLTAGE:
         case TYPE_MILLIMETER:
         case TYPE_WATTS_PER_SQUARE_METER:
+        case TYPE_RADIATION:
         case TYPE_GRAMS_OF_WATER_VAPOUR_PER_CUBIC_METRE_OF_AIR:
           obj.v = (bytes[i + 2] << 8) | bytes[i + 3]
           i += 3
