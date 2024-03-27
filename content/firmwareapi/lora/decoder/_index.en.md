@@ -22,7 +22,7 @@ Follows the LoRA payload decoder that transforms received bytes into SenML-forma
                             |  $$$$$$/
                             \______/
 
-LoRA/Satellite payload decoder for insigh.io firmware
+LoRA/Satellite payload decoder for insigh.io firmware (v2.0)
 */
 var LOCATION_DEFAULT = 0x00
 var LOCATION_INTERNAL_BOARD = 0x10
@@ -91,66 +91,72 @@ var TYPE_GENERIC_MAX = 0xef
 
 var typeMap = {}
 
-function init() {
-  typeMap[TYPE_CO2] = { name: "co2", unit: "ppm" }
-  typeMap[TYPE_CURRENT] = { name: "current", unit: "mA" }
-  typeMap[TYPE_DEVICE_ID] = { name: "device_id", unit: "" }
-  typeMap[TYPE_GAS] = { name: "gas", unit: "Ohm" }
-  typeMap[TYPE_GENERIC] = { name: "gen", unit: "" }
-  typeMap[TYPE_HEAT_VELOCITY] = { name: "hv", unit: "cm/h" }
-  typeMap[TYPE_HUMIDITY] = { name: "hum", unit: "%RH" }
-  typeMap[TYPE_LOG_RATIO] = { name: "log_rt", unit: "" }
-  typeMap[TYPE_FORMULA] = { name: "formula", unit: "" }
-  typeMap[TYPE_LIGHT_LUX] = { name: "light_lux", unit: "lx" }
-  typeMap[TYPE_LORA_JOIN_DUR] = { name: "lora_join_dur", unit: "ms" }
-  typeMap[TYPE_MEM_ALLOC] = { name: "mem_alloc", unit: "B" }
-  typeMap[TYPE_MEM_FREE] = { name: "mem_free", unit: "B" }
-  typeMap[TYPE_PORE_WATER_CONDUCT] = {
-    name: "pore_water_conduct",
-    unit: "uS/cm",
-  }
-  typeMap[TYPE_MILLIMETER] = { name: "millimeter", unit: "mm" }
-  typeMap[TYPE_WATTS_PER_SQUARE_METER] = { name: "wpsqm", unit: "W/m2" }
-  typeMap[TYPE_GRAMS_OF_WATER_VAPOUR_PER_CUBIC_METRE_OF_AIR] = { name: "water_vapour_sq_air", unit: "g.m3" }
-  typeMap[TYPE_ACTUAL_EVAPOTRANSPIRATION_MM] = { name: "et", unit: "mm" }
-  typeMap[TYPE_LATENT_ENERGY_FLUX] = { name: "le", unit: "W/m2" }
-  typeMap[TYPE_HEAT_FLUX] = { name: "h", unit: "W/m2" }
-  typeMap[TYPE_VAPOR_PRESSURE_DEFICIT] = { name: "vpd", unit: "hPa" }
-  typeMap[TYPE_ATMOSPHERIC_PRESSURE] = { name: "pa", unit: "hPa" }
-  typeMap[TYPE_PRESSURE] = { name: "pressure", unit: "hPa" }
-  typeMap[TYPE_REL_PERM] = { name: "rel_perm", unit: "" }
-  typeMap[TYPE_RESET_CAUSE] = { name: "reset_cause", unit: "" }
-  typeMap[TYPE_SAP_FLOW] = { name: "sap_flow", unit: "l/h" }
-  typeMap[TYPE_SOIL_EC] = { name: "soil_ec", unit: "uS/cm" }
-  typeMap[TYPE_TEMPERATURE_CEL] = { name: "temp", unit: "Cel" }
-  typeMap[TYPE_TEMPERATURE_FAH] = { name: "temp", unit: "f" }
-  typeMap[TYPE_UPTIME] = { name: "uptime", unit: "ms" }
-  typeMap[TYPE_VBATT] = { name: "vbatt", unit: "mV" }
-  typeMap[TYPE_VOLTAGE] = { name: "voltage", unit: "mV" }
-  typeMap[TYPE_VWC] = { name: "vwc", unit: "" }
-  typeMap[TYPE_GPS_HDOP] = { name: "hdop", unit: "" }
-  typeMap[TYPE_GPS_LAT] = { name: "lat", unit: "" }
-  typeMap[TYPE_GPS_LON] = { name: "lon", unit: "" }
-  typeMap[TYPE_DEVIATION] = { name: "deviation", unit: "" }
-  typeMap[TYPE_RADIATION] = { name: "radiation", unit: "" }
-  typeMap[TYPE_COUNT] = { name: "count", unit: "count" }
-  typeMap[TYPE_HEIGHT] = { name: "height", unit: "mm" }
-  typeMap[TYPE_PERIOD] = { name: "period", unit: "s" }
-  typeMap[TYPE_NOISE] = { name: "noise", unit: "db" }
-  typeMap[TYPE_DIRECTION_DEG] = { name: "direction_d", unit: "deg" }
-  typeMap[TYPE_DIRECTION_ID] = { name: "direction", unit: "" }
-  typeMap[TYPE_SPEED] = { name: "speed", unit: "m/s" }
+function TypeSetting(name, unit, byteLength, divider, isSigned) {
+  return { name, unit, byteLength, divider, isSigned }
 }
 
-function bin32dec(bin) {
+function init() {
+  typeMap[TYPE_ACTUAL_EVAPOTRANSPIRATION_MM] = TypeSetting("et", "mm", 2, 1000, false)
+  typeMap[TYPE_ATMOSPHERIC_PRESSURE] = TypeSetting("pa", "hPa", 2, 10, false)
+  typeMap[TYPE_CO2] = TypeSetting("co2", "ppm", 2, 100, false)
+  typeMap[TYPE_COUNT] = TypeSetting("count", "count", 2, 10, false)
+  typeMap[TYPE_CURRENT] = TypeSetting("current", "mA", 2, 1, false)
+  typeMap[TYPE_DEVIATION] = TypeSetting("deviation", "", 2, 100, true)
+  typeMap[TYPE_DEVICE_ID] = TypeSetting("device_id", "", 1, 1, false)
+  typeMap[TYPE_DIRECTION_DEG] = TypeSetting("direction_d", "deg", 2, 10, false)
+  typeMap[TYPE_DIRECTION_ID] = TypeSetting("direction", "", 1, 1, false)
+  typeMap[TYPE_FORMULA] = TypeSetting("formula", "", 4, 100000, true)
+  typeMap[TYPE_GAS] = TypeSetting("gas", "Ohm", 2, 100, false)
+  typeMap[TYPE_GPS_HDOP] = TypeSetting("hdop", "", 1, 10, false)
+  typeMap[TYPE_GPS_LAT] = TypeSetting("lat", "", 4, 100000, true)
+  typeMap[TYPE_GPS_LON] = TypeSetting("lon", "", 4, 100000, true)
+  typeMap[TYPE_GRAMS_OF_WATER_VAPOUR_PER_CUBIC_METRE_OF_AIR] = TypeSetting("water_vapour_sq_air", "g.m3", 2, 1, false)
+  typeMap[TYPE_HEAT_FLUX] = TypeSetting("h", "W/m2", 2, 10, false)
+  typeMap[TYPE_HEAT_VELOCITY] = TypeSetting("hv", "cm/h", 2, 100, false)
+  typeMap[TYPE_HEIGHT] = TypeSetting("height", "mm", 2, 10, false)
+  typeMap[TYPE_HUMIDITY] = TypeSetting("hum", "%RH", 2, 100, false)
+  typeMap[TYPE_LATENT_ENERGY_FLUX] = TypeSetting("le", "W/m2", 2, 10, false)
+  typeMap[TYPE_LIGHT_LUX] = TypeSetting("light_lux", "lx", 2, 1, false)
+  typeMap[TYPE_LOG_RATIO] = TypeSetting("log_rt", "", 4, 100000, false)
+  typeMap[TYPE_LORA_JOIN_DUR] = TypeSetting("lora_join_dur", "ms", 2, 1, false)
+  typeMap[TYPE_MEM_ALLOC] = TypeSetting("mem_alloc", "B", 4, 1, false)
+  typeMap[TYPE_MEM_FREE] = TypeSetting("mem_free", "B", 4, 1, false)
+  typeMap[TYPE_MILLIMETER] = TypeSetting("millimeter", "mm", 2, 1, false) // deprecated
+  typeMap[TYPE_NOISE] = TypeSetting("noise", "db", 2, 10, false)
+  typeMap[TYPE_PERIOD] = TypeSetting("period", "s", 2, 10, false)
+  typeMap[TYPE_PORE_WATER_CONDUCT] = TypeSetting("pore_water_conduct", "uS/cm", 2, 100, false)
+  typeMap[TYPE_PRESSURE] = TypeSetting("pressure", "hPa", 4, 1, true)
+  typeMap[TYPE_RADIATION] = TypeSetting("radiation", "", 2, 1, false)
+  typeMap[TYPE_REL_PERM] = TypeSetting("rel_perm", "", 2, 100, false)
+  typeMap[TYPE_RESET_CAUSE] = TypeSetting("reset_cause", "", 1, 1, false)
+  typeMap[TYPE_SAP_FLOW] = TypeSetting("sap_flow", "l/h", 2, 100, false)
+  typeMap[TYPE_SOIL_EC] = TypeSetting("soil_ec", "uS/cm", 2, 100, false)
+  typeMap[TYPE_SPEED] = TypeSetting("speed", "m/s", 2, 100, true)
+  typeMap[TYPE_TEMPERATURE_CEL] = TypeSetting("temp", "Cel", 2, 100, true)
+  typeMap[TYPE_TEMPERATURE_FAH] = TypeSetting("temp", "f", 2, 100, true)
+  typeMap[TYPE_UPTIME] = TypeSetting("uptime", "ms", 4, 1, false)
+  typeMap[TYPE_VAPOR_PRESSURE_DEFICIT] = TypeSetting("vpd", "hPa", 2, 10, false)
+  typeMap[TYPE_VBATT] = TypeSetting("vbatt", "mV", 2, 1, false)
+  typeMap[TYPE_VOLTAGE] = TypeSetting("voltage", "mV", 2, 1, false)
+  typeMap[TYPE_VWC] = TypeSetting("vwc", "", 2, 100, false)
+  typeMap[TYPE_WATTS_PER_SQUARE_METER] = TypeSetting("wpsqm", "W/m2", 2, 1, false)
+}
+
+function uint32toInt32(bin) {
   var num = bin & 0xffffffff
-  if (0x100000000 & num) num = -(0x0100000000 - num)
+  if (0x80000000 & num) num = num - 0x0100000000
   return num
 }
 
-function bin16dec(bin) {
+function uint16toInt16(bin) {
   var num = bin & 0xffff
-  if (0x8000 & num) num = -(0x010000 - num)
+  if (0x8000 & num) num = num - 0x010000
+  return num
+}
+
+function uint8toInt8(bin) {
+  var num = bin & 0xffff
+  if (0x80 & num) num = num - 0x0100
   return num
 }
 
@@ -178,21 +184,15 @@ function getTypeUnit(typeId) {
   return typeInfo.unit
 }
 
-function extract32bitInteger(bytes, startIndex) {
-  return (
-    (bytes[startIndex] << 24) | (bytes[startIndex + 1] << 16) | (bytes[startIndex + 2] << 8) | bytes[startIndex + 3]
-  )
-}
-
 function getLocationName(locationId) {
   var mainLocation = locationId & 0xf0
   var subLocation = locationId & 0x0f
   switch (mainLocation) {
     case LOCATION_INTERNAL_BOARD:
       switch (subLocation) {
-        case 0x00:
+        case LOCATION_INTERNAL_BOARD & 0x0f:
           return "board"
-        case 0x01:
+        case LOCATION_INTERNAL_CPU & 0x0f:
           return "cpu"
         default:
           return "internal"
@@ -218,18 +218,18 @@ function getLocationName(locationId) {
       }
     case LOCATION_A_P1:
       switch (subLocation) {
-        case 0x00:
+        case LOCATION_A_P1 & 0x0f:
           return "ap1"
-        case 0x01:
+        case LOCATION_A_P2 & 0x0f:
           return "ap2"
         default:
           return "ap"
       }
     case LOCATION_AD_P1:
       switch (subLocation) {
-        case 0x00:
+        case LOCATION_AD_P1 & 0x0f:
           return "adp1"
-        case 0x01:
+        case LOCATION_AD_P2 & 0x0f:
           return "adp2"
         default:
           return "adp"
@@ -240,7 +240,7 @@ function getLocationName(locationId) {
       return "sdi12_" + subLocation
     case LOCATION_MODEM:
       switch (subLocation) {
-        case 0x01:
+        case LOCATION_GPS & 0x0f:
           return "gps"
         default:
           return "modem"
@@ -297,113 +297,68 @@ function DecodeInsighioPackage(bytes, convertBytesFromBase64 = true) {
 
     if (convertBytesFromBase64) bytes = base64ToArrayBuffer(bytes)
 
-    for (var i = 6; i < bytes.length; i++) {
-      var original_name = getLocationName(bytes[i + 1]) + "_" + getTypeName(bytes[i])
+    var i = 6
+    while (i < bytes.length) {
+      var typeId = bytes[i++]
+      var locationId = bytes[i++]
+      var original_name = getLocationName(locationId) + "_" + getTypeName(typeId)
       var name = getValidName(nameDict, original_name)
-      var obj = { n: name, u: getTypeUnit(bytes[i]) }
+      var obj = { n: name, u: getTypeUnit(typeId) }
 
-      //console.log("original_name: ", original_name, ", name:", name, ", obj:", obj)
-      var processed = true
-      switch (bytes[i]) {
-        case TYPE_RESET_CAUSE: // 1 byte (unsigned char)
-        case TYPE_DIRECTION_ID:
-          obj.v = bytes[i + 2]
-          i += 2
-          break
-        case TYPE_GPS_HDOP: // 1 byte (unsigned char) / 10
-          obj.v = bytes[i + 2] / 10
-          i += 2
-          break
-        case TYPE_TEMPERATURE_FAH:
-        case TYPE_TEMPERATURE_CEL:
-        case TYPE_DEVIATION:
-        case TYPE_SPEED: // 2 bytes (signed short) / 100
-          var temp = (bytes[i + 2] << 8) | bytes[i + 3]
-          obj.v = bin16dec(temp) / 100
-          i += 3
-          break
-        case TYPE_VBATT: // 2 bytes (unsigned short)
-        case TYPE_CURRENT:
-        case TYPE_LIGHT_LUX:
-        case TYPE_LORA_JOIN_DUR:
-        case TYPE_VOLTAGE:
-        case TYPE_MILLIMETER:
-        case TYPE_WATTS_PER_SQUARE_METER:
-        case TYPE_RADIATION:
-        case TYPE_GRAMS_OF_WATER_VAPOUR_PER_CUBIC_METRE_OF_AIR:
-          obj.v = (bytes[i + 2] << 8) | bytes[i + 3]
-          i += 3
-          break
-        case TYPE_LATENT_ENERGY_FLUX:
-        case TYPE_HEAT_FLUX:
-        case TYPE_VAPOR_PRESSURE_DEFICIT:
-        case TYPE_ATMOSPHERIC_PRESSURE:
-        case TYPE_COUNT:
-        case TYPE_HEIGHT:
-        case TYPE_PERIOD:
-        case TYPE_NOISE:
-        case TYPE_DIRECTION_DEG:
-          obj.v = ((bytes[i + 2] << 8) | bytes[i + 3]) / 10
-          i += 3
-          break
-        case TYPE_HUMIDITY: // 2 bytes (unsigned short)
-        case TYPE_CO2:
-        case TYPE_GAS:
-        case TYPE_VWC:
-        case TYPE_REL_PERM:
-        case TYPE_SOIL_EC:
-        case TYPE_PORE_WATER_CONDUCT:
-        case TYPE_SAP_FLOW:
-        case TYPE_HEAT_VELOCITY:
-          obj.v = ((bytes[i + 2] << 8) | bytes[i + 3]) / 100
-          i += 3
-          break
-        case TYPE_ACTUAL_EVAPOTRANSPIRATION_MM:
-          obj.v = ((bytes[i + 2] << 8) | bytes[i + 3]) / 1000
-          i += 3
-          break
-        case TYPE_UPTIME: // 4 bytes (unsigned integer)
-        case TYPE_MEM_ALLOC:
-        case TYPE_MEM_FREE:
-          obj.v = extract32bitInteger(bytes, i + 2)
-          i += 5
-          break
-        case TYPE_LOG_RATIO:
-          obj.v = extract32bitInteger(bytes, i + 2) / 100000
-          i += 5
-          break
-        case TYPE_PRESSURE: // 4 bytes (signed integer)
-          var temp = extract32bitInteger(bytes, i + 2)
-          obj.v = bin32dec(temp)
-          i += 5
-          break
-        case TYPE_FORMULA:
-        case TYPE_GPS_LAT: // 4 bytes (signed integer)
-        case TYPE_GPS_LON:
-          var temp = extract32bitInteger(bytes, i + 2)
-          obj.v = bin32dec(temp) / 100000
-          i += 5
-          break
-        default:
-          processed = false
-      }
-      if (!processed && bytes[i] & TYPE_GENERIC) {
+      // console.log("typeid: ", typeId.toString(16), ", locationId: ", locationId.toString(16))
+      // console.log("\toriginal_name: ", original_name, ", name:", name, ", obj:", obj)
+      var typeSettings = typeMap[typeId]
+
+      if (typeSettings) {
+        //console.log("\tusing setting: ", typeSettings)
+
+        obj.v = 0
+        // extract value
+        for (var j = 1; j <= typeSettings.byteLength; j++) {
+          var places = (typeSettings.byteLength - j) * 8
+          if (places) obj.v |= bytes[i++] << places
+          else obj.v |= bytes[i++]
+        }
+
+        // apply signedness
+        if (typeSettings.isSigned) {
+          switch (typeSettings.byteLength) {
+            case 1:
+              obj.v = uint8toInt8(obj.v)
+              break
+            case 2:
+              obj.v = uint16toInt16(obj.v)
+              break
+            case 4:
+              obj.v = uint32toInt32(obj.v)
+              break
+            default:
+              break
+          }
+        }
+
+        // apply divider
+        obj.v /= typeSettings.divider
+      } else if (typeId & TYPE_GENERIC) {
         //2 bytes
         if (name.startsWith("sdi12")) {
-          obj.v = (bytes[i + 2] << 8) | bytes[i + 3]
-          i += 3
+          obj.v = (bytes[i++] << 8) | bytes[i++]
         }
         //4 bytes
         else {
-          var temp = extract32bitInteger(bytes, i + 2)
-          obj.v = bin32dec(temp) / 100
-          i += 5
+          var temp = (bytes[i++] << 24) | (bytes[i++] << 16) | (bytes[i++] << 8) | bytes[i++]
+          obj.v = uint32toInt32(temp) / 100
+          obj.v = temp
         }
       }
 
+      if (obj.v === undefined) obj.v = 0
+
       nameDict[obj.n] = true
+
       senml.push(obj)
     }
+
     if (senml.length > 0) {
       senml[0].bn = bytesToHex(bytes, 0, 6) + "-"
     }
