@@ -22,7 +22,7 @@ Follows the LoRA payload decoder that transforms received bytes into SenML-forma
                             |  $$$$$$/
                             \______/
 
-LoRA/Satellite payload decoder for insigh.io firmware (v2.0)
+LoRA/Satellite payload decoder for insigh.io firmware (v2.1)
 */
 var LOCATION_DEFAULT = 0x00
 var LOCATION_INTERNAL_BOARD = 0x10
@@ -107,6 +107,7 @@ function init() {
   typeMap[TYPE_DIRECTION_ID] = TypeSetting("direction", "", 1, 1, false)
   typeMap[TYPE_FORMULA] = TypeSetting("formula", "", 4, 100000, true)
   typeMap[TYPE_GAS] = TypeSetting("gas", "Ohm", 2, 100, false)
+  typeMap[TYPE_GENERIC] = TypeSetting("generic", "", 4, 100, true)
   typeMap[TYPE_GPS_HDOP] = TypeSetting("hdop", "", 1, 10, false)
   typeMap[TYPE_GPS_LAT] = TypeSetting("lat", "", 4, 100000, true)
   typeMap[TYPE_GPS_LON] = TypeSetting("lon", "", 4, 100000, true)
@@ -260,7 +261,7 @@ function getLocationName(locationId) {
       }
     default:
       //console.log("location not decoded: ", locationId, ", ", mainLocation, ", ", subLocation)
-      return "undefined"
+      return "generic"
   }
 }
 
@@ -305,9 +306,11 @@ function DecodeInsighioPackage(bytes, convertBytesFromBase64 = true) {
       var name = getValidName(nameDict, original_name)
       var obj = { n: name, u: getTypeUnit(typeId) }
 
-      // console.log("typeid: ", typeId.toString(16), ", locationId: ", locationId.toString(16))
-      // console.log("\toriginal_name: ", original_name, ", name:", name, ", obj:", obj)
+      //console.log("typeid: ", typeId.toString(16), ", locationId: ", locationId.toString(16))
+      //console.log("\toriginal_name: ", original_name, ", name:", name, ", obj:", obj)
       var typeSettings = typeMap[typeId]
+
+      if (typeId >= TYPE_GENERIC && typeId <= TYPE_GENERIC_MAX) typeSettings = typeMap[TYPE_GENERIC]
 
       if (typeSettings) {
         //console.log("\tusing setting: ", typeSettings)
@@ -339,17 +342,6 @@ function DecodeInsighioPackage(bytes, convertBytesFromBase64 = true) {
 
         // apply divider
         obj.v /= typeSettings.divider
-      } else if (typeId & TYPE_GENERIC) {
-        //2 bytes
-        if (name.startsWith("sdi12")) {
-          obj.v = (bytes[i++] << 8) | bytes[i++]
-        }
-        //4 bytes
-        else {
-          var temp = (bytes[i++] << 24) | (bytes[i++] << 16) | (bytes[i++] << 8) | bytes[i++]
-          obj.v = uint32toInt32(temp) / 100
-          obj.v = temp
-        }
       }
 
       if (obj.v === undefined) obj.v = 0
@@ -357,6 +349,7 @@ function DecodeInsighioPackage(bytes, convertBytesFromBase64 = true) {
       nameDict[obj.n] = true
 
       senml.push(obj)
+      //console.log("\n")
     }
 
     if (senml.length > 0) {
