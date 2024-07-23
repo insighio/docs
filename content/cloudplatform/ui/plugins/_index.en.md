@@ -7,20 +7,21 @@ weight: 5500
 
 The plugins service offers the opposite functionality of the integrations service. While with integrations users can forward incoming data to third party platforms, with plugins users can acquire data from third party platforms. This is particularly useful in non-IP-based communications, like Satellite IoT or LoRaWAN (e.g., TheThings Network), where the messages are sent to other platforms. However, the functionality can also be used with any third party platform that provides an API to collect the data.
 
-Two different protocols are currently supported in the plugins service:
+Three different protocols are currently supported in the plugins service:
 
 1. **MQTT**, where a MQTT client is subscribed to the broker that the user defines and listens for incoming messages.
 2. **HTTP**, which supports two ways to collect the data:
    - Receive, which listens for incoming data
    - Poll, which requests data from the third party platforms in a predefined interval
+3. **FTP**, where a FTP client polls a FTP server for files that satisfy predefined criteria
 
-The basic principle of the plugins service is that the user defines a plugin for a third party platform and a number of devices that use that plugin to acquire data from that platform. Each device must be configured to use that plugin during the device creation. Each device needs to be mapped to an "External Device ID", which is the device's ID on the third party platform. An example of a device configuration is shown in the following sections.
+The basic principle of the plugins service is that the user defines a plugin for a third party platform and a number of devices that use that plugin to acquire data from that platform. Each device must be configured to use that plugin during the device creation or can be updated later on. Each device needs to be mapped to an "External Device ID", which is the device's ID on the third party platform. An example of a device configuration is shown in the following sections.
 
 The basic flow of an end-to-end communication for a plugin scenario is the following:
 
-1. The device on the field sends a message using the configured communication technology (e.g., Satellite IoT or LoRaWAN).
+1. The device on the field sends a message using the configured communication technology (e.g., Satellite IoT, LoRaWAN or a file on an FTP server).
 2. The plugins service acquires the data from the third party platform in the form of a payload. The payload contains the message (i.e., the measurements) along with metadata provided by the third party platform. The most important part of the metadata is the device ID, which is provided by the third party platform for that specific device. This ID has different names on each platform (e.g., "Device GUID" on Astrocast, "DevEUI" on TheThings) and it is called generically "External Device ID" on the insigh.io platform.
-3. The plugins service uses the predefined decoder to extract the "External Device ID" and the message itself from the payload
+3. The plugins service uses the predefined decoder to extract the "External Device ID" and the message itself from the payload.
 4. The service maps the External Device ID to a device on the insigh.io platform and stores the message for that device.
 
 ### Decoders
@@ -31,6 +32,7 @@ Regardless the selected communication protocol, each plugin needs to use a prede
 - **ChirpStack** decoder supports LoRaWAN scenarios on the ChirpStack network server
 - **Astrocast** decoder supports Satellite IoT scenarios using Astrocast's constellation
 - **Sensoneo** decoder supports decoding data from the Sensoneo platform
+- **ADCON** decoder supports decoding data files from an FTP server, containing data in the ADCON format
 
 ![Plugins Decoders](/images/console_tutorial/plugins_all_decoders.png?width=60pc)
 
@@ -82,6 +84,42 @@ For the POST request, the user needs to specify:
 - Custom body options required by the third party API
 
 ![Plugins HTTP Poll](/images/console_tutorial/plugins_http_poll.png?width=60pc)
+
+#### FTP
+
+The FTP plugin rules offer the option to acquire data from FTP servers. When creating a FTP plugin rule, the service polls the FTP server for files that satisfy the rule's predefined criteria. The decoders used in the FTP plugins differ from the other plugin types because they operate on the file level and not on the message level, since each file may contain multiple measurements in different timestamps.
+
+The FTP decoders accept a JavaScript object with the following properties:
+
+- The file contents as a JavaScript array, where each line is an array element
+- The file path, which can be useful in scenarios where the external device id is in the file path and not in the file's contents
+- The delimiter, which is a plugin rule configuration and passed in the decoder so that it knows how to separate the fields/columns
+
+After defining an FTP decoder, the user needs to create an FTP server. The required FTP server information is the following:
+
+- The server name (user defined)
+- The protocol (FTP or SFTP)
+- The host/url, which can be a domain name or an IP address
+- The port number
+- The username
+- The password
+
+To test whether the provided information is correct, there is a "Test Connection" button in the upper right corner of the FTP Server card.
+
+![Plugins FTP Server](/images/console_tutorial/plugins_ftp_server.png?width=60pc)
+
+Finally, to create a new FTP plugin rule, the following information is required:
+
+- The rule name
+- The FTP server configuration
+- The decoder
+- The root path where the service will look for files. The service also supports recursive file discovery, so if there are files that satisfy the criteria in sub-folders under this path, it will acquire the data
+- The polling frequency
+- The file extension that the service will look for. If no file extension is required, please use "Any"
+- The delimiter that is passed to the decoder to separate the fields/columns of the data in the file
+- Whether to delete the file after successful processing. If the file is not deleted and not removed by an external process, it will be re-processed in the next poll iteration. Note that if a file that satisfies the rule criteria is not successfully processed, it will be renamed by appending the ".error" suffix in the file's name.
+
+![Plugins FTP Rule](/images/console_tutorial/plugins_ftp_rule.png?width=60pc)
 
 #### Device Configuration
 
