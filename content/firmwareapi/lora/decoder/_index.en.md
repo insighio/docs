@@ -10,6 +10,7 @@ Follows the LoRA payload decoder that transforms received bytes into SenML-forma
 ```js {linenos=true}
 /*
 
+/*
 /$$                     /$$           /$$           /$$
 |__/                    |__/          | $$          |__/
 /$$ /$$$$$$$   /$$$$$$$ /$$  /$$$$$$ | $$$$$$$      /$$  /$$$$$$
@@ -21,7 +22,6 @@ Follows the LoRA payload decoder that transforms received bytes into SenML-forma
                             /$$  \ $$
                             |  $$$$$$/
                             \______/
-
 LoRA/Satellite payload decoder for insigh.io firmware (v2.1)
 */
 var LOCATION_DEFAULT = 0x00
@@ -41,6 +41,8 @@ var LOCATION_RAIN_GAUGE = 0x81
 var LOCATION_SOLAR_SENSOR = 0x82
 var LOCATION_PULSE_COUNTER = 0x83
 var LOCATION_WEATHER_STATION_WIND = 0x84
+var LOCATION_SDI12_PORT_1 = 0x90
+var LOCATION_SDI12_PORT_2 = 0xA0
 
 var TYPE_DEVICE_ID = 0x01
 var TYPE_RESET_CAUSE = 0x02
@@ -87,8 +89,7 @@ var TYPE_GPS_HDOP = 0xd0
 var TYPE_GPS_LAT = 0xd1
 var TYPE_GPS_LON = 0xd2
 var TYPE_GENERIC = 0xe0
-var TYPE_GENERIC_MAX = 0xef
-
+var TYPE_GENERIC_MAX = 0xff
 var typeMap = {}
 
 function TypeSetting(name, unit, byteLength, divider, isSigned) {
@@ -142,25 +143,21 @@ function init() {
   typeMap[TYPE_VWC] = TypeSetting("vwc", "", 2, 100, false)
   typeMap[TYPE_WATTS_PER_SQUARE_METER] = TypeSetting("wpsqm", "W/m2", 2, 1, false)
 }
-
 function uint32toInt32(bin) {
   var num = bin & 0xffffffff
   if (0x80000000 & num) num = num - 0x0100000000
   return num
 }
-
 function uint16toInt16(bin) {
   var num = bin & 0xffff
   if (0x8000 & num) num = num - 0x010000
   return num
 }
-
 function uint8toInt8(bin) {
   var num = bin & 0xffff
   if (0x80 & num) num = num - 0x0100
   return num
 }
-
 function bytesToHex(byteArray, from, to) {
   var s = ""
   for (var i = from; i < to; ++i) {
@@ -168,7 +165,6 @@ function bytesToHex(byteArray, from, to) {
   }
   return s
 }
-
 function getTypeName(typeId) {
   var typeInfo = undefined
   if (typeId >= TYPE_GENERIC && typeId <= TYPE_GENERIC_MAX) {
@@ -178,13 +174,11 @@ function getTypeName(typeId) {
   if (typeInfo === undefined) return ""
   return typeInfo.name
 }
-
 function getTypeUnit(typeId) {
   var typeInfo = typeMap[typeId]
   if (typeInfo === undefined) return ""
   return typeInfo.unit
 }
-
 function getLocationName(locationId) {
   var mainLocation = locationId & 0xf0
   var subLocation = locationId & 0x0f
@@ -239,6 +233,10 @@ function getLocationName(locationId) {
       return "4-20_" + subLocation
     case LOCATION_SDI12:
       return "sdi12_" + subLocation
+    case LOCATION_SDI12_PORT_1:
+      return "sdi12_" + subLocation + "_1"
+    case LOCATION_SDI12_PORT_2:
+      return "sdi12_" + subLocation + "_2"
     case LOCATION_MODEM:
       switch (subLocation) {
         case LOCATION_GPS & 0x0f:
@@ -264,7 +262,6 @@ function getLocationName(locationId) {
       return "generic"
   }
 }
-
 function getValidName(nameDict, original_name) {
   var j = undefined
   var name = undefined
@@ -277,7 +274,6 @@ function getValidName(nameDict, original_name) {
   } while (nameDict[name]) //if key is used, consider it is sensor with multiple measurements
   return name
 }
-
 function base64ToArrayBuffer(base64) {
   //console.log("Decoding ", base64)
   var binary_string = atob(base64)
@@ -288,16 +284,12 @@ function base64ToArrayBuffer(base64) {
   }
   return new Uint8Array(bytes.buffer)
 }
-
 function DecodeInsighioPackage(bytes, convertBytesFromBase64 = true) {
   try {
     init()
-
     var senml = []
     var nameDict = {}
-
     if (convertBytesFromBase64) bytes = base64ToArrayBuffer(bytes)
-
     var i = 6
     while (i < bytes.length) {
       var typeId = bytes[i++]
@@ -305,16 +297,12 @@ function DecodeInsighioPackage(bytes, convertBytesFromBase64 = true) {
       var original_name = getLocationName(locationId) + "_" + getTypeName(typeId)
       var name = getValidName(nameDict, original_name)
       var obj = { n: name, u: getTypeUnit(typeId) }
-
       //console.log("typeid: ", typeId.toString(16), ", locationId: ", locationId.toString(16))
       //console.log("\toriginal_name: ", original_name, ", name:", name, ", obj:", obj)
       var typeSettings = typeMap[typeId]
-
       if (typeId >= TYPE_GENERIC && typeId <= TYPE_GENERIC_MAX) typeSettings = typeMap[TYPE_GENERIC]
-
       if (typeSettings) {
         //console.log("\tusing setting: ", typeSettings)
-
         obj.v = 0
         // extract value
         for (var j = 1; j <= typeSettings.byteLength; j++) {
@@ -322,7 +310,6 @@ function DecodeInsighioPackage(bytes, convertBytesFromBase64 = true) {
           if (places) obj.v |= bytes[i++] << places
           else obj.v |= bytes[i++]
         }
-
         // apply signedness
         if (typeSettings.isSigned) {
           switch (typeSettings.byteLength) {
@@ -333,25 +320,20 @@ function DecodeInsighioPackage(bytes, convertBytesFromBase64 = true) {
               obj.v = uint16toInt16(obj.v)
               break
             case 4:
-              obj.v = uint32toInt32(obj.v)
+              obj.v = obj.v//uint32toInt32(obj.v)
               break
             default:
               break
           }
         }
-
         // apply divider
         obj.v /= typeSettings.divider
       }
-
       if (obj.v === undefined) obj.v = 0
-
       nameDict[obj.n] = true
-
       senml.push(obj)
       //console.log("\n")
     }
-
     if (senml.length > 0) {
       senml[0].bn = bytesToHex(bytes, 0, 6) + "-"
     }
@@ -361,6 +343,65 @@ function DecodeInsighioPackage(bytes, convertBytesFromBase64 = true) {
   }
 
   return senml
+}
+
+function populateSignalQuality(payload, senmlMessage) {
+  var snr = -141
+  var spreadingFactor = -1
+  try {
+    if (payload.rxInfo && payload.rxInfo[0]) {
+      if (payload.rxInfo[0].rssi) senmlMessage.push({ n: "rssi", u: "dBm", v: payload.rxInfo[0].rssi })
+      if (payload.rxInfo[0].snr) {
+        senmlMessage.push({ n: "snr", u: "db", v: payload.rxInfo[0].snr })
+        snr = payload.rxInfo[0].snr
+      }
+    }
+
+    //calculate high level signal quality
+    if (payload.txInfo) {
+      if (payload.txInfo.frequency) senmlMessage.push({ n: "frequency", v: payload.txInfo.frequency })
+
+      if (payload.txInfo.modulation && payload.txInfo.modulation.lora) {
+        if (payload.txInfo.modulation.lora.spreadingFactor) {
+          spreadingFactor = payload.txInfo.modulation.lora.spreadingFactor
+          senmlMessage.push({ n: "spreading_factor", v: spreadingFactor })
+        }
+        if (payload.txInfo.modulation.lora.bandwidth) {
+          senmlMessage.push({ n: "bandwidth", v: payload.txInfo.modulation.lora.bandwidth })
+        }
+      }
+    }
+
+    if (spreadingFactor < 6 || spreadingFactor > 12 || snr === -141) return
+
+    var snrStepPerSpreadingFactor = -2.5
+    var snrOfSpreadingFactor6 = -5
+    var loraSnrLowest = snrOfSpreadingFactor6 + (spreadingFactor - 6) * snrStepPerSpreadingFactor
+
+    //snr range loraSnrLowest dbm -> +10dbm
+    var qualitySteps = (10 - loraSnrLowest) / 5
+
+    var signalQualityIndex = Math.floor((snr - loraSnrLowest) / qualitySteps)
+    if (signalQualityIndex <= 0) senmlMessage.push({ n: "signal_quality_index", v: 0 })
+    else if (signalQualityIndex > 4) senmlMessage.push({ n: "signal_quality_index", v: 4 })
+    else senmlMessage.push({ n: "signal_quality_index", v: signalQualityIndex })
+  } catch (e) {
+    console.log(e)
+  }
+}
+
+function processRecords(senmlMessage) {
+  //console.log(senml)
+  senmlMessage.forEach(element => {
+      if(element.n === "_original_name") {
+      element.n = "_new_name"
+    }
+    else if(element.n === "_original_name_2") {
+      element.n = "_new_name_2"
+      element.u = "ms"
+      element.v = element.v * 100
+    }
+  })
 }
 
 // Called from ChirpStack / LoRaServer
@@ -376,5 +417,23 @@ function decodeUplink(input) {
       bytes: DecodeInsighioPackage(input.bytes, false),
     },
   }
+}
+
+function decode(payload) {
+  let deviceId = payload.deviceInfo.devEui
+  let senmlMessage = []
+
+  let decoded = DecodeInsighioPackage(payload.data, true)
+
+  processRecords(decoded)
+
+  senmlMessage = senmlMessage.concat(decoded);
+
+  populateSignalQuality(payload, senmlMessage)
+  
+  senmlMessage[0].bt = Date.parse(payload.time) / 10 ** 3
+  senmlMessage[0].bn = deviceId + "-"
+
+  return { deviceId: deviceId, message: senmlMessage }
 }
 ```
