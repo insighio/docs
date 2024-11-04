@@ -51,7 +51,7 @@ This is a collection of standard "ready-made" IoT application boards which can b
 #### Sensor Boards
 
 - [Generic Analogue & Digital Sensor Board with support for up to 3 x 3-pin (power,data,ground) analogue sensors & 1 x I²C sensor]({{< relref "./shields/sensor-board/insighio-shield-base-adc-i2c.md" >}})
-- [Advanced Industrial Sensor Board with support for up to 2 x SDI-12, 2 x 4-20mA & 1 generic 2-pin pulse counter]({{< relref "./shields/sensor-board/insighio-shield-advind.md" >}})
+- [Advanced Industrial Sensor Board with support for up to 2 x SDI-12, 2 x 4-20mA & 1 generic 2-pin pulse counter]({{< relref "./shields/sensor-board/insighio-shield-advind" >}})
 - [Air Quality and Vibrations Sensor Board]({{< relref "./shields/sensor-board/insighio-shield-air-quality-and-vibrations" >}})
 
 #### Radio Boards

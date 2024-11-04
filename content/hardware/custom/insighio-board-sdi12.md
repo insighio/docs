@@ -10,7 +10,7 @@ aliases:
 ![TAT image](/images/deviceimages/board-sdi12.PNG?width=40pc)
 
 {{% notice warning %}}
-This board is deprecated. For replacement please refer to [Advanced Industrial Shield]({{< relref "../shields/sensor-board/insighio-shield-advind.md" >}}) used by [insigh.io generic board]({{< relref "/hardware/board/v1.1.0.md" >}}).
+This board is deprecated. For replacement please refer to [Advanced Industrial Shield]({{< relref "../shields/sensor-board/insighio-shield-advind" >}}) used by [insigh.io generic board]({{< relref "/hardware/board/v1.1.0.md" >}}).
 {{% /notice %}}
 
 ### General Information
@@ -30,10 +30,10 @@ This board is deprecated. For replacement please refer to [Advanced Industrial S
 
 ### Example Applications
 
--   **Precision Agriculture**
-    -   Soil moisture, Electrical Conductivity, Volumetric Water Content, Temperature
--   **Environmental monitoring**
-    -   Water flow, water quality, Temperature, humidity
+- **Precision Agriculture**
+  - Soil moisture, Electrical Conductivity, Volumetric Water Content, Temperature
+- **Environmental monitoring**
+  - Water flow, water quality, Temperature, humidity
 
 ### Sensors Support (Hardware & Software)
 
@@ -48,15 +48,15 @@ This board is deprecated. For replacement please refer to [Advanced Industrial S
 
 ### Communication
 
--   **Wireless technologies**
-    -   WiFi
-    -   Bluetooth
-    -   LoRaWAN
-    -   NB-IoT/LTE-M
--   **IP-based protocols**
-    -   TCP/UDP over IPv4/IPv6
-    -   MQTT
-    -   CoAP
+- **Wireless technologies**
+  - WiFi
+  - Bluetooth
+  - LoRaWAN
+  - NB-IoT/LTE-M
+- **IP-based protocols**
+  - TCP/UDP over IPv4/IPv6
+  - MQTT
+  - CoAP
 
 ### Power Supply
 
@@ -121,12 +121,12 @@ This board is deprecated. For replacement please refer to [Advanced Industrial S
 
 ### External components required/recommended
 
--   **Microcontroller**
-    -   Pycom WiPy 3.0 or LoPy4 or GPy or FiPy (depending on communication needs)
--   **Battery**
-    -   1200 mAh
--   **Solar Panel**
-    -   6V/1W
+- **Microcontroller**
+  - Pycom WiPy 3.0 or LoPy4 or GPy or FiPy (depending on communication needs)
+- **Battery**
+  - 1200 mAh
+- **Solar Panel**
+  - 6V/1W
 
 ### Marking
 
