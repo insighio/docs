@@ -1,11 +1,11 @@
 ---
-title: Advanced Industrial v1.2.0
-identifier: "hardware@shields@sensor-board@insighio-shield-advind-1.2.0"
-parent: "hardware@shields@sensor-board"
-weight: 220
+title: Advanced Industrial v1.1.0 (deprecated)
+identifier: "hardware@shields@sensor-board@insighio-shield-advind@insighio-shield-advind-v1.1.0"
+parent: "hardware@shields@sensor-board@insighio-shield-advind"
+weight: 221
 ---
 
-![shield sdi12 4-20mA pulse counter](/images/deviceimages/insighio-shield-advind-1.2.0.png?width=20pc)
+![shield sdi12 4-20mA pulse counter](/images/deviceimages/insighio-shield-advind-v1.1.0.png?width=20pc)
 
 ### Scope
 
@@ -16,6 +16,7 @@ Provide support for SDI-12, 4-20mA and pulse input sensors with flexible configu
 |                                  |
 | :------------------------------- | :--------------------------------------------------------------- |
 | **Host board**                   | [insigh.io main board](../../../board/latest)                    |
+| **Version**                      | v1.1.0                                                           |
 | **Supported Digital Interfaces** | 2 x SDI-12 & 2 x 4-20mA & 1 x Pulse Counter                      |
 | **Sensor Headers**               | Fixed Terminal Block with push-in connection (no tools required) |
 |                                  | 1x8-pin (SDI-12 & Pulse Counter) & 1x6-pin (4-20mA)              |
@@ -31,32 +32,29 @@ Provide support for SDI-12, 4-20mA and pulse input sensors with flexible configu
 
 ### Sensors Support (Hardware & Software)
 
-#### Common Features
-|                                 |                                                                                                                      |
-| :------------------------------ | :------------------------------------------------------------------------------------------------------------------- |
-| **Supply Voltage**              | 5V/9V/12V DC (selected via jumper)                                                                  |
-| **Operation Modes**           | Jumper J11 for controlling the board power mode through ("REG ON")                                                                  |
-|                                 | Jumper J12  for controlling supply voltage (5V/9V/12V)                                                         |
-|                                 | Jumpers J3 & J7 for controlling the sensor power mode for each sensor independently                                                           |
-| **Maximum Drawn Current**       | 300 mA                                                                                                               |
-
-
-
 #### SDI-12 Interface
 
 |                                 |                                                                                                                      |
 | :------------------------------ | :------------------------------------------------------------------------------------------------------------------- |
-| **Number of Sensor Ports** | 5 (simultaneously), 3 pins (POWER,DATA,GND) each                                                                          |
+| **Number of Supported Sensors** | Up to 2 (simultaneously), 3 pins (POWER,DATA,GND) each                                                               |
+|                                 | Up to 9 if external combiner is used                                                                                 |
+| **Supply Voltage**              | 12V DC (external power supply may be used as well)                                                                   |
+| **Maximum Drawn Current**       | 300 mA                                                                                                               |
 | **Sensors Software Support**    | General SDI-12 Commands Implementation (C, M)                                                                        |
-| **Built-in Firmware**    | Fully tested against the following models: TEROS-12 (METER), TDR-315H (ACCLIMA), Sap Flow (IMPLEXX), LI-710 (LI-COR), Shandong Renke Weather (Weather), ATMOS 41 (METER), Aquatroll Water Sensor (In situ) |
+|                                 | Fully tested against the following models: TEROS-12 (METER), TDR-315H (ACCLIMA), Sap Flow (IMPLEXX), LI-710 (LI-COR) |
+| **Advanced Features**           | Resistors R7,R10,R3 for controlling "power" mode                                                                     |
+|                                 | Jumpers J5 & J6 for controlling "measurement" mode                                                                   |
 
 #### 4-20mA Interface
 
 |                                 |                                                                     |
 | :------------------------------ | :------------------------------------------------------------------ |
-| **Number of Supported Sensors** | 2 x 2-wire or 4-wire                         |
+| **Number of Supported Sensors** | Up to 2 (simultaneously) x 2-wire or 4-wire                         |
+| **Supply Voltage**              | 12V DC (external power supply may be used as well)                  |
+| **Maximum Drawn Current**       | 300 mA                                                              |
 | **Sensors Software Support**    | Sensor-agnostic, using a 2-channel analogue current sensing circuit |
-| **Built-in Firmware**                                   | Fully tested with Ground Water Pressure Sensor PR26Y (KEPLER))      |
+|                                 | Fully tested with Ground Water Pressure Sensor PR26Y (KEPLER))      |
+| **Advanced Features**           | Jumpers J3 & J4 for controlling "measurement" mode                  |
 
 #### Generic Digital Interface
 
@@ -65,24 +63,23 @@ Provide support for SDI-12, 4-20mA and pulse input sensors with flexible configu
 | **Number of Supported Sensors** | 1                                                               |
 | **Supply Voltage**              | No, the sensor should be externally powered)                    |
 | **Typical Usage**               | Pulse Counter                                                   |
-| **Advanced Features**           | Ultra-Low Power Operation Option for background pulse recording                  |
-|                                 |  |
+| **Advanced Features**           | Jumpers J7 for controlling "measurement" mode                   |
+|                                 | Ultra-Low Power Operation Option for background pulse recording |
 
-#### Operation Modes
+#### Advanced Features
 
-##### Board Power mode
+##### "Power" mode
 
-There are 2 "power"supply modes for the shield controlled via the PCB hardware. These modes are applied over all sensors.
+There are 2 "power" modes for both SDI-12 and 4-20mA controlled via the PCB hardware & firmware:
 
-- **"Heating" mode**: It applies continuous DC voltage (5V/9V/12V) even at deep sleep. This is required by some sensors for condensation avoidance (e.g. Oxygen Sensor SO-411 from Apogee) or special measurement procedure (e.g. Evapotranspiration Sensor which requires 30 min averaging or ATMOS41). To enable this, place the J11 jumper mode to "REG_ON" position.
-- **"Low-power" mode**: This is a mode optimized for energy consumption. To enable this place the J11 jumper to the bottom position. In this mode, the sensors are powered only during the micro-controller wake-up periods by enabling a special control pin from the firmware, i.e. IO37.
+- **"Heating" mode (default)**: It applies continuous 12V DC. This is required by some sensors for condensation avoidance (e.g. Oxygen Sensor SO-411 from Apogee) or special measurement procedure (e.g. Evapotranspiration Sensor which requires 30 min averaging). It is enabled through mounting R7 (1K) and not mounting R10 (0 Ohm) & R3 (1M).
+- **"Low-power" mode**: This is a mode optimized for energy consumption. To select this mode remove R7 (1K) and mount R10 (0 Ohm) & R3 (1M). In this mode, the sensors are powered only during the micro-controller wake-up periods by enabling a special control pin from the firmware, i.e. IO37.
 
-##### Supply voltage
-The shield supports 3 different supply voltages for the sensors, namely 5V, 9V, and 12V. These can be selected via the J12 jumpers set. By default (if no jumper is set) the board provides 5V.
+<add some photos>
 
-##### Sensor Power mode
+##### "Measurement" mode
 
-In addition, with the use of Jumpers the user may control each sensor's power mode independently.
+In addition, with the use of Jumpers the user may control the "measurement" mode.
 There are 5 jumper sets:
 
 - **J5** & **J6** controls the **SDI-12 Sensor Port 1 and 2** respectively
@@ -100,6 +97,7 @@ The operation is controlled as follows:
 - **4-20mA** Sensors: **IO7** & **IO8** for Port 1 & Port 2 respectively
 - **Pulse Counter Sensor**: **IO6**
 
+<add some photos>
 
 ##### 4-20mA Sensors Connection Instructions
 
