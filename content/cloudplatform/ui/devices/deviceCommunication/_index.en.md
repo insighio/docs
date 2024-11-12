@@ -1,44 +1,47 @@
 ---
 title: Device Communication
-identifier: "cloudplatform@uioverview@devicecommunication"
-parent: "uioverview"
-weight: 5200
+identifier: "cloudplatform@uioverview@devices@devicecommunication"
+parent: "devices"
+weight: 200
 ---
 
 In the previous articles, we have described how to create a device, access its info and its live data. During the demo on how to send data, the quick commands have been used. In this article, the format of those commands will be explained, along with alternative options.
 
 insigh.io platform supports multi-protocol message retrieval over:
-* HTTP
-* MQTT
-* CoAP
+
+- HTTP
+- MQTT
+- CoAP
 
 All protocols follow some common principles on:
-* the authentication
-* the formatting of the command
-* the message content format
 
-In the [Device Info]({{< relref "../deviceInfo/_index.en.md" >}}) view, there are 4 _Communication Values_. The Device ID/Key which will be used to specify the device that is uploading the data and the Key as the authentication method. Follows the _Data Channel ID_ and the _Control Channel ID_ which are specific data channels created for the User. The _Data Channel_ is used to accept the device measurement uploads. On the other hand, _Control Channel_ is used to __bidirectionaly__ exchange control messages between devices and platform, such as OTA requests, Remote Configuration requests, device statistics upload, etc. 
+- the authentication
+- the formatting of the command
+- the message content format
+
+In the [Device Info]({{< relref "../deviceInfo/_index.en.md" >}}) view, there are 4 _Communication Values_. The Device ID/Key which will be used to specify the device that is uploading the data and the Key as the authentication method. Follows the _Data Channel ID_ and the _Control Channel ID_ which are specific data channels created for the User. The _Data Channel_ is used to accept the device measurement uploads. On the other hand, _Control Channel_ is used to **bidirectionaly** exchange control messages between devices and platform, such as OTA requests, Remote Configuration requests, device statistics upload, etc.
 
 For the authentication, the ID/Key is combined with the channel id to specifically check device access to the specific data stream.
 
-Regarding the message format, even though any message format can be passed to the platform, only if it is formatted as __[SenML message](https://datatracker.ietf.org/doc/html/draft-ietf-core-senml-08)__ will it be processed by the various tools of the platform.
+Regarding the message format, even though any message format can be passed to the platform, only if it is formatted as **[SenML message](https://datatracker.ietf.org/doc/html/draft-ietf-core-senml-08)** will it be processed by the various tools of the platform.
 
-The advantages of __SenML message format__ it that it formalizes how to provide device ID, multiple measurements with values and message timestamps.
+The advantages of **SenML message format** it that it formalizes how to provide device ID, multiple measurements with values and message timestamps.
 
-Example message: 
+Example message:
 `[{"n":"board_humidity","u":"%RH","bn":"aa00bb11ccdd-","v":27.96, "dt":1659612813},{"n":"board_temp","u":"Cel","v":33.74}]`
 
-which expands to: 
-* _device mac_: __aa00bb11ccdd__
-* _measurement epoch timestamp_: __1659612813__
-* _board_humidity_: __27.96 %RH__
-* _board_temp_: __33.74 Celsius__
+which expands to:
 
-Having explained the basic principles, lets see how each protocol is used with the insigh.io platform. 
+- _device mac_: **aa00bb11ccdd**
+- _measurement epoch timestamp_: **1659612813**
+- _board_humidity_: **27.96 %RH**
+- _board_temp_: **33.74 Celsius**
+
+Having explained the basic principles, lets see how each protocol is used with the insigh.io platform.
 
 #### HTTP
 
-Send message over HTTP protocol (POST method): 
+Send message over HTTP protocol (POST method):
 
 Requires: `device_id`, `device_key`, `data_channel_id`
 
@@ -46,7 +49,7 @@ Requires: `device_id`, `device_key`, `data_channel_id`
 curl -s -S -i -X POST -H "Content-Type: application/json" -H "Authorization: <device_key>" http://console.insigh.io/http/channels/<data_channel_id>/messages/<device_id> -d '[{"n":"board_humidity","u":"%RH","bn":"aa00bb11ccdd-","v":27.96, "dt":1659612813},{"n":"board_temp","u":"Cel","v":33.74}]'
 ```
 
-For __HTTPS__, devices can use it directly, though curl requires the public certificate to be explicitly defined. Download it from [here](/files/console-insighio.crt) and run the following command:
+For **HTTPS**, devices can use it directly, though curl requires the public certificate to be explicitly defined. Download it from [here](/files/console-insighio.crt) and run the following command:
 
 ```bash
 curl -s -S -i --cacert ./console-insighio.crt -X POST -H "Content-Type: application/json" -H "Authorization: <device_key>" https://console.insigh.io/http/channels/<data_channel_id>/messages/<device_id> -d '[{"n":"board_humidity","u":"%RH","bn":"aa00bb11ccdd-","v":27.96, "dt":1659612813},{"n":"board_temp","u":"Cel","v":33.74}]'
@@ -78,7 +81,7 @@ mosquitto_sub -u <device_id> -P <device_key> -t channels/<data_channel_id>/messa
 
 #### CoAP
 
-Send messages over CoAP protocol (POST) to the URL: 
+Send messages over CoAP protocol (POST) to the URL:
 
 Requires: `device_id`, `device_key`, `data_channel_id`
 

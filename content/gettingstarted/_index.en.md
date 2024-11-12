@@ -11,4 +11,4 @@ weight: 10
 
 # Getting Started
 
-Setup your account, provision your first device and experience the simplicity of exchanging sensor data end-to-end.
+This is a quick start guide that shows how to setup your account, provision your first device and experience the simplicity of exchanging sensor data end-to-end using insigh.io's cloud Console.

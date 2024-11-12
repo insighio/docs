@@ -40,6 +40,6 @@ Users can create dashboards for data visualization. Dashboards group together wi
 
 ### Packages
 
-For insigh.io devices, users can perform over-the-air (OTA) updates via the Console. They can create packages of the new firmware version (which is open source) and request an OTA update. The device(s) will then download the package whenever it firstly communicates with the Console. For more information on packages, please check the [Packages section]({{< relref "./ui/packages/_index.en.md" >}})
+For insigh.io devices, users can perform over-the-air (OTA) updates via the Console. They can create packages of the new firmware version (which is open source) and request an OTA update. The device(s) will then download the package whenever it firstly communicates with the Console. For more information on packages, please check the [Packages section]({{< relref "./ui/devices/packages/_index.en.md" >}})
 
 The following sections contain tutorials, walk-throughs and tips on using [console.insigh.io](https://console.insigh.io) platform.
