@@ -29,4 +29,4 @@ However, the first approach is quite straightforward and common. The _Plugins_ s
 1. LoRa-enabled third-party devices communicate with a LoRa server (e.g., TheThings, ChirpStack, etc.). Using the _Plugins_ service, users can acquire the data in real time from the LoRa server and import it to the Console.
 1. If the device does not use LoRa, but communicates with a third-party platform, the _Plugins_ service may also be able to communicate with the platform and acquire the data.
 
-The next section shows how a new device is created in the Console.
+The following sections show how to create a new device, how to send measurements and how to perform operations like remote configuration and OTA updates.
