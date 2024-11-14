@@ -15,7 +15,9 @@ To begin with, let's consider having a compressed **.tar.gz** file that contains
 
 Navigate to **Devices** -> **Packages** and create a new Package by providing its name, description info, tags and the file to be shared.
 
-> 🔐 Project viewers are not allowed to create packages. The relevant button is hidden.
+{{% notice note %}}
+🔐 Project viewers are not allowed to create packages. The relevant button is hidden.
+{{% /notice %}}
 
 ![OTA register](/images/console_tutorial/ota_register.png?width=60pc)
 

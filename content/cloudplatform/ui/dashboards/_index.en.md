@@ -85,3 +85,7 @@ Options:
 - **export**: create and download a CSV file with all the included contents of the widget values.
 
 ![Dashboard Chart Wizard - Context Menu](/images/console_tutorial/dashboard_chart_context_menu.png?width=60pc)
+
+{{% notice note %}}
+🔐 Project viewers are not allowed to edit, delete or duplicate dashboards. Moreover, project editors are not allowed to delete dashboards.
+{{% /notice %}}
