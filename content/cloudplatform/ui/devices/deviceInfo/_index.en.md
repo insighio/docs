@@ -66,9 +66,13 @@ Apart from displaying the device status and some basic controls such as Device E
 
 #### OTA Update
 
-> ℹ️ OTA update is supported for insigh.io devices, running the [insighio firmware](https://github.com/insighio/insighioNode)
+{{% notice info %}}
+OTA update is supported for insigh.io devices, running the [insighio firmware](https://github.com/insighio/insighioNode)
+{{% /notice %}}
 
-> 🔐 Project viewers are not allowed to perform OTA requests.
+{{% notice note %}}
+🔐 Project viewers are not allowed to perform OTA requests.
+{{% /notice %}}
 
 Previously registered OTA packages through the [Packages page]({{< relref "../packages/_index.en.md" >}}), can be assigned to the device.
 Use the **edit** button to enable the dropdown list, select the desired and press **Apply**. After applying each package, the status report of the OTA is expressed by the notification icon placed next to the **OTA package** label.
@@ -83,9 +87,13 @@ To cancel a pending OTA request, select from the dropdown menu the "No Package" 
 
 #### Remote Configuration
 
-> ℹ️ Remote configuration is supported for insigh.io devices, running the [insighio firmware](https://github.com/insighio/insighioNode).
+{{% notice info %}}
+Remote configuration is supported for insigh.io devices, running the [insighio firmware](https://github.com/insighio/insighioNode).
+{{% /notice %}}
 
-> 🔐 Project viewers are not allowed to perform Remote Configuration.
+{{% notice note %}}
+🔐 Project viewers are not allowed to perform Remote Configuration.
+{{% /notice %}}
 
 While with OTA updates it is possible to update the device's firmware to extend its capabilities, in some cases we simply want to change the device configuration to adapt to the needs of the user scenario. In such cases, **Remote Configuration** is supported to send request to change device capabilities, measurement timing, connection details etc.
 

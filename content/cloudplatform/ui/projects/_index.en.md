@@ -26,7 +26,9 @@ Projects can be created via the Projects dialog at the right side of the NavBar.
 - The project name
 - Any project tags (optional)
 
+{{% notice note %}}
 The creator of a project automatically has the _administrator_ role in the project.
+{{% /notice %}}
 
 ![Project Creation](/images/projects/create-project.gif?width=60pc)
 

@@ -9,7 +9,9 @@ The first step to create a device that will be used throughout the rest of the t
 
 Navigate to: **Devices** -> **Device List** and hit the `+` button at the **Page Toolbar** (upper right corner) to open the **Device Creation Form**.
 
-> 🔐 Project viewers are not allowed to create devices on the project. The "Add new" button is not visible.
+{{% notice note %}}
+🔐 Project viewers are not allowed to create devices on the project. The "Add new" button is not visible.
+{{% /notice %}}
 
 ![Device Creation Request](/images/console_tutorial/device_creation.jpg?width=60pc)
 
@@ -33,6 +35,8 @@ Hit the `Create` button and a confirmation message will be shown.
 
 ![Device Creation Form](/images/console_tutorial/device_creation_form_completed.jpg?width=60pc)
 
-> When the first device is created in a project, the project's channels are created too. Each project has two channels; the _data_ and the _control_ channel. The _data_ channel receives measurements from the project's devices and the control channel is used for Console - Device two way communication for other operations, like OTA and remote configuration.
+{{% notice note %}}
+When the first device is created in a project, the project's channels are created too. Each project has two channels; the _data_ and the _control_ channel. The _data_ channel receives measurements from the project's devices and the control channel is used for Console - Device two way communication for other operations, like OTA and remote configuration.
+{{% /notice %}}
 
 The device is now listed in the Device List. By clicking on it, opens the **Device Info** view.

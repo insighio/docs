@@ -138,12 +138,3 @@ tr td {
 .column-same-width:first-child{
   width: auto;
 }
-
-blockquote {
-  border-left: 10px solid #45b8ac;
-}
-
-blockquote p {
-  color: #555;
-  font-size: 1em;
-}
