@@ -5,13 +5,20 @@ parent: "devices"
 weight: 250
 ---
 
-In the previous articles, the focus has been to managing a single device. Though, there is often the necessity to view or execute multiple devices at once. This requirement if fulfilled by the **Device List View**.
+The **Device List** view lists all the project's devices. The list shows information on:
 
-![Device List](/images/console_tutorial/device_list.png?width=60pc)
+- The device ID
+- The device name
+- The device tags
+- The network that was used to send measurements
+- The device firmware
+- When the device was last seen
 
-The main view provides the list of all devices, populated with the **Last Seen Timestamp** and the device's communication network type. In that way, the view provides a quick overview of each device.
+![Device List](/images/console_tutorial/device_list.jpg?width=60pc)
 
-The multi-selection option provides a couple of enhanced features:
+At the page toolbar (top right), users can create a new device using the "Add new" button and can also refresh the list.
+
+At the top of the list, there are several buttons that provide enhanced features:
 
 #### Export
 
@@ -26,3 +33,5 @@ When multiple devices are selected, the [Device Configuration Wizard]({{< relref
 #### OTA
 
 Similar to the Remote Configuration, OTA requests can be sent in batch to all selected devices or can batch cancel all their pending requests.
+
+> 🔐 Project viewers are not allowed to create devices or request Remote Configuration or OTA updates. The relevant buttons are hidden

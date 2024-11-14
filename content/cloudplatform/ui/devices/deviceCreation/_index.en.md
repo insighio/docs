@@ -9,6 +9,8 @@ The first step to create a device that will be used throughout the rest of the t
 
 Navigate to: **Devices** -> **Device List** and hit the `+` button at the **Page Toolbar** (upper right corner) to open the **Device Creation Form**.
 
+> 🔐 Project viewers are not allowed to create devices on the project. The "Add new" button is not visible.
+
 ![Device Creation Request](/images/console_tutorial/device_creation.jpg?width=60pc)
 
 #### Device Creation Form

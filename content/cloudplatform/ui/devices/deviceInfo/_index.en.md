@@ -64,16 +64,14 @@ On each incoming message event (or page refresh), happens the following procedur
 
 Apart from displaying the device status and some basic controls such as Device Edit/Delete, more advanced tools are provided such as **Remote Configuration** and **Over-the-Air Updates**.
 
-> Both operations are available for project administrators and editors, but not for viewers
-
 #### OTA Update
 
-> OTA update is supported for insigh.io devices, running the [insighio firmware](https://github.com/insighio/insighioNode)
+> ℹ️ OTA update is supported for insigh.io devices, running the [insighio firmware](https://github.com/insighio/insighioNode)
+
+> 🔐 Project viewers are not allowed to perform OTA requests
 
 Previously registered OTA packages through the [Packages page]({{< relref "../packages/_index.en.md" >}}), can be assigned to the device.
 Use the **edit** button to enable the dropdown list, select the desired and press **Apply**. After applying each package, the status report of the OTA is expressed by the notification icon placed next to the **OTA package** label.
-
-> Project viewers are not able to perform OTA requests
 
 ![Device Info OTA](/images/console_tutorial/device_info_ota_list.jpg)
 
@@ -85,15 +83,15 @@ To cancel a pending OTA request, select from the dropdown menu the "No Package" 
 
 #### Remote Configuration
 
-> Remote configuration is supported for insigh.io devices, running the [insighio firmware](https://github.com/insighio/insighioNode)
+> ℹ️ Remote configuration is supported for insigh.io devices, running the [insighio firmware](https://github.com/insighio/insighioNode)
+
+> 🔐 Project viewers are not allowed to perform Remote Configuration
 
 While with OTA updates it is possible to update the device's firmware to extend its capabilities, in some cases we simply want to change the device configuration to adapt to the needs of the user scenario. In such cases, **Remote Configuration** is supported to send request to change device capabilities, measurement timing, connection details etc.
 
 In a typical workflow, the device will be locally configured before it is deployed on the field. This step is described in [Configure Device]({{< relref "/gettingstarted/configuration/" >}}). After the device is deployed, it sends its initial configuration to the Console. While the device is deployed, we can use the **Remote Configuration** feature to tweak the device behavior. For convenience, the same configurators run on the device and on the Console.
 
 The **Device Configuration Wizard** can be opened by the _Device Toolbar_.
-
-> Project viewers cannot perform Remote Configuration
 
 ![Device Configuration Wizard](/images/console_tutorial/device_info_remote_config_start.jpg)
 
