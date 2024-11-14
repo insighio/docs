@@ -34,4 +34,4 @@ When multiple devices are selected, the [Device Configuration Wizard]({{< relref
 
 Similar to the Remote Configuration, OTA requests can be sent in batch to all selected devices or can batch cancel all their pending requests.
 
-> 🔐 Project viewers are not allowed to create devices or request Remote Configuration or OTA updates. The relevant buttons are hidden
+> 🔐 Project viewers are not allowed to create devices or request Remote Configuration or OTA updates. The relevant buttons are hidden.
