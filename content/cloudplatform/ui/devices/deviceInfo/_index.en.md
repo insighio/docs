@@ -22,7 +22,7 @@ The **Device Info** view is the place where the user can view:
 - The device's location (_Map_ card), which shows a valid location if the device sends GPS information.
 - The OTA history, which shows all OTA operations and their relevant status
 
-The **Device Info** view also allows users to act on the device:
+The **Device Info** view also allows the following actions:
 
 - Edit the device
 - Delete the device
@@ -32,7 +32,21 @@ The **Device Info** view also allows users to act on the device:
 
 ![Device Info Overview](/images/console_tutorial/device_info_initial.jpg?width=60pc)
 
-Let's proceed with sending some dummy data using the Communication Keys (_ID, Key, Data Channel_) to act as a device. This will test the end-to-end communication and will populate the corresponding fields of the view.
+### Device Configuration
+
+The device has been created on the Console and the relevant communication keys have been generated. Now, the IoT device needs to be configured to properly communicate with the Console.
+
+#### insigh.io IoT Device
+
+If the device is an insigh.io one, the configuration is done via WiFi using the web application that is embedded in the firmware. The procedure is described in [Configure Device](/gettingstarted/configuration). The configuration installs the communication keys, sets up the measurement schedule and defines the measurement parameters. Once the configuration is completed, the device can start sending measurements to the Console.
+
+#### Third-party devices
+
+The configuration of a third-party device should follow the instructions of the relevant vendor. To communicate with the Console, usually a [Plugin](/cloudplatform/ui/plugins) service should be configured and associated with the device during the creation process.
+
+### Sending Data
+
+If the device is properly configured, it will start sending data once it is turned on, according to its configuration. For this tutorial, we will send some dummy data using the Communication Keys (_ID, Key, Data Channel_) to act as a device. This will test the end-to-end communication and will populate the corresponding fields of the view.
 
 To send a dummy message acting as the device, some Quick Data Commands are provided to get started and can be accessed by the three-dotted button in **the Device Toolbar**. (_Their format, fields and usage will be explained in the next page where the [Device Communication]({{< relref "../deviceCommunication/_index.en.md" >}}) is analyzed._)
 

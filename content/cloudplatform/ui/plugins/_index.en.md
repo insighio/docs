@@ -5,22 +5,22 @@ parent: "uioverview"
 weight: 5500
 ---
 
-The plugins service offers the opposite functionality of the integrations service. While with integrations users can forward incoming data to third party platforms, with plugins users can acquire data from third party platforms. This is particularly useful in non-IP-based communications, like Satellite IoT or LoRaWAN (e.g., TheThings Network), where the messages are sent to other platforms. However, the functionality can also be used with any third party platform that provides an API to collect the data.
+The plugins service offers the opposite functionality of the integrations service. While with integrations users can forward incoming data to third-party platforms, with plugins users can acquire data from third-party platforms. This is particularly useful in non-IP-based communications, like Satellite IoT or LoRaWAN (e.g., TheThings Network), where the messages are sent to other platforms. However, the functionality can also be used with any third-party platform that provides an API to collect the data.
 
 Three different protocols are currently supported in the plugins service:
 
 1. **MQTT**, where a MQTT client is subscribed to the broker that the user defines and listens for incoming messages.
 2. **HTTP**, which supports two ways to collect the data:
    - Receive, which listens for incoming data
-   - Poll, which requests data from the third party platforms in a predefined interval
+   - Poll, which requests data from the third-party platforms in a predefined interval
 3. **FTP**, where a FTP client polls a FTP server for files that satisfy predefined criteria
 
-The basic principle of the plugins service is that the user defines a plugin for a third party platform and a number of devices that use that plugin to acquire data from that platform. Each device must be configured to use that plugin during the device creation or can be updated later on. Each device needs to be mapped to an "External Device ID", which is the device's ID on the third party platform. An example of a device configuration is shown in the following sections.
+The basic principle of the plugins service is that the user defines a plugin for a third-party platform and a number of devices that use that plugin to acquire data from that platform. Each device must be configured to use that plugin during the device creation or can be updated later on. Each device needs to be mapped to an "External Device ID", which is the device's ID on the third-party platform. An example of a device configuration is shown in the following sections.
 
 The basic flow of an end-to-end communication for a plugin scenario is the following:
 
 1. The device on the field sends a message using the configured communication technology (e.g., Satellite IoT, LoRaWAN or a file on an FTP server).
-2. The plugins service acquires the data from the third party platform in the form of a payload. The payload contains the message (i.e., the measurements) along with metadata provided by the third party platform. The most important part of the metadata is the device ID, which is provided by the third party platform for that specific device. This ID has different names on each platform (e.g., "Device GUID" on Astrocast, "DevEUI" on TheThings) and it is called generically "External Device ID" on the insigh.io platform.
+2. The plugins service acquires the data from the third-party platform in the form of a payload. The payload contains the message (i.e., the measurements) along with metadata provided by the third-party platform. The most important part of the metadata is the device ID, which is provided by the third-party platform for that specific device. This ID has different names on each platform (e.g., "Device GUID" on Astrocast, "DevEUI" on TheThings) and it is called generically "External Device ID" on the insigh.io platform.
 3. The plugins service uses the predefined decoder to extract the "External Device ID" and the message itself from the payload.
 4. The service maps the External Device ID to a device on the insigh.io platform and stores the message for that device.
 
@@ -61,13 +61,13 @@ HTTP plugins support two collect the data, **Receive** and **Poll**.
 
 ##### HTTP Receive
 
-This method is used when the third party platforms support webhooks and can be configured to forward the data for a device to another platform via HTTP POST requests. An example of this scenario is Astrocast, where you can configure callbacks for a particular device. In this scenario, the plugins service listens to incoming HTTP POST requests at the predefined /api/v1/plugins endpoint. The only configuration required for a user is the message decoder. When the plugin is created, an Authentication Token is automatically created. This token must be provided in the HTTP POST message headers as "Authorization: < token >". This needs to be configured on the third party platform of course.
+This method is used when the third-party platforms support webhooks and can be configured to forward the data for a device to another platform via HTTP POST requests. An example of this scenario is Astrocast, where you can configure callbacks for a particular device. In this scenario, the plugins service listens to incoming HTTP POST requests at the predefined /api/v1/plugins endpoint. The only configuration required for a user is the message decoder. When the plugin is created, an Authentication Token is automatically created. This token must be provided in the HTTP POST message headers as "Authorization: < token >". This needs to be configured on the third-party platform of course.
 
 ![Plugins HTTP Receive](/images/console_tutorial/plugins_http_receive.png?width=60pc)
 
 ##### HTTP Poll
 
-This method is used when third party platforms do not support webhooks, but offer a REST API to poll the data via HTTP POST requests. Currently, only POST requests are supported, but GET requests will soon be supported too.
+This method is used when third-party platforms do not support webhooks, but offer a REST API to poll the data via HTTP POST requests. Currently, only POST requests are supported, but GET requests will soon be supported too.
 
 The basic principle is that we request data from an API every n hours (configurable) using a range field to filter the data. An important configuration for the polling method is that there needs to be a field that we can use so that we can filter the data that we request every time. In the current implementation, only date fields are allowed to filter data. In the future, this could be enhanced so that other types are also supported (e.g., IDs).
 
@@ -80,8 +80,8 @@ For the POST request, the user needs to specify:
 - The "range filter to" field name
 - The polling frequency. Currently supported values of n hours (1, 4, 12, 24 hours)
 - The message decoder
-- Custom HTTP headers required by the third party API (e.g., authorization)
-- Custom body options required by the third party API
+- Custom HTTP headers required by the third-party API (e.g., authorization)
+- Custom body options required by the third-party API
 
 ![Plugins HTTP Poll](/images/console_tutorial/plugins_http_poll.png?width=60pc)
 
@@ -127,7 +127,7 @@ When a plugin is created, it can be used by a device so that incoming data is ma
 
 ![Plugins Device Configuration](/images/console_tutorial/device_plugin.png?width=30pc)
 
-Then, the "External Device ID" needs to be provided. As described earlier, this is the ID of the device on the third party platform and is called differently depending on the platform. For example, it is the Device GUID in Astrocast, the DevEUI on LoRaWAN, etc.
+Then, the "External Device ID" needs to be provided. As described earlier, this is the ID of the device on the third-party platform and is called differently depending on the platform. For example, it is the Device GUID in Astrocast, the DevEUI on LoRaWAN, etc.
 
 ![Plugins Device Configuration](/images/console_tutorial/plugins_external_device_id.png?width=30pc)
 
