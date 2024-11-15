@@ -15,6 +15,10 @@ Using insigh.io's Console, users can:
 1. Send commands to the device
 1. Monitor device status
 
+{{% notice tip %}}
+Each device is associated to a specific project. Creating multiple smaller projects that group together devices that conceptually belong together is a good practice.
+{{% /notice %}}
+
 ## Third-party devices
 
 Although by using insigh.io's IoT hardware users can enjoy the full feature set of the Console, in many cases there are already available third-party devices that may satisfy the needs of a particular use case. Supporting well-established IoT communication protocols and best practices, the Console is a flexible platform that is not restricted to insigh.io-built devices, but also supports third-party devices. There are two main ways to integrate third-party devices to the Console:

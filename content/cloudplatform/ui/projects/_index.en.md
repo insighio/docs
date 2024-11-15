@@ -32,6 +32,14 @@ The creator of a project automatically has the _administrator_ role in the proje
 
 ![Project Creation](/images/projects/create-project.gif?width=60pc)
 
+{{% notice tip %}}
+Having multiple smaller projects instead of a few bigger ones is a good practice. It allows to group together devices that conceptually are related and also allows for more fine-grained access control.
+{{% /notice %}}
+
+{{% notice warning %}}
+It is not possible to combine information from different projects. For example, it is not possible to define a dashboard that shows data from devices that are created in different projects.
+{{% /notice %}}
+
 ## Project Info
 
 The Project Info view shows information on the current project. From this view, users can edit the project (name and tags) as well as add other users to the project (via invitations).
