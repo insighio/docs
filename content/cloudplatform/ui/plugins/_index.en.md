@@ -24,15 +24,22 @@ The basic flow of an end-to-end communication for a plugin scenario is the follo
 3. The plugins service uses the predefined decoder to extract the "External Device ID" and the message itself from the payload.
 4. The service maps the External Device ID to a device on the insigh.io platform and stores the message for that device.
 
+{{% notice note %}}
+Project viewers cannot create plugin rules, brokers, servers and/or decoders. Also, project editors cannot delete already created plugins entities. The relevant buttons are disabled.
+{{% /notice %}}
+
 ### Decoders
 
-Regardless the selected communication protocol, each plugin needs to use a predefined decoder for the incoming messages. The decoder is a JavaScript function that receives as input the payload and returns an object with two key-value pairs: the device id and the message in the SenML format, which is the supported format for the insigh.io platform. There are several predefined decoders that cover common scenarios:
+Regardless of the selected communication protocol, each plugin needs to use a predefined decoder for the incoming messages. The role of the decoder is to parse the incoming message and transform it to the appropriate (i.e., SenML) format for the Console. The decoder can also transform the message contents if required. It is a JavaScript function that receives as input the payload and returns an object with two key-value pairs: the device id and the message in the SenML format, which is the supported format for the insigh.io platform. There are several predefined decoders that cover common scenarios:
 
 - **The Things** decoder supports LoRaWAN scenarios on TheThings Network
 - **ChirpStack** decoder supports LoRaWAN scenarios on the ChirpStack network server
 - **Astrocast** decoder supports Satellite IoT scenarios using Astrocast's constellation
 - **Sensoneo** decoder supports decoding data from the Sensoneo platform
 - **ADCON** decoder supports decoding data files from an FTP server, containing data in the ADCON format
+- **Elsys** decoder supports Elsys devices
+- **Milesight-EM300** and **Milesight-WT201** decoders support Milesight devices
+- **BMeters Hydrodigit** decoder supports the relevant BMeters device
 
 ![Plugins Decoders](/images/console_tutorial/plugins_all_decoders.png?width=60pc)
 
@@ -40,9 +47,15 @@ For other scenarios, users can define a custom decoder:
 
 ![Plugins Decoders](/images/console_tutorial/plugins_custom_decoder.png?width=60pc)
 
+The user interface allows users to edit the code and also test it by providing the expected input. If the evaluated output is the expected one, proceed with saving the decoder.
+
+{{% notice tip %}}
+Decoders can be reused across multiple plugin rules, even for different rule types.
+{{% /notice %}}
+
 #### MQTT
 
-When defining an MQTT plugin, the service creates a MQTT client that subscribes to the configured broker and topic and listens for new messages. The plugin needs to use a decoder, as described previously and a broker. Users need to define the following information for the broker:
+When defining an MQTT plugin, the service creates a MQTT client that subscribes to the configured broker and topic and listens for new messages. The plugin needs to use a decoder, as described previously and a broker, which is the broker to which the service will subscribe to listen for incoming messages. Users need to define the following information for the broker:
 
 - MQTT broker URL
 - MQTT broker Port
@@ -55,9 +68,13 @@ Then, the MQTT Rule can be created. The rule needs to have a name, a MQTT broker
 
 ![Plugins MQTT](/images/console_tutorial/plugins_mqtt_rule.png?width=60pc)
 
+{{% notice tip %}}
+MQTT plugins are particularly useful in LoRa scenarios, where the devices typically send data to a LoRa server via MQTT.
+{{% /notice %}}
+
 #### HTTP
 
-HTTP plugins support two collect the data, **Receive** and **Poll**.
+HTTP plugins support two ways to acquire device data, **Receive** and **Poll**.
 
 ##### HTTP Receive
 
