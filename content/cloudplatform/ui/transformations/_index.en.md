@@ -69,7 +69,7 @@ A formula has the following properties:
 The formula expression is a mathematical expression that follows the JavaScript syntax. To build an expression, use the [JavaScript Arithmetic Operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_operators#arithmetic_operators) and to apply standard mathematical functions, use the [JavaScript Math functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math).
 
 {{% notice note %}}
-For simplicity, you can skip using the "Math." prefix in the expression. For example, to calculate the absolute value of a measurement (that has the symbol x), use abs(x) instead of Math.abs(x).
+For simplicity, you should skip using the "Math." prefix in the expression. For example, to calculate the absolute value of a measurement (that has the symbol x), use abs(x) instead of Math.abs(x).
 {{% /notice %}}
 
 In the expression, the selected measurements are mapped to a symbol. If one measurement is selected, it is mapped to "x", if a second measurement is selected, it is mapped to "y" and so on. The measurement to symbol mapping is shown below the measurement selection and above the expression.
