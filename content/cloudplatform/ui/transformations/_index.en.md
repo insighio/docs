@@ -5,12 +5,12 @@ parent: "uioverview"
 weight: 5300
 ---
 
-With the transformations service, users can define rules to transform incoming messages. The service listens for incoming messages and applies user-defined mathematical formulas to create higher-level measurements. For example, users can define transformations to:
+With the transformations service, users can define rules to transform device-originated messages. A transformation rule is defined for a set of devices and contains one or more formulas that will be applied to incoming device messages to generate higher-level measurements. The service listens for incoming messages and applies the transformation rules in real-time. For example, users can define transformations to:
 
 - transform the unit of a measurement (e.g., Celcius to Fahrenheit)
 - calculate a new quantity that is derived from one or more measurements (e.g., calculate the absolute value of a measurement, define a polynomial that depends on multiple first-level measurements, etc.)
 
-The generated result is stored as a new measurement, with a user-defined name and unit. It is then treated by the Console as another device measurement and can be plotted in dashboards, monitored in alarms and used in the integrations service.
+The generated result is stored as a new measurement, with a user-defined name and unit. This higher-level measurement has the same timestamp as the first-level measurement it was calculated upon. It is then treated by the Console as another device measurement and can be plotted in dashboards, monitored in alarms and used in the integrations service.
 
 {{% notice note %}}
 Project viewers cannot create transformation rules. Also, project editors cannot delete already created transformations. The relevant buttons are disabled.
@@ -105,8 +105,18 @@ Only project administrators can delete a transformation. Project administrators 
 
 ### Transformation Info
 
-To see transformation information, click on a transformation row in the transformations list view. The top card of the transformation info view shows general information on the rule. The bottom right card shows all formulas information and the bottom left card shows formula execution status information per formula and device. In case of errors, a helpful error log is shown in each case. Convenient filters are also provided to filter for a particular formula or device.
+To see transformation information, click on a transformation row in the transformations list view. The view contains 3 information cards:
+
+- The top card shows general information on the rule: its name as the card title, its ID, description, number of devices, number of formulas and creation and update dates.
+- The "Formulas" card (bottom-right) shows all formulas information
+- The "Status" card (bottom-left) shows formula execution status information per formula and device. This is particularly useful for monitoring. In case of errors, a helpful error log is shown in each case. Convenient filters are also provided to filter for a particular formula or device.
 
 ![Transformation Info](/images/transformations/transformation_info.png)
 
 From this page, users can update or delete a transformation, provided that they have the appropriate project access rights.
+
+### Transformations Limitations
+
+In the current implementation, the transformation rules are applied on each received message independently (for the configured devices). This means that the service does not keep any state of previously received messages and therefore users cannot define rules that will be applied across subsequent messages. For example, it is not possible to define a transformation that calculates the moving average of a measurement, which requires to take into account a window of the last n received messages.
+
+Moreover, if a device does not send all the required first-level measurements for a formula, the formula execution will fail and an error message will be shown in the transformation info view. For example, if a formula depends on two first-level measurements (A and B) and the device sends measurement A every hour and measurement B every 15 minutes, the formula will generate a result every hour, when both measurements will be present in the incoming message.
