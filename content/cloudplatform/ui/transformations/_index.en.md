@@ -79,7 +79,7 @@ The expression needs to be evaluated before adding the formula to the transforma
 1. The expression syntax is correct
 2. All variable symbols are used in the expression
 
-The result of the expression is stored with the user-defined result name and unit.
+Each time the expression is executed upon receiving a message, its result is stored with the user-defined result name and unit.
 
 After clicking "Add", the formula is added to the transformation rule. A rule can contain more than one formula. Once finished, click "Next" to go to the preview step.
 
@@ -105,7 +105,7 @@ Only project administrators can delete a transformation. Project administrators 
 
 ### Transformation Info
 
-To see transformation information, click on a transformation in the transformations list view. The transformation info shows general information on the rule, formula information and formula execution status information per formula and device. In case of errors, a helpful error log is shown in each case. Convenient filters are also provided to filter for a particular formula or device.
+To see transformation information, click on a transformation row in the transformations list view. The top card of the transformation info view shows general information on the rule. The bottom right card shows all formulas information and the bottom left card shows formula execution status information per formula and device. In case of errors, a helpful error log is shown in each case. Convenient filters are also provided to filter for a particular formula or device.
 
 ![Transformation Info](/images/transformations/transformation_info.png)
 
