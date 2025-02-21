@@ -117,6 +117,8 @@ From this page, users can update or delete a transformation, provided that they 
 
 ### Transformations Limitations
 
-In the current implementation, the transformation rules are applied on each received message independently (for the configured devices). This means that the service does not keep any state of previously received messages and therefore users cannot define rules that will be applied across subsequent messages. For example, it is not possible to define a transformation that calculates the moving average of a measurement, which requires to take into account a window of the last n received messages.
+In the current implementation, the transformation rules are applied on each received message independently (for the configured devices). This means that the service does not keep any state of previously received messages and therefore users cannot define rules that will be applied across multiple messages. For example, it is not possible to define a transformation that calculates the moving average of a measurement, which requires to take into account a window of the last n received messages.
 
 Moreover, if a device does not send all the required first-level measurements for a formula, the formula execution will fail and an error message will be shown in the transformation info view. For example, if a formula depends on two first-level measurements (A and B) and the device sends measurement A every hour and measurement B every 15 minutes, the formula will generate a result every hour, when both measurements will be present in the incoming message.
+
+Finally, it is not possible to apply the transformations in historical data. The service applies the transformations in real time, starting from the moment a transformation is created by the user.
