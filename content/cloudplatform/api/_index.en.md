@@ -293,7 +293,7 @@ Content-Length: 2
 
 Update the device location ID stored in the metadata. The validity of the stored location ID is not checked.
 
-In case of success, 200 OK is returned with an empty JSON object.
+In case of success, 200 OK is returned with the updated device details.
 
 > URL [PUT]
 >
@@ -310,7 +310,7 @@ curl -s -S -i -X PUT -H "Content-Type: application/json" -H "Authorization: <acc
 #### Input Example
 
 ```bash
-curl -s -S -i -X PUT -H "Content-Type: application/json" -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTgxMTIxNDQsImlhdCI6MTY1ODA3NjE0NCwiaXNzIjoibWFpbmZsdXguYXV0aG4iLCJzdWIiOiJkZW1vQGluc2lnaC5pbyIsInR5cGUiOjB9.auXohlIbMHi8mRA_995kjSB-PABPBtH-btIEwUNyVrw" https://console.insigh.io/mf-rproxy/device/e27bc4f5-3278-400a-86af-5045b04efa0c/location" -d '{"location":"<location-id>"}'
+curl -s -S -i -X PUT -H "Content-Type: application/json" -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTgxMTIxNDQsImlhdCI6MTY1ODA3NjE0NCwiaXNzIjoibWFpbmZsdXguYXV0aG4iLCJzdWIiOiJkZW1vQGluc2lnaC5pbyIsInR5cGUiOjB9.auXohlIbMHi8mRA_995kjSB-PABPBtH-btIEwUNyVrw" https://console.insigh.io/mf-rproxy/device/e27bc4f5-3278-400a-86af-5045b04efa0c/location" -d '{"location":"b03a04f9302"}'
 ```
 
 #### Output
@@ -324,7 +324,7 @@ Connection: keep-alive
 Keep-Alive: timeout=5
 Content-Length: 2
 
-{}
+{"id":"e27bc4f5-3278-400a-86af-5045b04efa0c","name":"apitest","key":"a0f8ccb5-934b-4a73-99fa-9e1d95c8b197","metadata":{"location":"b03a04f9302", "plugins":{"attributes":{"externalDevId":"f0e1d2c3b4a59687"},"id":"19eb1c6c-85ef-43a6-0000-8767843d8e87","name":"Elsys-ERS2 Plugin","type":"mqtt"}},"status":"Inactive"}
 ```
 
 ### Delete Device
