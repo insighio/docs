@@ -18,7 +18,7 @@ API list:
 - [Device API]({{< relref "#device-api" >}})
   - [Create Device]({{< relref "#create-device" >}})
   - [Get Device]({{< relref "#get-device" >}})
-  - [Get Device by external ID]({{< relref "#get-device-by-external-id"}})
+  - [Get Device by external ID]({{< relref "#get-device---by-external-id" >}})
   - [Update Device]({{< relref "#update-device" >}})
   - [Update Device Location]({{< relref "#update-device-location" >}})
   - [Delete Device]({{< relref "#delete-device" >}})
@@ -446,7 +446,7 @@ Get device last measurement. Each value holds extra meta info such as time, prot
 > - **exclude-base-name**: (optional) boolean to remove base name from each measurement
 
 ```bash
-curl -s -S -i -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/device/lastMeasurement?channel=<data-channel-id>&id=<device-id>"
+curl -s -S -i -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/device/lastMeasurement?channel=<data-channel-id>&id=<device-id>&exclude-base-name=true"
 ```
 
 #### Output
