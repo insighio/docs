@@ -18,7 +18,9 @@ API list:
 - [Device API]({{< relref "#device-api" >}})
   - [Create Device]({{< relref "#create-device" >}})
   - [Get Device]({{< relref "#get-device" >}})
+  - [Get Device by external ID]({{< relref "#get-device-by-external-id"}})
   - [Update Device]({{< relref "#update-device" >}})
+  - [Update Device Location]({{< relref "#update-device-location" >}})
   - [Delete Device]({{< relref "#delete-device" >}})
   - [Send command to device]({{< relref "#send-command-to-device" >}})
 - [Get Location List]({{< relref "#get-location-list" >}})
@@ -211,6 +213,43 @@ Content-Length: 381
 {"id":"e27bc4f5-3278-400a-86af-5045b04efa0c","name":"apitest","key":"a0f8ccb5-934b-4a73-99fa-9e1d95c8b197","metadata":{"name":"apitest", "metadata": {"deviceId": "100.123.123.312", "status":"disabled", "tags": {"company": "northen lights", "hw_version": "4.0", "facility_id": 929}}},"status":"Inactive"}
 ```
 
+### Get Device - by external ID
+
+Get the device details by providing the External Device ID set in the Alternative Data Source option of the device.
+
+> URL [GET]
+>
+> https://console.insigh.io/mf-rproxy/device/external-id/\<external-device-id\>
+>
+> - **external-device-id**: The ID used as the device identification in the Alternative Data Source setting. If LoRA plugin is setup, then this ID is the LoRA DevEUI.
+
+#### Example
+
+```bash
+curl -s -S -i -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/device/external-id/<external-device-id>"
+```
+
+#### Input Example
+
+```bash
+curl -s -S -i -H "Content-Type: application/json" -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTgxMTIxNDQsImlhdCI6MTY1ODA3NjE0NCwiaXNzIjoibWFpbmZsdXguYXV0aG4iLCJzdWIiOiJkZW1vQGluc2lnaC5pbyIsInR5cGUiOjB9.auXohlIbMHi8mRA_995kjSB-PABPBtH-btIEwUNyVrw" https://console.insigh.io/mf-rproxy/device/external-id/f0e1d2c3b4a59687
+
+```
+
+#### Output
+
+```bash
+HTTP/1.1 200 OK
+Content-Type: application/json
+Access-Control-Allow-Origin: *
+Date: Sun, 17 Jul 2022 17:05:22 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+Content-Length: 381
+
+{"id":"e27bc4f5-3278-400a-86af-5045b04efa0c","name":"apitest","key":"a0f8ccb5-934b-4a73-99fa-9e1d95c8b197","metadata":{"name":"apitest", "plugins":{"attributes":{"externalDevId":"f0e1d2c3b4a59687"},"id":"19eb1c6c-85ef-43a6-0000-8767843d8e87","name":"Elsys-ERS2 Plugin","type":"mqtt"}},"status":"Inactive"}
+```
+
 ### Update Device
 
 Update the device details of a device that has already been created. The "id" returned by device creation of the device list retrieval is required to execute this call.
@@ -234,6 +273,44 @@ curl -s -S -i -X PUT -H "Content-Type: application/json" -H "Authorization: <acc
 ```bash
 curl -s -S -i -X PUT -H "Content-Type: application/json" -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTgxMTIxNDQsImlhdCI6MTY1ODA3NjE0NCwiaXNzIjoibWFpbmZsdXguYXV0aG4iLCJzdWIiOiJkZW1vQGluc2lnaC5pbyIsInR5cGUiOjB9.auXohlIbMHi8mRA_995kjSB-PABPBtH-btIEwUNyVrw" https://console.insigh.io/mf-rproxy/device/e27bc4f5-3278-400a-86af-5045b04efa0c -d '{"name":"apitest-updated", "metadata": {"deviceId": "1234.1234.1234.1234", "status":"active", "tags": {"company": "northen lights", "hw_version": "4.1", "facility_id": 929}}}'
 
+```
+
+#### Output
+
+```bash
+HTTP/1.1 200 OK
+Content-Type: application/json
+Access-Control-Allow-Origin: *
+Date: Sun, 17 Jul 2022 17:05:03 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+Content-Length: 2
+
+{}
+```
+
+### Update Device Location
+
+Update the device location ID stored in the metadata. The validity of the stored location ID is not checked.
+
+In case of success, 200 OK is returned with an empty JSON object.
+
+> URL [PUT]
+>
+> https://console.insigh.io/mf-rproxy/device/\<device-id\>/locaton
+>
+> - **device-id**: The device ID in the for of: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+
+#### Example
+
+```bash
+curl -s -S -i -X PUT -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/device/<device-id>/location" -d '{"location":"<location-id>"}'
+```
+
+#### Input Example
+
+```bash
+curl -s -S -i -X PUT -H "Content-Type: application/json" -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTgxMTIxNDQsImlhdCI6MTY1ODA3NjE0NCwiaXNzIjoibWFpbmZsdXguYXV0aG4iLCJzdWIiOiJkZW1vQGluc2lnaC5pbyIsInR5cGUiOjB9.auXohlIbMHi8mRA_995kjSB-PABPBtH-btIEwUNyVrw" https://console.insigh.io/mf-rproxy/device/e27bc4f5-3278-400a-86af-5045b04efa0c/location" -d '{"location":"<location-id>"}'
 ```
 
 #### Output
@@ -366,6 +443,7 @@ Get device last measurement. Each value holds extra meta info such as time, prot
 >
 > - **channel**: Data Channel ID
 > - **id**: Device ID
+> - **exclude-base-name**: (optional) boolean to remove base name from each measurement
 
 ```bash
 curl -s -S -i -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/device/lastMeasurement?channel=<data-channel-id>&id=<device-id>"
