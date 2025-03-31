@@ -5,7 +5,7 @@ parent: "firmware"
 weight: 4800
 ---
 
-The table below lists a sample set of measurements from a basic insigh.io Node board configuration.
+The table below lists a sample set of measurements from a basic insigh.io Node board configuration. The measurements contain information on on-board diagnostics, operational and network metadata.
 
 | Measurement       | Unit                    | Explanation                                       | Example Measurement |
 | ----------------- | ----------------------- | ------------------------------------------------- | ------------------- |
