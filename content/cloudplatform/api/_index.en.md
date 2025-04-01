@@ -20,7 +20,7 @@ API list:
   - [Get Device]({{< relref "#get-device" >}})
   - [Get Device by external ID]({{< relref "#get-device---by-external-id" >}})
   - [Update Device]({{< relref "#update-device" >}})
-  - [Update Device Location]({{< relref "#update-device-location" >}})
+  - [Update External Device Location]({{< relref "#update-external-device-location" >}})
   - [Delete Device]({{< relref "#delete-device" >}})
   - [Send command to device]({{< relref "#send-command-to-device" >}})
 - [Get Location List]({{< relref "#get-location-list" >}})
@@ -222,17 +222,21 @@ Get the device details by providing the External Device ID set in the Alternativ
 > https://console.insigh.io/mf-rproxy/device/external-id/\<external-device-id\>
 >
 > - **external-device-id**: The ID used as the device identification in the Alternative Data Source setting. If LoRA plugin is setup, then this ID is the LoRA DevEUI.
+>
+> Query Arguments:
+>
+> - **include-last-measurement**: (optional) boolean to include device last measurement in the response
 
 #### Example
 
 ```bash
-curl -s -S -i -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/device/external-id/<external-device-id>"
+curl -s -S -i -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/device/external-id/<external-device-id>?include-last-measurement=true"
 ```
 
 #### Input Example
 
 ```bash
-curl -s -S -i -H "Content-Type: application/json" -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTgxMTIxNDQsImlhdCI6MTY1ODA3NjE0NCwiaXNzIjoibWFpbmZsdXguYXV0aG4iLCJzdWIiOiJkZW1vQGluc2lnaC5pbyIsInR5cGUiOjB9.auXohlIbMHi8mRA_995kjSB-PABPBtH-btIEwUNyVrw" https://console.insigh.io/mf-rproxy/device/external-id/f0e1d2c3b4a59687
+curl -s -S -i -H "Content-Type: application/json" -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTgxMTIxNDQsImlhdCI6MTY1ODA3NjE0NCwiaXNzIjoibWFpbmZsdXguYXV0aG4iLCJzdWIiOiJkZW1vQGluc2lnaC5pbyIsInR5cGUiOjB9.auXohlIbMHi8mRA_995kjSB-PABPBtH-btIEwUNyVrw" https://console.insigh.io/mf-rproxy/device/external-id/f0e1d2c3b4a59687?include-last-measurement=true
 
 ```
 
@@ -247,7 +251,7 @@ Connection: keep-alive
 Keep-Alive: timeout=5
 Content-Length: 381
 
-{"id":"e27bc4f5-3278-400a-86af-5045b04efa0c","name":"apitest","key":"a0f8ccb5-934b-4a73-99fa-9e1d95c8b197","metadata":{"name":"apitest", "plugins":{"attributes":{"externalDevId":"f0e1d2c3b4a59687"},"id":"19eb1c6c-85ef-43a6-0000-8767843d8e87","name":"Elsys-ERS2 Plugin","type":"mqtt"}},"status":"Inactive"}
+{"id":"e27bc4f5-3278-400a-86af-5045b04efa0c","name":"apitest","domain":"241b11c5-b12a-4f10-b117-5ba7196114c6","metadata":{"controlChannel":"f1931d71-6141-4b1b-91c1-6212101c211b","dataChannel":"151e1f54-91a1-4d1a-81d0-31101413977","location":"abcdef123","plugins":{"attributes":{"externalDevId":"2c0d0fcfb9e50839"},"id":"1f13771f-01f5-4101-91a1-11139d216359","name":"ChirpStack Rule","type":"mqtt"}},"created_at":"2024-06-25T12:06:52.98471Z","updated_at":"2025-04-01T07:34:55.395011Z","status":"enabled","key":"2afa629c-75c0-471b-b80c-48184bfb54c2","lastMeasurement":[{"time":"2024-03-12T10:01:31.173000097Z","name":"bandwidth","publisher":"e27bc4f5-3278-400a-86af-5045b04efa0c","subtopic":"e27bc4f5-3278-400a-86af-5045b04efa0c","protocol":"plugins:mqtt","unit":null,"updateTime":"0","value":125000,"stringValue":null},{"time":"2024-03-12T10:01:31.173000097Z","name":"board_humidity","publisher":"e27bc4f5-3278-400a-86af-5045b04efa0c","subtopic":"e27bc4f5-3278-400a-86af-5045b04efa0c","protocol":"plugins:mqtt","unit":"%RH","updateTime":"0","value":55.97,"stringValue":null},{"time":"2024-03-12T10:01:31.173000097Z","name":"board_reset_cause","publisher":"e27bc4f5-3278-400a-86af-5045b04efa0c","subtopic":"e27bc4f5-3278-400a-86af-5045b04efa0c","protocol":"plugins:mqtt","unit":null,"updateTime":"0","value":4,"stringValue":null},{"time":"2024-03-12T10:01:31.173000097Z","name":"board_temperature","publisher":"e27bc4f5-3278-400a-86af-5045b04efa0c","subtopic":"e27bc4f5-3278-400a-86af-5045b04efa0c","protocol":"plugins:mqtt","unit":"Cel","updateTime":"0","value":19.51,"stringValue":null},{"time":"2024-03-12T10:01:31.173000097Z","name":"board_uptime","publisher":"e27bc4f5-3278-400a-86af-5045b04efa0c","subtopic":"e27bc4f5-3278-400a-86af-5045b04efa0c","protocol":"plugins:mqtt","unit":"ms","updateTime":"0","value":4163,"stringValue":null},{"time":"2024-03-12T10:01:31.173000097Z","name":"board_vbatt","publisher":"e27bc4f5-3278-400a-86af-5045b04efa0c","subtopic":"e27bc4f5-3278-400a-86af-5045b04efa0c","protocol":"plugins:mqtt","unit":"mV","updateTime":"0","value":3636,"stringValue":null},{"time":"2024-03-12T10:01:31.173000097Z","name":"frequency","publisher":"e27bc4f5-3278-400a-86af-5045b04efa0c","subtopic":"e27bc4f5-3278-400a-86af-5045b04efa0c","protocol":"plugins:mqtt","unit":null,"updateTime":"0","value":867300000,"stringValue":null},{"time":"2024-03-12T10:01:31.173000097Z","name":"loRaSNR","publisher":"e27bc4f5-3278-400a-86af-5045b04efa0c","subtopic":"e27bc4f5-3278-400a-86af-5045b04efa0c","protocol":"plugins:mqtt","unit":null,"updateTime":"0","value":10.2,"stringValue":null},{"time":"2024-03-12T10:01:31.173000097Z","name":"rssi","publisher":"e27bc4f5-3278-400a-86af-5045b04efa0c","subtopic":"e27bc4f5-3278-400a-86af-5045b04efa0c","protocol":"plugins:mqtt","unit":null,"updateTime":"0","value":-44,"stringValue":null},{"time":"2024-03-12T10:01:31.173000097Z","name":"spreading_factor","publisher":"e27bc4f5-3278-400a-86af-5045b04efa0c","subtopic":"e27bc4f5-3278-400a-86af-5045b04efa0c","protocol":"plugins:mqtt","unit":null,"updateTime":"0","value":7,"stringValue":null}]}
 ```
 
 ### Update Device
@@ -289,28 +293,28 @@ Content-Length: 2
 {}
 ```
 
-### Update Device Location
+### Update External Device Location
 
-Update the device location ID stored in the metadata. The validity of the stored location ID is not checked.
+Update the external device location ID stored in the metadata. The validity of the stored location ID is not checked.
 
 In case of success, 200 OK is returned with the updated device details.
 
-> URL [PUT]
+> URL [PATCH]
 >
-> https://console.insigh.io/mf-rproxy/device/\<device-id\>/locaton
+> https://console.insigh.io/mf-rproxy/device/external-id/\<external-device-id\>/locaton
 >
-> - **device-id**: The device ID in the for of: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+> - **external-device-id**: The external device ID. For LoRa devices, this is the DevEUI.
 
 #### Example
 
 ```bash
-curl -s -S -i -X PUT -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/device/<device-id>/location" -d '{"location":"<location-id>"}'
+curl -s -S -i -X PATCH -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/device/external-id/<device-id>/location" -d '{"location":"<location-id>"}'
 ```
 
 #### Input Example
 
 ```bash
-curl -s -S -i -X PUT -H "Content-Type: application/json" -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTgxMTIxNDQsImlhdCI6MTY1ODA3NjE0NCwiaXNzIjoibWFpbmZsdXguYXV0aG4iLCJzdWIiOiJkZW1vQGluc2lnaC5pbyIsInR5cGUiOjB9.auXohlIbMHi8mRA_995kjSB-PABPBtH-btIEwUNyVrw" https://console.insigh.io/mf-rproxy/device/e27bc4f5-3278-400a-86af-5045b04efa0c/location" -d '{"location":"b03a04f9302"}'
+curl -s -S -i -X PATCH -H "Content-Type: application/json" -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTgxMTIxNDQsImlhdCI6MTY1ODA3NjE0NCwiaXNzIjoibWFpbmZsdXguYXV0aG4iLCJzdWIiOiJkZW1vQGluc2lnaC5pbyIsInR5cGUiOjB9.auXohlIbMHi8mRA_995kjSB-PABPBtH-btIEwUNyVrw" https://console.insigh.io/mf-rproxy/device/external-id/2c0d0fcfb9e50839/location" -d '{"location":"b03a04f9302"}'
 ```
 
 #### Output
