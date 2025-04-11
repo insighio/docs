@@ -56,7 +56,9 @@ A socket.io rule creates a service that connects to the relevant server and push
 
 ### FTP upload
 
-The FTP upload rule creates a service that uploads a set of received messages to a user-defined FTP server as a file. Although this service is also real-time, its main difference to the other integrations services is that it is designed to process multiple messages and upload the resulting information to the destination server. Once a device for which an FTP integration rule has been defined sends a message to the Console, the service caches the message and waits for a window of 5 seconds for more messages. Every time a new message arrives within that window, the timer is reset. When the timer expires, the collected messages are all processed together by the associated decoder. The FTP decoder defines the filename and the content of the file that will be uploaded to the destination server. Therefore, the users are in full control of the format of the file that will be uploaded.
+The FTP upload rule creates a service that uploads a set of received messages to a user-defined FTP server as a file. Although this service is also real-time, its main difference to the other integrations services is that it is designed to process multiple messages and upload the resulting information to the destination server. Once a device, for which an FTP integration rule has been defined, sends a message to the Console, the service caches the message and waits for a window of 5 seconds for more messages. Every time a new message arrives within that window, the timer is reset. When the timer expires, the collected messages are all processed together by the associated decoder. Therefore, the service is designed to function better with devices that have been configured with a batch upload.
+
+The FTP decoder defines the filename and the content of the file that will be uploaded to the destination server. Therefore, the users are in full control of the format of the file that will be uploaded.
 
 To define the destination FTP server, the following information is required:
 
@@ -113,6 +115,7 @@ The final step is to create a **Rule**. In the Rule setup, the user defines the 
 - `Sub-topic`: (optional) whether the rule will listen to a specific subtopic for these devices. This is useful for listening to specific control messages or transformation messages
 - `Out Rule`: (applicable only for MQTT integrations) the MQTT topic of the remote MQTT broker where the message will be published
 - `Destination Broker`, `HTTP Hook`, `FTP Server`: select the previously configured 3rd party system details
+- `Path`: (applicable only for FTP integrations) define the directory where the FTP file will be uploaded
 - `Decoder`: select the active decoder to be run for each message
 
 When the **Rule** is created, it is marked as _Active_. Each rule can be paused or started by editing the rule and pressing **Pause** or **Play** button.
