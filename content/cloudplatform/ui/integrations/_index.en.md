@@ -28,6 +28,10 @@ The connection details include:
 - MQTT broker Port
 - Username (optional)
 - Password (optional)
+- Use TLS (optional): enables MQTT with TLS termination for secure (encrypted) communication between the insigh.io Console and the external MQTT broker
+- CA Certificate (optional): Provide the CA Certificate chain if TLS is enabled
+- Client Certificate (optional): Provide the client certificate, required if mutual TLS is configured
+- Client Private Key (optional): Provide the client private key, required if mutual TLS is configured
 
 ![Integrations MQTT](/images/console_tutorial/integrations/integrations_mqtt.png?width=60pc)
 
