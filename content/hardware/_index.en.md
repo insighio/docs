@@ -5,6 +5,12 @@ identifier: "hardware"
 weight: 200
 ---
 
+{{< customtable "table autowidth" >}}
+| | |
+| -------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| ![insigh.io IoT node](/images/deviceimages/insighio-node-2.png?width=35pc) | ![insigh.io IoT node](/images/deviceimages/insighio-node.png?width=35pc) |
+{{< /customtable >}}
+
 ## Description
 
 insigh.io board is a generic and affordable hardware device, designed for accelerating IoT adoption:
@@ -50,9 +56,12 @@ This is a collection of standard "ready-made" IoT application boards which can b
 
 #### Sensor Boards
 
-- [Generic Analogue & Digital Sensor Board with support for up to 3 x 3-pin (power,data,ground) analogue sensors & 1 x I²C sensor]({{< relref "./shields/sensor-board/insighio-shield-base-adc-i2c.md" >}})
-- [Advanced Industrial Sensor Board with support for up to 2 x SDI-12, 2 x 4-20mA & 1 generic 2-pin pulse counter]({{< relref "./shields/sensor-board/insighio-shield-advind" >}})
+- [Generic Analogue & Digital Sensor Board with support for up to 3x 3-pin (power,data,ground) analogue sensors & 1x I²C sensor]({{< relref "./shields/sensor-board/insighio-shield-base-adc-i2c.md" >}})
+- [Advanced Industrial Sensor Board with support for up to 2x SDI-12, 2x 4-20mA & 1 generic 2-pin pulse counter]({{< relref "./shields/sensor-board/insighio-shield-advind" >}})
 - [Air Quality and Vibrations Sensor Board]({{< relref "./shields/sensor-board/insighio-shield-air-quality-and-vibrations" >}})
+- [Enhanced Air Quality Sensor board]({{< relref "./shields/sensor-board/insighio-shield-enhanced-air-qual" >}})
+- [Smart Weigh Scale Sensor board with support for external input (control buttons) and output devices (LEDs, Buzzer, UART devices like external RDIF/NFC readers)]({{< relref "./shields/sensor-board/insighio-shield-smart-scale" >}})
+- [Environmental Monitoring Sensor board with support for 2x SDI12, 1x Modbus-RTU, 4x Analog/4-20mA, 2x Pulse Counters]({{< relref "./shields/sensor-board/insighio-shield-enviro" >}})
 
 #### Radio Boards
 
