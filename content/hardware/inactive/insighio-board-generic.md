@@ -7,6 +7,10 @@ weight: 260
 
 ![TAT image](/images/deviceimages/generic-board.PNG?width=40pc)
 
+{{% notice warning %}}
+This board is deprecated. For replacement please refer to [XXXX]({{< relref "../shields/sensor-board/insighio-shield-advind" >}}) used by [insigh.io generic board]({{< relref "/hardware/board/v1.1.0.md" >}}).
+{{% /notice %}}
+
 ### General Information
 
 |                            |
@@ -122,15 +126,3 @@ weight: 260
     -   1200 mAh
 -   **Solar Panel**
     -   6V/1W
-
-### Marking
-
-|          |           |
-| :------- | :-------- |
-| **CE**   | _planned_ |
-| **FCC**  | _planned_ |
-| **RoHS** | _planned_ |
-
-## Custom designs
-
-The existing boards are highly configurable and expandable so if the existing boards do not fit your need, **[get in contact with us](mailto:info@insigh.io)** and we will tailor a solution for you with your customizations.

@@ -11,8 +11,9 @@ By completing the [Configure Device]({{< relref "../configuration/_index.en.md" 
 For firmware version: v2.11.0+, after each configuration there is a file system optimization procedure. This takes place on first boot after the configuration and lasts ~1 minute with RGB light flashing in multiple colors.
 {{% /notice %}}
 
-{{% notice note %}}
-**Pro Tip**: the [Configure Device]({{< relref "../configuration/_index.en.md" >}}) procedure is responsible of generating a configuration file that describes the selected board setup, the network configuration and the enabled measurements. This file can be retrieved by downloading file **/apps/demo_console/demo_config.py** for the [insigh.io cellular device]({{< relref "../../hardware/custom/insighio-cellular-weigh-scale.md" >}}) and **/apps/demo_console/demo_config.py** for Pycom devices ([insigh.io generic host board]({{< relref "../../hardware/custom/insighio-board-generic.md" >}}), [insigh.io SDI-12 host board]({{< relref "../../hardware/custom/insighio-board-sdi12.md" >}})). See **[Sample config files]({{< relref "../../firmware/sampleconfigfiles/_index.en.md" >}})** for examples per network technology.
+
+[comment]: M {{% notice note %}}
+**Pro Tip**: the [Configure Device]({{< relref "../configuration/_index.en.md" >}}) procedure is responsible of generating a configuration file that describes the selected board setup, the network configuration and the enabled measurements. This file can be retrieved by downloading file **/apps/demo_console/demo_config.py** for the [insigh.io cellular device]({{< relref "../../hardware/inactive/insighio-cellular-weigh-scale.md" >}}) and **/apps/demo_console/demo_config.py** for Pycom devices ([insigh.io generic host board]({{< relref "../../hardware/inactive/insighio-board-generic.md" >}}), [insigh.io SDI-12 host board]({{< relref "../../hardware/inactive/insighio-board-sdi12.md" >}})). See **[Sample config files]({{< relref "../../firmware/sampleconfigfiles/_index.en.md" >}})** for examples per network technology.
 
 {{% /notice %}}
 
