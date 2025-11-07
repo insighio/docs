@@ -3,6 +3,7 @@ title: Inactive
 identifier: "hardware@inactive"
 parent: "hardware"
 weight: 3
+collapsed: true
 ---
 
 This is a series of inactive hardware boards that are not commercially available. These fall broadly into 2 categories: 

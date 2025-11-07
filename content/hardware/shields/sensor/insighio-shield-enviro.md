@@ -2,7 +2,7 @@
 title: Environmental Monitoring
 identifier: "hardware@shields@sensor-board@insighio-shield-enviro"
 parent: "hardware@shields@sensor-board"
-weight: 240
+weight: 30
 ---
 
 ![enviro shield](/images/deviceimages/insighio-shield-enviro.png?width=25pc)

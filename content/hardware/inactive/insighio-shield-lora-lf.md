@@ -2,7 +2,7 @@
 title: LoRa Low-Frequency (169MHz)
 identifier: "hardware@shields@radio@insighio-shield-lora-lf"
 parent: "hardware@shields@radio"
-weight: 230
+weight: 240
 ---
 
 ![shield lora gps](/images/deviceimages/insighio-shield-lora-lf.png?width=20pc)

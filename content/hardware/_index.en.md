@@ -59,7 +59,7 @@ Based on the main board, we build a complete hardware solution that perfectly fi
 * A standard Female Headers Pin Connector for attaching one of our sensor shield, depending on the target application
 * A custom Ribbon Cable Connector for (optionally) attaching one of our additional connectivity shields, depending on the network availability
 
-Move to page [Main Board with exposed pins](./board/latest) to view the complete technical specifications of this board. 
+Move to page [Main Board](./main/) to view the complete technical specifications of this board. 
 
 ![TAT image](/images/deviceimages/insighio-main-latest.png?width=30pc)
 
@@ -69,15 +69,21 @@ This is a collection of standard "ready-made" expansion boards which can be used
 
 #### Sensor Shields
 
-- [Generic Analogue & Digital Sensor Board with support for up to 3x 3-pin (power,data,ground) analogue sensors & 1x I²C sensor]({{< relref "./shields/sensor-board/insighio-shield-base-adc-i2c.md" >}})
-- [Advanced Industrial Sensor Board with support for up to 2x SDI-12, 2x 4-20mA & 1 generic 2-pin pulse counter]({{< relref "./shields/sensor-board/insighio-shield-advind" >}})
-- [Smart Weigh Scale Sensor board with support for external input (control buttons) and output devices (LEDs, Buzzer, UART devices like external RDIF/NFC readers)]({{< relref "./shields/sensor-board/insighio-shield-smart-scale" >}})
-- [Environmental Monitoring Sensor board with support for 2x SDI12, 1x Modbus-RTU, 4x Analog/4-20mA, 2x Pulse Counters]({{< relref "./shields/sensor-board/insighio-shield-enviro" >}})
+| Shield Name | SKU | Sensor Interfaces | Typical Sector | Example Sensors| 
+| :-------------------- | :------- | :------- | :--------|  :--------|
+| [Base]({{< relref "./shields/sensor/insighio-shield-base.md" >}}) |  **INS-S-S-BAS**  | 3 x Analogue & 1 x I²C bus (3.3V) | Agriculture | Soil Conductivity |
+| [Advanced]({{< relref "./shields/sensor/insighio-shield-advanced.md" >}}) |  **INS-S-S-ADV**  | 2 x SDI-12 & 2 x 4-20mA & 1 x Pulse Counter (12V)  | Agriculture | Advanced Soil & Water Status |
+| [Enviro]({{< relref "./shields/sensor/insighio-shield-enviro.md" >}}) |  **INS-S-S-ENV**  | 2 x SDI-12 & 1 x Modbus-RTU & 4 x Analogue/4-20mA & 2 x Pulse Counter (5V/9V/12V)  | Environmental | Extended Weather Conditions |
+| [Scale]({{< relref "./shields/sensor/insighio-shield-scale.md" >}}) |  **INS-S-S-SCA**  | 1 x High Precision ADS (5V) | Waste Management | Weight (Load Cells) |
+| [Machine]({{< relref "./shields/sensor/insighio-shield-machine.md" >}}) |  **INS-S-S-MAC**  | 1 x Modbus RTU & 3 x High Precision ADS (3.3V) | Industrial Machinery | PLC & Energy Meters |
 
 #### Connectivity Shields
 
-- [Communications Expansion Board for enabling **LoRaWAN** connectivity and **GPS** tracking]({{< relref "./shields/radio/insighio-shield-lora.md" >}})
-- [Communications Expansion Board for enabling **Satellite** connectivity using **ASTROCAST's** network and **GPS** tracking]({{< relref "./shields/radio/insighio-shield-astrocast.md" >}})
+| Shield Name | SKU | Network | Example Applications | 
+| :-------------------- | :------- | :------- | :--------|  :--------|
+| [LoRa]({{< relref "./shields/connectivity/insighio-shield-lora.md" >}}) |  **INS-S-C-LOR**  | LoRaWAN | Smart buildings resources usage |
+| [SatIoT]({{< relref "./shields/connectivity/insighio-shield-astrocast.md" >}}) |  **INS-S-C-AST**  | Satellite IoT based on ASTROCAST network | Environmental Monitoring in remote areas (oceans, mountains) |
+
 
 
 {{% notice info %}}

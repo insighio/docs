@@ -2,7 +2,7 @@
 title: LoRaWAN
 identifier: "hardware@shields@radio@insighio-shield-lora"
 parent: "hardware@shields@radio"
-weight: 235
+weight: 10
 ---
 
 ![shield lora gps](/images/deviceimages/insighio-shield-lora.png?width=20pc)

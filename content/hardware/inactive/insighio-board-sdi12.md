@@ -2,16 +2,13 @@
 title: Pycom SDI-12 Host Board
 identifier: "hardware@custom@insighio-board-sdi12"
 parent: "hardware@custom"
-weight: 270
+weight: 260
 aliases:
   - /hardware/insighio-board-sdi12/
 ---
 
 ![TAT image](/images/deviceimages/board-sdi12.PNG?width=40pc)
 
-{{% notice warning %}}
-This board is deprecated. For replacement please refer to [Advanced Industrial Shield]({{< relref "../shields/sensor-board/insighio-shield-advind" >}}) used by [insigh.io generic board]({{< relref "/hardware/board/v1.1.0.md" >}}).
-{{% /notice %}}
 
 ### General Information
 

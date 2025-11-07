@@ -24,6 +24,7 @@ weight: 1
 | **Dimensions (L x W x H)**                  | 77.47 (83.5*) x 62.23 x 16.7 mm (* with embedded wifi antenna)                                 |
 | **Weight**                                  | 28 g                                                                                           |
 | **Current version**                         | 1.0.4                                                                                          |
+| **SKU**                                     | INS-B-MAN                                                                                      |
 
 
 ### Micro-Controller
@@ -143,7 +144,6 @@ For controling the board using the External Switch, S1 (internal switch) should 
 | **Port**                    | J3  |
 | **Type**                    | 1 x Custom 10-pin Connector (Part number: 90325-0010) compatible with Ribbon Flex Cable (Part number: 92317-1012) |
 | **Usage**                   | Attach insigh.io connectivity shields |
-
 
 
 

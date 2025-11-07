@@ -2,7 +2,7 @@
 title: Smart Scale
 identifier: "hardware@shields@sensor-board@insighio-shield-smart-scale"
 parent: "hardware@shields@sensor-board"
-weight: 235
+weight: 40
 ---
 
 ![shield smart scale](/images/deviceimages/insighio-shield-smart-scale.png?width=20pc)

@@ -2,14 +2,10 @@
 title: "Pycom Generic Host Board"
 identifier: "hardware@custom@insighio-board-generic"
 parent: "hardware@custom"
-weight: 260
+weight: 250
 ---
 
 ![TAT image](/images/deviceimages/generic-board.PNG?width=40pc)
-
-{{% notice warning %}}
-This board is deprecated. For replacement please refer to [XXXX]({{< relref "../shields/sensor-board/insighio-shield-advind" >}}) used by [insigh.io generic board]({{< relref "/hardware/board/v1.1.0.md" >}}).
-{{% /notice %}}
 
 ### General Information
 

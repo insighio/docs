@@ -2,7 +2,7 @@
 title: Satellite (Astrocast)
 identifier: "hardware@shields@radio@insighio-shield-astrocast"
 parent: "hardware@shields@radio"
-weight: 225
+weight: 20
 description: insigh.io/ESP32-based satellite IoT board with Micropython firmware
 ---
 
