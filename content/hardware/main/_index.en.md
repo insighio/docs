@@ -5,7 +5,7 @@ parent: "hardware"
 weight: 1
 ---
 
-![TAT image](/images/deviceimages/insighio-main-latest.png?width=40pc)
+![TAT image](/images/deviceimages/insighio-main.png?width=40pc)
 
 ### General Information
 |                                             |
@@ -223,7 +223,7 @@ Orientation as in the board picture. IOs naming refer to corresponding ESP32-S3-
 ### Changelog
 
 | Version  | Release Date | Comments
-| :-------------------- | :------- | :--------|
+| :--------------------  | :----------------| :--------|
 | 1.0.4 (latest)         | 05/03/2025       | Change resettable fuses to tolerate higher voltages |
 | 1.0.3                  | 20/08/2024       | Minor mechanical changes (holes standoffs) |
 | 1.0.2                  | 31/12/2023       | Fix increased deep sleep current due to external switch pulled down resistor |

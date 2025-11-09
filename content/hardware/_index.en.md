@@ -61,7 +61,7 @@ Based on the main board, we build a complete hardware solution that perfectly fi
 
 Move to page [Main Board](./main/) to view the complete technical specifications of this board. 
 
-![TAT image](/images/deviceimages/insighio-main-latest.png?width=30pc)
+![TAT image](/images/deviceimages/insighio-main.png?width=30pc)
 
 ### Shields
 

@@ -8,7 +8,7 @@ weight: 10
 ![shield sensor base](/images/deviceimages/insighio-shield-base.png?width=20pc)
 
 ### Scope
-Provide support to multiple analogue & a single digital (I²C) sensors. It is applicable to entry level applications like smart agriculture and basic temperature/humidity monitoring.
+Provide support for multiple analogue & a single digital (I²C) sensors. It is applicable to entry level applications like smart agriculture and basic temperature/humidity monitoring.
 
 ### General Information
 
@@ -28,13 +28,12 @@ Provide support to multiple analogue & a single digital (I²C) sensors. It is ap
 
 
 {{% notice info %}}
-This is an entry level low-cost board with limited capabilities. It mostly serves the purpose of testing and familiarizing with the product. For example only 3.3V sensors are suppored and for analogue signals readings we use the lower precision ADC of ESP32. We advise to look at the [Enviro](../insighio-shield-enviro/) shield for critical projects.
+This is an entry level low-cost board with **limited capabilities**. It mostly serves the purpose of testing and familiarizing with the product. For example only 3.3V sensors are suppored and for analogue signals readings we use the lower precision ADC of ESP32. We advise to look at the [Enviro](../insighio-shield-enviro/) shield for critical projects.
 {{% /notice %}}
 
 ### Indicative list of tested sensors
-* METER's EC5 (soil moisture)
-* PINO-TECH's Soil Watch 10 (soil moisture)
-* SHT20 (temperature/humidity)
+* Soil Moisture: EC5 (METER), Soil Watch 10 (PINO-TECH)
+* Temperature/Humidity: SHT20
 
 ### Advanced Topics
 #### Pins
