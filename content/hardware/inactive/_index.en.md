@@ -13,6 +13,13 @@ This is a series of inactive hardware boards that are not commercially available
   * Custom "all-in-one" boards which integrate both sensing and connectivity, developed for highly specific customer applications
 * **Category 2:** Boards depending on obsolete modules abandoned pernamently.
 
+
+
+{{% notice warning %}}
+Documentation for these boards is not currently maintained. **[Registrer your interest](mailto:info@insigh.io)** to discuss options.
+{{% /notice %}}
+
+
 #### Sensor & Connectivity Shields
 
 - [Air Quality and Vibrations Sensor Board]({{< relref "./insighio-shield-air-quality-and-vibrations" >}})

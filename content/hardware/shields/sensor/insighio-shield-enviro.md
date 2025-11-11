@@ -5,7 +5,7 @@ parent: "hardware@shields@sensor"
 weight: 30
 ---
 
-![enviro shield](/images/deviceimages/insighio-shield-enviro.png?width=35pc)
+![shield sensor enviro](/images/deviceimages/insighio-shield-enviro.png?width=35pc)
 
 ### Scope
 
