@@ -228,6 +228,6 @@ Orientation as in the board picture. IOs naming refer to corresponding ESP32-S3-
 | 1.0.3                  | 20/08/2024       | Minor mechanical changes (holes standoffs) |
 | 1.0.2                  | 31/12/2023       | Fix increased deep sleep current due to external switch pulled down resistor |
 | 1.0.1                  | 17/03/2023       | Added resettable fuses to solar panel, battery and the output of the 3.3V regulator; Change connector for connectivity shield |
-| 1.0.0                  | 29/06/2022       | First stable version with ESP32-S3 & Sensor Expansion Port |
+| [**1.0.0**](/images/deviceimages/insighio-main-v1.png?width=30pc)                 | 29/06/2022       | First stable version with ESP32-S3 & Sensor Expansion Port |
 
 
