@@ -1,26 +1,32 @@
 ---
 title: Firmware
-pre: "<b>3. </b>"
+pre: "<b>2. </b>"
 chapter: true
 identifier: "firmware"
 weight: 1000
 ---
 
+
 # Firmware
 
-This chapter is focused on documenting all reusable software functionalities that can be found in insigh.io Node software available in Github: https://github.com/insighio/insighioNode.
+This chapter provides the basic information for flashing and using the **insigh.io node firmware**:
 
-insigh.io libraries have been tested on stock ESP32 firmware and [Pycom's latest firmware release](https://github.com/pycom/pycom-micropython-sigfox/releases/tag/v1.20.2.r4)
+#### [Firmware Flashing Guide]({{< relref "./flashing/_index.en.md" >}})
+  - How to flash [insigh.io's node firmware](https://github.com/insighio/insighioNode) to device.
 
-This chapter is divided into the following sections:
+#### [Web Configuration]({{< relref "./flashing/_index.en.md" >}})
+   - How to configure the insigh.io Node using the Web User Interface.
 
-1. [Firmware Flashing Guide]({{< relref "./flashing/_index.en.md" >}})
-   - Description on how to flash [insigh.io's node firmware](https://github.com/insighio/insighioNode) to device.
-1. [API]({{< relref "./api/_index.en.md" >}})
-   - the documentation of the libraries included in the [lib folder](https://github.com/insighio/insighioNode/tree/main/insighioNode/lib) of the `insighioNode`
-1. [LoRA]({{< relref "./lora/_index.en.md" >}})
-   - a thorough description of the custom LoRA Encoding Protocol accompanied by the corresponding Decoder code sample in Javascript which can be used in any LoRA server / application.
-1. [Sample config files]({{< relref "./sampleconfigfiles/_index.en.md" >}}):
-   - Sample configuration files for all variants of device configurations that be produced by Web UI configurator as provided by the web_server.py in `insighioNode` code.
-1. [Measurements]({{< relref "./measurements/_index.en.md" >}}):
-   - List of main board measurements, including on-board diagnostics, operational and network metadata.
+#### [LoRa]({{< relref "./lora/_index.en.md" >}})
+   - Information specific on LoRa operation on insigh.io board firmware, in particular, our custom LoRaWAN Encoding Protocol accompanied by the corresponding Decoder code sample in Javascript which can be used in any LoRaWAN network server / application.
+
+#### [Measurements]({{< relref "./measurements/_index.en.md" >}})
+   - A list of default board measurements, including on-board diagnostics, operational and network metadata.
+
+
+
+
+
+{{% notice info %}}
+The firmware is an open-source software project hosted and maintained in [Github](https://github.com/insighio/insighioNode). It is continuously improved and enhanced, so when starting a new project we recommend to get the latest version.
+{{% /notice %}}
