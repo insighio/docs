@@ -119,5 +119,5 @@ The combination of low-power board mode and always-on sensor mode, doesn't have 
 | 1.1.0 | 13/06/2025  | - Added a second SDI-12 port |
 |       |             | - Added 4-20mA selector for the analogue ports
 |       |             | - Changed naming of ports: VCC for sensor supply voltage, IN for sensor data signal
-| 1.0.0 | 12/03/2025  | - First stable version with 1 x SDI-12 port, 1 x Modbus RTU port, 4 x Analogue ports, 2 x Pulse Input ports
+| [**1.0.0**](/images/deviceimages/insighio-shield-enviro-1.0.0.png?width=30pc) | 12/03/2025  | - First stable version with 1 x SDI-12 port, 1 x Modbus RTU port, 4 x Analogue ports, 2 x Pulse Input ports
 |       |             | - Ports naming: VIN for sensor supply voltage, OUT for sensor data signal 

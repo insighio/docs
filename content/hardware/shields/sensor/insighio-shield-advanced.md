@@ -135,16 +135,16 @@ Dry contact reed switches are supported. The connection pins are as follows:
 
 | Version  | Release Date | Comments
 | :---- | :-----------| :--------|
-| 1.3.2 | 04/10/2025  | - Added pull-down resistor to stabilize SDI data bus.|
-| 1.3.1 | 18/06/2025  | - Changes in silkscreen (Vin-->Vcc, Out-->IN, added "Sensors power").|
-| 1.3.0 | 24/03/2025  | - Voltage shifter of pulse counter removed.|
-|       |             | - Pull-down resistor added to GPIO of pulse counter. |
-| 1.2.0 | 26/09/2024  | - Set default sensor supply voltage level to 12V when no jumper is placed. |
-| 1.1.0 | 17/09/2024  | - Multiple Sensor Supply Voltage levels (5V,9V,12V) selectable via jumpers . |
-|       |             | - Regulator Mode Selector via Jumper. |
-| 1.0.0 | 11/10/2023  | - First stable version with all the interfaces available. |
-|       |             | - Regulator Mode (ALWAYS-ON vs ON-DEMAND) configurable via resistors.  |
-|       |             | - Pulse Counter implementation includes an inverting voltage shifter and a non-inverting bypass via resistor.|
+| 1.3.2 | 04/10/2025  | Added pull-down resistor to stabilize SDI data bus.|
+| 1.3.1 | 18/06/2025  | Changes in silkscreen (Vin-->Vcc, Out-->IN, added "Sensors power").|
+| 1.3.0 | 24/03/2025  | Voltage shifter of pulse counter removed.|
+|       |             | Pull-down resistor added to GPIO of pulse counter. |
+| 1.2.0 | 26/09/2024  | Set default sensor supply voltage level to 12V when no jumper is placed. |
+| 1.1.0 | 17/09/2024  | Multiple Sensor Supply Voltage levels (5V,9V,12V) selectable via jumpers . |
+|       |             | Regulator Mode Selector via Jumper. |
+| [**1.0.0**](/images/deviceimages/insighio-shield-advanced-1.0.0.png?width=30pc) | 11/10/2023  | First stable version with all the interfaces available. |
+|       |             | Regulator Mode (ALWAYS-ON vs ON-DEMAND) configurable via resistors.  |
+|       |             | Pulse Counter implementation includes an inverting voltage shifter and a non-inverting bypass via resistor.|
 
 
 

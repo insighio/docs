@@ -5,6 +5,8 @@ parent: "hardware@shields@sensor"
 weight: 50
 ---
 
+![shield sensor scale](/images/deviceimages/insighio-shield-machine.png?width=25pc)
+
 
 ### Scope
 Provide support for remote machine control, using standard interfaces, i.e. Modbus RTU & 4-20mA. Typical applications include the control of machines "brain", namely PLCs, and energy consumpetion, using non-obstructive current sensors.

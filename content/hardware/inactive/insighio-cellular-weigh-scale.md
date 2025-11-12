@@ -1,11 +1,14 @@
 ---
-title: Custom Cellular Weigh Scale Board
-identifier: "hardware@custom@insighio-cellular"
-parent: "hardware@custom"
-weight: 250
+title: Beehive
+identifier: "hardware@inactive@insighio-cellular"
+parent: "hardware@inactive"
+weight: 230
 ---
 
-![TAT image](/images/deviceimages/esp32-bg600_v1.png?width=40pc)
+![beehive](/images/deviceimages/insighio-board-beehive.png?width=40pc)
+
+### Scope
+Integrated cellular connected weigh-scale and environmental monitoring board
 
 ### General Information
 
@@ -122,15 +125,3 @@ weight: 250
 -   **Flexible Cellular Antenna**
 -   **Flexible GPS Antenna**
 -   **SIM card**
-
-### Marking
-
-|          |           |
-| :------- | :-------- |
-| **CE**   | _planned_ |
-| **FCC**  | _planned_ |
-| **RoHS** | _planned_ |
-
-## Custom designs
-
-The existing boards are highly configurable and expandable so if the existing boards do not fit your need, **[get in contact with us](mailto:info@insigh.io)** and we will tailor a solution for you with your customizations.

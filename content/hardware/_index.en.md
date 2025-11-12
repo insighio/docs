@@ -71,11 +71,11 @@ This is a collection of standard "ready-made" expansion boards which can be used
 
 | Shield Name | SKU | Sensor Interfaces | Typical Sector | Example Sensors| 
 | :-------------------- | :------- | :------- | :--------|  :--------|
-| [Base]({{< relref "./shields/sensor/insighio-shield-base.md" >}}) |  **INS-S-S-BAS**  | 3 x Analogue & 1 x I²C bus (3.3V) | Agriculture | Soil Conductivity |
-| [Advanced]({{< relref "./shields/sensor/insighio-shield-advanced.md" >}}) |  **INS-S-S-ADV**  | 2 x SDI-12 & 2 x 4-20mA & 1 x Pulse Counter (12V)  | Agriculture | Advanced Soil & Water Status |
-| [Enviro]({{< relref "./shields/sensor/insighio-shield-enviro.md" >}}) |  **INS-S-S-ENV**  | 2 x SDI-12 & 1 x Modbus-RTU & 4 x Analogue/4-20mA & 2 x Pulse Counter (5V/9V/12V)  | Environmental | Extended Weather Conditions |
-| [Scale]({{< relref "./shields/sensor/insighio-shield-scale.md" >}}) |  **INS-S-S-SCA**  | 1 x High Precision ADS (5V) | Waste Management | Weight (Load Cells) |
-| [Machine]({{< relref "./shields/sensor/insighio-shield-machine.md" >}}) |  **INS-S-S-MAC**  | 1 x Modbus RTU & 3 x High Precision ADS (3.3V) | Industrial Machinery | PLC & Energy Meters |
+| [Base]({{< relref "./shields/sensor/insighio-shield-base.md" >}}) |  **INS-S-S-BAS**  | Analogue, I²C bus | Agriculture | Soil Conductivity |
+| [Advanced]({{< relref "./shields/sensor/insighio-shield-advanced.md" >}}) |  **INS-S-S-ADV**  | SDI-12, 4-20mA, Pulse Counter  | Agriculture | Advanced Soil & Water Status |
+| [Enviro]({{< relref "./shields/sensor/insighio-shield-enviro.md" >}}) |  **INS-S-S-ENV**  | SDI-12, Modbus-RTU, Analogue, 4-20mA, Pulse Counter  | Environmental | Extended Weather Conditions |
+| [Scale]({{< relref "./shields/sensor/insighio-shield-scale.md" >}}) |  **INS-S-S-SCA**  | High Precision ADS | Waste Management | Weight (Load Cells) |
+| [Machine]({{< relref "./shields/sensor/insighio-shield-machine.md" >}}) |  **INS-S-S-MAC**  | Modbus RTU, High Precision ADS | Industrial Machinery | PLC & Energy Meters |
 
 #### Connectivity Shields
 

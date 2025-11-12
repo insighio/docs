@@ -22,17 +22,17 @@ Documentation for these boards is not currently maintained. **[Registrer your in
 
 #### Sensor & Connectivity Shields
 
-- [Air Quality and Vibrations Sensor Board]({{< relref "./insighio-shield-air-quality-and-vibrations" >}})
-- [Enhanced Air Quality Sensor board]({{< relref "./insighio-shield-enhanced-air-qual" >}})
-- [Communications Expansion Board for enabling **LoRa** connectivity at low VHF frequencies (**169 MHz**)]({{< relref "./insighio-shield-lora-lf.md" >}})
+- [**Vehicle**: Monitoring Road Vibrations and In-Cabin CO2 levels]({{< relref "./insighio-shield-vehicle" >}})
+- [**AirQual**: Monitoring CO2 and O2 levels in Confined Spaces]({{< relref "./insighio-shield-airqual" >}})
+- [**LoRa LF**: Custom LoRa Connectivity at extended ranges via VHF Low Frequency]({{< relref "./insighio-shield-lora-lf.md" >}})
 
 #### Integrated
 
-- [Integrated Cellular Board with support to Load Cell and Analog/Digital sensors]({{< relref "./insighio-cellular-weigh-scale.md" >}})
+- [**Beehive**: Integrated Cellular Board with support to Load Cell and Analog/Digital sensors]({{< relref "./insighio-cellular-weigh-scale.md" >}})
 
 #### Obsolete
 
-- [Generic host board with support to I²C, Analog and Digital sensors (requires a Pycom module)]({{< relref "./insighio-board-generic.md" >}})
-- [SDI-12 compatible host board with RS-485 (requires a Pycom module)]({{< relref "./insighio-board-sdi12.md" >}})
+- [**Pycom Generic Host Board**: I²C, Analog and Digital sensors]({{< relref "./insighio-board-pycom-generic.md" >}})
+- [**Pycom Agri Host Board**: SDI-12 sensors]({{< relref "./insighio-board-pycom-sdi12.md" >}})
 
 

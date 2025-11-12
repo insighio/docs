@@ -1,5 +1,5 @@
 ---
-title: Satellite (ASTROCAST)
+title: Satellite
 identifier: "hardware@shields@connectivity@insighio-shield-astrocast"
 parent: "hardware@shields@connectivity"
 weight: 20
