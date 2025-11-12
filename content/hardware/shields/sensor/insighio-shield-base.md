@@ -33,7 +33,9 @@ This is an entry level low-cost board with **limited capabilities**. It mostly s
 
 ### Indicative list of tested sensors
 * Soil Moisture: EC5 (METER), Soil Watch 10 (PINO-TECH)
-* Temperature/Humidity: SHT20
+* Temperature/Humidity: SHT20 / DS18x20.
+* CO2: SHT30 (Sensirion)
+* Air Quality: BME680 (Bosch)
 
 ### Advanced Topics
 #### Pins
