@@ -120,8 +120,7 @@ After a successful installation you should see an output like this in the prompt
 
 #### 5. Initialization
 
-_Click_ the "**reset**" button once or power off-on the **external switch** and wait till the initialization finishes. This will take up to a minute, since the setup files are in a special form called "__frozen modules__" and need to "unfreeze" before usage.
-
-When ready the device will light up the RGB led.
-   - On first boot, it will directly enter [configuration mode] and the RGB led will have a blinking magenta color.
-   - If the device is already configured, it will continue the normal execution circle, with the RGB led becoming steady blue initially.
+- _Click_ the "**reset**" button once or power off-on the **external switch** and wait till the initialization finishes. This will take up to a minute, since the setup files are in a special form called "__frozen modules__" and need to "unfreeze" before usage.
+- When the board is ready it will light up the **RGB led**.
+   - On first boot, it will directly enter **"Configuration mode"** and the led will have a _blinking_ **{{< raw-html >}}<span style="color: #800080">magenta</span>{{< /raw-html >}}** color.
+   - If the device is already configured, it will continue the normal execution circle, with the RGB led becoming _solid_ **{{< raw-html >}}<span style="color: #0000FF">blue</span>{{< /raw-html >}}** initially.

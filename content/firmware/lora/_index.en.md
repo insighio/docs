@@ -1,5 +1,5 @@
 ---
-title: LoRA
+title: LoRa
 chapter: true
 identifier: "firmware@lora"
 parent: "firmware"

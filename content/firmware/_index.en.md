@@ -18,10 +18,10 @@ This chapter provides the basic information for flashing and using the **insigh.
 The firmware is installed in the **main board** and is common across all sensing & connectivity shields.
 {{% /notice %}}
 
-#### [Web Configuration]({{< relref "./flashing/_index.en.md" >}})
+#### [Web Configuration]({{< relref "./configuration/_index.en.md" >}})
    - How to configure the insigh.io node using the **local Web User Interface**.
 
-{{% notice tip %}}
+{{% notice note %}}
 After configuring the node locally using the Web UI, **remote configuration** is available via the Console.
 {{% /notice %}}
 
