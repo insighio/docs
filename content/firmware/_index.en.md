@@ -1,6 +1,6 @@
 ---
 title: Firmware
-pre: "<b>2. </b>"
+pre: "<b>3. </b>"
 chapter: true
 identifier: "firmware"
 weight: 1000
@@ -11,19 +11,30 @@ weight: 1000
 
 This chapter provides the basic information for flashing and using the **insigh.io node firmware**:
 
-#### [Firmware Flashing Guide]({{< relref "./flashing/_index.en.md" >}})
-  - How to flash [insigh.io's node firmware](https://github.com/insighio/insighioNode) to device.
+#### [Flashing Guide]({{< relref "./flashing/_index.en.md" >}})
+  - How to flash [insigh.io's node firmware](https://github.com/insighio/insighioNode) to an insigh.io node.
+
+{{% notice tip %}}
+The firmware is installed in the **main board** and is common across all sensing & connectivity shields.
+{{% /notice %}}
 
 #### [Web Configuration]({{< relref "./flashing/_index.en.md" >}})
-   - How to configure the insigh.io Node using the Web User Interface.
+   - How to configure the insigh.io node using the **local Web User Interface**.
+
+{{% notice tip %}}
+After configuring the node locally using the Web UI, **remote configuration** is available via the Console.
+{{% /notice %}}
 
 #### [LoRa]({{< relref "./lora/_index.en.md" >}})
-   - Information specific on LoRa operation on insigh.io board firmware, in particular, our custom LoRaWAN Encoding Protocol accompanied by the corresponding Decoder code sample in Javascript which can be used in any LoRaWAN network server / application.
-
+   - Information specific on **LoRa operation** on insigh.io node firmware
+     - Custom LoRaWAN encoding protocol
+     - Decoder sample for use in any LNS
+   
 #### [Measurements]({{< relref "./measurements/_index.en.md" >}})
-   - A list of default board measurements, including on-board diagnostics, operational and network metadata.
-
-
+   - A list of default board measurements
+      - On-board diagnostics
+      - Network metadata
+      - Debugging information
 
 
 

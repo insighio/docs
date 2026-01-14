@@ -13,7 +13,7 @@ For firmware version: v2.11.0+, after each configuration there is a file system 
 
 
 [comment]: M {{% notice note %}}
-**Pro Tip**: the [Configure Device]({{< relref "../configuration/_index.en.md" >}}) procedure is responsible of generating a configuration file that describes the selected board setup, the network configuration and the enabled measurements. This file can be retrieved by downloading file **/apps/demo_console/demo_config.py** for the [insigh.io cellular device]({{< relref "../../hardware/inactive/insighio-cellular-weigh-scale.md" >}}). See **[Sample config files]({{< relref "../../firmware/sampleconfigfiles/_index.en.md" >}})** for examples per network technology.
+**Pro Tip**: the [Configure Device]({{< relref "../configuration/_index.en.md" >}}) procedure is responsible of generating a configuration file that describes the selected board setup, the network configuration and the enabled measurements. This file can be retrieved by downloading file ......
 
 {{% /notice %}}
 
