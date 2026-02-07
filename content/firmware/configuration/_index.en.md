@@ -7,16 +7,17 @@ weight: 1010
 
 ## Overview
 
-The local configurator is an integrated feature of the firmware that allows to fully configure the node in a user friendly way. It relies on a Web Server running in the node and can be accessed by any nearby WiFi-capable device like a PC, a smartphone or a tablet via a Browser. It opens a step-by-step wizard exposing all the necessary configuration options to the end user.
+The local configurator is an integrated feature of the firmware that allows to fully configure the node in a user friendly way. It relies on a Web Server running in the node and can be accessed by any nearby WiFi-capable device like a PC, a smartphone or a tablet via a Browser. It opens a step-by-step wizard exposing all the available settings to the end user.
 
 It groups configuration into 4 categories:
 
 -   **[Network]({{< relref "./network" >}})**: choose from a wide range of connectivity technologies and setup network-specific connection parameters.
--   **[Keys]({{< relref "./keys" >}})**: enter keys for node-Console communication, from onboarding.
--   **[Measurements]({{< relref "./measurements" >}})** enable specific sensor interfaces and metadata monitoring in accordance with the selected shield.
--   **[Timing]({{< relref "./timing" >}})** setup periodic measurement and reporting times
+-   **[Keys]({{< relref "./keys" >}})**: enter keys for node-Console communication, as acquired from _[onboarding]({{< relref "../../cloudplatform/ui/devices/deviceinfo" >}})_.
+-   **[Measurements]({{< relref "./measurements" >}})** enable specific sensor ports & settings along with metadata monitoring in accordance with the selected shield.
+-   **[Timing]({{< relref "./timing" >}})** setup periodic measurement and data reporting times.
 
-Before presenting in detail the above configuration options, we explain how to launch and access this tool.
+Configuration is finalized with a **[Verification]({{< relref "./verify" >}})** step which provides an overview of the selected parameters and applies the changes.
+Before presenting in detail the above configuration options, we explain how to launch and access the tool.
 
 ## Configurator Launch
 
@@ -24,7 +25,9 @@ Before presenting in detail the above configuration options, we explain how to l
 
 The Configurator is accessible only after a **hard reset** (power off/on). During this procedure, the node becomes a **WiFi Access Point** and waits for connections from WiFi-capable devices acting as Clients.
 
-Each node broadcasts a WiFi **SSID** with format _insigh-<last 4 digits of mac address>_ (ex. _insigh-5fa1_) with **password**: _insighiodev_
+Each node:
+- Broadcasts a WiFi **SSID** with the following format: **insigh-<last 4 digits of mac address>** (ex. _insigh-5fa1_), having
+- Connection **password**: _insighiodev_
 
 #### WiFi Access Point mode indicator
 
@@ -40,7 +43,7 @@ The WiFi Access Point will remain active for:
 ### Step-by-step Guide
 
 1. Power-on or hard-reset the node
-1. Wait for the RGB led to start blinking magenta.
+1. Wait for the RGB led to start blinking **{{< raw-html >}}<span style="color: #800080">magenta</span>{{< /raw-html >}}**.
 1. On a PC, tablet, or smartphone:
    - Look for a WiFi network with **SSID:** _insigh-XXXX_
    - Connect to this network with  **password**: _insighiodev_
