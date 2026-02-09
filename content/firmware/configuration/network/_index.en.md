@@ -8,8 +8,8 @@ weight: 2100
 The following connectivity options are available in the welcome screen:
 - **WiFi** (on every board)
 - **Cellular** (on every board)
-- **LoRa** (for users having the _[corresponding shield]({{< relref "../../hardware/shields/connectivity/insighio-shield-lora.md" >}})_)
-- **Satellite** (for users having the _[corresponding shield]({{< relref "../../hardware/shields/connectivity/insighio-shield-astrocast.md" >}})_)
+- **LoRa** (for users having the _[corresponding shield]({{< relref "../../../hardware/shields/connectivity/insighio-shield-lora.md" >}})_)
+- **Satellite** (for users having the _[corresponding shield]({{< relref "../../../hardware/shields/connectivity/insighio-shield-astrocast.md" >}})_)
 
 {{% notice info %}}
 Starting from firmware version [v3.4.0](https://github.com/insighio/insighioNode/releases/tag/v3.4.0), a **"No Network"** option is also available. In this mode, the node only stores the measurements locally. These can be retrieved manually at any stage following _[this]({{< relref "" >}})_ guide.

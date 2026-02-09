@@ -16,7 +16,7 @@ This list includes generic measurements that are not tied to a specific sensor s
 
 | Parameter | Default Value | Comments | 
 | :-------- |  :------------ | :------- |
-| ```Battery statistics``` | Enabled | Report battery voltage. Vital for monitoring battery level. Used in Console [Device Overview]({{< relref "../../cloudplatform/ui/devices" >}}) page to predict node lifetime. | 
+| ```Battery statistics``` | Enabled | Report battery voltage. Vital for monitoring battery level. Used in Console [Device Overview]({{< relref "../../../cloudplatform/ui/devices" >}}) page to predict node lifetime. | 
 | ```Board statistics``` | Enabled | Report various board statistics, such as identified devices. Used mainly for debugging purposes. | 
 | ```Network Statistics``` | Enabled | Report network quality information, such as RSSI. Useful for detecting low signal conditions and selected Cellular technology (NB-IoT over GSM) | 
 | ```Board humidity/temperature``` | Enabled | Report on-board sensor ([SHT40](https://sensirion.com/products/catalog/SHT40)) data. Useful for identifying operation anomalies. | 
@@ -68,7 +68,7 @@ This list includes settings that have to do with operational aspects and target 
 
 | Parameter | Default Value | Comments | 
 | :-------- |  :------------ | :------- |
-| ```LED Notifications ``` | Enabled | Option for the RGB Led notifications. Color-state mappings are provided in _[the main board page]({{< relref "../../hardware/main" >}})_. Deactivate it if the operational scenario is super challenging with respect to the consumed energy.  | 
+| ```LED Notifications ``` | Enabled | Option for the RGB Led notifications. Color-state mappings are provided in _[the main board page]({{< relref "../../../hardware/main" >}})_. Deactivate it if the operational scenario is super challenging with respect to the consumed energy.  | 
 | ```OTA Enabled``` | Disabled | Option for listening to Over-the-Air Update requests. In case this is enabled, the node will consume OTA requests from the Console at every communication attempt. |
 ```Logging Level```| Debug | Select node debugging level from [Debug][Info][Warning][Error] list |
 |```File System Optimization```| Enabled | If enabled, after every new configuration/OTA is applied, the system will automatically optimize the file system. This induces some delay (typically 30-45 secs) at first boot, but will save energy in all subsequent boots. Leave it enabled, unless you want to do some quick local testing.|
@@ -81,7 +81,7 @@ The following short video goes through the generic options.
 
 {{< tabs >}}
 {{% tab name="BASE" %}}
-This menu allows to configure the sensor ports specified in the _[corresponding hardware page]({{< relref "../../hardware/shields/sensor/insighio-shield-base.md" >}})_.
+This menu allows to configure the sensor ports specified in the _[corresponding hardware page]({{< relref "../../../hardware/shields/sensor/insighio-shield-base.md" >}})_.
 - 1 x **I2C** 
 - 3 x **generic analogue/digital**
 
@@ -101,7 +101,7 @@ The following short video presents the interface for configuring the BASE shield
 
 {{% /tab %}}
 {{% tab name="ADVANCED" %}}
-This menu allows to configure the sensor ports specified in the _[corresponding hardware page]({{< relref "../../hardware/shields/sensor/insighio-shield-advanced.md" >}})_.
+This menu allows to configure the sensor ports specified in the _[corresponding hardware page]({{< relref "../../../hardware/shields/sensor/insighio-shield-advanced.md" >}})_.
 - 2 x **SDI-12** 
 - 2 x **4-20mA**
 - 1 x **Pulse Counter**
@@ -127,7 +127,7 @@ The following short video presents the interface for configuring the ADVANCED sh
 {{% /tab %}}
 
 {{% tab name="ENVIRO" %}}
-This menu allows to configure the sensor ports specified in the _[corresponding hardware page]({{< relref "../../hardware/shields/sensor/insighio-shield-enviro.md" >}})_.
+This menu allows to configure the sensor ports specified in the _[corresponding hardware page]({{< relref "../../../hardware/shields/sensor/insighio-shield-enviro.md" >}})_.
 - 1 x **SDI-12** 
 - 1 x **Modbus RTU**
 - 4 x **Analogue/4-20mA**
