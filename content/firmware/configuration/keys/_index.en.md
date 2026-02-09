@@ -15,3 +15,12 @@ Communication between the node and Console is facilitated through a set of **key
 1. Go to **"Quick Device Data Commands"** menu on the top-right of the page (icon ```...```)
 1. Copy **JSON** information by clicking the corresponding icon. This action copies all keys and channels in the cliboard.
 1. Go back to the Configurator and place the cursor in the first field (**```ID```**). **Paste** will automatically populate all four fields with the proper key/channel information.
+
+The following short video presents the described procedure. On the left-hand side the **Device** page from Console has been loaded, while in the right-hand side the the Local Configurator web page (**Keys** step) is shown.
+
+![keys configuration](/images/firmware/keys.gif?width=75pc)
+
+
+{{% notice tip %}}
+Notice that two connections are needed for this step: 1) Internet connection for accesing Console, and 2) WiFi connection to the node local network for accesing the  configurator. In case a user device (e.g. laptop) with a single WiFi interface is used the user has to either pre-load the Console page before connecting to the local WiFi network of the node or add a second network adapter for handling multiple networks.
+{{% /notice %}}

@@ -40,6 +40,15 @@ Newer firmware versions (v3.0.0 and beyond) support time alignment at minute lev
 **```Estimated upload period```** gives the expected upload timing for the selected _sleep period_ and _message buffer size_.
 {{% /notice %}}
 
+
+The following short video shows how to configure a measurent period of 15 minutes and and an hourly batch upload period.
+
+![periodic timing configuration](/images/firmware/timing-periodic.gif?width=50pc)
+
 ### Time-scheduled Mode
 - The user can select two specific times per day (**```A```** and **```B```**) for the node to wake up.
 - Whether **```Batch Upload```** is enabled or not, the measurements are sent immediately or after a certain number of records has been reached, as in the Periodic Mode.
+
+The following short video shows the timing scheduled interface.
+
+![scheduled timing configuration](/images/firmware/timing-scheduled.gif?width=50pc)

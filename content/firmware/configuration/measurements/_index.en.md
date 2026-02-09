@@ -17,8 +17,9 @@ This list includes generic measurements that are not tied to a specific sensor s
 | Parameter | Default Value | Comments | 
 | :-------- |  :------------ | :------- |
 | ```Battery statistics``` | Enabled | Report battery voltage. Vital for monitoring battery level. Used in Console [Device Overview]({{< relref "../../cloudplatform/ui/devices" >}}) page to predict node lifetime. | 
-| ```Board humidity/temperature``` | Enabled | Report on-board sensor ([SHT40](https://sensirion.com/products/catalog/SHT40)) data. Useful for identifying operation anomalies. | 
+| ```Board statistics``` | Enabled | Report various board statistics, such as identified devices. Used mainly for debugging purposes. | 
 | ```Network Statistics``` | Enabled | Report network quality information, such as RSSI. Useful for detecting low signal conditions and selected Cellular technology (NB-IoT over GSM) | 
+| ```Board humidity/temperature``` | Enabled | Report on-board sensor ([SHT40](https://sensirion.com/products/catalog/SHT40)) data. Useful for identifying operation anomalies. | 
 | ```Store Measurements if failed connection``` | Enabled | Stores measurements locally in the node in case the network connection attempt fails | 
 | ```Temperature Unit``` | Celsius (C) | Celsius / Fahrenheit unit selection for reported on-board temperature | 
 | ```GPS``` | Enabled | Enable/Disable on-board GPS for location tracking | 
@@ -72,6 +73,9 @@ This list includes settings that have to do with operational aspects and target 
 ```Logging Level```| Debug | Select node debugging level from [Debug][Info][Warning][Error] list |
 |```File System Optimization```| Enabled | If enabled, after every new configuration/OTA is applied, the system will automatically optimize the file system. This induces some delay (typically 30-45 secs) at first boot, but will save energy in all subsequent boots. Leave it enabled, unless you want to do some quick local testing.|
 
+The following short video goes through the generic options.
+
+![measurements generic configuration](/images/firmware/measurements-generic.gif?width=50pc)
 
 ### Shield-specific Measurements
 
@@ -88,6 +92,11 @@ This menu allows to configure the sensor ports specified in the _[corresponding 
 | ```I2C #1``` |  Select from a supported list of common I2C sensors | This list contains a list of sensors that are supported out-of-the-box. For an unsupported sensor the firmware should be extended. |
 | ```Analogue/Digital P1/P2/P3``` |  [DHT11][DHT22][DS18x20][Generic Analogue]  | Select from a supported list of common Analogue/Digital (1-wire) sensors or select "generic" to get the raw voltage reading from an analogue sensor. Set all available ports if needed. |
 | ```P1/P2/P3 Transformation``` | Optional | Define a transformation formula of raw voltage reading to a more meaningful metric, using standard python expressions (e.g. convert voltage readings to electrical conductivity for soil moisture sensors). |
+
+The following short video presents the interface for configuring the BASE shield.
+
+![measurements base](/images/firmware/measurements-base.gif?width=50pc)
+
 
 
 {{% /tab %}}
@@ -109,6 +118,11 @@ This menu allows to configure the sensor ports specified in the _[corresponding 
 | ```Pulse Counter Enable``` | Enable/Disable | Activate the specific physical port measurement |
 | ```Pulse Counter High Frequency``` | Enable/Disable | Configure pulse counter for optimally measuring high frequency signals |
 | ```Pulse Counter Formula``` | Formula| Optional transformation formula of a raw pulse reading to a more meaningful metric using standard python expression (e.g. convert pulses to actual water consumption for water meters). |
+
+The following short video presents the interface for configuring the ADVANCED shield.
+
+![measurements advanced](/images/firmware/measurements-advanced.gif?width=50pc)
+
 
 {{% /tab %}}
 
@@ -139,6 +153,10 @@ This menu allows to configure the sensor ports specified in the _[corresponding 
 
 **Notice**: _The analogue sensor ports always return the detected voltage levels (mV). In case the 4-20mA option is selected in hardware (by placing the jumpers), the user should enter the formula ```v/100``` to get the current sense reading (mA) explicitly._
 
+The following short video presents the interface for configuring the ADVANCED shield.
+
+![measurements enviro](/images/firmware/measurements-enviro.gif?width=50pc)
+
 {{% /tab %}}
 
 
@@ -150,3 +168,7 @@ This menu allows to configure the sensor ports specified in the _[corresponding 
 After setting the shield measurements and hitting "Save", a new Dialogue called "Custom Measurement Naming" appears. The dialogue can be skipped with hitting "Save". Otherwise if "Fetch" is selected, the user can:
 - Verify the sensor setup by executing a test run which returns the list of active measurements with their current values.
 - Assign aliases to default measurement names for having meaningful/self-explanatory measurement reporting.
+
+The following short video presents how to live fetch data from the node and assign alternative names ("aliases") to metrics.
+
+![kmeasurements custom naming](/images/firmware/measurements-custom-naming.gif?width=50pc)

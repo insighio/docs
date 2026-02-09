@@ -30,11 +30,15 @@ In case the target network is **hidden**, the user can provide the **SSID** expl
 Only **2.4 GHz** WiFi networks are supported.
 {{% /notice %}}
 
+
 #### General Configuration
 | Parameter | Value | Default Value | Comments | 
 | :-------- | :----- | :------------ | :------- |
 | ```Protocol``` | [```MQTT```][```CoAP```] | MQTT | MQTT is the preferred protocol. Change the transport protocol to CoAP only when losing a measurement is not that critical. |
 
+The following short video shows how to do a fresh wifi network configuration.
+
+![wifi network configuration](/images/firmware/network-wifi.gif?width=50pc)
 
 ### Cellular
 
@@ -64,6 +68,10 @@ Starting from firmware version [v2.6.8](https://github.com/insighio/insighioNode
 
 #### Debug Menu: Test Modem Connection
 Starting from firmware version [v3.4.0](https://github.com/insighio/insighioNode/releases/tag/v3.4.0), a **Modem Connection** test can be performed during Configuration, by pressing the "Test" button. This will output the following modem information:
+
+The following short video shows how to do a fresh Cellular network configuration and an example output from the test modem connection functionality.
+
+![cellular network configuration](/images/firmware/network-cellular.gif?width=50pc)
 
 
 ### LoRa
