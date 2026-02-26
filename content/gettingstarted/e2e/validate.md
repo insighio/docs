@@ -35,7 +35,7 @@ The node upon boot will run a pre-defined scenario repeating every awake period,
 1. With a page refresh the user may see additional helpful information:
 - In the **Status** panel, the device has been made "Active" as it has communicated with the Console. The last communication is also shown.
 - In the **Configuration** panel, useful configuration information as uploaded by the device is shown, such as: network, shield, serial number and firmware version.
-- In the **Location** panel, an actual map with the location may be shown in case a GPS fix is available or the user has entered the Location manually as described in the [Console documentation pages.]({{< relref "../../cloudplatform" >}}). This is not shown in this tutorial
+- In the **Location** panel, an actual map with the location may be shown in case a GPS fix is available or the user has entered the Location manually as described in the [Console documentation pages.]({{< relref "../../cloudplatform" >}}). This is not shown in this tutorial.
 
 ![validate console info](/images/gettingstarted/validate-console-info.png?width=80pc)
 
