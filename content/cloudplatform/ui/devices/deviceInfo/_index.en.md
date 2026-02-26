@@ -38,7 +38,7 @@ The device has been created on the Console and the relevant communication keys h
 
 #### insigh.io IoT Device
 
-If the device is an insigh.io one, the configuration is done via WiFi using the web application that is embedded in the firmware. The procedure is described in [Configure Device](/gettingstarted/configuration). The configuration installs the communication keys, sets up the measurement schedule and defines the measurement parameters. Once the configuration is completed, the device can start sending measurements to the Console.
+If the device is an insigh.io one, the configuration is done via WiFi using the web application that is embedded in the firmware. The configuration installs the communication keys, sets up the measurement schedule and defines the measurement parameters. Once the configuration is completed, the device can start sending measurements to the Console.
 
 #### Third-party devices
 
@@ -111,7 +111,7 @@ Remote configuration is supported for insigh.io devices, running the [insighio f
 
 While with OTA updates it is possible to update the device's firmware to extend its capabilities, in some cases we simply want to change the device configuration to adapt to the needs of the user scenario. In such cases, **Remote Configuration** is supported to send request to change device capabilities, measurement timing, connection details etc.
 
-In a typical workflow, the device will be locally configured before it is deployed on the field. This step is described in [Configure Device]({{< relref "/gettingstarted/configuration/" >}}). After the device is deployed, it sends its initial configuration to the Console. While the device is deployed, we can use the **Remote Configuration** feature to tweak the device behavior. For convenience, the same configurators run on the device and on the Console.
+In a typical workflow, the device will be locally configured before it is deployed on the field. After the device is deployed, it sends its initial configuration to the Console. While the device is deployed, we can use the **Remote Configuration** feature to tweak the device behavior. For convenience, the same configurators run on the device and on the Console.
 
 The **Device Configuration Wizard** can be opened by the _Device Toolbar_.
 
