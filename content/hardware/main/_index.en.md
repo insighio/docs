@@ -23,7 +23,7 @@ weight: 1
 |                                             | Local Web Configurator through WiFi                                                            |
 | **Dimensions (L x W x H)**                  | 77.47 (83.5*) x 62.23 x 16.7 mm (* with embedded wifi antenna)                                 |
 | **Weight**                                  | 28 g                                                                                           |
-| **Current version**                         | 1.0.4                                                                                          |
+| **Current version**                         | 1.0.5                                                                                         |
 | **SKU**                                     | INS-B-MAN                                                                                      |
 
 
@@ -224,7 +224,8 @@ Orientation as in the board picture. IOs naming refer to corresponding ESP32-S3-
 
 | Version  | Release Date | Comments
 | :--------------------  | :----------------| :--------|
-| 1.0.4 (latest)         | 05/03/2025       | Change resettable fuses to tolerate higher voltages |
+| 1.0.5 (latest)         | 08/12/2025       | Correct footprint of fuse |
+| 1.0.4                  | 05/03/2025       | Change resettable fuses to tolerate higher voltages |
 | 1.0.3                  | 20/08/2024       | Minor mechanical changes (holes standoffs) |
 | 1.0.2                  | 31/12/2023       | Fix increased deep sleep current due to external switch pulled down resistor |
 | 1.0.1                  | 17/03/2023       | Added resettable fuses to solar panel, battery and the output of the 3.3V regulator; Change connector for connectivity shield |
