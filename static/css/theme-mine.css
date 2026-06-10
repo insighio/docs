@@ -128,8 +128,12 @@ td {
 
 
 tr td:first-child {
+  width: auto;
+}
+
+.even-data-table tr td:first-child {
   width: 15%;
-} 
+}
 
 tr td {
   width: auto;
@@ -137,4 +141,68 @@ tr td {
 
 .column-same-width:first-child{
   width: auto;
+}
+
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 1rem 0;
+}
+
+.table-scroll > table {
+  margin: 0;
+}
+
+@media only all and (max-width: 47.938em) {
+  #body-inner .table-scroll > table {
+    min-width: 40rem;
+  }
+
+  #body-inner .table-scroll > table.is-stacked-mobile {
+    min-width: 0;
+    width: 100%;
+    border: 0;
+  }
+
+  #body-inner table.is-stacked-mobile thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+
+  #body-inner table.is-stacked-mobile tr {
+    display: block;
+    margin-bottom: 0.85rem;
+    border: 1px solid #eaeaea;
+    border-radius: 6px;
+    background: #fff;
+  }
+
+  #body-inner table.is-stacked-mobile td {
+    display: grid;
+    grid-template-columns: minmax(7.5rem, 40%) 1fr;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.55rem 0.75rem;
+    border: 0;
+    border-bottom: 1px solid #efefef;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  #body-inner table.is-stacked-mobile td:last-child {
+    border-bottom: 0;
+  }
+
+  #body-inner table.is-stacked-mobile td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #555;
+  }
 }

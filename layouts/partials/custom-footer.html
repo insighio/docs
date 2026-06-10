@@ -2,8 +2,39 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-6C5XMEGR8C"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function gtag() { dataLayer.push(arguments); }
   gtag('js', new Date());
 
   gtag('config', 'G-6C5XMEGR8C');
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var tables = document.querySelectorAll('#body-inner table');
+
+    tables.forEach(function (table) {
+      if (!table.parentElement || !table.parentElement.classList.contains('table-scroll')) {
+        var wrapper = document.createElement('div');
+        wrapper.className = 'table-scroll';
+        table.parentNode.insertBefore(wrapper, table);
+        wrapper.appendChild(table);
+      }
+
+      var headerCells = table.querySelectorAll('thead th');
+      if (!headerCells.length) {
+        return;
+      }
+
+      table.classList.add('is-stacked-mobile');
+
+      var labels = Array.prototype.map.call(headerCells, function (th) {
+        return th.textContent.trim();
+      });
+
+      table.querySelectorAll('tbody tr').forEach(function (row) {
+        row.querySelectorAll('td').forEach(function (cell, index) {
+          cell.setAttribute('data-label', labels[index] || '');
+        });
+      });
+    });
+  });
 </script>
