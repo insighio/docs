@@ -5,7 +5,7 @@ identifier: "hardware"
 weight: 200
 ---
 
-{{< customtable "table autowidth" >}}
+{{< customtable "table autowidth equal-columns" >}}
 | | |
 | -------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
 | ![insigh.io IoT node](/images/deviceimages/insighio-node-2.png?width=35pc) | ![insigh.io IoT node](/images/deviceimages/insighio-node.png?width=35pc) |
@@ -37,7 +37,7 @@ insigh.io IoT node is designed with a **modular architecture**:
   - Memory for **local sensor data storage**
   - Various **controls** and **indicators** like on/off switch & status LEDs
 - Various **expansion boards simply called "shields"** that can be attached to the corresponding main board expansion ports for:
-  - Supporting multiple analogue and digital sensor interfaces, such as  **analogue voltage/current readings, digital (e.g. pulse) readings, I²C, SPI, SDI-12, Modbus-RTU, 4-20mA, etc.** (sensor shield)
+  - Supporting multiple analogue and digital sensor interfaces, such as **analogue voltage/current readings, digital (e.g. pulse) readings, I²C, SPI, SDI-12, Modbus-RTU, 4-20mA, etc.** (sensor shield)
   - Expanding connectivity options beyond WiFi/Cellular, such as **LoRaWAN** and **Satellite IoT** (connectivity shield)
   - Adding your own functionalities and applications: ad-hoc customization
 - A **bundle of peripherals** (optional) for unattended deployment and operation in the field:
@@ -53,13 +53,14 @@ insigh.io IoT node is designed with a **modular architecture**:
 
 ### Main Board
 
-This is the "heart" of the hardware offering, as it is a "standalone" autonomous and powered IoT device. 
+This is the "heart" of the hardware offering, as it is a "standalone" autonomous and powered IoT device.
 
 Based on the main board, we build a complete hardware solution that perfectly fits any case. To do so, the main board exposes:
-* A standard Female Headers Pin Connector for attaching one of our sensor shield, depending on the target application
-* A custom Ribbon Cable Connector for (optionally) attaching one of our additional connectivity shields, depending on the network availability
 
-Move to page [Main Board](./main/) to view the complete technical specifications of this board. 
+- A standard Female Headers Pin Connector for attaching one of our sensor shield, depending on the target application
+- A custom Ribbon Cable Connector for (optionally) attaching one of our additional connectivity shields, depending on the network availability
+
+Move to page [Main Board](./main/) to view the complete technical specifications of this board.
 
 ![TAT image](/images/deviceimages/insighio-main.png?width=30pc)
 
@@ -69,22 +70,20 @@ This is a collection of standard "ready-made" expansion boards which can be used
 
 #### Sensor Shields
 
-| Shield Name | SKU | Sensor Interfaces | Typical Sector | Example Sensors| 
-| :-------------------- | :------- | :------- | :--------|  :--------|
-| [Base]({{< relref "./shields/sensor/insighio-shield-base.md" >}}) |  **INS-S-S-BAS**  | Analogue, I²C bus | Agriculture | Soil Conductivity |
-| [Advanced]({{< relref "./shields/sensor/insighio-shield-advanced.md" >}}) |  **INS-S-S-ADV**  | SDI-12, 4-20mA, Pulse Counter  | Agriculture | Advanced Soil & Water Status |
-| [Enviro]({{< relref "./shields/sensor/insighio-shield-enviro.md" >}}) |  **INS-S-S-ENV**  | SDI-12, Modbus-RTU, Analogue, 4-20mA, Pulse Counter  | Environmental | Extended Weather Conditions |
-| [Scale]({{< relref "./shields/sensor/insighio-shield-scale.md" >}}) |  **INS-S-S-SCA**  | High Precision ADS | Waste Management | Weight (Load Cells) |
-| [Machine]({{< relref "./shields/sensor/insighio-shield-machine.md" >}}) |  **INS-S-S-MAC**  | Modbus RTU, High Precision ADS | Industrial Machinery | PLC & Energy Meters |
+| Shield Name                                                               | SKU             | Sensor Interfaces                                   | Typical Sector       | Example Sensors              |
+| :------------------------------------------------------------------------ | :-------------- | :-------------------------------------------------- | :------------------- | :--------------------------- |
+| [Base]({{< relref "./shields/sensor/insighio-shield-base.md" >}})         | **INS-S-S-BAS** | Analogue, I²C bus                                   | Agriculture          | Soil Conductivity            |
+| [Advanced]({{< relref "./shields/sensor/insighio-shield-advanced.md" >}}) | **INS-S-S-ADV** | SDI-12, 4-20mA, Pulse Counter                       | Agriculture          | Advanced Soil & Water Status |
+| [Enviro]({{< relref "./shields/sensor/insighio-shield-enviro.md" >}})     | **INS-S-S-ENV** | SDI-12, Modbus-RTU, Analogue, 4-20mA, Pulse Counter | Environmental        | Extended Weather Conditions  |
+| [Scale]({{< relref "./shields/sensor/insighio-shield-scale.md" >}})       | **INS-S-S-SCA** | High Precision ADS                                  | Waste Management     | Weight (Load Cells)          |
+| [Machine]({{< relref "./shields/sensor/insighio-shield-machine.md" >}})   | **INS-S-S-MAC** | Modbus RTU, High Precision ADS                      | Industrial Machinery | PLC & Energy Meters          |
 
 #### Connectivity Shields
 
-| Shield Name | SKU | Network | Example Applications | 
-| :-------------------- | :------- | :------- | :--------|  :--------|
-| [LoRa]({{< relref "./shields/connectivity/insighio-shield-lora.md" >}}) |  **INS-S-C-LOR**  | LoRaWAN | Smart buildings resources usage |
-| [SatIoT]({{< relref "./shields/connectivity/insighio-shield-astrocast.md" >}}) |  **INS-S-C-AST**  | Satellite IoT based on ASTROCAST network | Environmental Monitoring in remote areas (oceans, mountains) |
-
-
+| Shield Name                                                                    | SKU             | Network                                  | Example Applications                                         |
+| :----------------------------------------------------------------------------- | :-------------- | :--------------------------------------- | :----------------------------------------------------------- |
+| [LoRa]({{< relref "./shields/connectivity/insighio-shield-lora.md" >}})        | **INS-S-C-LOR** | LoRaWAN                                  | Smart buildings resources usage                              |
+| [SatIoT]({{< relref "./shields/connectivity/insighio-shield-astrocast.md" >}}) | **INS-S-C-AST** | Satellite IoT based on ASTROCAST network | Environmental Monitoring in remote areas (oceans, mountains) |
 
 {{% notice info %}}
 There is also a series of former/inactive hardware boards that are not commercially available. Page [Inactive]({{< relref "./inactive/_index.en.md" >}}) lists these boards. Notice that interest for these boards is hanlded on an ad-hoc basis.

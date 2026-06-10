@@ -5,9 +5,8 @@ parent: "hardware@shields"
 weight: 20
 ---
 
-{{< customtable "table autowidth" >}}
-| Connectivity Shields |
-|:---------: | :-----------: |
-| [![LoRa](/images/deviceimages/insighio-shield-lora.png?width=15pc)](./insighio-shield-lora/)| [![Satellite](/images/deviceimages/insighio-shield-astrocast.png?width=22pc)](./insighio-shield-astrocast/) |
-| **LoRa** | **Satellite (ASTROCAST)** |
+{{< customtable "table autowidth equal-columns" >}}
+| | |
+|:--------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------: |
+| [![LoRa](/images/deviceimages/insighio-shield-lora.png?width=18pc)](./insighio-shield-lora/)<br>[**LoRa**](./insighio-shield-lora/) | [![Satellite](/images/deviceimages/insighio-shield-astrocast.png?width=18pc)](./insighio-shield-astrocast/)<br>[**Satellite (ASTROCAST)**](./insighio-shield-astrocast/) |
 {{< /customtable >}}

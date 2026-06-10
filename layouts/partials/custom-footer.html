@@ -30,12 +30,45 @@
       var labels = Array.prototype.map.call(headerCells, function (th) {
         return th.textContent.trim();
       });
+      var hasMeaningfulHeaders = labels.some(function (label) {
+        return label.length > 0;
+      });
 
       table.querySelectorAll('tbody tr').forEach(function (row) {
         row.querySelectorAll('td').forEach(function (cell, index) {
           cell.setAttribute('data-label', labels[index] || '');
         });
       });
+
+      if (!hasMeaningfulHeaders && !table.classList.contains('equal-columns')) {
+        var bodyRows = table.querySelectorAll('tbody tr');
+        var isTwoColumnBody = Array.prototype.every.call(bodyRows, function (row) {
+          return row.querySelectorAll('td').length === 2;
+        });
+
+        if (isTwoColumnBody) {
+          var lastKeyLabel = '';
+          table.classList.add('is-keyvalue-mobile');
+
+          bodyRows.forEach(function (row) {
+            var cells = row.querySelectorAll('td');
+            var keyCell = cells[0];
+            var valueCell = cells[1];
+            var keyText = keyCell.textContent.trim();
+
+            if (keyText) {
+              lastKeyLabel = keyText;
+            }
+
+            if (lastKeyLabel) {
+              valueCell.setAttribute('data-label', lastKeyLabel);
+            }
+
+            keyCell.classList.add('kv-key-cell');
+            valueCell.classList.add('kv-value-cell');
+          });
+        }
+      }
     });
 
     contentImages.forEach(function (img) {

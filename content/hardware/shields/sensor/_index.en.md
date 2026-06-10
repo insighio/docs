@@ -5,17 +5,11 @@ parent: "hardware@shields"
 weight: 10
 ---
 
-{{< customtable "table autowidth" >}}
+{{< customtable "table autowidth equal-columns" >}}
 
-|                                        Sensor Shields                                        |                                                                                                          |
-| :------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------: |
-| [![Base](/images/deviceimages/insighio-shield-base.png?width=13pc)](./insighio-shield-base/) | [![Advanced](/images/deviceimages/insighio-shield-advanced.png?width=20pc)](./insighio-shield-advanced/) | [![Enviro](/images/deviceimages/insighio-shield-enviro.png?width=25pc)](./insighio-shield-enviro/) |
-|                                           **Base**                                           |                                               **Advanced**                                               |                                             **Enviro**                                             |
+|                                                                                                                                          |                                                                                                                                                         |                                                                                                                                               |
+| :--------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: |
+|   [![Base](/images/deviceimages/insighio-shield-base.png?width=18pc)](./insighio-shield-base/)<br>[**Base**](./insighio-shield-base/)    | [![Advanced](/images/deviceimages/insighio-shield-advanced.png?width=18pc)](./insighio-shield-advanced/)<br>[**Advanced**](./insighio-shield-advanced/) | [![Enviro](/images/deviceimages/insighio-shield-enviro.png?width=18pc)](./insighio-shield-enviro/)<br>[**Enviro**](./insighio-shield-enviro/) |
+| [![Scale](/images/deviceimages/insighio-shield-scale.png?width=18pc)](./insighio-shield-scale/)<br>[**Scale**](./insighio-shield-scale/) |   [![Machine](/images/deviceimages/insighio-shield-machine.png?width=18pc)](./insighio-shield-machine/)<br>[**Machine**](./insighio-shield-machine/)    |
 
-{{< /customtable >}}
-{{< customtable "table autowidth" >}}
-| |
-|:---------: | :-----------: |
-| [![Scale](/images/deviceimages/insighio-shield-scale.png?width=18pc)](./insighio-shield-scale/)| [![Machine](/images/deviceimages/insighio-shield-machine.png?width=18pc)](./insighio-shield-machine/) |
-| **Scale** | **Machine** |
 {{< /customtable >}}
