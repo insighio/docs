@@ -37,11 +37,11 @@ weight: 1
 
 ### Power Supply
 
-| Source      | Port                | Input Voltage                               |
-| :---------- | :------------------ | :------------------------------------------ |
-| USB         | Micro USB (J2)      | Min: 4.5 V, Typical: 5 V, Max: 5.5 V        |
-| Battery     | JST (J1)            | 1 x Rechargeable LiPo/Li-Ion 1S1C 3.7-4.2 V |
-| Solar Panel | Terminal Block (J4) | Min: 5.5 V, Typical: 6 V, Max: 7 V          |
+| Source          | Port                    | Input Voltage                               |
+| :-------------- | :---------------------- | :------------------------------------------ |
+| **USB**         | Micro USB (**J2**)      | Min: 4.5 V, Typical: 5 V, Max: 5.5 V        |
+| **Battery**     | JST (**J1**)            | 1 x Rechargeable LiPo/Li-Ion 1S1C 3.7-4.2 V |
+| **Solar Panel** | Terminal Block (**J4**) | Min: 5.5 V, Typical: 6 V, Max: 7 V          |
 
 ### Connectivity
 
