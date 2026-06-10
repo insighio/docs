@@ -43,8 +43,8 @@ input[type="month"]:focus,
 input[type="time"]:focus,
 input[type="week"]:focus,
 select[multiple="multiple"]:focus {
-  border-color: none;
-  box-shadow: none;
+  border-color: var(--MAIN-LINK-HOVER-color);
+  box-shadow: 0 0 0 2px rgba(11, 95, 81, 0.25);
 }
 
 h2,

@@ -2,9 +2,12 @@
 {{ $class := .Get 0 }}
 {{ $old := "<table>" }}
     {{ $new := "<table>" }}
-        {{ $htmlTable := replace $htmlTable $old $new }}
-        {{ $htmlTable := replaceRE "td" "td class=\"column-same-width\"" $htmlTable}}
+        {{ if $class }}
+        {{ $new = printf "<table class=\"%s\">" $class }}
+            {{ end }}
+            {{ $htmlTable := replace $htmlTable $old $new }}
+            {{ $htmlTable := replaceRE "<td([^>]*)>" "<td class=\"column-same-width\"$1>" $htmlTable }}
 
-        <div class="even-data-table">
-            {{ $htmlTable | safeHTML }}
-        </div>
+                    <div class="even-data-table">
+                        {{ $htmlTable | safeHTML }}
+                    </div>
