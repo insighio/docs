@@ -26,4 +26,4 @@ Within the pages of the documentation you will find **Getting Started** walk-thr
 
 Have fun!
 
-![greece nextgen](/images/greece_nextgen.png?width=50pc)
+[![greece nextgen](/images/greece_nextgen.png?width=50pc)](https://insigh.io/blog/insighio-is-supported-by-the-digital-sme-programme-ii/)
