@@ -10,6 +10,7 @@
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     var tables = document.querySelectorAll('#body-inner table');
+    var contentImages = document.querySelectorAll('#body-inner img');
 
     tables.forEach(function (table) {
       if (!table.parentElement || !table.parentElement.classList.contains('table-scroll')) {
@@ -35,6 +36,35 @@
           cell.setAttribute('data-label', labels[index] || '');
         });
       });
+    });
+
+    contentImages.forEach(function (img) {
+      if (img.classList.contains('inline') || img.closest('table') || img.closest('.gallery') || img.closest('figure')) {
+        return;
+      }
+
+      img.classList.add('doc-media');
+
+      var src = img.getAttribute('src') || '';
+      var widthMatch = src.match(/[?&]width=([0-9]+)([a-z%]*)/i);
+      var widthValue = widthMatch ? parseInt(widthMatch[1], 10) : NaN;
+
+      img.classList.remove('media-sm', 'media-md', 'media-lg', 'media-xl');
+
+      if (Number.isNaN(widthValue)) {
+        img.classList.add('media-lg');
+        return;
+      }
+
+      if (widthValue <= 25) {
+        img.classList.add('media-sm');
+      } else if (widthValue <= 40) {
+        img.classList.add('media-md');
+      } else if (widthValue <= 60) {
+        img.classList.add('media-lg');
+      } else {
+        img.classList.add('media-xl');
+      }
     });
   });
 </script>

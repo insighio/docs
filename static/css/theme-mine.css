@@ -21,6 +21,11 @@
 
   --MENU-VISITED-color: #1cad95; /* Color of 'page visited' icons in menu */
   --MENU-SECTION-HR-color: #151515; /* Color of <hr> separator in menu */
+
+  --DOC-MEDIA-SM: 16rem;
+  --DOC-MEDIA-MD: 24rem;
+  --DOC-MEDIA-LG: 34rem;
+  --DOC-MEDIA-XL: 46rem;
 }
 
 body {
@@ -143,6 +148,91 @@ tr td {
   width: auto;
 }
 
+#body-inner {
+  line-height: 1.65;
+}
+
+#body-inner > p,
+#body-inner li > p {
+  line-height: 1.7;
+}
+
+#body-inner ul,
+#body-inner ol {
+  margin-top: 0.7rem;
+  margin-bottom: 1.1rem;
+}
+
+#body-inner li {
+  margin-bottom: 0.28rem;
+}
+
+#body-inner div.notices {
+  margin: 1.1rem 0 1.35rem;
+}
+
+#body-inner div.notices p {
+  padding-left: 0.95rem;
+  padding-right: 0.95rem;
+}
+
+#body-inner pre {
+  margin: 1.2rem 0 1.6rem;
+  padding: 0.9rem 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+#body-inner img.doc-media {
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+  margin: 0.8rem auto 1rem;
+}
+
+#body-inner img.doc-media.media-sm {
+  max-width: var(--DOC-MEDIA-SM);
+}
+
+#body-inner img.doc-media.media-md {
+  max-width: var(--DOC-MEDIA-MD);
+}
+
+#body-inner img.doc-media.media-lg {
+  max-width: var(--DOC-MEDIA-LG);
+}
+
+#body-inner img.doc-media.media-xl {
+  max-width: var(--DOC-MEDIA-XL);
+}
+
+#body-inner p:has(> a > img.doc-media),
+#body-inner p:has(> img.doc-media) {
+  margin-top: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+@media only all and (max-width: 47.938em) {
+  #body-inner {
+    line-height: 1.58;
+  }
+
+  #body-inner img.doc-media,
+  #body-inner img.doc-media.media-sm,
+  #body-inner img.doc-media.media-md,
+  #body-inner img.doc-media.media-lg,
+  #body-inner img.doc-media.media-xl {
+    max-width: 100%;
+    margin-top: 0.65rem;
+    margin-bottom: 0.9rem;
+  }
+
+  #body-inner pre {
+    margin: 1rem 0 1.25rem;
+    padding: 0.78rem 0.85rem;
+  }
+}
+
 .table-scroll {
   width: 100%;
   overflow-x: auto;
@@ -204,5 +294,14 @@ tr td {
     content: attr(data-label);
     font-weight: 600;
     color: #555;
+  }
+
+  #body-inner table.is-stacked-mobile td[data-label=""] {
+    grid-template-columns: 1fr;
+  }
+
+  #body-inner table.is-stacked-mobile td[data-label=""]::before {
+    content: none;
+    display: none;
   }
 }
