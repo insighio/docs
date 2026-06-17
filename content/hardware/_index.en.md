@@ -8,7 +8,7 @@ weight: 200
 {{< customtable "table autowidth equal-columns" >}}
 | | |
 | -------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| ![insigh.io IoT node](/images/deviceimages/insighio-node-2.png?width=35pc) | ![insigh.io IoT node](/images/deviceimages/insighio-node.png?width=35pc) |
+| ![insigh.io IoT node](/images/deviceimages/insighio-node.png?width=40pc) | ![insigh.io IoT node](/images/deviceimages/insighio-node-2.png?width=25pc) |
 {{< /customtable >}}
 
 ## Overview
@@ -86,5 +86,5 @@ This is a collection of standard "ready-made" expansion boards which can be used
 | [SatIoT]({{< relref "./shields/connectivity/insighio-shield-astrocast.md" >}}) | **INS-S-C-AST** | Satellite IoT based on ASTROCAST network | Environmental Monitoring in remote areas (oceans, mountains) |
 
 {{% notice info %}}
-There is also a series of former/inactive hardware boards that are not commercially available. Page [Inactive]({{< relref "./inactive/_index.en.md" >}}) lists these boards. Notice that interest for these boards is hanlded on an ad-hoc basis.
+There is also a series of deprecated hardware boards that are not commercially available. Page [Deprecated]({{< relref "./deprecated/_index.en.md" >}}) lists these boards. Notice that interest for these boards is hanlded on an ad-hoc basis.
 {{% /notice %}}

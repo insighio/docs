@@ -1,12 +1,12 @@
 ---
-title: Inactive
-identifier: "hardware@inactive"
+title: Deprecated
+identifier: "hardware@deprecated"
 parent: "hardware"
 weight: 3
 collapsed: true
 ---
 
-This is a series of inactive hardware boards that are not commercially available. These fall broadly into 2 categories: 
+This is a series of deprecated hardware boards that are not commercially available. These fall broadly into 2 categories: 
 
 * **Category 1:** Designs that are not actively maintained but may revive if there is new interest. This includes:
   * Sensor or connectivity shields developed mainly for special projects/demonstration purposes
