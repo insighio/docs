@@ -5,24 +5,30 @@ parent: "hardware@shields@sensor"
 weight: 30
 ---
 
-![shield sensor enviro](/images/deviceimages/insighio-shield-enviro.png?width=35pc)
+
+{{< customtable "table autowidth equal-columns" >}}
+| 1st version (part of certified bundle) | Latest version |
+| -------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| ![shield sensor enviro](/images/deviceimages/insighio-shield-enviro-1.1.1.png?width=20pc) | ![shield sensor enviro](/images/deviceimages/insighio-shield-enviro-latest.png?width=25pc) |
+{{< /customtable >}}
 
 ### Scope
 
-An ultra versatile and flexible shield, providing support for multiple SDI-12, Modbus-RTU, high-precision Analogue/4-20mA and Pulse sensors. It is mainly applicable to Agriculture, Environmental and Industrial Monitoring applications requiring the simultaneous connection of a large number and diverse sensors.
+A versatile shield providing support for multiple SDI-12, Modbus-RTU, high-precision Analogue/4-20mA and Pulse ouput sensors/devices. It is mainly applicable to agriculture and environmental monitoring applications requiring the simultaneous connection of many diverse sensors.
 
 ### General Information
 |                                  |
 | :------------------------------- | :------------------------------------------------------------------------------------------------ |
 | **Host board**                   | [insigh.io main board](../../../main)                                                             |
-| **Version**                      | v1.1.1                                                                                            |
+| **Versions**                     | **v2.0.1** (latest development version, certification pending)                                    |
+|                                  | **v1.1.1** (part of a certified bundle)                                                           |
 | **Supported Sensor Interfaces**  | 2 x SDI-12 & 1 x Modbus-RTU & 4 x Analogue 16-bit / 4-20mA & 2 x Pulse Counter                    |
 | **Sensor Headers**               | 2x7-pin (SDI-12/Pulse Counters & SDI-12/Modbus-RTU) & 1x12-pin (Analogue 0-3.3V / 4-20mA)         |
-| **Supply Voltage**               | **5V/9V/12V** DC: selected via jumper J12 (Default: 5V, when no jumper is placed)                 |
-| **Deep Sleep Current**           | 100 uA (typical)                                                                                  |
-| **Dimensions (L x W)**           | 75.57 x 55.44 x x 16.7 mm                                                                         |
+| **Supply Voltage**               | 5V/9V/12V DC: selected via jumper J12 (Default: 5V, when no jumper is placed)                 |
+| **Deep Sleep Current**           | 70 uA [v2] / 100 uA [v1] (typical) |                                                                             
+| **Dimensions (L x W)**           | 75.57 x 55.44                                                            |
 | **Weight**                       | 16 g                                                                                              |
-| **Software Support**             | To use this shield you need [insighioNode](https://github.com/insighio/insighioNode/) firmware v3 |
+| **Software Support**             | **To use v2 shield you need at least [insighioNode](https://github.com/insighio/insighioNode/) firmware version 3.9.0** |
 
 
 ### Indicative list of tested sensors
@@ -104,20 +110,27 @@ The combination of low-power board mode and always-on sensor mode, doesn't have 
 | **Analogue Voltage Readings** | Configurable Dedicated ADS 16-bit Voltage Range: 0:256mV, 0:512mV, 0:1.024V, 0:2.048V, 0:3.3V |     
 | **4-20mA Mode** | Current to Voltage transformation Resistor: 100 Ohm |
 
-### Marking
+### Cerfification
 
 |          |             |
 | :------- | :---------- |
-| **CE**   | _ongoing, expected to be completed in Q1-2026_ |
+| **CE**   | Latest v1 version is part of a certified bundle. EU Declaration of Conformance is available upon request. |
+|          | Certification for v2 is ongoing |
+
 
 
 ### Changelog
 
 | Version  | Release Date | Comments
 | :---- | :-----------| :--------|
-| 1.1.1 | 04/10/2025  | - Added pull-down resistor to stabilize SDI data bus.|
-| 1.1.0 | 13/06/2025  | - Added a second SDI-12 port |
-|       |             | - Added 4-20mA selector for the analogue ports
-|       |             | - Changed naming of ports: VCC for sensor supply voltage, IN for sensor data signal
-| [**1.0.0**](/images/deviceimages/insighio-shield-enviro-1.0.0.png?width=30pc) | 12/03/2025  | - First stable version with 1 x SDI-12 port, 1 x Modbus RTU port, 4 x Analogue ports, 2 x Pulse Input ports
-|       |             | - Ports naming: VIN for sensor supply voltage, OUT for sensor data signal 
+| [**2.0.1**](/images/deviceimages/insighio-shield-enviro-latest.png?width=30pc) | 13/04/2026  | Enable fully switching off regulator output at deep sleep.|
+| 2.0.0 | 19/03/2026  | Enhanced front-ends for analog and digital sensors.|
+|       |             | Changed sensor headers to detacheables (plugs) |
+|       |             | New SDI-12 implementation at hardware level |
+| [**1.1.1**](/images/deviceimages/insighio-shield-enviro-1.1.1.png?width=30pc) | 04/10/2025  |  Added pull-down resistor to stabilize SDI data bus. |
+|       |             |  Part of a certified bundle.|
+| 1.1.0 | 13/06/2025  | Added a second SDI-12 port |
+|       |             | Added 4-20mA selector for the analogue ports
+|       |             | Changed naming of ports: VCC for sensor supply voltage, IN for sensor data signal
+| [**1.0.0**](/images/deviceimages/insighio-shield-enviro-1.0.0.png?width=30pc) | 12/03/2025  | First stable version with 1 x SDI-12 port, 1 x Modbus RTU port, 4 x Analogue ports, 2 x Pulse Input ports
+|       |             | Ports naming: VIN for sensor supply voltage, OUT for sensor data signal 
