@@ -26,7 +26,7 @@ A versatile shield providing support for multiple SDI-12, Modbus-RTU, high-preci
 | **Sensor Headers**               | 2x7-pin (SDI-12/Pulse Counters & SDI-12/Modbus-RTU) & 1x12-pin (Analogue 0-3.3V / 4-20mA)         |
 | **Supply Voltage**               | 5V/9V/12V DC: selected via jumper J12 (Default: 5V, when no jumper is placed)                 |
 | **Deep Sleep Current**           | 70 uA [v2] / 100 uA [v1] (typical) |                                                                             
-| **Dimensions (L x W)**           | 75.57 x 55.44                                                            |
+| **Dimensions (L x W)**           | 75.57 x 55.44 mm                                                            |
 | **Weight**                       | 16 g                                                                                              |
 | **Software Support**             | **To use v2 shield you need at least [insighioNode](https://github.com/insighio/insighioNode/) firmware version 3.9.0** |
 
