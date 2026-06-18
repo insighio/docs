@@ -5,26 +5,33 @@ parent: "hardware"
 weight: 1
 ---
 
-![TAT image](/images/deviceimages/insighio-main.png?width=40pc)
+{{< customtable "table autowidth equal-columns" >}}
+| 1st version (part of certified bundle) | Latest version |
+| -------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| ![shield sensor enviro](/images/deviceimages/insighio-main-1.0.5.png?width=26pc) | ![shield sensor enviro](/images/deviceimages/insighio-main-latest.png?width=25pc) |
+{{< /customtable >}}
 
 ### General Information
 
 |                                |
 | :----------------------------- | :--------------------------------------------------------------------------------------------- |
-| **Microcontroller**            | Espressif ESP32-S3 Module                                                                      |
+| **Versions**                   | **v2.0.1** (latest development version, certification pending)                                    |
+|                                | **v1.0.5** (part of a certified bundle)                                                           
+| **Microcontroller**            | Espressif ESP32-S3 Module                                     |
 | **Connectivity**               | WiFi, Bluetooth, NB-IoT/LTE-M with GSM fallback (Nano-SIM Holder)                              |
 | **GNSS**                       | Embedded GPS, BeiDou, Galileo, GLONASS and QZSS                                                |
 | **Power Supply**               | Battery (primary & rechargeable), USB, Solar Panel                                             |
-| **Onboard Diagnostic Sensors** | Temperature & Humidity                                                                         |
-| **Misc**                       | Serial Port (UART) or USB for Debugging                                                        |
+| **Onboard Sensors**            | _Temperature/Humidity_ (in all versions) and _Accelerometer_ (only in **v2**)                 | 
+| **Debugging**                  | Serial Port (UART) or USB for Debugging (in all versions)
+| **Recovery**                   | External Clock (RTC) for maintaining timing during power failure (only in **v2**)                               |
 | **Switch**                     | Internal switch & support for external switch                                                  |
 | **Indicators**                 | Various LEDs                                                                                   |
-| **Software & Tools**           | Micropython (aligned with version 1.19)                                                        |
+| **Software & Tools**           | Micropython                                                        |
 |                                | Open-source libraries & example scenarios @ [Github](https://github.com/insighio/insighioNode) |
 |                                | Local Web Configurator through WiFi                                                            |
-| **Dimensions (L x W x H)**     | 77.47 (83.5*) x 62.23 x 16.7 mm (* with embedded wifi antenna)                                 |
+| **Dimensions (L x W)**         | 77.47 (83.5*) x 62.23 mm (* with embedded wifi antenna)                                 |
 | **Weight**                     | 28 g                                                                                           |
-| **Current version**            | 1.0.5                                                                                          |
+| **Deep Sleep Current**         | 100 uA [v1] / 70 uA [**v2**] (typical) |                                                                             
 | **SKU**                        | INS-B-MAN                                                                                      |
 
 ### Micro-Controller
@@ -32,16 +39,19 @@ weight: 1
 |                |
 | :------------- | :--------------- |
 | **Model**      | ESP32-S3-WROOM-1 |
-| **Flash**      | 8 MB (Embedded)  |
+| **Flash**      | 8 MB/4 MB (Embedded)  |
 | **Memory RAM** | 2 MB (Embedded)  |
 
 ### Power Supply
 
-| Source          | Port                    | Input Voltage                               |
-| :-------------- | :---------------------- | :------------------------------------------ |
-| **USB**         | Micro USB (**J2**)      | Min: 4.5 V, Typical: 5 V, Max: 5.5 V        |
-| **Battery**     | JST (**J1**)            | 1 x Rechargeable LiPo/Li-Ion 1S1C 3.7-4.2 V |
-| **Solar Panel** | Terminal Block (**J4**) | Min: 5.5 V, Typical: 6 V, Max: 7 V          |
+| Source          | Version                 |  Port                    | Input Voltage Range                             |
+| :-------------- | :--------------------   | :---------------------- | :------------------------------------------ |
+| **Battery**     | All   | JST          | 1 x Rechargeable LiPo/Li-Ion 1S1C 3.7-4.2 V |
+| **Solar Panel** | v1 |Terminal Block| Min: 5.5 V, Typical: 6 V, Max: 7 V          |
+|                 | **v2** | Detacheable Plug | Min: 4 V, Typical: 6 V, Max: 18 V          |
+| **USB**         | v1 | Micro        | Min: 4.5 V, Typical: 5 V, Max: 5.5 V        |
+|                 | **v2** | Type-C       | Min: 4.5 V, Typical: 5 V, Max: 5.5 V      |
+
 
 ### Connectivity
 
@@ -55,11 +65,10 @@ weight: 1
 |                                       |          |
 | :------------------------------------ | :------- |
 | **Microcontroller Operating Voltage** | 3.3 V    |
-| **Charging Current Limit**            | 440 mA   |
-| **Maximum Drawn Current (modem)**     | 3 A      |
-| **Maximum Drawn Current (sensors)**   | 250 mA   |
-| **Operational Temperature**           | 0 – 50 C |
-| **Charging Temperature**              | 0 – 50 C |
+| **Rated Supply Voltage/Current**      | Battery: 3.6-4.2 VDC 3A    |
+|                                       | v1: DC-IN (Solar Panel): 6VDC 440mA |   
+|                                       | **v2**: DC-IN (Solar Panel): 18VDC 440mA | 
+|                                       | DC-IN (USB) 5VDC 440mA |
 
 ### Switches
 
@@ -114,16 +123,19 @@ For controling the board using the External Switch, S1 (internal switch) should 
 |                            |                                                                                 |
 | :------------------------- | :------------------------------------------------------------------------------ |
 | **Battery Voltage**        | Accurate Measurement of battery voltage even at charging state                  |
-| **Environment Conditions** | 1 × on-board temperature/humidity Sensor (based on the SHT40 chip)              |
+| **Environment Conditions** | 1 × on-board temperature/humidity Sensor (based on the SHT40 IC)                |
+| **Movement**               | 1 x on-board accelerometer (based on the LIS2DW12 IC) - only in **v2**          |
 | **Location**               | Through embedded GPS (only works outdoors)                                      |
 | **Debug Port J5**          | Standard Serial Port (needs an external USB-to-Serial adapter to connect to PC) |
 | **Debug Port J2**          | Standard Serial Port                                                            |
+| **Timing Recovery**        | External RTC powered by the battery. In case of modem/power failure it can keep the timing. Resets if battery removed - only in **v2** |
 
-### Special Configurations
+
+### Special Configurations 
 
 |                                       |                                                                                                                                                                                                            |
 | :------------------------------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Bypass Charger**                    | By default R20 (0 Ohm) is not mounted and R15 (0 Ohm) is mounted. In case you need to bypass the charger and power the board solely through a battery then R15 should be removed and R20 should be mounted |
+| **Bypass Charger (only in v1)**                    | By default R20 (0 Ohm) is not mounted and R15 (0 Ohm) is mounted. In case you need to bypass the charger and power the board solely through a battery then R15 should be removed and R20 should be mounted |
 | **Micro-controller Power Line Break** | By default R26 (0 Ohm) is mounted. In case you need to break the micro-controller’s power line (e.g. for adding a special circuit like a watchdog) then this should be removed                             |
 
 ### Protection
@@ -216,19 +228,26 @@ Orientation as in the board picture. IOs naming refer to corresponding ESP32-S3-
 - SDA/SCL: Exposed I²C bus to accomodate compatible devices
 - UART1_TX/UART1_Rx: Exposed Serial Bus to accomodate compatible devices (modem, GPS, etc.)
 
-### Marking
 
-|        |                                                |
-| :----- | :--------------------------------------------- |
-| **CE** | _ongoing, expected to be completed in Q1-2026_ |
+### Cerfification
+
+|          |             |
+| :------- | :---------- |
+| **CE**   | Latest v1 version is part of a certified bundle. EU Declaration of Conformance is available upon request. |
+|          | Certification for v2 is ongoing |
 
 ### Changelog
 
 | Version                                                           | Release Date | Comments                                                                                                                      |
 | :---------------------------------------------------------------- | :----------- | :---------------------------------------------------------------------------------------------------------------------------- |
-| 1.0.5 (latest)                                                    | 08/12/2025   | Correct footprint of fuse                                                                                                     |
-| 1.0.4                                                             | 05/03/2025   | Change resettable fuses to tolerate higher voltages                                                                           |
-| 1.0.3                                                             | 20/08/2024   | Minor mechanical changes (holes standoffs)                                                                                    |
-| 1.0.2                                                             | 31/12/2023   | Fix increased deep sleep current due to external switch pulled down resistor                                                  |
+| 2.0.1                                                             | 08/02/2026   | Minor component alignments |
+| **2.0.0 (Major Revision)**                                                             | 21/12/2025   | DC input for solar port extended to 18V, accompanied by power path redesign and new charging IC   |
+|                                                                   |              | Integration of dedicated RTC and Accelerometer                  |
+|                                                                   |              | Ports change: USB port changed to Type-C &   Solar/Switch connector changed to detacheable               |
+|                                                                   |              | Improvements in power consumption                |
+| [**1.0.5**](/images/deviceimages/insighio-main-1.0.5.png?width=30pc) | 08/12/2025   | Part of a certified bundle; Correct footprint of fuse|
+| 1.0.4                                                             | 05/03/2025   | Change resettable fuses to tolerate higher voltages |
+| 1.0.3                                                             | 20/08/2024   | Minor mechanical changes (holes standoffs)          |
+| 1.0.2                                                             | 31/12/2023   | Fix increased deep sleep current due to external switch pulled down resistor |
 | 1.0.1                                                             | 17/03/2023   | Added resettable fuses to solar panel, battery and the output of the 3.3V regulator; Change connector for connectivity shield |
-| [**1.0.0**](/images/deviceimages/insighio-main-v1.png?width=30pc) | 29/06/2022   | First stable version with ESP32-S3 & Sensor Expansion Port                                                                    |
+| [**1.0.0**](/images/deviceimages/insighio-main-1.0.0.png?width=30pc) | 29/06/2022   | First stable version with ESP32-S3 & Sensor Expansion Port |
