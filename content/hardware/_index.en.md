@@ -60,9 +60,12 @@ Based on the main board, we build a complete hardware solution that perfectly fi
 - A standard Female Headers Pin Connector for attaching one of our sensor shield, depending on the target application
 - A custom Ribbon Cable Connector for (optionally) attaching one of our additional connectivity shields, depending on the network availability
 
-Move to page [Main Board](./main/) to view the complete technical specifications of this board.
+| Board Name                                                               | SKU             | Expansion Ports                                 |
+| :------------------------------------------------------------------------ | :------------------- | :--------------------------- |
+| [Main]({{< relref "./main.md" >}})         | **INS-B-MAN** | 30-pin sensor expansion & 10-pin connectivity expansion                 |
 
-![TAT image](/images/deviceimages/insighio-main.png?width=30pc)
+
+Move to page [Main Board](./main/) to view the complete technical specifications of this board.
 
 ### Shields
 
