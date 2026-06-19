@@ -98,17 +98,37 @@ The combination of low-power board mode and always-on sensor mode, doesn't have 
 #### Modbus-RTU
 |                           |                                                                                     |
 | :------------------------ | :---------------------------------------------------------------------------------- |
-| **Number of Physical Sensors**  | 1 x Physical Port with 4 pins (VCC,A,B,GND)  |
+| **Number of Physical Sensors**  | 1 x Physical Port with 4 inputs (VCC,A,B,GND)  |
 | **Number of Supported Sensors (SW/HW)**  | Multiple slaves with external combiner   |
 | **Software Support** | Configurable System Settings: Baud rate, Data bits, Stop bits, Parity |
 |                      | Configurable Slave(s) Settings: Address, Register, Register Type (Holding/Input), Data Format (Integer, Float), Measurement Precision
 
-#### Analogue/4-20mA Interface
+#### Analogue/4-20mA
 |                           |                                                                                     |
 | :------------------------ | :---------------------------------------------------------------------------------- |
-| **Number of Physical Sensors**  | 4 x Physical Ports with 3 pins each (VCC,IN,GND), where VCC is common across all ports   |
+| **Number of Physical Sensors**  | 4 x Physical Ports with 3 inputs each (VCC,IN,GND), where VCC is common across all ports   |
 | **Analogue Voltage Readings** | Configurable Dedicated ADS 16-bit Voltage Range: 0:256mV, 0:512mV, 0:1.024V, 0:2.048V, 0:3.3V |     
 | **4-20mA Mode** | Current to Voltage transformation Resistor: 100 Ohm |
+
+
+#### Pulse
+
+##### v1
+|                           |                                                                                     |
+| :------------------------ | :---------------------------------------------------------------------------------- |
+| **Number of Physical Ports**  | 2 x Physical Ports with 2 inputs each (VCC, IN) |
+| **Implementation**  | VCC connected internally to 3.3V / IN pulled down |
+| **Connections** | Support 2-wire pulse output devices only (no external voltage supply needed). Sensor cables can be connected to the VCC and IN inputs either way.|
+
+
+##### v2
+|                           |                                                                                     |
+| :------------------------ | :---------------------------------------------------------------------------------- |
+| **Number of Physical Ports**  | 2 x Physical Ports with 3 inputs each (VCC, IN, GND) |
+| **Implementation**  | VCC connected internally to 3.3V  / IN pulled up / GND to common Ground |
+| **Connections** | Support pulse output devices requiring also external supply. For 2-wire devices connect one cable to IN (since it is pulled up) and the other to GND. |
+
+
 
 ### Cerfification
 
