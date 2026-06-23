@@ -62,7 +62,7 @@ Based on the main board, we build a complete hardware solution that perfectly fi
 
 | Board Name                                                               | SKU             | Expansion Ports                                 |
 | :------------------------------------------------------------------------ | :------------------- | :--------------------------- |
-| [Main]({{< relref "./main.md" >}})         | **INS-B-MAN** | 30-pin sensor expansion & 10-pin connectivity expansion                 |
+| [Main]({{< relref "./main/_index.en.md" >}})         | **INS-B-MAN** | 30-pin sensor expansion & 10-pin connectivity expansion                 |
 
 
 Move to page [Main Board](./main/) to view the complete technical specifications of this board.
