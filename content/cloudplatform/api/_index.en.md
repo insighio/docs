@@ -14,6 +14,9 @@ API list:
 - [Access Tokens]({{< relref "#access-tokens" >}})
   - [Login Access Token]({{< relref "#login-access-token" >}})
   - [API Access Token]({{< relref "#api-access-token" >}})
+- [Project Management]({{< relref "#project-management" >}})
+  - [User Project List]({{< relref "#user-project-list" >}})
+  - [Switch Project and Update Login Access Token]({{< relref "#switch-project-and-update-login-access-token" >}})
 - [Get Device List]({{< relref "#get-device-list" >}})
 - [Device API]({{< relref "#device-api" >}})
   - [Create Device]({{< relref "#create-device" >}})
@@ -93,6 +96,80 @@ curl -s -S -i -X POST -H 'accept: */*' -H "Content-Type: application/json" -H "A
 {"id":"6752b6d1-d50d-4b8e-8ca1-b48210be9142","name":"api token name","value":"<token>","issued_at":"2023-12-12T08:38:57.320343023Z","expires_at":"2023-12-12T09:38:57.320343023Z"}
 ```
 
+## Project Management
+
+If you are using [Login Access Tokens]({{< relref "#login-access-token" >}}), the default project that you get Access Token after login, is the "personal", the initial project of the user. If you wish to get Access Token for a different project, you need to get the list of the projects assigned to the user, get the ID of the project and use it to request new Login Access Token for that project.
+
+### User Project List
+
+Get the list of projects assigned to the user.
+
+> URL [GET]
+>
+> https://console.insigh.io/mf-rproxy/projects
+
+#### Example
+
+```bash
+curl -s -S -i -H "Content-Type: application/json" -H "Authorization: <access-token>" "https://console.insigh.io/mf-rproxy/projects"
+```
+
+#### Output
+
+```bash
+HTTP/2 200
+server: nginx/1.16.0
+date: Sat, 12 Feb 2022 19:41:00 GMT
+content-type: application/json
+content-length: 8888
+access-control-allow-origin: *
+strict-transport-security: max-age=63072000; includeSubdomains
+x-frame-options: DENY
+x-content-type-options: nosniff
+access-control-allow-origin: *
+access-control-allow-methods: *
+access-control-allow-headers: *
+
+{"total": 2, "offset": 0, "limit": 99, "status": "all", "projects": [{"id": "1162e426-71f4-5363-6d7c-b8c906829335", "name": "personal", "metadata": {"dashboards": [], "locations": [], "packages": [] }, "status": "enabled", "permission": "administrator", "created_by": "f9204693-5b3b-4560-9b18-54a69acf9195", "created_at": "2024-06-25T12:02:56.792126Z", "updated_by": "adb4ac7d-f714-4b36-a73c-3098d9263cd4", "updated_at": "2025-09-08T10:44:27.858528Z" }, {"id": "ae4b2158-97a5-ccd1-f032-c4ffe0dc7ee3", "name": "test-project", "status": "enabled", "permission": "viewer", "created_by": "adb4ac7d-f714-4b36-a73c-3098d9263cd4", "created_at": "2026-07-28T11:42:43.170455Z", "updated_at": "0001-01-01T00:00:00Z" } ]
+```
+
+### Switch Project and Update Login Access Token
+
+To get an Access Token on a project, the user is required to use the generated **"refresh_token"** from the login and request access to a selected project ID.
+
+> URL [POST]
+>
+> https://console.insigh.io/mf-rproxy/users/tokens/refresh
+>
+> POST data:
+>
+> - **domain_id**: The ID of the selected project
+
+#### Example
+
+```bash
+curl -s -S -i -H "Content-Type: application/json" -H "Authorization: <refresh-token>" "https://console.insigh.io/mf-rproxy/users/tokens/refresh"
+```
+
+#### Output
+
+```bash
+HTTP/2 200
+server: nginx/1.16.0
+date: Sat, 12 Feb 2022 19:41:00 GMT
+content-type: application/json
+content-length: 8888
+access-control-allow-origin: *
+strict-transport-security: max-age=63072000; includeSubdomains
+x-frame-options: DENY
+x-content-type-options: nosniff
+access-control-allow-origin: *
+access-control-allow-methods: *
+access-control-allow-headers: *
+
+{"access_token":"the-access-token","refresh_token":"the-refresh-token"}
+```
+
 ## Get Device List
 
 Get the Device List containing all required IDs for device operation. Each device contains:
@@ -105,7 +182,7 @@ Get the Device List containing all required IDs for device operation. Each devic
 - LoRA APP ID (_metadata.lora.appID_) **when applicable**
 - LoRA devEUI (_metadata.lora.devEUI_) **when applicable**
 
-> URL
+> URL [GET]
 >
 > https://console.insigh.io/mf-rproxy/device/list
 
