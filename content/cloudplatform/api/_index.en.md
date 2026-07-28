@@ -130,7 +130,7 @@ access-control-allow-origin: *
 access-control-allow-methods: *
 access-control-allow-headers: *
 
-{"total": 2, "offset": 0, "limit": 99, "status": "all", "projects": [{"id": "1162e426-71f4-5363-6d7c-b8c906829335", "name": "personal", "metadata": {"dashboards": [], "locations": [], "packages": [] }, "status": "enabled", "permission": "administrator", "created_by": "f9204693-5b3b-4560-9b18-54a69acf9195", "created_at": "2024-06-25T12:02:56.792126Z", "updated_by": "adb4ac7d-f714-4b36-a73c-3098d9263cd4", "updated_at": "2025-09-08T10:44:27.858528Z" }, {"id": "ae4b2158-97a5-ccd1-f032-c4ffe0dc7ee3", "name": "test-project", "status": "enabled", "permission": "viewer", "created_by": "adb4ac7d-f714-4b36-a73c-3098d9263cd4", "created_at": "2026-07-28T11:42:43.170455Z", "updated_at": "0001-01-01T00:00:00Z" } ]
+{"total": 2, "offset": 0, "limit": 99, "status": "all", "projects": [{"id": "1162e426-71f4-5363-6d7c-b8c906829335", "name": "personal", "metadata": {"dashboards": [], "locations": [], "packages": [] }, "status": "enabled", "permission": "administrator", "created_by": "f920419a-5bbb-4c60-9bf8-54a69fcf91c5", "created_at": "2024-06-25T12:02:56.792126Z", "updated_by": "f920419a-5bbb-4c60-9bf8-54a69fcf91c5", "updated_at": "2025-09-08T10:44:27.858528Z" }, {"id": "ae4b2158-97a5-ccd1-f032-c4ffe0dc7ee3", "name": "test-project", "status": "enabled", "permission": "viewer", "created_by": "f920419a-5bbb-4c60-9bf8-54a69fcf91c5", "created_at": "2026-07-28T11:42:43.170455Z", "updated_at": "0001-01-01T00:00:00Z" } ]
 ```
 
 ### Switch Project and Update Login Access Token
