@@ -89,6 +89,14 @@ var TYPE_SPEED = 0x2f
 var TYPE_FORMULA = 0x30
 var TYPE_EDGE_COUNT = 0x40
 var TYPE_MODBUS_VALUE = 0x50
+var TYPE_CHG_STAT = 0x60
+var TYPE_IBAT = 0x61
+var TYPE_IBUS = 0x62
+var TYPE_IS_CHARGING = 0x63
+var TYPE_TIME_DIFF = 0x64
+var TYPE_ULP_HEARTBEAT = 0x65
+var TYPE_VBUS = 0x66
+var TYPE_VSYS = 0x67
 var TYPE_LORA_JOIN_DUR = 0xc1
 var TYPE_GPS_HDOP = 0xd0
 var TYPE_GPS_LAT = 0xd1
@@ -107,9 +115,13 @@ function init() {
   typeMap[TYPE_CO2] = TypeSetting("co2", "ppm", 2, 1, false)
   typeMap[TYPE_COUNT] = TypeSetting("count", "count", 2, 10, false)
   typeMap[TYPE_CURRENT] = TypeSetting("current", "mA", 2, 100, false)
+  typeMap[TYPE_CHG_STAT] = TypeSetting("chg_stat", "", 1, 1, false)
   typeMap[TYPE_DEVIATION] = TypeSetting("deviation", "", 2, 100, true)
   typeMap[TYPE_DEVICE_ID] = TypeSetting("device_id", "", 1, 1, false)
   typeMap[TYPE_EDGE_COUNT] = TypeSetting("edge_count", "count", 2, 1, false)
+  typeMap[TYPE_IBAT] = TypeSetting("ibat", "mA", 2, 1, true)
+  typeMap[TYPE_IBUS] = TypeSetting("ibus", "mA", 2, 1, true)
+  typeMap[TYPE_IS_CHARGING] = TypeSetting("is_charging", "", 1, 1, false)
   typeMap[TYPE_MODBUS_VALUE] = TypeSetting("value", "", 4, 1, false, "float")
   typeMap[TYPE_DIRECTION_DEG] = TypeSetting("direction_d", "deg", 2, 10, false)
   typeMap[TYPE_DIRECTION_ID] = TypeSetting("direction", "", 1, 1, false)
@@ -146,9 +158,13 @@ function init() {
   typeMap[TYPE_UPTIME] = TypeSetting("uptime", "ms", 4, 1, false)
   typeMap[TYPE_VAPOR_PRESSURE_DEFICIT] = TypeSetting("vpd", "hPa", 2, 10, false)
   typeMap[TYPE_VBATT] = TypeSetting("vbatt", "mV", 2, 1, false)
+  typeMap[TYPE_VBUS] = TypeSetting("vbus", "mV", 2, 1, false)
   typeMap[TYPE_VOLTAGE] = TypeSetting("voltage", "mV", 2, 1, false)
+  typeMap[TYPE_VSYS] = TypeSetting("vsys", "mV", 2, 1, false)
   typeMap[TYPE_VWC] = TypeSetting("vwc", "", 2, 100, false)
   typeMap[TYPE_WATTS_PER_SQUARE_METER] = TypeSetting("wpsqm", "W/m2", 2, 1, false)
+  typeMap[TYPE_TIME_DIFF] = TypeSetting("time_diff", "s", 2, 1, false)
+  typeMap[TYPE_ULP_HEARTBEAT] = TypeSetting("ulp_heartbeat", "count", 4, 1, false)
 }
 function uint32toInt32(bin) {
   var num = bin >>> 0
@@ -173,11 +189,12 @@ function bytesToHex(byteArray, from, to) {
   return s
 }
 function getTypeName(typeId) {
-  var typeInfo = undefined
+  var typeInfo = typeMap[typeId]
+  if (typeInfo !== undefined) return typeInfo.name
   if (typeId >= TYPE_GENERIC && typeId <= TYPE_GENERIC_MAX) {
     typeInfo = { ...typeMap[TYPE_GENERIC] }
     typeInfo.name = typeInfo.name + "_" + (typeId & 0x0f)
-  } else typeInfo = typeMap[typeId]
+  }
   if (typeInfo === undefined) return ""
   return typeInfo.name
 }
@@ -314,7 +331,7 @@ function DecodeInsighioPackage(bytes, convertBytesFromBase64 = true) {
       //console.log("typeid: ", typeId.toString(16), ", locationId: ", locationId.toString(16))
       //console.log("\toriginal_name: ", original_name, ", name:", name, ", obj:", obj)
       var typeSettings = typeMap[typeId]
-      if (typeId >= TYPE_GENERIC && typeId <= TYPE_GENERIC_MAX) typeSettings = typeMap[TYPE_GENERIC]
+      if (!typeSettings && typeId >= TYPE_GENERIC && typeId <= TYPE_GENERIC_MAX) typeSettings = typeMap[TYPE_GENERIC]
       if (typeSettings) {
         //console.log("\tusing setting: ", typeSettings)
         if (typeSettings.valueType === "float" && typeSettings.byteLength === 4) {

@@ -69,6 +69,14 @@ Each sensor data field is composed of one byte for **sensor type**, one byte for
 |    0x30     |          formula / transformation          | -2147483648 to 2147483647 |      -      | 100000  |           4 bytes            |
 |    0x40     |                 edge_count                 |          0-65535          |    count    |    -    |           2 bytes            |
 |    0x50     |                modbus value                |             -             |      -      |    -    |           4 bytes            |
+|    0x60     |                  chg_stat                  |           0-255           |      -      |    -    |            1 byte            |
+|    0x61     |                    ibat                    |          0-65535          |     mA      |    -    |           2 bytes            |
+|    0x62     |                    ibus                    |          0-65535          |     mA      |    -    |           2 bytes            |
+|    0x63     |                is_charging                 |           0-255           |      -      |    -    |            1 byte            |
+|    0x64     |                 time_diff                  |          0-65535          |      s      |    -    |           2 bytes            |
+|    0x65     |               ulp_heartbeat                |             -             |    count    |    -    |           4 bytes            |
+|    0x66     |                    vbus                    |          0-65535          |     mV      |    -    |           2 bytes            |
+|    0x67     |                    vsys                    |          0-65535          |     mV      |    -    |           2 bytes            |
 |    0xC1     |             lora_join_duration             |          0-65535          |     ms      |    -    |           2 bytes            |
 |    0xD0     |                  gps_hdop                  |           0-255           |      -      |   10    |            1 byte            |
 |    0xD1     |                  gps_lat                   |    -9000000 to 9000000    |     lat     | 100000  |           4 bytes            |
