@@ -17,7 +17,7 @@ The payload always starts with the device_id which is the first 6 bytes, and fol
 
 ### sensor_data format
 
-Each sensor data field is composed of one byte for **sensor type**, one byte for **sensor location** on the insigh.io board followed by the **sensor value** with 1-6 bytes of data. The number of sensor value bytes is in direct correspondence with the sensor type and can be retrieved in the table of the next paragraph.
+Each sensor data field is composed of one byte for **sensor type**, one byte for **sensor location** on the insigh.io board followed by the **sensor value** with 1-4 bytes of data. The number of sensor value bytes is in direct correspondence with the sensor type and can be retrieved in the table of the next paragraph.
 
 |  byte [0]   |    byte [1]     |  byte [2-n]  |
 | :---------: | :-------------: | :----------: |
@@ -29,18 +29,18 @@ Each sensor data field is composed of one byte for **sensor type**, one byte for
 | :---------: | :----------------------------------------: | :-----------------------: | :---------: | :-----: | :--------------------------: |
 |    0x01     |                 device id                  |        hex string         |    text     |    -    |           6 bytes            |
 |    0x02     |                reset cause                 |            0-4            |   integer   |    -    |            1 byte            |
-|    0x03     |                   uptime                   |          0-65535          |     ms      |    -    |           2 bytes            |
-|    0x04     |                 mem_alloc                  |      0 – 4294967295       |      B      |    -    |           4 bytes            |
-|    0x05     |                  mem_free                  |      0 – 4294967295       |      B      |    -    |           4 bytes            |
+|    0x03     |                   uptime                   |       0-4294967295        |     ms      |    -    |           4 bytes            |
+|    0x04     |                 mem_alloc                  |       0-4294967295        |      B      |    -    |           4 bytes            |
+|    0x05     |                  mem_free                  |       0-4294967295        |      B      |    -    |           4 bytes            |
 |    0x07     |                  current                   |          0-65535          |     mA      |   100   |           2 bytes            |
-|    0x08     |                   vbatt                    |          0-65535          |     mv      |    -    |           2 bytes            |
+|    0x08     |                   vbatt                    |          0-65535          |     mV      |    -    |           2 bytes            |
 |    0x10     |                   light                    |          0-65535          |     lux     |    -    |           2 bytes            |
 |    0x11     |             temperature (Cel)              |     -32767 -> +32767      |     Cel     |   100   |           2 bytes            |
 |    0x12     |                  humidity                  |          0-10000          |      %      |   100   |           2 bytes            |
-|    0x13     |                    co2                     |       0 – 1100 ppm        |     ppm     |    -    |           2 bytes            |
+|    0x13     |                    co2                     |        0-65535 ppm        |     ppm     |    -    |           2 bytes            |
 |    0x14     |                  pressure                  |             -             |     hPa     |    -    |           4 bytes            |
 |    0x15     |                    gas                     |             -             |     ohm     |    -    |           2 bytes            |
-|    0x16     |                  voltage                   |          0-65535          |      V      |    -    |           2 bytes            |
+|    0x16     |                  voltage                   |          0-65535          |     mV      |    -    |           2 bytes            |
 |    0x17     |       Volumetric Water Content (vwc)       |          0-10000          |      %      |   100   |           2 bytes            |
 |    0x18     |      Relative Permittivity (rel_perm)      |          0-10000          |      %      |   100   |           2 bytes            |
 |    0x19     |         Electric Conductivity (ec)         |          0-65535          |    uS/cm    |    -    |           2 bytes            |
@@ -67,13 +67,15 @@ Each sensor data field is composed of one byte for **sensor type**, one byte for
 |    0x2e     |          direction in encoded id           |           0-255           |      -      |    -    |            1 byte            |
 |    0x2f     |                   speed                    |     -32767 -> +32767      |     m/s     |   100   |           2 bytes            |
 |    0x30     |          formula / transformation          | -2147483648 to 2147483647 |      -      | 100000  |           4 bytes            |
+|    0x40     |                 edge_count                 |          0-65535          |    count    |    -    |           2 bytes            |
+|    0x50     |                modbus value                |             -             |      -      |    -    |           4 bytes            |
 |    0xC1     |             lora_join_duration             |          0-65535          |     ms      |    -    |           2 bytes            |
-|    0xD0     |                  gps_hdop                  |           0-256           |      -      |   10    |            1 byte            |
+|    0xD0     |                  gps_hdop                  |           0-255           |      -      |   10    |            1 byte            |
 |    0xD1     |                  gps_lat                   |    -9000000 to 9000000    |     lat     | 100000  |           4 bytes            |
 |    0xD2     |                  gps_lon                   |   -18000000 to 18000000   |     lon     | 100000  |           4 bytes            |
 |    0xE0     |                  generic                   | -2147483648 to 2147483647 |      -      |   100   |           4 bytes            |
 |     ...     |                    ...                     |            ...            |      -      |   100   |           4 bytes            |
-|    0xE9     |                  generic                   | -2147483648 to 2147483647 |      -      |   100   |           4 bytes            |
+|    0xFF     |                  generic                   | -2147483648 to 2147483647 |      -      |   100   |           4 bytes            |
 
 ### sensor location values
 
@@ -87,11 +89,16 @@ Each sensor data field is composed of one byte for **sensor type**, one byte for
 |    0x31    |      ap2 (Analog Position 2)       |
 |    0x40    | adp1 (Analog / Digital Position 1) |
 |    0x41    | adp2 (Analog / Digital Position 2) |
+|    0x42    | adp3 (Analog / Digital Position 3) |
+|    0x43    | adp4 (Analog / Digital Position 4) |
 |    0x50    |          sdi12 Address 0           |
 |    ...     |                ...                 |
 |    0x59    |          sdi12 Address 9           |
-|    0x60    |     Current 4-20mA Position 1      |
-|    0x61    |     Current 4-20mA Position 2      |
+|    0x60    |     Current 4-20mA Position 0      |
+|    0x61    |     Current 4-20mA Position 1      |
+|    0xB0    |           Modbus slave 0           |
+|    ...     |                ...                 |
+|    0xBF    |          Modbus slave 15           |
 |    0x70    |           Network modem            |
 |    0x71    |             GPS modem              |
 |    0x80    |       Weather Station (wth)        |
@@ -100,16 +107,16 @@ Each sensor data field is composed of one byte for **sensor type**, one byte for
 |    0x83    |        Pulse Counter (pcnt)        |
 |    0x84    |  Weather Station Wind (wth_wind)   |
 
+MODBUS values are parsed in firmware according to configured source format (`uint16`, `int16`, `uint32`, `int32`, `float`) and scaling settings, then encoded as sensor type `0x50` (4-byte IEEE754 float) at location `0xB0`-`0xBF` where the low nibble stores slave id (`slave & 0x0F`).
+
 ## Example
 
 For example, lets incrementally build the required payload based on the following values:
 
 1. device_id: 30aea47861b8
-
    - **payload**: 30aea47861b8
 
 1. cpu_temperature: 44.44
-
    - type: temperature
    - type id: 0x11
    - location: cpu
@@ -119,7 +126,6 @@ For example, lets incrementally build the required payload based on the followin
    - **payload:** 0x1111115c
 
 1. board_humidity: 55.95
-
    - type: humidity
    - type id: 0x12
    - location: board
@@ -129,7 +135,6 @@ For example, lets incrementally build the required payload based on the followin
    - **payload:** 0x121015db
 
 1. ap1_voltage: 144
-
    - type: voltage
    - type id: 0x16
    - location: ap1

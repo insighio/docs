@@ -32,10 +32,13 @@ var LOCATION_A_P1 = 0x30
 var LOCATION_A_P2 = 0x31
 var LOCATION_AD_P1 = 0x40
 var LOCATION_AD_P2 = 0x41
+var LOCATION_AD_P3 = 0x42
+var LOCATION_AD_P4 = 0x43
 var LOCATION_SDI12 = 0x50
 var LOCATION_4_20 = 0x60
 var LOCATION_MODEM = 0x70
 var LOCATION_GPS = 0x71
+var LOCATION_MODBUS = 0xb0
 var LOCATION_WEATHER_STATION = 0x80
 var LOCATION_RAIN_GAUGE = 0x81
 var LOCATION_SOLAR_SENSOR = 0x82
@@ -84,6 +87,8 @@ var TYPE_DIRECTION_DEG = 0x2d
 var TYPE_DIRECTION_ID = 0x2e
 var TYPE_SPEED = 0x2f
 var TYPE_FORMULA = 0x30
+var TYPE_EDGE_COUNT = 0x40
+var TYPE_MODBUS_VALUE = 0x50
 var TYPE_LORA_JOIN_DUR = 0xc1
 var TYPE_GPS_HDOP = 0xd0
 var TYPE_GPS_LAT = 0xd1
@@ -92,65 +97,49 @@ var TYPE_GENERIC = 0xe0
 var TYPE_GENERIC_MAX = 0xff
 var typeMap = {}
 
-function TypeSetting(name, unit, byteLength, divider, isSigned) {
-  return { name, unit, byteLength, divider, isSigned }
+function TypeSetting(name, unit, byteLength, divider, isSigned, valueType) {
+  return { name, unit, byteLength, divider, isSigned, valueType: valueType || "int" }
 }
 
 function init() {
-  typeMap[TYPE_ACTUAL_EVAPOTRANSPIRATION_MM] = TypeSetting(
-    "et",
-    "mm",
-    2,
-    1000,
-    false
-  )
+  typeMap[TYPE_ACTUAL_EVAPOTRANSPIRATION_MM] = TypeSetting("et", "mm", 2, 1000, false)
   typeMap[TYPE_ATMOSPHERIC_PRESSURE] = TypeSetting("pa", "hPa", 2, 10, false)
-  typeMap[TYPE_CO2] = TypeSetting("co2", "ppm", 2, 100, false)
+  typeMap[TYPE_CO2] = TypeSetting("co2", "ppm", 2, 1, false)
   typeMap[TYPE_COUNT] = TypeSetting("count", "count", 2, 10, false)
-  typeMap[TYPE_CURRENT] = TypeSetting("current", "mA", 2, 1, false)
+  typeMap[TYPE_CURRENT] = TypeSetting("current", "mA", 2, 100, false)
   typeMap[TYPE_DEVIATION] = TypeSetting("deviation", "", 2, 100, true)
   typeMap[TYPE_DEVICE_ID] = TypeSetting("device_id", "", 1, 1, false)
+  typeMap[TYPE_EDGE_COUNT] = TypeSetting("edge_count", "count", 2, 1, false)
+  typeMap[TYPE_MODBUS_VALUE] = TypeSetting("value", "", 4, 1, false, "float")
   typeMap[TYPE_DIRECTION_DEG] = TypeSetting("direction_d", "deg", 2, 10, false)
   typeMap[TYPE_DIRECTION_ID] = TypeSetting("direction", "", 1, 1, false)
   typeMap[TYPE_FORMULA] = TypeSetting("formula", "", 4, 100000, true)
-  typeMap[TYPE_GAS] = TypeSetting("gas", "Ohm", 2, 100, false)
+  typeMap[TYPE_GAS] = TypeSetting("gas", "Ohm", 2, 1, false)
   typeMap[TYPE_GENERIC] = TypeSetting("generic", "", 4, 100, true)
   typeMap[TYPE_GPS_HDOP] = TypeSetting("hdop", "", 1, 10, false)
   typeMap[TYPE_GPS_LAT] = TypeSetting("lat", "", 4, 100000, true)
   typeMap[TYPE_GPS_LON] = TypeSetting("lon", "", 4, 100000, true)
-  typeMap[TYPE_GRAMS_OF_WATER_VAPOUR_PER_CUBIC_METRE_OF_AIR] = TypeSetting(
-    "water_vapour_sq_air",
-    "g.m3",
-    2,
-    1,
-    false
-  )
+  typeMap[TYPE_GRAMS_OF_WATER_VAPOUR_PER_CUBIC_METRE_OF_AIR] = TypeSetting("water_vapour_sq_air", "g.m3", 2, 1, false)
   typeMap[TYPE_HEAT_FLUX] = TypeSetting("h", "W/m2", 2, 10, false)
   typeMap[TYPE_HEAT_VELOCITY] = TypeSetting("hv", "cm/h", 2, 100, false)
   typeMap[TYPE_HEIGHT] = TypeSetting("height", "mm", 2, 10, false)
   typeMap[TYPE_HUMIDITY] = TypeSetting("hum", "%RH", 2, 100, false)
   typeMap[TYPE_LATENT_ENERGY_FLUX] = TypeSetting("le", "W/m2", 2, 10, false)
   typeMap[TYPE_LIGHT_LUX] = TypeSetting("light_lux", "lx", 2, 1, false)
-  typeMap[TYPE_LOG_RATIO] = TypeSetting("log_rt", "", 4, 100000, false)
+  typeMap[TYPE_LOG_RATIO] = TypeSetting("log_rt", "", 4, 100000, true)
   typeMap[TYPE_LORA_JOIN_DUR] = TypeSetting("lora_join_dur", "ms", 2, 1, false)
   typeMap[TYPE_MEM_ALLOC] = TypeSetting("mem_alloc", "B", 4, 1, false)
   typeMap[TYPE_MEM_FREE] = TypeSetting("mem_free", "B", 4, 1, false)
   typeMap[TYPE_MILLIMETER] = TypeSetting("millimeter", "mm", 2, 1, false) // deprecated
   typeMap[TYPE_NOISE] = TypeSetting("noise", "db", 2, 10, false)
   typeMap[TYPE_PERIOD] = TypeSetting("period", "s", 2, 10, false)
-  typeMap[TYPE_PORE_WATER_CONDUCT] = TypeSetting(
-    "pore_water_conduct",
-    "uS/cm",
-    2,
-    100,
-    false
-  )
+  typeMap[TYPE_PORE_WATER_CONDUCT] = TypeSetting("pore_water_conduct", "uS/cm", 2, 100, false)
   typeMap[TYPE_PRESSURE] = TypeSetting("pressure", "hPa", 4, 1, true)
   typeMap[TYPE_RADIATION] = TypeSetting("radiation", "", 2, 1, false)
   typeMap[TYPE_REL_PERM] = TypeSetting("rel_perm", "", 2, 100, false)
   typeMap[TYPE_RESET_CAUSE] = TypeSetting("reset_cause", "", 1, 1, false)
   typeMap[TYPE_SAP_FLOW] = TypeSetting("sap_flow", "l/h", 2, 100, false)
-  typeMap[TYPE_SOIL_EC] = TypeSetting("soil_ec", "uS/cm", 2, 100, false)
+  typeMap[TYPE_SOIL_EC] = TypeSetting("soil_ec", "uS/cm", 2, 1, false)
   typeMap[TYPE_SPEED] = TypeSetting("speed", "m/s", 2, 100, true)
   typeMap[TYPE_TEMPERATURE_CEL] = TypeSetting("temp", "Cel", 2, 100, true)
   typeMap[TYPE_TEMPERATURE_FAH] = TypeSetting("temp", "f", 2, 100, true)
@@ -159,17 +148,11 @@ function init() {
   typeMap[TYPE_VBATT] = TypeSetting("vbatt", "mV", 2, 1, false)
   typeMap[TYPE_VOLTAGE] = TypeSetting("voltage", "mV", 2, 1, false)
   typeMap[TYPE_VWC] = TypeSetting("vwc", "", 2, 100, false)
-  typeMap[TYPE_WATTS_PER_SQUARE_METER] = TypeSetting(
-    "wpsqm",
-    "W/m2",
-    2,
-    1,
-    false
-  )
+  typeMap[TYPE_WATTS_PER_SQUARE_METER] = TypeSetting("wpsqm", "W/m2", 2, 1, false)
 }
 function uint32toInt32(bin) {
-  var num = bin & 0xffffffff
-  if (0x80000000 & num) num = num - 0x0100000000
+  var num = bin >>> 0
+  if (num > 0x7fffffff) num = num - 0x100000000
   return num
 }
 function uint16toInt16(bin) {
@@ -250,6 +233,10 @@ function getLocationName(locationId) {
           return "adp1"
         case LOCATION_AD_P2 & 0x0f:
           return "adp2"
+        case LOCATION_AD_P3 & 0x0f:
+          return "adp3"
+        case LOCATION_AD_P4 & 0x0f:
+          return "adp4"
         default:
           return "adp"
       }
@@ -268,6 +255,9 @@ function getLocationName(locationId) {
         default:
           return "modem"
       }
+    case LOCATION_MODBUS:
+      if (subLocation) return "modbus_" + subLocation
+      return "modbus"
     case LOCATION_WEATHER_STATION:
       switch (subLocation) {
         case LOCATION_PULSE_COUNTER & 0x0f:
@@ -318,42 +308,49 @@ function DecodeInsighioPackage(bytes, convertBytesFromBase64 = true) {
     while (i < bytes.length) {
       var typeId = bytes[i++]
       var locationId = bytes[i++]
-      var original_name =
-        getLocationName(locationId) + "_" + getTypeName(typeId)
+      var original_name = getLocationName(locationId) + "_" + getTypeName(typeId)
       var name = getValidName(nameDict, original_name)
       var obj = { n: name, u: getTypeUnit(typeId) }
       //console.log("typeid: ", typeId.toString(16), ", locationId: ", locationId.toString(16))
       //console.log("\toriginal_name: ", original_name, ", name:", name, ", obj:", obj)
       var typeSettings = typeMap[typeId]
-      if (typeId >= TYPE_GENERIC && typeId <= TYPE_GENERIC_MAX)
-        typeSettings = typeMap[TYPE_GENERIC]
+      if (typeId >= TYPE_GENERIC && typeId <= TYPE_GENERIC_MAX) typeSettings = typeMap[TYPE_GENERIC]
       if (typeSettings) {
         //console.log("\tusing setting: ", typeSettings)
-        obj.v = 0
-        // extract value
-        for (var j = 1; j <= typeSettings.byteLength; j++) {
-          var places = (typeSettings.byteLength - j) * 8
-          if (places) obj.v |= bytes[i++] << places
-          else obj.v |= bytes[i++]
-        }
-        // apply signedness
-        if (typeSettings.isSigned) {
-          switch (typeSettings.byteLength) {
-            case 1:
-              obj.v = uint8toInt8(obj.v)
-              break
-            case 2:
-              obj.v = uint16toInt16(obj.v)
-              break
-            case 4:
-              obj.v = obj.v //uint32toInt32(obj.v)
-              break
-            default:
-              break
+        if (typeSettings.valueType === "float" && typeSettings.byteLength === 4) {
+          var floatView = new DataView(new ArrayBuffer(4))
+          floatView.setUint8(0, bytes[i++])
+          floatView.setUint8(1, bytes[i++])
+          floatView.setUint8(2, bytes[i++])
+          floatView.setUint8(3, bytes[i++])
+          obj.v = floatView.getFloat32(0, false)
+        } else {
+          obj.v = 0
+          // extract value
+          for (var j = 1; j <= typeSettings.byteLength; j++) {
+            var places = (typeSettings.byteLength - j) * 8
+            if (places) obj.v |= bytes[i++] << places
+            else obj.v |= bytes[i++]
           }
+          // apply signedness
+          if (typeSettings.isSigned) {
+            switch (typeSettings.byteLength) {
+              case 1:
+                obj.v = uint8toInt8(obj.v)
+                break
+              case 2:
+                obj.v = uint16toInt16(obj.v)
+                break
+              case 4:
+                obj.v = uint32toInt32(obj.v)
+                break
+              default:
+                break
+            }
+          }
+          // apply divider
+          obj.v /= typeSettings.divider
         }
-        // apply divider
-        obj.v /= typeSettings.divider
       }
       if (obj.v === undefined) obj.v = 0
       nameDict[obj.n] = true
@@ -376,23 +373,21 @@ function populateSignalQuality(payload, senmlMessage) {
   var spreadingFactor = -1
   try {
     if (payload.rxInfo && payload.rxInfo[0]) {
-      if (payload.rxInfo[0].rssi)
-        senmlMessage.push({ n: "rssi", u: "dBm", v: payload.rxInfo[0].rssi })
-      if (payload.rxInfo[0].snr) {
-        senmlMessage.push({ n: "snr", u: "db", v: payload.rxInfo[0].snr })
+      if (payload.rxInfo[0].rssi !== undefined) senmlMessage.push({ n: "modem_rssi", u: "dBm", v: payload.rxInfo[0].rssi })
+      if (payload.rxInfo[0].snr !== undefined) {
+        senmlMessage.push({ n: "modem_snr", u: "db", v: payload.rxInfo[0].snr })
         snr = payload.rxInfo[0].snr
       }
     }
 
     //calculate high level signal quality
     if (payload.txInfo) {
-      if (payload.txInfo.frequency)
-        senmlMessage.push({ n: "frequency", v: payload.txInfo.frequency })
+      if (payload.txInfo.frequency) senmlMessage.push({ n: "frequency", v: payload.txInfo.frequency })
 
       if (payload.txInfo.modulation && payload.txInfo.modulation.lora) {
         if (payload.txInfo.modulation.lora.spreadingFactor) {
           spreadingFactor = payload.txInfo.modulation.lora.spreadingFactor
-          senmlMessage.push({ n: "spreading_factor", v: spreadingFactor })
+          senmlMessage.push({ n: "modem_spreading_factor", v: spreadingFactor })
         }
         if (payload.txInfo.modulation.lora.bandwidth) {
           senmlMessage.push({
@@ -407,18 +402,15 @@ function populateSignalQuality(payload, senmlMessage) {
 
     var snrStepPerSpreadingFactor = -2.5
     var snrOfSpreadingFactor6 = -5
-    var loraSnrLowest =
-      snrOfSpreadingFactor6 + (spreadingFactor - 6) * snrStepPerSpreadingFactor
+    var loraSnrLowest = snrOfSpreadingFactor6 + (spreadingFactor - 6) * snrStepPerSpreadingFactor
 
     //snr range loraSnrLowest dbm -> +10dbm
     var qualitySteps = (10 - loraSnrLowest) / 5
 
     var signalQualityIndex = Math.floor((snr - loraSnrLowest) / qualitySteps)
-    if (signalQualityIndex <= 0)
-      senmlMessage.push({ n: "signal_quality_index", v: 0 })
-    else if (signalQualityIndex > 4)
-      senmlMessage.push({ n: "signal_quality_index", v: 4 })
-    else senmlMessage.push({ n: "signal_quality_index", v: signalQualityIndex })
+    if (signalQualityIndex <= 0) senmlMessage.push({ n: "modem_signal_quality_index", v: 0 })
+    else if (signalQualityIndex > 4) senmlMessage.push({ n: "modem_signal_quality_index", v: 4 })
+    else senmlMessage.push({ n: "modem_signal_quality_index", v: signalQualityIndex })
   } catch (e) {
     console.log(e)
   }
@@ -464,8 +456,10 @@ function decode(payload) {
 
   populateSignalQuality(payload, senmlMessage)
 
-  senmlMessage[0].bt = Date.parse(payload.time) / 10 ** 3
-  senmlMessage[0].bn = deviceId + "-"
+  if (senmlMessage.length > 0) {
+    senmlMessage[0].bt = Date.parse(payload.time) / 10 ** 3
+    senmlMessage[0].bn = deviceId + "-"
+  }
 
   return { deviceId: deviceId, message: senmlMessage }
 }
