@@ -77,6 +77,7 @@ Each sensor data field is composed of one byte for **sensor type**, one byte for
 |    0x65     |               ulp_heartbeat                |             -             |    count    |    -    |           4 bytes            |
 |    0x66     |                    vbus                    |          0-65535          |     mV      |    -    |           2 bytes            |
 |    0x67     |                    vsys                    |          0-65535          |     mV      |    -    |           2 bytes            |
+|    0x6B     |               unix_time (dt)               |       0-4294967295        |      s      |    -    |           4 bytes            |
 |    0xC1     |             lora_join_duration             |          0-65535          |     ms      |    -    |           2 bytes            |
 |    0xD0     |                  gps_hdop                  |           0-255           |      -      |   10    |            1 byte            |
 |    0xD1     |                  gps_lat                   |    -9000000 to 9000000    |     lat     | 100000  |           4 bytes            |

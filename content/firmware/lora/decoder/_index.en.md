@@ -22,7 +22,7 @@ Follows the LoRA payload decoder that transforms received bytes into SenML-forma
                             /$$  \ $$
                             |  $$$$$$/
                             \______/
-LoRA/Satellite payload decoder for insigh.io firmware (v2.1)
+LoRA/Satellite payload decoder for insigh.io firmware (v4.0 and above)
 */
 var LOCATION_DEFAULT = 0x00
 var LOCATION_INTERNAL_BOARD = 0x10
@@ -97,6 +97,10 @@ var TYPE_TIME_DIFF = 0x64
 var TYPE_ULP_HEARTBEAT = 0x65
 var TYPE_VBUS = 0x66
 var TYPE_VSYS = 0x67
+var TYPE_PERCENTAGE = 0x68
+var TYPE_MILLISECONDS = 0x69
+var TYPE_PARTS_PER_MILLION = 0x6a
+var TYPE_UNIX_TIME = 0x6b
 var TYPE_LORA_JOIN_DUR = 0xc1
 var TYPE_GPS_HDOP = 0xd0
 var TYPE_GPS_LAT = 0xd1
@@ -105,6 +109,12 @@ var TYPE_GENERIC = 0xe0
 var TYPE_GENERIC_MAX = 0xff
 var typeMap = {}
 
+// var GENERIC_UNIT_BY_SUBTYPE = {
+//   0x68: "/100",
+//   0x69: "ms",
+//   0x6a: "ppm"
+// }
+
 function TypeSetting(name, unit, byteLength, divider, isSigned, valueType) {
   return { name, unit, byteLength, divider, isSigned, valueType: valueType || "int" }
 }
@@ -112,19 +122,16 @@ function TypeSetting(name, unit, byteLength, divider, isSigned, valueType) {
 function init() {
   typeMap[TYPE_ACTUAL_EVAPOTRANSPIRATION_MM] = TypeSetting("et", "mm", 2, 1000, false)
   typeMap[TYPE_ATMOSPHERIC_PRESSURE] = TypeSetting("pa", "hPa", 2, 10, false)
+  typeMap[TYPE_CHG_STAT] = TypeSetting("chg_stat", "", 1, 1, false)
   typeMap[TYPE_CO2] = TypeSetting("co2", "ppm", 2, 1, false)
   typeMap[TYPE_COUNT] = TypeSetting("count", "count", 2, 10, false)
   typeMap[TYPE_CURRENT] = TypeSetting("current", "mA", 2, 100, false)
-  typeMap[TYPE_CHG_STAT] = TypeSetting("chg_stat", "", 1, 1, false)
   typeMap[TYPE_DEVIATION] = TypeSetting("deviation", "", 2, 100, true)
   typeMap[TYPE_DEVICE_ID] = TypeSetting("device_id", "", 1, 1, false)
-  typeMap[TYPE_EDGE_COUNT] = TypeSetting("edge_count", "count", 2, 1, false)
-  typeMap[TYPE_IBAT] = TypeSetting("ibat", "mA", 2, 1, true)
-  typeMap[TYPE_IBUS] = TypeSetting("ibus", "mA", 2, 1, true)
-  typeMap[TYPE_IS_CHARGING] = TypeSetting("is_charging", "", 1, 1, false)
-  typeMap[TYPE_MODBUS_VALUE] = TypeSetting("value", "", 4, 1, false, "float")
   typeMap[TYPE_DIRECTION_DEG] = TypeSetting("direction_d", "deg", 2, 10, false)
   typeMap[TYPE_DIRECTION_ID] = TypeSetting("direction", "", 1, 1, false)
+  typeMap[TYPE_UNIX_TIME] = TypeSetting("dt", "s", 4, 1, false)
+  typeMap[TYPE_EDGE_COUNT] = TypeSetting("edge_count", "count", 2, 1, false)
   typeMap[TYPE_FORMULA] = TypeSetting("formula", "", 4, 100000, true)
   typeMap[TYPE_GAS] = TypeSetting("gas", "Ohm", 2, 1, false)
   typeMap[TYPE_GENERIC] = TypeSetting("generic", "", 4, 100, true)
@@ -136,6 +143,9 @@ function init() {
   typeMap[TYPE_HEAT_VELOCITY] = TypeSetting("hv", "cm/h", 2, 100, false)
   typeMap[TYPE_HEIGHT] = TypeSetting("height", "mm", 2, 10, false)
   typeMap[TYPE_HUMIDITY] = TypeSetting("hum", "%RH", 2, 100, false)
+  typeMap[TYPE_IBAT] = TypeSetting("ibat", "mA", 2, 1, true)
+  typeMap[TYPE_IBUS] = TypeSetting("ibus", "mA", 2, 1, true)
+  typeMap[TYPE_IS_CHARGING] = TypeSetting("is_charging", "", 1, 1, false)
   typeMap[TYPE_LATENT_ENERGY_FLUX] = TypeSetting("le", "W/m2", 2, 10, false)
   typeMap[TYPE_LIGHT_LUX] = TypeSetting("light_lux", "lx", 2, 1, false)
   typeMap[TYPE_LOG_RATIO] = TypeSetting("log_rt", "", 4, 100000, true)
@@ -143,7 +153,11 @@ function init() {
   typeMap[TYPE_MEM_ALLOC] = TypeSetting("mem_alloc", "B", 4, 1, false)
   typeMap[TYPE_MEM_FREE] = TypeSetting("mem_free", "B", 4, 1, false)
   typeMap[TYPE_MILLIMETER] = TypeSetting("millimeter", "mm", 2, 1, false) // deprecated
+  typeMap[TYPE_MILLISECONDS] = TypeSetting("milliseconds", "ms", 4, 1, false)
+  typeMap[TYPE_MODBUS_VALUE] = TypeSetting("value", "", 4, 1, false, "float")
   typeMap[TYPE_NOISE] = TypeSetting("noise", "db", 2, 10, false)
+  typeMap[TYPE_PARTS_PER_MILLION] = TypeSetting("ppm", "ppm", 4, 1, false)
+  typeMap[TYPE_PERCENTAGE] = TypeSetting("percentage", "%", 4, 100, false)
   typeMap[TYPE_PERIOD] = TypeSetting("period", "s", 2, 10, false)
   typeMap[TYPE_PORE_WATER_CONDUCT] = TypeSetting("pore_water_conduct", "uS/cm", 2, 100, false)
   typeMap[TYPE_PRESSURE] = TypeSetting("pressure", "hPa", 4, 1, true)
@@ -155,6 +169,8 @@ function init() {
   typeMap[TYPE_SPEED] = TypeSetting("speed", "m/s", 2, 100, true)
   typeMap[TYPE_TEMPERATURE_CEL] = TypeSetting("temp", "Cel", 2, 100, true)
   typeMap[TYPE_TEMPERATURE_FAH] = TypeSetting("temp", "f", 2, 100, true)
+  typeMap[TYPE_TIME_DIFF] = TypeSetting("time_diff", "s", 2, 1, false)
+  typeMap[TYPE_ULP_HEARTBEAT] = TypeSetting("ulp_heartbeat", "count", 4, 1, false)
   typeMap[TYPE_UPTIME] = TypeSetting("uptime", "ms", 4, 1, false)
   typeMap[TYPE_VAPOR_PRESSURE_DEFICIT] = TypeSetting("vpd", "hPa", 2, 10, false)
   typeMap[TYPE_VBATT] = TypeSetting("vbatt", "mV", 2, 1, false)
@@ -163,8 +179,6 @@ function init() {
   typeMap[TYPE_VSYS] = TypeSetting("vsys", "mV", 2, 1, false)
   typeMap[TYPE_VWC] = TypeSetting("vwc", "", 2, 100, false)
   typeMap[TYPE_WATTS_PER_SQUARE_METER] = TypeSetting("wpsqm", "W/m2", 2, 1, false)
-  typeMap[TYPE_TIME_DIFF] = TypeSetting("time_diff", "s", 2, 1, false)
-  typeMap[TYPE_ULP_HEARTBEAT] = TypeSetting("ulp_heartbeat", "count", 4, 1, false)
 }
 function uint32toInt32(bin) {
   var num = bin >>> 0
@@ -200,8 +214,12 @@ function getTypeName(typeId) {
 }
 function getTypeUnit(typeId) {
   var typeInfo = typeMap[typeId]
-  if (typeInfo === undefined) return ""
-  return typeInfo.unit
+  if (typeInfo !== undefined) return typeInfo.unit
+  if (typeId >= TYPE_GENERIC && typeId <= TYPE_GENERIC_MAX) {
+    //return GENERIC_UNIT_BY_SUBTYPE[typeId & 0x0f] || ""
+    return ""
+  }
+  return ""
 }
 function getLocationName(locationId) {
   var mainLocation = locationId & 0xf0
@@ -258,7 +276,7 @@ function getLocationName(locationId) {
           return "adp"
       }
     case LOCATION_4_20:
-      return "4-20_" + subLocation
+      return "4_20_" + subLocation
     case LOCATION_SDI12:
       return "sdi12_" + subLocation
     case LOCATION_SDI12_PORT_1:
@@ -293,18 +311,7 @@ function getLocationName(locationId) {
       return "generic"
   }
 }
-function getValidName(nameDict, original_name) {
-  var j = undefined
-  var name = undefined
-  do {
-    name = original_name
-    if (j !== undefined) {
-      name += "_" + j
-      j++
-    } else j = 1
-  } while (nameDict[name]) //if key is used, consider it is sensor with multiple measurements
-  return name
-}
+
 function base64ToArrayBuffer(base64) {
   //console.log("Decoding ", base64)
   var binary_string = atob(base64)
@@ -326,7 +333,7 @@ function DecodeInsighioPackage(bytes, convertBytesFromBase64 = true) {
       var typeId = bytes[i++]
       var locationId = bytes[i++]
       var original_name = getLocationName(locationId) + "_" + getTypeName(typeId)
-      var name = getValidName(nameDict, original_name)
+      var name = original_name
       var obj = { n: name, u: getTypeUnit(typeId) }
       //console.log("typeid: ", typeId.toString(16), ", locationId: ", locationId.toString(16))
       //console.log("\toriginal_name: ", original_name, ", name:", name, ", obj:", obj)
@@ -382,7 +389,36 @@ function DecodeInsighioPackage(bytes, convertBytesFromBase64 = true) {
     return { e: err.stack }
   }
 
-  return senml
+  // at the end, look up all the names and make sure they are unique, if not, append _1, _2, etc.
+  var usedNames = {}
+  senml.forEach((element) => {
+    if (!element || !element.n) return
+
+    const baseName = element.n
+    if (!usedNames[baseName]) {
+      usedNames[baseName] = {
+        maxCounter: 1,
+        count: 0,
+      }
+    } else usedNames[baseName].maxCounter = usedNames[baseName].maxCounter + 1
+  })
+
+  let processedSenml = []
+  senml.forEach((element) => {
+    if (!element || !element.n) return
+
+    const baseName = element.n
+    const nameInfo = usedNames[baseName]
+    if (nameInfo.maxCounter === 1) {
+      processedSenml.push(element)
+    } else {
+      const newName = `${baseName}_${nameInfo.count + 1}`
+      processedSenml.push({ ...element, n: newName })
+      usedNames[baseName].count = nameInfo.count + 1
+    }
+  })
+
+  return processedSenml
 }
 
 function populateSignalQuality(payload, senmlMessage) {
