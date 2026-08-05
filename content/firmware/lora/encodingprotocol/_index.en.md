@@ -88,33 +88,37 @@ Each sensor data field is composed of one byte for **sensor type**, one byte for
 
 ### sensor location values
 
-| byte value |        location description        |
-| :--------: | :--------------------------------: |
-|    0x00    |              unknown               |
-|    0x10    |               board                |
-|    0x11    |                cpu                 |
-|    0x20    |                i2c                 |
-|    0x30    |      ap1 (Analog Position 1)       |
-|    0x31    |      ap2 (Analog Position 2)       |
-|    0x40    | adp1 (Analog / Digital Position 1) |
-|    0x41    | adp2 (Analog / Digital Position 2) |
-|    0x42    | adp3 (Analog / Digital Position 3) |
-|    0x43    | adp4 (Analog / Digital Position 4) |
-|    0x50    |          sdi12 Address 0           |
-|    ...     |                ...                 |
-|    0x59    |          sdi12 Address 9           |
-|    0x60    |     Current 4-20mA Position 0      |
-|    0x61    |     Current 4-20mA Position 1      |
-|    0xB0    |           Modbus slave 0           |
-|    ...     |                ...                 |
-|    0xBF    |          Modbus slave 15           |
-|    0x70    |           Network modem            |
-|    0x71    |             GPS modem              |
-|    0x80    |       Weather Station (wth)        |
-|    0x81    |      Rain Gauge (rain_gauge)       |
-|    0x82    |        Solar Sensor (solar)        |
-|    0x83    |        Pulse Counter (pcnt)        |
-|    0x84    |  Weather Station Wind (wth_wind)   |
+| byte value |        location description         |
+| :--------: | :---------------------------------: |
+|    0x00    |               unknown               |
+|    0x10    |                board                |
+|    0x11    |                 cpu                 |
+|    0x20    |                 i2c                 |
+|    0x30    |       ap1 (Analog Position 1)       |
+|    0x31    |       ap2 (Analog Position 2)       |
+|    0x40    | adc_1 (Analog / Digital Position 1) |
+|    0x41    | adc_2 (Analog / Digital Position 2) |
+|    0x42    | adc_3 (Analog / Digital Position 3) |
+|    0x43    | adc_4 (Analog / Digital Position 4) |
+|    0x50    |           SDI12 Address 0           |
+|    ...     |                 ...                 |
+|    0x59    |           SDI12 Address 9           |
+|    0x60    |      Current 4-20mA Position 0      |
+|    0x61    |      Current 4-20mA Position 1      |
+|    0xB0    |               Modbus                |
+|    0x70    |            Network modem            |
+|    0x71    |              GPS modem              |
+|    0x80    |        Weather Station (wth)        |
+|    0x81    |       Rain Gauge (rain_gauge)       |
+|    0x82    |        Solar Sensor (solar)         |
+|    0x83    |        Pulse Counter (pcnt)         |
+|    0x84    |   Weather Station Wind (wth_wind)   |
+|    0x90    |       SDI12 Port 1 Address 0        |
+|    ...     |                 ...                 |
+|    0x99    |       SDI12 Port 1 Address 9        |
+|    0xa0    |       SDI12 Port 2 Address 0        |
+|    ...     |                 ...                 |
+|    0xa9    |       SDI12 Port 2 Address 9        |
 
 MODBUS values are parsed in firmware according to configured source format (`uint16`, `int16`, `uint32`, `int32`, `float`) and scaling settings, then encoded as sensor type `0x50` (4-byte IEEE754 float) at location `0xB0`-`0xBF` where the low nibble stores slave id (`slave & 0x0F`).
 
