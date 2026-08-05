@@ -9,8 +9,6 @@ Follows the LoRA payload decoder that transforms received bytes into SenML-forma
 
 ```js {linenos=true}
 /*
-
-/*
 /$$                     /$$           /$$           /$$
 |__/                    |__/          | $$          |__/
 /$$ /$$$$$$$   /$$$$$$$ /$$  /$$$$$$ | $$$$$$$      /$$  /$$$$$$
@@ -109,12 +107,6 @@ var TYPE_GENERIC = 0xe0
 var TYPE_GENERIC_MAX = 0xff
 var typeMap = {}
 
-// var GENERIC_UNIT_BY_SUBTYPE = {
-//   0x68: "/100",
-//   0x69: "ms",
-//   0x6a: "ppm"
-// }
-
 function TypeSetting(name, unit, byteLength, divider, isSigned, valueType) {
   return { name, unit, byteLength, divider, isSigned, valueType: valueType || "int" }
 }
@@ -142,7 +134,7 @@ function init() {
   typeMap[TYPE_HEAT_FLUX] = TypeSetting("h", "W/m2", 2, 10, false)
   typeMap[TYPE_HEAT_VELOCITY] = TypeSetting("hv", "cm/h", 2, 100, false)
   typeMap[TYPE_HEIGHT] = TypeSetting("height", "mm", 2, 10, false)
-  typeMap[TYPE_HUMIDITY] = TypeSetting("hum", "%RH", 2, 100, false)
+  typeMap[TYPE_HUMIDITY] = TypeSetting("humidity", "%RH", 2, 100, false)
   typeMap[TYPE_IBAT] = TypeSetting("ibat", "mA", 2, 1, true)
   typeMap[TYPE_IBUS] = TypeSetting("ibus", "mA", 2, 1, true)
   typeMap[TYPE_IS_CHARGING] = TypeSetting("is_charging", "", 1, 1, false)
@@ -256,24 +248,24 @@ function getLocationName(locationId) {
     case LOCATION_A_P1:
       switch (subLocation) {
         case LOCATION_A_P1 & 0x0f:
-          return "ap1"
+          return "a_1"
         case LOCATION_A_P2 & 0x0f:
-          return "ap2"
+          return "a_2"
         default:
-          return "ap"
+          return "a"
       }
     case LOCATION_AD_P1:
       switch (subLocation) {
         case LOCATION_AD_P1 & 0x0f:
-          return "adp1"
+          return "adc_1"
         case LOCATION_AD_P2 & 0x0f:
-          return "adp2"
+          return "adc_2"
         case LOCATION_AD_P3 & 0x0f:
-          return "adp3"
+          return "adc_3"
         case LOCATION_AD_P4 & 0x0f:
-          return "adp4"
+          return "adc_4"
         default:
-          return "adp"
+          return "adc"
       }
     case LOCATION_4_20:
       return "4_20_" + subLocation
@@ -529,12 +521,12 @@ function test() {
   console.log("Decoded message:", DecodeInsighioPackage(data, false))
 
   //expected: output
-  //   Decoded message: [
-  //   { n: 'adp1_voltage', u: 'mV', v: 738, bn: '7c2c67ea3038-' },
-  //   { n: 'adp2_voltage', u: 'mV', v: 715 },
-  //   { n: 'adp3_voltage', u: 'mV', v: 734 },
-  //   { n: 'adp4_voltage', u: 'mV', v: 0 },
-  //   { n: 'board_hum', u: '%RH', v: 38.6 },
+  // Decoded message: [
+  //   { n: 'adc_1_voltage', u: 'mV', v: 738, bn: '7c2c67ea3038-' },
+  //   { n: 'adc_2_voltage', u: 'mV', v: 715 },
+  //   { n: 'adc_3_voltage', u: 'mV', v: 734 },
+  //   { n: 'adc_4_voltage', u: 'mV', v: 0 },
+  //   { n: 'board_humidity', u: '%RH', v: 38.6 },
   //   { n: 'board_temp', u: 'Cel', v: 30.5 },
   //   { n: 'board_chg_stat', u: '', v: 0 },
   //   { n: 'board_ibat', u: 'mA', v: -116 },
