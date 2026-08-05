@@ -105,7 +105,6 @@ Each sensor data field is composed of one byte for **sensor type**, one byte for
 |    0x59    |           SDI12 Address 9           |
 |    0x60    |      Current 4-20mA Position 0      |
 |    0x61    |      Current 4-20mA Position 1      |
-|    0xB0    |               Modbus                |
 |    0x70    |            Network modem            |
 |    0x71    |              GPS modem              |
 |    0x80    |        Weather Station (wth)        |
@@ -120,7 +119,7 @@ Each sensor data field is composed of one byte for **sensor type**, one byte for
 |    ...     |                 ...                 |
 |    0xa9    |       SDI12 Port 2 Address 9        |
 
-MODBUS values are parsed in firmware according to configured source format (`uint16`, `int16`, `uint32`, `int32`, `float`) and scaling settings, then encoded as sensor type `0x50` (4-byte IEEE754 float) at location `0xB0`-`0xBF` where the low nibble stores slave id (`slave & 0x0F`).
+MODBUS values are parsed in firmware according to configured source format (`uint16`, `int16`, `uint32`, `int32`, `float`) and kept in encoded message as `float`, then encoded as sensor type `0x50` (4-byte IEEE754 float) and the location byte keeps the slave ID.
 
 ## Example
 

@@ -36,7 +36,6 @@ var LOCATION_SDI12 = 0x50
 var LOCATION_4_20 = 0x60
 var LOCATION_MODEM = 0x70
 var LOCATION_GPS = 0x71
-var LOCATION_MODBUS = 0xb0
 var LOCATION_WEATHER_STATION = 0x80
 var LOCATION_RAIN_GAUGE = 0x81
 var LOCATION_SOLAR_SENSOR = 0x82
@@ -282,9 +281,6 @@ function getLocationName(locationId) {
         default:
           return "modem"
       }
-    case LOCATION_MODBUS:
-      if (subLocation) return "modbus_" + subLocation
-      return "modbus"
     case LOCATION_WEATHER_STATION:
       switch (subLocation) {
         case LOCATION_PULSE_COUNTER & 0x0f:
@@ -324,7 +320,11 @@ function DecodeInsighioPackage(bytes, convertBytesFromBase64 = true) {
     while (i < bytes.length) {
       var typeId = bytes[i++]
       var locationId = bytes[i++]
-      var original_name = getLocationName(locationId) + "_" + getTypeName(typeId)
+      var original_name = ""
+
+      if (typeId === TYPE_MODBUS_VALUE) {
+        original_name = "modbus_" + locationId.toString() + "_value"
+      } else original_name = getLocationName(locationId) + "_" + getTypeName(typeId)
       var name = original_name
       var obj = { n: name, u: getTypeUnit(typeId) }
       //console.log("typeid: ", typeId.toString(16), ", locationId: ", locationId.toString(16))
@@ -513,7 +513,7 @@ function decode(payload) {
 
 function test() {
   let data =
-    "7c2c67ea3038164002e2164102cb164202de1643000012100f1411100bea6010006110ff8c62100000631000c17014af298300002983000030830000000030830000000040830000408300002b8300002b830000021001e05100000000e15100000b72e2510000006ee35100000000e45100000000e0520002c9dfe15200000b68e252000000006410000d6510000047ff03100001107d08100ef76610000067100efd"
+    "7c2c67ea3038205100001851006e1951000011510b1817510000164002e1164102ca164202de1643000012100eba11100bd6601000037100000b656110ff9862100000631000c17014c0295247681952000111520b2c68520000008c68520000008768520000012a508900000000298300002983000030830000000030830000000040830000408300002b8300002b8300000210016410000f6510000048fe0310000151cf08100f4e6610000067100f52"
 
   //parse data and split into array of bytes
   data = data.match(/.{1,2}/g).map((byte) => parseInt(byte, 16))
@@ -521,18 +521,36 @@ function test() {
   console.log("Decoded message:", DecodeInsighioPackage(data, false))
 
   //expected: output
-  // Decoded message: [
-  //   { n: 'adc_1_voltage', u: 'mV', v: 738, bn: '7c2c67ea3038-' },
-  //   { n: 'adc_2_voltage', u: 'mV', v: 715 },
+  //Decoded message: [
+  //   {
+  //     n: 'sdi12_1_pore_water_conduct',
+  //     u: 'uS/cm',
+  //     v: 0,
+  //     bn: '7c2c67ea3038-'
+  //   },
+  //   { n: 'sdi12_1_rel_perm', u: '', v: 1.1 },
+  //   { n: 'sdi12_1_soil_ec', u: 'uS/cm', v: 0 },
+  //   { n: 'sdi12_1_temp', u: 'Cel', v: 28.4 },
+  //   { n: 'sdi12_1_vwc', u: '', v: 0 },
+  //   { n: 'adc_1_voltage', u: 'mV', v: 737 },
+  //   { n: 'adc_2_voltage', u: 'mV', v: 714 },
   //   { n: 'adc_3_voltage', u: 'mV', v: 734 },
   //   { n: 'adc_4_voltage', u: 'mV', v: 0 },
-  //   { n: 'board_humidity', u: '%RH', v: 38.6 },
-  //   { n: 'board_temp', u: 'Cel', v: 30.5 },
+  //   { n: 'board_humidity', u: '%RH', v: 37.7 },
+  //   { n: 'board_temp', u: 'Cel', v: 30.3 },
   //   { n: 'board_chg_stat', u: '', v: 0 },
-  //   { n: 'board_ibat', u: 'mA', v: -116 },
+  //   { n: 'gps_uptime', u: 'ms', v: 2917 },
+  //   { n: 'board_ibat', u: 'mA', v: -104 },
   //   { n: 'board_ibus', u: 'mA', v: 0 },
   //   { n: 'board_is_charging', u: '', v: 0 },
-  //   { n: 'modem_lora_join_dur', u: 'ms', v: 5295 },
+  //   { n: 'modem_lora_join_dur', u: 'ms', v: 5312 },
+  //   { n: 'sdi12_2_count', u: 'count', v: 1828 },
+  //   { n: 'sdi12_2_soil_ec', u: 'uS/cm', v: 1 },
+  //   { n: 'sdi12_2_temp', u: 'Cel', v: 28.6 },
+  //   { n: 'sdi12_2_percentage_1', u: '%', v: 1.4 },
+  //   { n: 'sdi12_2_percentage_2', u: '%', v: 1.35 },
+  //   { n: 'sdi12_2_percentage_3', u: '%', v: 2.98 },
+  //   { n: 'modbus_137_value', u: '', v: 0 },
   //   { n: 'pcnt_count_1', u: 'count', v: 0 },
   //   { n: 'pcnt_count_2', u: 'count', v: 0 },
   //   { n: 'pcnt_formula_1', u: '', v: 0 },
@@ -542,20 +560,12 @@ function test() {
   //   { n: 'pcnt_period_1', u: 's', v: 0 },
   //   { n: 'pcnt_period_2', u: 's', v: 0 },
   //   { n: 'board_reset_cause', u: '', v: 1 },
-  //   { n: 'sdi12_1_generic_0', u: '', v: 0 },
-  //   { n: 'sdi12_1_generic_1', u: '', v: 29.3 },
-  //   { n: 'sdi12_1_generic_2', u: '', v: 1.1 },
-  //   { n: 'sdi12_1_generic_3', u: '', v: 0 },
-  //   { n: 'sdi12_1_generic_4', u: '', v: 0 },
-  //   { n: 'sdi12_2_generic_0', u: '', v: 1827.51 },
-  //   { n: 'sdi12_2_generic_1', u: '', v: 29.2 },
-  //   { n: 'sdi12_2_generic_2', u: '', v: 0 },
-  //   { n: 'board_time_diff', u: 's', v: 13 },
-  //   { n: 'board_ulp_heartbeat', u: 'count', v: 18431 },
-  //   { n: 'board_uptime', u: 'ms', v: 69757 },
-  //   { n: 'board_vbatt', u: 'mV', v: 3831 },
+  //   { n: 'board_time_diff', u: 's', v: 15 },
+  //   { n: 'board_ulp_heartbeat', u: 'count', v: 18686 },
+  //   { n: 'board_uptime', u: 'ms', v: 86479 },
+  //   { n: 'board_vbatt', u: 'mV', v: 3918 },
   //   { n: 'board_vbus', u: 'mV', v: 0 },
-  //   { n: 'board_vsys', u: 'mV', v: 3837 }
+  //   { n: 'board_vsys', u: 'mV', v: 3922 }
   // ]
 }
 ```
