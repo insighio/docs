@@ -407,9 +407,11 @@ function DecodeInsighioPackage(bytes, convertBytesFromBase64 = true) {
   senml.forEach((element) => {
     if (!element || !element.n) return
 
-    const baseName = element.n
+    let baseName = element.n
     const nameInfo = usedNames[baseName]
     if (nameInfo.maxCounter === 1) {
+      //if there is already a name with _1, then we need to rename this one to _0 to follow the numbering sequence
+      if (usedNames[baseName + "_1"]) element.n = element.n + "_0"
       processedSenml.push(element)
     } else {
       const newName = `${baseName}_${nameInfo.count + 1}`
@@ -469,8 +471,8 @@ function populateSignalQuality(payload, senmlMessage) {
   }
 }
 
+// here you can modify the names of the records, for example to make them more readable or to match your own naming conventions
 function processRecords(senmlMessage) {
-  //console.log(senml)
   senmlMessage.forEach((element) => {
     if (element.n === "_original_name") {
       element.n = "_new_name"
@@ -515,5 +517,53 @@ function decode(payload) {
   }
 
   return { deviceId: deviceId, message: senmlMessage }
+}
+
+function test() {
+  let data =
+    "7c2c67ea3038164002e2164102cb164202de1643000012100f1411100bea6010006110ff8c62100000631000c17014af298300002983000030830000000030830000000040830000408300002b8300002b830000021001e05100000000e15100000b72e2510000006ee35100000000e45100000000e0520002c9dfe15200000b68e252000000006410000d6510000047ff03100001107d08100ef76610000067100efd"
+
+  //parse data and split into array of bytes
+  data = data.match(/.{1,2}/g).map((byte) => parseInt(byte, 16))
+
+  console.log("Decoded message:", DecodeInsighioPackage(data, false))
+
+  //expected: output
+  //   Decoded message: [
+  //   { n: 'adp1_voltage', u: 'mV', v: 738, bn: '7c2c67ea3038-' },
+  //   { n: 'adp2_voltage', u: 'mV', v: 715 },
+  //   { n: 'adp3_voltage', u: 'mV', v: 734 },
+  //   { n: 'adp4_voltage', u: 'mV', v: 0 },
+  //   { n: 'board_hum', u: '%RH', v: 38.6 },
+  //   { n: 'board_temp', u: 'Cel', v: 30.5 },
+  //   { n: 'board_chg_stat', u: '', v: 0 },
+  //   { n: 'board_ibat', u: 'mA', v: -116 },
+  //   { n: 'board_ibus', u: 'mA', v: 0 },
+  //   { n: 'board_is_charging', u: '', v: 0 },
+  //   { n: 'modem_lora_join_dur', u: 'ms', v: 5295 },
+  //   { n: 'pcnt_count_1', u: 'count', v: 0 },
+  //   { n: 'pcnt_count_2', u: 'count', v: 0 },
+  //   { n: 'pcnt_formula_1', u: '', v: 0 },
+  //   { n: 'pcnt_formula_2', u: '', v: 0 },
+  //   { n: 'pcnt_edge_count_1', u: 'count', v: 0 },
+  //   { n: 'pcnt_edge_count_2', u: 'count', v: 0 },
+  //   { n: 'pcnt_period_1', u: 's', v: 0 },
+  //   { n: 'pcnt_period_2', u: 's', v: 0 },
+  //   { n: 'board_reset_cause', u: '', v: 1 },
+  //   { n: 'sdi12_1_generic_0', u: '', v: 0 },
+  //   { n: 'sdi12_1_generic_1', u: '', v: 29.3 },
+  //   { n: 'sdi12_1_generic_2', u: '', v: 1.1 },
+  //   { n: 'sdi12_1_generic_3', u: '', v: 0 },
+  //   { n: 'sdi12_1_generic_4', u: '', v: 0 },
+  //   { n: 'sdi12_2_generic_0', u: '', v: 1827.51 },
+  //   { n: 'sdi12_2_generic_1', u: '', v: 29.2 },
+  //   { n: 'sdi12_2_generic_2', u: '', v: 0 },
+  //   { n: 'board_time_diff', u: 's', v: 13 },
+  //   { n: 'board_ulp_heartbeat', u: 'count', v: 18431 },
+  //   { n: 'board_uptime', u: 'ms', v: 69757 },
+  //   { n: 'board_vbatt', u: 'mV', v: 3831 },
+  //   { n: 'board_vbus', u: 'mV', v: 0 },
+  //   { n: 'board_vsys', u: 'mV', v: 3837 }
+  // ]
 }
 ```
