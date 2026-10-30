@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>insigh.io | Enviro illustrated quick start</title>
+  <style>
+    @page { size: A5 portrait; margin: 0; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: #172f36;
+      background: #e8eded;
+      font: 10pt/1.2 Arial, Helvetica, sans-serif;
+    }
+    .print-help {
+      max-width: 148mm;
+      margin: 16px auto;
+      padding: 12px 16px;
+      background: white;
+      font-size: 11pt;
+    }
+    .sheet {
+      width: 148mm;
+      min-height: 210mm;
+      margin: 16px auto;
+      padding: 8mm;
+      display: flex;
+      flex-direction: column;
+      background: white;
+      box-shadow: 0 2px 12px #0002;
+      break-after: page;
+    }
+    .sheet:last-child { break-after: auto; }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 2mm;
+      border-bottom: 1mm solid #16766b;
+    }
+    .brand { font-size: 21pt; font-weight: bold; letter-spacing: -1pt; }
+    .edition { font-size: 9pt; text-align: right; }
+    .eyebrow {
+      margin: 3mm 0 1mm;
+      color: #115c54;
+      font-size: 10pt;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5pt;
+    }
+    h1 { margin: 0 0 2mm; font-size: 23pt; line-height: 1.08; }
+    h2 { margin: 3mm 0 1mm; font-size: 13pt; break-after: avoid; }
+    p { margin: 1mm 0; }
+    ol, ul { margin: 1mm 0; padding-left: 5mm; }
+    li { margin: 1mm 0; }
+    a { color: inherit; text-underline-offset: 0.5mm; }
+    code { font: bold 10pt/1.28 "Courier New", monospace; }
+    .note {
+      margin: 2mm 0;
+      padding: 2mm 3mm;
+      border-left: 1mm solid #16766b;
+      background: #eff7f5;
+    }
+    figure { margin: 2mm 0; }
+    figcaption { margin-top: 1mm; font-size: 9pt; color: #364f56; }
+    svg { display: block; width: 100%; height: auto; }
+    svg text { fill: #172f36; font: 15px Arial, Helvetica, sans-serif; }
+    svg .label { font-size: 13px; }
+    svg .bold { font-weight: bold; }
+    svg .outline { fill: white; stroke: #172f36; stroke-width: 2; }
+    svg .panel { fill: #eff7f5; stroke: #16766b; stroke-width: 2; }
+    svg .wire { fill: none; stroke: #16766b; stroke-width: 3; }
+    svg .arrow { fill: #16766b; }
+    dl {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.5mm 3mm;
+      padding: 2mm 3mm;
+      margin: 2mm 0;
+      border: 0.3mm solid #a6bcb7;
+    }
+    dt { font-weight: bold; }
+    dd { margin: 0; }
+    .small { font-size: 9.5pt; }
+    .checks { list-style: square; }
+    footer {
+      margin-top: auto;
+      padding-top: 3mm;
+      display: flex;
+      justify-content: space-between;
+      gap: 3mm;
+      font-size: 9pt;
+    }
+    @media print {
+      body { background: white; }
+      .print-help { display: none; }
+      .sheet { min-height: 209mm; margin: 0; box-shadow: none; }
+      figure, .note, dl, footer { break-inside: avoid; }
+    }
+    @media screen and (max-width: 580px) {
+      .sheet { width: 100%; min-height: auto; padding: 6mm; }
+      footer { margin-top: 4mm; }
+    }
+  </style>
+</head>
+<body>
+  <aside class="print-help" aria-label="Printing instructions">
+    <strong>Four-page illustrated insert:</strong> Save as PDF at A5 portrait,
+    100% scale, no margins, browser headers and footers off. Print A5 double-sided,
+    flipping on the long edge. For a folded A4 booklet, use your PDF reader's
+    Booklet mode (pages are supplied in reading order, not imposed).
+    These instructions do not print.
+  </aside>
+  <main>
+    <article class="sheet" aria-label="Page 1: prepare the hardware">
+      <header>
+        <span class="brand">insigh.io</span>
+        <span class="edition">ENVIRO + 1NCE CELLULAR<br>ILLUSTRATED QUICK START</span>
+      </header>
+      <p class="eyebrow">01 / Prepare</p>
+      <h1>Start with your device.</h1>
+      <p>Your firmware is installed and the SIM is fitted. Next: connect your
+        sensors, create a device in Console, and configure your first upload.</p>
+
+      <figure>
+        <svg viewBox="0 0 500 190" role="img" aria-labelledby="hardware-title hardware-desc">
+          <title id="hardware-title">Sensor cables entering an Enviro enclosure</title>
+          <desc id="hardware-desc">A simplified enclosure contains a main board, fitted
+            SIM and Enviro shield. Sensor cables pass through glands to the shield.
+            This is not a wiring diagram.</desc>
+          <rect class="outline" x="125" y="12" width="270" height="155" rx="14"/>
+          <rect class="panel" x="146" y="30" width="138" height="48" rx="5"/>
+          <text x="159" y="51" class="bold">Main board</text>
+          <text x="159" y="68" class="label">Firmware installed</text>
+          <rect class="outline" x="300" y="33" width="74" height="43" rx="4"/>
+          <text x="315" y="51" class="bold">SIM</text>
+          <text x="312" y="67" class="label">Fitted</text>
+          <rect class="panel" x="146" y="94" width="228" height="45" rx="4"/>
+          <text x="174" y="122" class="bold">Enviro sensor shield</text>
+          <rect class="outline" x="160" y="159" width="20" height="18" rx="3"/>
+          <rect class="outline" x="222" y="159" width="20" height="18" rx="3"/>
+          <path class="wire" d="M170 139 V150 H232 V139 M170 177 V186 H55 V120"/>
+          <rect class="outline" x="24" y="75" width="62" height="45" rx="5"/>
+          <text x="31" y="102" class="label">Sensor</text>
+          <text x="281" y="183" class="label">Cable glands</text>
+          <path class="wire" d="M274 177 H246"/>
+        </svg>
+        <figcaption>Hardware overview only. Layout varies; use the online wiring
+          and jumper diagrams for your shield version.</figcaption>
+      </figure>
+
+      <h2>Before powering on</h2>
+      <ul class="checks">
+        <li>With <strong>power off</strong>, route sensor cables through the glands
+          and connect them to the matching Enviro ports.</li>
+        <li>Check sensor wiring and power-mode jumpers against the hardware guide.
+          Missing power-mode jumpers leave sensors unpowered.</li>
+        <li>Match the <strong>5V / 9V / 12V supply</strong> to your sensors.
+          All sensor power ports share this selected voltage.</li>
+      </ul>
+      <p class="note"><strong>Protect your inputs:</strong> analogue voltage inputs
+        accept <strong>0-3.3V</strong>. A 4-20mA sensor needs the corresponding
+        current-mode jumper. Do not confuse sensor supply voltage with input range.</p>
+      <p><strong>Have ready:</strong> a WiFi-capable phone or computer with a
+        browser, internet access for Console, and your sensor specifications.</p>
+      <p class="small">Wiring and jumpers: open the full guide below and choose
+        <strong>Hardware Setup</strong>. This insert does not replace those diagrams.</p>
+      <footer>
+        <a href="https://docs.insigh.io/gettingstarted/">docs.insigh.io/gettingstarted/</a>
+        <strong>1 / 4</strong>
+      </footer>
+    </article>
+
+    <article class="sheet" aria-label="Page 2: create your Console device">
+      <header>
+        <span class="brand">insigh.io</span>
+        <span class="edition">ENVIRO + 1NCE CELLULAR<br>ILLUSTRATED QUICK START</span>
+      </header>
+      <p class="eyebrow">02 / Register</p>
+      <h1>Give your device a home.</h1>
+      <p>Console is where your measurements will appear. Create its device record
+        while your phone or computer still has internet access.</p>
+
+      <figure>
+        <svg viewBox="0 0 500 190" role="img" aria-labelledby="console-title console-desc">
+          <title id="console-title">Create a Console device and copy its JSON keys</title>
+          <desc id="console-desc">A simplified Device List shows the plus button.
+            An arrow leads to Device Info with More Details and Copy JSON.
+            No real credentials are shown.</desc>
+          <rect class="outline" x="7" y="12" width="192" height="156" rx="8"/>
+          <path class="wire" d="M7 43 H199"/>
+          <text x="20" y="34" class="bold">Device List</text>
+          <circle class="panel" cx="175" cy="28" r="11"/>
+          <text x="170" y="34" class="bold">+</text>
+          <rect class="panel" x="22" y="60" width="162" height="85" rx="4"/>
+          <text x="34" y="83">Device name</text>
+          <text x="34" y="104" class="bold">my-enviro</text>
+          <text x="107" y="132" class="bold">Create</text>
+          <path class="wire" d="M208 93 H280"/>
+          <path class="arrow" d="M280 93 l-12 -7 v14 Z"/>
+          <rect class="outline" x="292" y="12" width="201" height="156" rx="8"/>
+          <text x="306" y="37" class="bold">Device Info</text>
+          <rect class="panel" x="306" y="53" width="173" height="37" rx="4"/>
+          <text x="316" y="77">More Details (...)</text>
+          <rect class="panel" x="306" y="102" width="173" height="45" rx="4"/>
+          <text x="317" y="130" class="bold">{ } Copy JSON</text>
+        </svg>
+        <figcaption>Simplified screen sketch; the actual interface may look different.</figcaption>
+      </figure>
+
+      <h2>Create your account and device</h2>
+      <ol>
+        <li>Visit <a href="https://console.insigh.io"><strong>console.insigh.io</strong></a>.
+          Sign up and verify your email, then log in. Already registered? Just log in.</li>
+        <li>Open <strong>Device List</strong> and press <strong>+</strong>.</li>
+        <li>Enter a distinct device name, then press <strong>Create</strong>.
+          The other fields are optional.</li>
+      </ol>
+      <h2>Copy the access keys</h2>
+      <ol start="4">
+        <li>On the new device's <strong>Device Info</strong> page, open
+          <strong>More Details (...)</strong>.</li>
+        <li>Use the copy icon next to <strong>JSON</strong> to copy the ID, Key,
+          Data Channel and Control Channel together.</li>
+      </ol>
+      <p class="note"><strong>Keep the JSON ready for page 3.</strong> These keys
+        identify your device to Console. Keep them private; do not share screenshots
+        or printouts containing them.</p>
+      <p class="small">Leave the device page open for the final check. In the next
+        step you will temporarily leave internet WiFi to connect directly to the node.</p>
+      <footer>
+        <a href="https://docs.insigh.io/gettingstarted/">docs.insigh.io/gettingstarted/</a>
+        <strong>2 / 4</strong>
+      </footer>
+    </article>
+
+    <article class="sheet" aria-label="Page 3: connect and configure">
+      <header>
+        <span class="brand">insigh.io</span>
+        <span class="edition">ENVIRO + 1NCE CELLULAR<br>ILLUSTRATED QUICK START</span>
+      </header>
+      <p class="eyebrow">03 / Connect</p>
+      <h1>Open local setup.</h1>
+
+      <figure>
+        <svg viewBox="0 0 500 120" role="img" aria-labelledby="wifi-title wifi-desc">
+          <title id="wifi-title">Connect directly to the node's WiFi for setup</title>
+          <desc id="wifi-desc">A node with a blinking magenta LED connects by local
+            WiFi to a phone running a browser at HTTP 192.168.4.1.
+            This local link does not provide internet access.</desc>
+          <rect class="outline" x="18" y="20" width="113" height="77" rx="10"/>
+          <circle cx="35" cy="38" r="6" fill="#993080" stroke="#172f36"/>
+          <text x="37" y="68" class="bold">Enviro</text>
+          <text x="148" y="30" class="label">Local setup WiFi</text>
+          <path class="wire" stroke-dasharray="6 4" d="M141 54 H321"/>
+          <path class="arrow" d="M321 54 l-12 -7 v14 Z"/>
+          <text x="153" y="79" class="bold">insigh-XXXX</text>
+          <text x="149" y="100" class="label">No internet required</text>
+          <rect class="outline" x="337" y="7" width="144" height="105" rx="9"/>
+          <rect class="panel" x="346" y="20" width="126" height="77" rx="3"/>
+          <text x="358" y="43" class="label">Browser</text>
+          <text x="358" y="65" class="bold">192.168.4.1</text>
+          <text x="358" y="85" class="label">Local configurator</text>
+        </svg>
+      </figure>
+
+      <p>Power on and wait for the LED to <strong>blink magenta</strong>
+        (around 5-10 seconds). Join its WiFi <strong>within 50 seconds</strong>.</p>
+      <dl>
+        <dt>WiFi name</dt><dd><code>insigh-XXXX</code> (varies by device)</dd>
+        <dt>WiFi password</dt><dd><code>insighiodev</code></dd>
+        <dt>Open in browser</dt><dd><a href="http://192.168.4.1"><code>http://192.168.4.1</code></a></dd>
+        <dt>Login</dt><dd><code>admin</code> / <code>insighiodev</code></dd>
+      </dl>
+      <p class="small">Stay connected even with no internet. Solid magenta means
+        connected. Finish within <strong>5 minutes</strong> of connecting;
+        if setup closes, power off/on and reconnect.</p>
+
+      <p class="note"><strong>Network: Cellular</strong><br>
+        APN: <code>iot.1nce.net</code> | Technology: <strong>NB-IoT</strong><br>
+        Transport: <strong>MQTT</strong> | IP: <strong>IPv4</strong></p>
+      <p><strong>Keys:</strong> paste the JSON from Console into <strong>ID</strong>.
+        ID, Key, Data Channel and Control Channel fill automatically.</p>
+      <p><strong>Measurements:</strong> enable battery readings; select
+        <strong>SDI-12/Modbus/ADC</strong> for Enviro. Configure only connected
+        sensors, using their specifications:</p>
+      <ul class="small">
+        <li><strong>SDI-12:</strong> address, command and warm-up time.</li>
+        <li><strong>Modbus:</strong> serial settings, address, register and data format.</li>
+        <li><strong>Analogue / pulse:</strong> wired inputs; match analogue gain to signal range.</li>
+      </ul>
+      <footer>
+        <a href="https://docs.insigh.io/gettingstarted/">docs.insigh.io/gettingstarted/</a>
+        <strong>3 / 4</strong>
+      </footer>
+    </article>
+
+    <article class="sheet" aria-label="Page 4: apply settings and verify data">
+      <header>
+        <span class="brand">insigh.io</span>
+        <span class="edition">ENVIRO + 1NCE CELLULAR<br>ILLUSTRATED QUICK START</span>
+      </header>
+      <p class="eyebrow">04 / Verify</p>
+      <h1>See your first readings.</h1>
+      <p><strong>Timing:</strong> for a first test, set the sleep / measurement
+        period to <strong>5 minutes (300s)</strong> and <strong>Batch Upload off</strong>.
+        Keep advanced system settings at their defaults.</p>
+      <p>Review and press <strong>Finish</strong>. The device applies the settings,
+        reboots, measures and attempts an upload.</p>
+
+      <figure>
+        <svg viewBox="0 0 500 150" role="img" aria-labelledby="verify-title verify-desc">
+          <title id="verify-title">The measurement cycle and Console confirmation</title>
+          <desc id="verify-desc">Four labelled LED states show blue for measuring,
+            red for connecting, green for uploading and off for sleep. Below, a
+            simplified Console Live View shows a new timestamp and sensor readings.</desc>
+          <path class="wire" d="M58 31 H444"/>
+          <circle cx="58" cy="31" r="12" fill="#236dc1" stroke="#172f36" stroke-width="2"/>
+          <circle cx="186" cy="31" r="12" fill="#ca3c3c" stroke="#172f36" stroke-width="2"/>
+          <circle cx="314" cy="31" r="12" fill="#23824b" stroke="#172f36" stroke-width="2"/>
+          <circle class="outline" cx="442" cy="31" r="12"/>
+          <text x="26" y="62" class="bold">Measure</text>
+          <text x="153" y="62" class="bold">Connect</text>
+          <text x="286" y="62" class="bold">Upload</text>
+          <text x="421" y="62" class="bold">Sleep</text>
+          <text x="42" y="80" class="label">Blue</text>
+          <text x="174" y="80" class="label">Red</text>
+          <text x="295" y="80" class="label">Green</text>
+          <text x="433" y="80" class="label">Off</text>
+          <rect class="outline" x="10" y="93" width="480" height="53" rx="7"/>
+          <text x="25" y="114" class="bold">Console / Live View</text>
+          <text x="25" y="136">New timestamp</text>
+          <text x="214" y="136" class="bold">&gt; Sensor readings received</text>
+        </svg>
+        <figcaption>LED notifications must be enabled. Console is a simplified sketch.</figcaption>
+      </figure>
+
+      <h2>Confirm in Console</h2>
+      <ol>
+        <li>Reconnect your phone or computer to the internet, then open your device
+          at <a href="https://console.insigh.io"><strong>console.insigh.io</strong></a>.</li>
+        <li>Look for a new timestamp in <strong>Live View</strong>. Use
+          <strong>&gt;</strong> to expand the measurement.</li>
+        <li>Check the latest readings in <strong>Active Measurements</strong>.
+          Refresh the page to update device status.</li>
+      </ol>
+      <p class="note"><strong>Success means data in Console.</strong> LED colours
+        show stages, not upload success. An unlit LED during sleep is normal.</p>
+      <h2>Need a quick check?</h2>
+      <p class="small"><strong>No setup WiFi?</strong> Power off/on and repeat page 3.<br>
+        <strong>No uploads?</strong> Check cellular coverage, APN and Console keys.
+        Unsure of NB-IoT availability? Try technology preference <strong>auto</strong>.<br>
+        <strong>Missing sensor values?</strong> Check sensor settings; power off
+        before checking wiring or power jumpers.</p>
+      <footer>
+        <a href="https://docs.insigh.io/gettingstarted/">docs.insigh.io/gettingstarted/</a>
+        <strong>4 / 4</strong>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>

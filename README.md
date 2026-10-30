@@ -47,3 +47,17 @@ the flyer are hidden in print; the output should contain exactly two A5 pages.
 
 Keep the insert aligned with the [Getting Started source](content/gettingstarted/)
 when changing setup steps, credentials, or firmware behaviour.
+
+### Four-page illustrated alternative
+
+The [illustrated Enviro + 1NCE guide](static/print/enviro-illustrated-guide.html)
+is a separate four-page A5 alternative with inline vector sketches (no external
+assets or network access required). It uses the same shipping assumptions as the
+two-page flyer, which remains unchanged. The sketches are explanatory, not wiring
+diagrams or exact reproductions of the user interface.
+
+Open the HTML directly or visit `/print/enviro-illustrated-guide.html` after
+deployment. Save as PDF using the A5 settings above; verify exactly four pages.
+Print A5 double-sided, flipping on the long edge. For a folded A4 booklet, select
+Booklet mode in a PDF reader that supports it and follow its duplex instructions.
+The source is in reading order (1-4), not pre-imposed for folding.

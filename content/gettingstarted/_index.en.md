@@ -14,6 +14,10 @@ with a 1NCE SIM](/print/enviro-quick-start.html). It assumes firmware is install
 and the SIM is fitted; sensor setup and Console provisioning are covered in the
 flyer.
 
+Prefer a visual walkthrough? The [four-page A5 illustrated guide for the same
+Enviro + 1NCE setup](/print/enviro-illustrated-guide.html) adds simplified sketches
+of the hardware, Console registration, local connection and upload checks.
+
 This is **a quick starting guide** that shows how to setup a fresh insigh.io node and send data to Console. The guide walks the user through the following stages:
 
 #### [Hardware Setup]({{< relref "./e2e/hardware_setup.md" >}})
@@ -33,4 +37,3 @@ This is **a quick starting guide** that shows how to setup a fresh insigh.io nod
 {{% notice info %}}
 This guide shows how to experience the simplicity of exchanging sensor data end-to-end using insigh.io’s cloud Console in a matter of minutes. Hence, it is a useful starting point for newcomers who want to test the product on an end-to-end basis without delving into the details. However, it is not a replacement of the complete documentation following up on Chapters 2--4.
 {{% /notice %}}
-
