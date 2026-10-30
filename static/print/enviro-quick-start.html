@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>insigh.io | Enviro quick start</title>
+  <style>
+    @page {
+      size: A5 portrait;
+      margin: 0;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: #172f36;
+      background: #e8eded;
+      font: 10pt/1.2 Arial, Helvetica, sans-serif;
+    }
+
+    .print-help {
+      max-width: 148mm;
+      margin: 16px auto;
+      padding: 12px 16px;
+      background: white;
+      font-size: 11pt;
+    }
+
+    .sheet {
+      width: 148mm;
+      min-height: 210mm;
+      margin: 16px auto;
+      padding: 8mm;
+      display: flex;
+      flex-direction: column;
+      background: white;
+      box-shadow: 0 2px 12px #0002;
+      break-after: page;
+    }
+
+    .sheet:last-child { break-after: auto; }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 2mm;
+      border-bottom: 1mm solid #16766b;
+    }
+
+    .brand { font-size: 21pt; font-weight: bold; letter-spacing: -1pt; }
+    .edition { font-size: 9pt; text-align: right; }
+    h1 { margin: 2mm 0 1.5mm; font-size: 21pt; line-height: 1.08; }
+    .intro { margin: 0 0 2mm; }
+
+    h2 {
+      display: flex;
+      align-items: center;
+      gap: 2mm;
+      margin: 2mm 0 1mm;
+      font-size: 13pt;
+      line-height: 1.2;
+      break-after: avoid;
+    }
+
+    .number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 6mm;
+      height: 6mm;
+      border: 0.4mm solid #16766b;
+      border-radius: 50%;
+      font-size: 12pt;
+      color: #115c54;
+    }
+
+    p { margin: 1mm 0; }
+    ul, ol { margin: 1mm 0; padding-left: 5mm; }
+    li { margin: 0.5mm 0; }
+    a { color: inherit; text-decoration-thickness: 0.2mm; text-underline-offset: 0.5mm; }
+    code { font: bold 10pt/1.2 "Courier New", monospace; }
+
+    .note {
+      margin: 2mm 0;
+      padding: 1.5mm 2mm;
+      border-left: 1mm solid #16766b;
+      background: #eff7f5;
+    }
+
+    .credentials {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1mm 3mm;
+      margin: 2mm 0;
+      padding: 2mm 3mm;
+      border: 0.3mm solid #a6bcb7;
+    }
+
+    dt { font-weight: bold; }
+    dd { margin: 0; }
+    .small { font-size: 9.5pt; }
+    .troubleshooting { margin-top: 3mm; border-top: 0.3mm solid #a6bcb7; padding-top: 1mm; }
+    .troubleshooting h2 { font-size: 12pt; margin-top: 2mm; }
+
+    footer {
+      margin-top: auto;
+      padding-top: 2mm;
+      display: flex;
+      justify-content: space-between;
+      gap: 3mm;
+      font-size: 9.5pt;
+    }
+
+    @media print {
+      body { background: white; }
+      .print-help { display: none; }
+      .sheet { margin: 0; box-shadow: none; }
+      section, .note, dl, footer { break-inside: avoid; }
+    }
+
+    @media screen and (max-width: 580px) {
+      .sheet { width: 100%; min-height: auto; padding: 6mm; }
+      footer { margin-top: 4mm; }
+    }
+  </style>
+</head>
+<body>
+  <aside class="print-help" aria-label="Printing instructions">
+    <strong>Print this insert:</strong> A5 portrait, two-sided, flip on the long edge,
+    scale 100%, no margins, browser headers and footers off. Use Save as PDF for a
+    two-page master. Only the two flyer sides below are printed.
+  </aside>
+
+  <main>
+    <article class="sheet" aria-label="Front: prepare and connect">
+      <header>
+        <span class="brand">insigh.io</span>
+        <span class="edition">ENVIRO + 1NCE CELLULAR<br>QUICK START</span>
+      </header>
+      <h1>Your first sensor data.</h1>
+      <p class="intro">From your Enviro device to insigh.io Console.</p>
+      <p class="note"><strong>Firmware and SIM are ready.</strong> Have a WiFi-capable
+        phone or computer, internet access and your sensor specifications to hand.</p>
+
+      <section>
+        <h2><span class="number">1</span> Prepare the hardware</h2>
+        <p>With <strong>power off</strong>, connect sensors through the glands to
+          the Enviro ports. Follow the hardware guide for wiring and
+          power-mode jumpers.</p>
+        <p>Check the sensor supply voltage <strong>before powering on</strong>:
+          all sensor power ports share the selected 5V / 9V / 12V supply.</p>
+        <p class="small"><strong>Important:</strong> analogue voltage inputs accept
+          0-3.3V; 4-20mA sensors need the corresponding current-mode jumper.
+          Missing power-mode jumpers leave sensors unpowered.</p>
+        <p class="small">Wiring diagrams: full guide &rarr;
+          <a href="https://docs.insigh.io/gettingstarted/e2e/hardware_setup/">Hardware Setup</a>.</p>
+      </section>
+
+      <section>
+        <h2><span class="number">2</span> Create your device in Console</h2>
+        <ol>
+          <li>Open <a href="https://console.insigh.io"><strong>console.insigh.io</strong></a>.
+            Sign up, verify your email, then log in.</li>
+          <li>Open <strong>Device List</strong>, press <strong>+</strong>, enter a
+            device name and select <strong>Create</strong>.</li>
+          <li>On the device page, open <strong>More Details (...)</strong> and copy
+            the access details using the icon next to <strong>JSON</strong>.</li>
+        </ol>
+        <p class="small">Keep the JSON ready for step 4; keep these keys private.
+          Do this before joining the device's WiFi.</p>
+      </section>
+
+      <section>
+        <h2><span class="number">3</span> Connect to the device</h2>
+        <p>Power on. When the LED <strong>blinks magenta</strong>, connect to the
+          device's WiFi <strong>within 50 seconds</strong>.</p>
+        <dl class="credentials">
+          <dt>WiFi name</dt><dd><code>insigh-XXXX</code> (varies by device)</dd>
+          <dt>WiFi password</dt><dd><code>insighiodev</code></dd>
+          <dt>Browser address</dt><dd><a href="http://192.168.4.1"><code>http://192.168.4.1</code></a></dd>
+          <dt>Login</dt><dd><code>admin</code> / <code>insighiodev</code></dd>
+        </dl>
+        <p class="small">Stay on this WiFi even with no internet. Solid magenta means
+          connected. Complete setup within <strong>5 minutes</strong> of connecting.
+          If setup closes, power off/on and reconnect.</p>
+      </section>
+
+      <footer>
+        <span>Full guide: <a href="https://docs.insigh.io/gettingstarted/">docs.insigh.io/gettingstarted/</a></span>
+        <strong>Turn over &rarr; 1 / 2</strong>
+      </footer>
+    </article>
+
+    <article class="sheet" aria-label="Back: configure and verify">
+      <header>
+        <span class="brand">insigh.io</span>
+        <span class="edition">ENVIRO + 1NCE CELLULAR<br>CONFIGURE &amp; VERIFY</span>
+      </header>
+      <h1>Connect. Measure. Check.</h1>
+      <section>
+        <h2><span class="number">4</span> Configure your device</h2>
+        <p class="note"><strong>Network: Cellular</strong><br>
+          APN: <code>iot.1nce.net</code> | Technology: <strong>NB-IoT</strong><br>
+          Transport: <strong>MQTT</strong> | IP: <strong>IPv4</strong></p>
+        <p><strong>Console keys:</strong> paste your JSON into <strong>ID</strong>.
+          ID, Key, Data Channel and Control Channel fill automatically.</p>
+        <p><strong>Measurements:</strong> enable board readings such as battery.
+          Select <strong>SDI-12/Modbus/ADC</strong> for Enviro and configure only
+          your connected sensors:</p>
+        <ul>
+          <li><strong>SDI-12:</strong> address, command and warm-up time.</li>
+          <li><strong>Modbus:</strong> serial settings, sensor address,
+            register and data format.</li>
+          <li><strong>Analogue / pulse:</strong> enable the wired inputs.
+            Match analogue gain to the signal range.</li>
+        </ul>
+        <p class="small">Use your sensors' specifications. Keep advanced system
+          settings at their defaults.</p>
+        <p><strong>Timing:</strong> for testing, set the sleep / measurement
+          period to <strong>5 minutes (300s)</strong>;
+          <strong>Batch Upload off</strong>.</p>
+      </section>
+
+      <section>
+        <h2><span class="number">5</span> Apply and check your data</h2>
+        <ol>
+          <li>Review and press <strong>Finish</strong>. The device reboots,
+            measures and attempts an upload.</li>
+          <li>Reconnect to the internet. Open your device
+            in <a href="https://console.insigh.io"><strong>console.insigh.io</strong></a>.</li>
+          <li>Check for a new timestamp in <strong>Live View</strong> and readings in
+            <strong>Active Measurements</strong>.</li>
+        </ol>
+        <p class="note"><strong>Normal LED cycle:</strong> blue = measuring;
+          red = connecting; green = uploading; off = sleeping.<br>
+          <strong>Confirm success in Console</strong>, not by LED colour alone.</p>
+      </section>
+
+      <section class="troubleshooting">
+        <h2>No connection or readings?</h2>
+        <p><strong>No WiFi?</strong> Power off/on; repeat step 3.<br>
+          <strong>No uploads?</strong> Check coverage, APN and keys.
+          Unsure of NB-IoT coverage? Try technology <strong>auto</strong>.<br>
+          <strong>No sensor values?</strong> Check sensor settings. Power off
+          before checking wiring or power jumpers.</p>
+      </section>
+
+      <footer>
+        <span>Full guide:
+          <a href="https://docs.insigh.io/gettingstarted/">docs.insigh.io/gettingstarted/</a></span>
+        <strong>2 / 2</strong>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
