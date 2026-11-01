@@ -1,18 +1,27 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>insigh.io | Enviro illustrated quick start</title>
   <style>
-    @page { size: A5 portrait; margin: 0; }
-    * { box-sizing: border-box; }
+    @page {
+      size: A5 portrait;
+      margin: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       color: #172f36;
       background: #e8eded;
       font: 10pt/1.2 Arial, Helvetica, sans-serif;
     }
+
     .print-help {
       max-width: 148mm;
       margin: 16px auto;
@@ -20,6 +29,7 @@
       background: white;
       font-size: 11pt;
     }
+
     .sheet {
       width: 148mm;
       min-height: 210mm;
@@ -31,7 +41,11 @@
       box-shadow: 0 2px 12px #0002;
       break-after: page;
     }
-    .sheet:last-child { break-after: auto; }
+
+    .sheet:last-child {
+      break-after: auto;
+    }
+
     header {
       display: flex;
       align-items: center;
@@ -39,8 +53,18 @@
       padding-bottom: 2mm;
       border-bottom: 1mm solid #16766b;
     }
-    .brand { font-size: 21pt; font-weight: bold; letter-spacing: -1pt; }
-    .edition { font-size: 9pt; text-align: right; }
+
+    .brand {
+      display: block;
+      height: 8mm;
+      width: auto;
+    }
+
+    .edition {
+      font-size: 9pt;
+      text-align: right;
+    }
+
     .eyebrow {
       margin: 3mm 0 1mm;
       color: #115c54;
@@ -49,29 +73,100 @@
       text-transform: uppercase;
       letter-spacing: 0.5pt;
     }
-    h1 { margin: 0 0 2mm; font-size: 23pt; line-height: 1.08; }
-    h2 { margin: 3mm 0 1mm; font-size: 13pt; break-after: avoid; }
-    p { margin: 1mm 0; }
-    ol, ul { margin: 1mm 0; padding-left: 5mm; }
-    li { margin: 1mm 0; }
-    a { color: inherit; text-underline-offset: 0.5mm; }
-    code { font: bold 10pt/1.28 "Courier New", monospace; }
+
+    h1 {
+      margin: 0 0 2mm;
+      font-size: 23pt;
+      line-height: 1.08;
+    }
+
+    h2 {
+      margin: 3mm 0 1mm;
+      font-size: 13pt;
+      break-after: avoid;
+    }
+
+    p {
+      margin: 1mm 0;
+    }
+
+    ol,
+    ul {
+      margin: 1mm 0;
+      padding-left: 5mm;
+    }
+
+    li {
+      margin: 1mm 0;
+    }
+
+    a {
+      color: inherit;
+      text-underline-offset: 0.5mm;
+    }
+
+    code {
+      font: bold 10pt/1.28 "Courier New", monospace;
+    }
+
     .note {
       margin: 2mm 0;
       padding: 2mm 3mm;
       border-left: 1mm solid #16766b;
       background: #eff7f5;
     }
-    figure { margin: 2mm 0; }
-    figcaption { margin-top: 1mm; font-size: 9pt; color: #364f56; }
-    svg { display: block; width: 100%; height: auto; }
-    svg text { fill: #172f36; font: 15px Arial, Helvetica, sans-serif; }
-    svg .label { font-size: 13px; }
-    svg .bold { font-weight: bold; }
-    svg .outline { fill: white; stroke: #172f36; stroke-width: 2; }
-    svg .panel { fill: #eff7f5; stroke: #16766b; stroke-width: 2; }
-    svg .wire { fill: none; stroke: #16766b; stroke-width: 3; }
-    svg .arrow { fill: #16766b; }
+
+    figure {
+      margin: 2mm 0;
+    }
+
+    figcaption {
+      margin-top: 1mm;
+      font-size: 9pt;
+      color: #364f56;
+    }
+
+    svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    svg text {
+      fill: #172f36;
+      font: 15px Arial, Helvetica, sans-serif;
+    }
+
+    svg .label {
+      font-size: 13px;
+    }
+
+    svg .bold {
+      font-weight: bold;
+    }
+
+    svg .outline {
+      fill: white;
+      stroke: #172f36;
+      stroke-width: 2;
+    }
+
+    svg .panel {
+      fill: #eff7f5;
+      stroke: #16766b;
+      stroke-width: 2;
+    }
+
+    svg .wire {
+      fill: none;
+      stroke: #16766b;
+      stroke-width: 3;
+    }
+
+    svg .arrow {
+      fill: #16766b;
+    }
+
     dl {
       display: grid;
       grid-template-columns: auto 1fr;
@@ -80,10 +175,23 @@
       margin: 2mm 0;
       border: 0.3mm solid #a6bcb7;
     }
-    dt { font-weight: bold; }
-    dd { margin: 0; }
-    .small { font-size: 9.5pt; }
-    .checks { list-style: square; }
+
+    dt {
+      font-weight: bold;
+    }
+
+    dd {
+      margin: 0;
+    }
+
+    .small {
+      font-size: 9.5pt;
+    }
+
+    .checks {
+      list-style: square;
+    }
+
     footer {
       margin-top: auto;
       padding-top: 3mm;
@@ -92,18 +200,44 @@
       gap: 3mm;
       font-size: 9pt;
     }
+
     @media print {
-      body { background: white; }
-      .print-help { display: none; }
-      .sheet { min-height: 209mm; margin: 0; box-shadow: none; }
-      figure, .note, dl, footer { break-inside: avoid; }
+      body {
+        background: white;
+      }
+
+      .print-help {
+        display: none;
+      }
+
+      .sheet {
+        min-height: 209mm;
+        margin: 0;
+        box-shadow: none;
+      }
+
+      figure,
+      .note,
+      dl,
+      footer {
+        break-inside: avoid;
+      }
     }
+
     @media screen and (max-width: 580px) {
-      .sheet { width: 100%; min-height: auto; padding: 6mm; }
-      footer { margin-top: 4mm; }
+      .sheet {
+        width: 100%;
+        min-height: auto;
+        padding: 6mm;
+      }
+
+      footer {
+        margin-top: 4mm;
+      }
     }
   </style>
 </head>
+
 <body>
   <aside class="print-help" aria-label="Printing instructions">
     <strong>Four-page illustrated insert:</strong> Save as PDF at A5 portrait,
@@ -115,7 +249,7 @@
   <main>
     <article class="sheet" aria-label="Page 1: prepare the hardware">
       <header>
-        <span class="brand">insigh.io</span>
+        <img class="brand" src="../images/insigh_io%20Logo.png" alt="insigh.io">
         <span class="edition">ENVIRO + 1NCE CELLULAR<br>ILLUSTRATED QUICK START</span>
       </header>
       <p class="eyebrow">01 / Prepare</p>
@@ -129,22 +263,22 @@
           <desc id="hardware-desc">A simplified enclosure contains a main board, fitted
             SIM and Enviro shield. Sensor cables pass through glands to the shield.
             This is not a wiring diagram.</desc>
-          <rect class="outline" x="125" y="12" width="270" height="155" rx="14"/>
-          <rect class="panel" x="146" y="30" width="138" height="48" rx="5"/>
+          <rect class="outline" x="125" y="12" width="270" height="155" rx="14" />
+          <rect class="panel" x="146" y="30" width="138" height="48" rx="5" />
           <text x="159" y="51" class="bold">Main board</text>
           <text x="159" y="68" class="label">Firmware installed</text>
-          <rect class="outline" x="300" y="33" width="74" height="43" rx="4"/>
+          <rect class="outline" x="300" y="33" width="74" height="43" rx="4" />
           <text x="315" y="51" class="bold">SIM</text>
           <text x="312" y="67" class="label">Fitted</text>
-          <rect class="panel" x="146" y="94" width="228" height="45" rx="4"/>
+          <rect class="panel" x="146" y="94" width="228" height="45" rx="4" />
           <text x="174" y="122" class="bold">Enviro sensor shield</text>
-          <rect class="outline" x="160" y="159" width="20" height="18" rx="3"/>
-          <rect class="outline" x="222" y="159" width="20" height="18" rx="3"/>
-          <path class="wire" d="M170 139 V150 H232 V139 M170 177 V186 H55 V120"/>
-          <rect class="outline" x="24" y="75" width="62" height="45" rx="5"/>
+          <rect class="outline" x="160" y="159" width="20" height="18" rx="3" />
+          <rect class="outline" x="222" y="159" width="20" height="18" rx="3" />
+          <path class="wire" d="M170 139 V150 H232 V139 M170 177 V186 H55 V120" />
+          <rect class="outline" x="24" y="75" width="62" height="45" rx="5" />
           <text x="31" y="102" class="label">Sensor</text>
           <text x="281" y="183" class="label">Cable glands</text>
-          <path class="wire" d="M274 177 H246"/>
+          <path class="wire" d="M274 177 H246" />
         </svg>
         <figcaption>Hardware overview only. Layout varies; use the online wiring
           and jumper diagrams for your shield version.</figcaption>
@@ -165,7 +299,8 @@
       <p><strong>Have ready:</strong> a WiFi-capable phone or computer with a
         browser, internet access for Console, and your sensor specifications.</p>
       <p class="small">Wiring and jumpers: open the full guide below and choose
-        <strong>Hardware Setup</strong>. This insert does not replace those diagrams.</p>
+        <strong>Hardware Setup</strong>. This insert does not replace those diagrams.
+      </p>
       <footer>
         <a href="https://docs.insigh.io/gettingstarted/">docs.insigh.io/gettingstarted/</a>
         <strong>1 / 4</strong>
@@ -174,7 +309,7 @@
 
     <article class="sheet" aria-label="Page 2: create your Console device">
       <header>
-        <span class="brand">insigh.io</span>
+        <img class="brand" src="../images/insigh_io%20Logo.svg" alt="insigh.io">
         <span class="edition">ENVIRO + 1NCE CELLULAR<br>ILLUSTRATED QUICK START</span>
       </header>
       <p class="eyebrow">02 / Register</p>
@@ -188,22 +323,22 @@
           <desc id="console-desc">A simplified Device List shows the plus button.
             An arrow leads to Device Info with More Details and Copy JSON.
             No real credentials are shown.</desc>
-          <rect class="outline" x="7" y="12" width="192" height="156" rx="8"/>
-          <path class="wire" d="M7 43 H199"/>
+          <rect class="outline" x="7" y="12" width="192" height="156" rx="8" />
+          <path class="wire" d="M7 43 H199" />
           <text x="20" y="34" class="bold">Device List</text>
-          <circle class="panel" cx="175" cy="28" r="11"/>
+          <circle class="panel" cx="175" cy="28" r="11" />
           <text x="170" y="34" class="bold">+</text>
-          <rect class="panel" x="22" y="60" width="162" height="85" rx="4"/>
+          <rect class="panel" x="22" y="60" width="162" height="85" rx="4" />
           <text x="34" y="83">Device name</text>
           <text x="34" y="104" class="bold">my-enviro</text>
           <text x="107" y="132" class="bold">Create</text>
-          <path class="wire" d="M208 93 H280"/>
-          <path class="arrow" d="M280 93 l-12 -7 v14 Z"/>
-          <rect class="outline" x="292" y="12" width="201" height="156" rx="8"/>
+          <path class="wire" d="M208 93 H280" />
+          <path class="arrow" d="M280 93 l-12 -7 v14 Z" />
+          <rect class="outline" x="292" y="12" width="201" height="156" rx="8" />
           <text x="306" y="37" class="bold">Device Info</text>
-          <rect class="panel" x="306" y="53" width="173" height="37" rx="4"/>
+          <rect class="panel" x="306" y="53" width="173" height="37" rx="4" />
           <text x="316" y="77">More Details (...)</text>
-          <rect class="panel" x="306" y="102" width="173" height="45" rx="4"/>
+          <rect class="panel" x="306" y="102" width="173" height="45" rx="4" />
           <text x="317" y="130" class="bold">{ } Copy JSON</text>
         </svg>
         <figcaption>Simplified screen sketch; the actual interface may look different.</figcaption>
@@ -220,7 +355,8 @@
       <h2>Copy the access keys</h2>
       <ol start="4">
         <li>On the new device's <strong>Device Info</strong> page, open
-          <strong>More Details (...)</strong>.</li>
+          <strong>More Details (...)</strong>.
+        </li>
         <li>Use the copy icon next to <strong>JSON</strong> to copy the ID, Key,
           Data Channel and Control Channel together.</li>
       </ol>
@@ -237,7 +373,7 @@
 
     <article class="sheet" aria-label="Page 3: connect and configure">
       <header>
-        <span class="brand">insigh.io</span>
+        <img class="brand" src="../images/insigh_io%20Logo.svg" alt="insigh.io">
         <span class="edition">ENVIRO + 1NCE CELLULAR<br>ILLUSTRATED QUICK START</span>
       </header>
       <p class="eyebrow">03 / Connect</p>
@@ -249,16 +385,16 @@
           <desc id="wifi-desc">A node with a blinking magenta LED connects by local
             WiFi to a phone running a browser at HTTP 192.168.4.1.
             This local link does not provide internet access.</desc>
-          <rect class="outline" x="18" y="20" width="113" height="77" rx="10"/>
-          <circle cx="35" cy="38" r="6" fill="#993080" stroke="#172f36"/>
+          <rect class="outline" x="18" y="20" width="113" height="77" rx="10" />
+          <circle cx="35" cy="38" r="6" fill="#993080" stroke="#172f36" />
           <text x="37" y="68" class="bold">Enviro</text>
           <text x="148" y="30" class="label">Local setup WiFi</text>
-          <path class="wire" stroke-dasharray="6 4" d="M141 54 H321"/>
-          <path class="arrow" d="M321 54 l-12 -7 v14 Z"/>
+          <path class="wire" stroke-dasharray="6 4" d="M141 54 H321" />
+          <path class="arrow" d="M321 54 l-12 -7 v14 Z" />
           <text x="153" y="79" class="bold">insigh-XXXX</text>
           <text x="149" y="100" class="label">No internet required</text>
-          <rect class="outline" x="337" y="7" width="144" height="105" rx="9"/>
-          <rect class="panel" x="346" y="20" width="126" height="77" rx="3"/>
+          <rect class="outline" x="337" y="7" width="144" height="105" rx="9" />
+          <rect class="panel" x="346" y="20" width="126" height="77" rx="3" />
           <text x="358" y="43" class="label">Browser</text>
           <text x="358" y="65" class="bold">192.168.4.1</text>
           <text x="358" y="85" class="label">Local configurator</text>
@@ -268,10 +404,14 @@
       <p>Power on and wait for the LED to <strong>blink magenta</strong>
         (around 5-10 seconds). Join its WiFi <strong>within 50 seconds</strong>.</p>
       <dl>
-        <dt>WiFi name</dt><dd><code>insigh-XXXX</code> (varies by device)</dd>
-        <dt>WiFi password</dt><dd><code>insighiodev</code></dd>
-        <dt>Open in browser</dt><dd><a href="http://192.168.4.1"><code>http://192.168.4.1</code></a></dd>
-        <dt>Login</dt><dd><code>admin</code> / <code>insighiodev</code></dd>
+        <dt>WiFi name</dt>
+        <dd><code>insigh-XXXX</code> (varies by device)</dd>
+        <dt>WiFi password</dt>
+        <dd><code>insighiodev</code></dd>
+        <dt>Open in browser</dt>
+        <dd><a href="http://192.168.4.1"><code>http://192.168.4.1</code></a></dd>
+        <dt>Login</dt>
+        <dd><code>admin</code> / <code>insighiodev</code></dd>
       </dl>
       <p class="small">Stay connected even with no internet. Solid magenta means
         connected. Finish within <strong>5 minutes</strong> of connecting;
@@ -284,7 +424,8 @@
         ID, Key, Data Channel and Control Channel fill automatically.</p>
       <p><strong>Measurements:</strong> enable battery readings; select
         <strong>SDI-12/Modbus/ADC</strong> for Enviro. Configure only connected
-        sensors, using their specifications:</p>
+        sensors, using their specifications:
+      </p>
       <ul class="small">
         <li><strong>SDI-12:</strong> address, command and warm-up time.</li>
         <li><strong>Modbus:</strong> serial settings, address, register and data format.</li>
@@ -298,7 +439,7 @@
 
     <article class="sheet" aria-label="Page 4: apply settings and verify data">
       <header>
-        <span class="brand">insigh.io</span>
+        <img class="brand" src="../images/insigh_io%20Logo.svg" alt="insigh.io">
         <span class="edition">ENVIRO + 1NCE CELLULAR<br>ILLUSTRATED QUICK START</span>
       </header>
       <p class="eyebrow">04 / Verify</p>
@@ -315,11 +456,11 @@
           <desc id="verify-desc">Four labelled LED states show blue for measuring,
             red for connecting, green for uploading and off for sleep. Below, a
             simplified Console Live View shows a new timestamp and sensor readings.</desc>
-          <path class="wire" d="M58 31 H444"/>
-          <circle cx="58" cy="31" r="12" fill="#236dc1" stroke="#172f36" stroke-width="2"/>
-          <circle cx="186" cy="31" r="12" fill="#ca3c3c" stroke="#172f36" stroke-width="2"/>
-          <circle cx="314" cy="31" r="12" fill="#23824b" stroke="#172f36" stroke-width="2"/>
-          <circle class="outline" cx="442" cy="31" r="12"/>
+          <path class="wire" d="M58 31 H444" />
+          <circle cx="58" cy="31" r="12" fill="#236dc1" stroke="#172f36" stroke-width="2" />
+          <circle cx="186" cy="31" r="12" fill="#ca3c3c" stroke="#172f36" stroke-width="2" />
+          <circle cx="314" cy="31" r="12" fill="#23824b" stroke="#172f36" stroke-width="2" />
+          <circle class="outline" cx="442" cy="31" r="12" />
           <text x="26" y="62" class="bold">Measure</text>
           <text x="153" y="62" class="bold">Connect</text>
           <text x="286" y="62" class="bold">Upload</text>
@@ -328,7 +469,7 @@
           <text x="174" y="80" class="label">Red</text>
           <text x="295" y="80" class="label">Green</text>
           <text x="433" y="80" class="label">Off</text>
-          <rect class="outline" x="10" y="93" width="480" height="53" rx="7"/>
+          <rect class="outline" x="10" y="93" width="480" height="53" rx="7" />
           <text x="25" y="114" class="bold">Console / Live View</text>
           <text x="25" y="136">New timestamp</text>
           <text x="214" y="136" class="bold">&gt; Sensor readings received</text>
@@ -341,7 +482,8 @@
         <li>Reconnect your phone or computer to the internet, then open your device
           at <a href="https://console.insigh.io"><strong>console.insigh.io</strong></a>.</li>
         <li>Look for a new timestamp in <strong>Live View</strong>. Use
-          <strong>&gt;</strong> to expand the measurement.</li>
+          <strong>&gt;</strong> to expand the measurement.
+        </li>
         <li>Check the latest readings in <strong>Active Measurements</strong>.
           Refresh the page to update device status.</li>
       </ol>
@@ -352,7 +494,8 @@
         <strong>No uploads?</strong> Check cellular coverage, APN and Console keys.
         Unsure of NB-IoT availability? Try technology preference <strong>auto</strong>.<br>
         <strong>Missing sensor values?</strong> Check sensor settings; power off
-        before checking wiring or power jumpers.</p>
+        before checking wiring or power jumpers.
+      </p>
       <footer>
         <a href="https://docs.insigh.io/gettingstarted/">docs.insigh.io/gettingstarted/</a>
         <strong>4 / 4</strong>
@@ -360,4 +503,5 @@
     </article>
   </main>
 </body>
+
 </html>

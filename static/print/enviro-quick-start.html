@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,7 +11,9 @@
       margin: 0;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
@@ -39,7 +42,9 @@
       break-after: page;
     }
 
-    .sheet:last-child { break-after: auto; }
+    .sheet:last-child {
+      break-after: auto;
+    }
 
     header {
       display: flex;
@@ -49,10 +54,26 @@
       border-bottom: 1mm solid #16766b;
     }
 
-    .brand { font-size: 21pt; font-weight: bold; letter-spacing: -1pt; }
-    .edition { font-size: 9pt; text-align: right; }
-    h1 { margin: 2mm 0 1.5mm; font-size: 21pt; line-height: 1.08; }
-    .intro { margin: 0 0 2mm; }
+    .brand {
+      display: block;
+      height: 8mm;
+      width: auto;
+    }
+
+    .edition {
+      font-size: 9pt;
+      text-align: right;
+    }
+
+    h1 {
+      margin: 2mm 0 1.5mm;
+      font-size: 21pt;
+      line-height: 1.08;
+    }
+
+    .intro {
+      margin: 0 0 2mm;
+    }
 
     h2 {
       display: flex;
@@ -76,11 +97,29 @@
       color: #115c54;
     }
 
-    p { margin: 1mm 0; }
-    ul, ol { margin: 1mm 0; padding-left: 5mm; }
-    li { margin: 0.5mm 0; }
-    a { color: inherit; text-decoration-thickness: 0.2mm; text-underline-offset: 0.5mm; }
-    code { font: bold 10pt/1.2 "Courier New", monospace; }
+    p {
+      margin: 1mm 0;
+    }
+
+    ul,
+    ol {
+      margin: 1mm 0;
+      padding-left: 5mm;
+    }
+
+    li {
+      margin: 0.5mm 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration-thickness: 0.2mm;
+      text-underline-offset: 0.5mm;
+    }
+
+    code {
+      font: bold 10pt/1.2 "Courier New", monospace;
+    }
 
     .note {
       margin: 2mm 0;
@@ -98,11 +137,28 @@
       border: 0.3mm solid #a6bcb7;
     }
 
-    dt { font-weight: bold; }
-    dd { margin: 0; }
-    .small { font-size: 9.5pt; }
-    .troubleshooting { margin-top: 3mm; border-top: 0.3mm solid #a6bcb7; padding-top: 1mm; }
-    .troubleshooting h2 { font-size: 12pt; margin-top: 2mm; }
+    dt {
+      font-weight: bold;
+    }
+
+    dd {
+      margin: 0;
+    }
+
+    .small {
+      font-size: 9.5pt;
+    }
+
+    .troubleshooting {
+      margin-top: 3mm;
+      border-top: 0.3mm solid #a6bcb7;
+      padding-top: 1mm;
+    }
+
+    .troubleshooting h2 {
+      font-size: 12pt;
+      margin-top: 2mm;
+    }
 
     footer {
       margin-top: auto;
@@ -114,18 +170,41 @@
     }
 
     @media print {
-      body { background: white; }
-      .print-help { display: none; }
-      .sheet { margin: 0; box-shadow: none; }
-      section, .note, dl, footer { break-inside: avoid; }
+      body {
+        background: white;
+      }
+
+      .print-help {
+        display: none;
+      }
+
+      .sheet {
+        margin: 0;
+        box-shadow: none;
+      }
+
+      section,
+      .note,
+      dl,
+      footer {
+        break-inside: avoid;
+      }
     }
 
     @media screen and (max-width: 580px) {
-      .sheet { width: 100%; min-height: auto; padding: 6mm; }
-      footer { margin-top: 4mm; }
+      .sheet {
+        width: 100%;
+        min-height: auto;
+        padding: 6mm;
+      }
+
+      footer {
+        margin-top: 4mm;
+      }
     }
   </style>
 </head>
+
 <body>
   <aside class="print-help" aria-label="Printing instructions">
     <strong>Print this insert:</strong> A5 portrait, two-sided, flip on the long edge,
@@ -136,7 +215,7 @@
   <main>
     <article class="sheet" aria-label="Front: prepare and connect">
       <header>
-        <span class="brand">insigh.io</span>
+        <img class="brand" src="../images/insigh_io%20Logo.png" alt="insigh.io">
         <span class="edition">ENVIRO + 1NCE CELLULAR<br>QUICK START</span>
       </header>
       <h1>Your first sensor data.</h1>
@@ -155,7 +234,8 @@
           0-3.3V; 4-20mA sensors need the corresponding current-mode jumper.
           Missing power-mode jumpers leave sensors unpowered.</p>
         <p class="small">Wiring diagrams: full guide &rarr;
-          <a href="https://docs.insigh.io/gettingstarted/e2e/hardware_setup/">Hardware Setup</a>.</p>
+          <a href="https://docs.insigh.io/gettingstarted/e2e/hardware_setup/">Hardware Setup</a>.
+        </p>
       </section>
 
       <section>
@@ -177,10 +257,14 @@
         <p>Power on. When the LED <strong>blinks magenta</strong>, connect to the
           device's WiFi <strong>within 50 seconds</strong>.</p>
         <dl class="credentials">
-          <dt>WiFi name</dt><dd><code>insigh-XXXX</code> (varies by device)</dd>
-          <dt>WiFi password</dt><dd><code>insighiodev</code></dd>
-          <dt>Browser address</dt><dd><a href="http://192.168.4.1"><code>http://192.168.4.1</code></a></dd>
-          <dt>Login</dt><dd><code>admin</code> / <code>insighiodev</code></dd>
+          <dt>WiFi name</dt>
+          <dd><code>insigh-XXXX</code> (varies by device)</dd>
+          <dt>WiFi password</dt>
+          <dd><code>insighiodev</code></dd>
+          <dt>Browser address</dt>
+          <dd><a href="http://192.168.4.1"><code>http://192.168.4.1</code></a></dd>
+          <dt>Login</dt>
+          <dd><code>admin</code> / <code>insighiodev</code></dd>
         </dl>
         <p class="small">Stay on this WiFi even with no internet. Solid magenta means
           connected. Complete setup within <strong>5 minutes</strong> of connecting.
@@ -195,7 +279,7 @@
 
     <article class="sheet" aria-label="Back: configure and verify">
       <header>
-        <span class="brand">insigh.io</span>
+        <img class="brand" src="../images/insigh_io%20Logo.svg" alt="insigh.io">
         <span class="edition">ENVIRO + 1NCE CELLULAR<br>CONFIGURE &amp; VERIFY</span>
       </header>
       <h1>Connect. Measure. Check.</h1>
@@ -220,7 +304,8 @@
           settings at their defaults.</p>
         <p><strong>Timing:</strong> for testing, set the sleep / measurement
           period to <strong>5 minutes (300s)</strong>;
-          <strong>Batch Upload off</strong>.</p>
+          <strong>Batch Upload off</strong>.
+        </p>
       </section>
 
       <section>
@@ -231,11 +316,13 @@
           <li>Reconnect to the internet. Open your device
             in <a href="https://console.insigh.io"><strong>console.insigh.io</strong></a>.</li>
           <li>Check for a new timestamp in <strong>Live View</strong> and readings in
-            <strong>Active Measurements</strong>.</li>
+            <strong>Active Measurements</strong>.
+          </li>
         </ol>
         <p class="note"><strong>Normal LED cycle:</strong> blue = measuring;
           red = connecting; green = uploading; off = sleeping.<br>
-          <strong>Confirm success in Console</strong>, not by LED colour alone.</p>
+          <strong>Confirm success in Console</strong>, not by LED colour alone.
+        </p>
       </section>
 
       <section class="troubleshooting">
@@ -244,7 +331,8 @@
           <strong>No uploads?</strong> Check coverage, APN and keys.
           Unsure of NB-IoT coverage? Try technology <strong>auto</strong>.<br>
           <strong>No sensor values?</strong> Check sensor settings. Power off
-          before checking wiring or power jumpers.</p>
+          before checking wiring or power jumpers.
+        </p>
       </section>
 
       <footer>
@@ -255,4 +343,5 @@
     </article>
   </main>
 </body>
+
 </html>
