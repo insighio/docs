@@ -1,4 +1,5 @@
-FROM klakegg/hugo:0.74.3-alpine as build-stage
+FROM ghcr.io/gohugoio/hugo:v0.154.5 as build-stage
+USER root
 RUN apk --no-cache add git
 COPY ./ /app
 WORKDIR /app
