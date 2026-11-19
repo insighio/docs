@@ -25,7 +25,27 @@ The configuration steps include:
 ### Step-by-step procedure
 
 #### Launch and access configurator
-1. Power on the node and you will see its RGB led **{{< raw-html >}}<span style="color: #800080">blinking magenta</span>{{< /raw-html >}}** color. This means that the local web server has been launched and you have **50 seconds** to connect to it using WiFi.
+
+If you're using Android, install the insigh.io Node app before powering on the node.
+
+{{< raw-html >}}
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; margin: .75rem 0;">
+  <img class="inline" src="/images/gettingstarted/insighio-node-google-play-qr.png" width="135" height="135" alt="Scan to open the insigh.io Node Android app on Google Play">
+  <div>
+    <small>ANDROID APP</small><br>
+    <a href="https://play.google.com/store/apps/details?id=com.insighio.node"><i class="fab fa-google-play" aria-hidden="true"></i> <strong>Get it on Google Play</strong></a>
+  </div>
+</div>
+{{< /raw-html >}}
+
+Power on the node. When its RGB LED is **{{< raw-html >}}<span style="color: #800080">blinking magenta</span>{{< /raw-html >}}**, the local Configurator and its WiFi network are active. You have **50 seconds** to connect using either method below.
+
+**Using the Android app**
+
+Open the app and select your node from the list of nearby insigh.io nodes. The app scans for nodes, connects to the selected node's WiFi network, and logs in to the Configurator automatically.
+
+**Connecting manually from a PC**
+
 1. Locate and connect to the **local WiFi network** which is named as _insigh-xxxx_ with the 4 digits corresponding to the last 4 characters of the MAC address. Use  _insighiodev_ as the password.
 1. After connecting, the RGB led will stop blinking and become **{{< raw-html >}}<span style="color: #800080">solid magenta</span>{{< /raw-html >}}**.
 1. Launch a **Browser** and connect to [**http://192.168.4.1**](http://192.168.4.1). Use _admin_ and _insighiodev_ for **Login**.
