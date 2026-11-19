@@ -31,15 +31,6 @@ This is **a quick starting guide** that shows how to setup a fresh insigh.io nod
 This guide shows how to experience the simplicity of exchanging sensor data end-to-end using insigh.io’s cloud Console in a matter of minutes. Hence, it is a useful starting point for newcomers who want to test the product on an end-to-end basis without delving into the details. However, it is not a replacement of the complete documentation following up on Chapters 2--4.
 {{% /notice %}}
 
-{{% notice tip %}}
-
-For an in-box reference, use the [two-sided A5 quick-start flyer for Enviro nodes
-with a 1NCE SIM](/print/enviro-quick-start.html). It assumes firmware is installed
-and the SIM is fitted; sensor setup and Console provisioning are covered in the
-flyer.
-
-{{% /notice %}}
-
 {{% notice note %}}
 
 Prefer a visual walkthrough? The [four-page A5 illustrated guide for the same
