@@ -184,6 +184,38 @@
       margin: 0;
     }
 
+    .connection-options {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 3mm;
+      margin: 2mm 0;
+    }
+
+    .connection-options dl {
+      margin: 0;
+      row-gap: 1mm;
+    }
+
+    .android-app {
+      display: flex;
+      align-items: center;
+      gap: 2mm;
+      padding: 2mm;
+      border: 0.3mm solid #a6bcb7;
+    }
+
+    .android-app img {
+      flex: none;
+      width: 20mm;
+      height: 20mm;
+    }
+
+    .android-app-label {
+      color: #115c54;
+      font-size: 8pt;
+      font-weight: bold;
+    }
+
     .small {
       font-size: 9.5pt;
     }
@@ -216,8 +248,14 @@
         box-shadow: none;
       }
 
+      .local-setup-diagram {
+        width: 82%;
+        margin-inline: auto;
+      }
+
       figure,
       .note,
+      .connection-options,
       dl,
       footer {
         break-inside: avoid;
@@ -234,18 +272,15 @@
       footer {
         margin-top: 4mm;
       }
+
+      .connection-options {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 
 <body>
-  <aside class="print-help" aria-label="Printing instructions">
-    <strong>Four-page illustrated insert:</strong> Save as PDF at A5 portrait,
-    100% scale, no margins, browser headers and footers off. Print A5 double-sided,
-    flipping on the long edge. For a folded A4 booklet, use your PDF reader's
-    Booklet mode (pages are supplied in reading order, not imposed).
-    These instructions do not print.
-  </aside>
   <main>
     <article class="sheet" aria-label="Page 1: prepare the hardware">
       <header>
@@ -379,7 +414,7 @@
       <p class="eyebrow">03 / Connect</p>
       <h1>Open local setup.</h1>
 
-      <figure>
+      <figure class="local-setup-diagram">
         <svg viewBox="0 0 500 120" role="img" aria-labelledby="wifi-title wifi-desc">
           <title id="wifi-title">Connect directly to the node's WiFi for setup</title>
           <desc id="wifi-desc">A node with a blinking magenta LED connects by local
@@ -402,17 +437,29 @@
       </figure>
 
       <p>Power on and wait for the LED to <strong>blink magenta</strong>
-        (around 5-10 seconds). Join its WiFi <strong>within 50 seconds</strong>.</p>
-      <dl>
-        <dt>WiFi name</dt>
-        <dd><code>insigh-XXXX</code> (varies by device)</dd>
-        <dt>WiFi password</dt>
-        <dd><code>insighiodev</code></dd>
-        <dt>Open in browser</dt>
-        <dd><a href="http://192.168.4.1"><code>http://192.168.4.1</code></a></dd>
-        <dt>Login</dt>
-        <dd><code>admin</code> / <code>insighiodev</code></dd>
-      </dl>
+        (around 5-10 seconds). Connect <strong>within 50 seconds</strong>.</p>
+      <div class="connection-options">
+        <dl>
+          <dt>WiFi name</dt>
+          <dd><code>insigh-XXXX</code> (varies by device)</dd>
+          <dt>WiFi password</dt>
+          <dd><code>insighiodev</code></dd>
+          <dt>Open in browser</dt>
+          <dd><a href="http://192.168.4.1"><code>http://192.168.4.1</code></a></dd>
+          <dt>Login</dt>
+          <dd><code>admin</code> / <code>insighiodev</code></dd>
+        </dl>
+        <aside class="android-app">
+          <img src="../images/gettingstarted/insighio-node-google-play-qr.png"
+            alt="Scan to open the insigh.io Node app on Google Play">
+          <div class="small">
+            <span class="android-app-label">ANDROID APP</span><br>
+            <a href="https://play.google.com/store/apps/details?id=com.insighio.node"><strong>Get it on Google Play</strong></a>
+            <p>Install insigh.io Node before power-on. Select your node to connect
+              and log in automatically.</p>
+          </div>
+        </aside>
+      </div>
       <p class="small">Stay connected even with no internet. Solid magenta means
         connected. Finish within <strong>5 minutes</strong> of connecting;
         if setup closes, power off/on and reconnect.</p>
