@@ -61,3 +61,17 @@ deployment. Save as PDF using the A5 settings above; verify exactly four pages.
 Print A5 double-sided, flipping on the long edge. For a folded A4 booklet, select
 Booklet mode in a PDF reader that supports it and follow its duplex instructions.
 The source is in reading order (1-4), not pre-imposed for folding.
+
+To generate both PDFs automatically, install Google Chrome and `pdfbook2`
+(`sudo apt install texlive-extra-utils`), then run from the repository root:
+
+```bash
+cd scripts
+bash generate_pdfs.sh
+```
+
+The [generation script](scripts/generate_pdfs.sh) uses Chrome's print engine to
+preserve the HTML print layout and writes `enviro-illustrated-guide.pdf` and
+`enviro-illustrated-guide-book.pdf` into `static/print/`. The booklet PDF is already
+arranged for A4 landscape: print one PDF page per side, double-sided, flipping on
+the short edge.
